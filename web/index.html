@@ -23,11 +23,15 @@
   <div class="page-head">
     <h1 class="page-title">大模型编年史</h1>
     <p class="kicker">2018 to 2026</p>
-    <p class="page-lede">从 GPT-1 的 0.5K 上下文，到今天的百万 token。一条时间轴，八个节点。</p>
-    <div class="hero-art" id="hero-art"></div>
+    <p class="page-lede">从 GPT-1 的 0.5K 上下文，到今天的百万 token。356 个模型，精确到月，铺在一条可以横向走完的时间轴上。</p>
   </div>
 
-  <div class="timeline">
+  <h2 class="sec-title">编年长轴</h2>
+  <p class="axis-hint">横向滚动，每月一格。圆片是机构 logo，点任意模型看详情。</p>
+  <div class="long-timeline" id="long-timeline"></div>
+  <div class="timeline-detail" id="timeline-detail">点任意模型，这里显示它的机构、日期与规格。</div>
+
+  <div class="timeline" style="display:none">
     <div class="tl-spine" aria-hidden="true"></div>
     <article class="tl-item" data-side="left">
       <div class="tl-year">2018</div>
@@ -69,5 +73,7 @@
   <a href="models.html">去看模型对比</a>
 </div></footer>
 <script src="assets/site.js"></script>
+<script src="assets/timeline-data.js"></script>
+<script src="assets/timeline.js"></script>
 </body>
 </html>

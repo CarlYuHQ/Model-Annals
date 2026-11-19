@@ -15,6 +15,7 @@
   var Y=function(c){return H-m.b-(c/ctxMax)*(H-m.t-m.b);};
 
   var current='all', selected=null;
+  var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:null};
 
   function buildChart(){
     var host=document.getElementById('chart-wrap');
@@ -38,17 +39,33 @@
       var color=d.region==='cn'?'var(--red)':(d.region==='us'?'var(--blue)':'var(--green)');
       var open=d.license==='open'||d.license==='weighted';
       var g=el('g','cmp-point');g.setAttribute('data-id',d.id);g.setAttribute('tabindex','0');
-      g.setAttribute('role','button');g.setAttribute('aria-label',d.name);
-      var dot=el('circle','cmp-dot');
-      attr(dot,{cx:cx,cy:cy,r:selected===d.id?9:5.5,fill:open?'var(--paper)':color,stroke:color,'stroke-width':2});
-      g.appendChild(dot);
-      // 只有选中的点显示标签，彻底避免 73 个标签互相交叉
+      g.setAttribute('role','button');g.setAttribute('aria-label',d.name+' · '+d.company);
+
+      var lf=LOGO[d.companyId];
+      var r=selected===d.id?16:12;
+      if(lf){
+        var cid='clip-'+d.id.replace(/[^a-z0-9]/gi,'-');
+        var clip=el('clipPath');clip.setAttribute('id',cid);
+        var cc=el('circle');attr(cc,{cx:cx,cy:cy,r:r});clip.appendChild(cc);svg.appendChild(clip);
+        var img=el('image');
+        attr(img,{x:cx-r,y:cy-r,width:r*2,height:r*2,href:'assets/logos/'+lf+'.png','clip-path':'url(#'+cid+')'});
+        g.appendChild(img);
+        var ring=el('circle','cmp-dot');
+        attr(ring,{cx:cx,cy:cy,r:r,fill:'none',stroke:open?'var(--ink)':color,'stroke-width':selected===d.id?3:1.5});
+        g.appendChild(ring);
+      } else {
+        var dot=el('circle','cmp-dot');
+        attr(dot,{cx:cx,cy:cy,r:selected===d.id?9:7,fill:open?'var(--paper)':color,stroke:color,'stroke-width':2});
+        g.appendChild(dot);
+      }
+      // 选中点显示模型名 + 机构名；其余点用下方机构缩写标记
       if(selected===d.id){
         var lab=el('text','cmp-label');
         var anchor=cx>W*.72?'end':'start';
-        attr(lab,{x:cx+(anchor==='start'?10:-10),y:cy-12,'text-anchor':anchor});
-        lab.textContent=d.name;g.appendChild(lab);
+        attr(lab,{x:cx+(anchor==='start'?22:-22),y:cy-6,'text-anchor':anchor,'font-size':16});
+        lab.textContent=d.name+' · '+d.company;g.appendChild(lab);
       }
+      // 其余点不加文字，避免 73 个标签互相压字；机构名统一放在图例索引里
       g.addEventListener('click',function(){select(d.id);});
       g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(d.id);}});
       svg.appendChild(g);
@@ -67,20 +84,28 @@
     buildChart();
   }
 
-  function buildFilters(){
-    var host=document.getElementById('filters');if(!host)return;
-    var ids={};D.forEach(function(d){ids[d.companyId]=d.company;});
-    var keys=Object.keys(ids).sort(function(a,b){return ids[a].localeCompare(ids[b]);});
-    host.innerHTML='<button class="chip on" data-co="all">全部</button>'+
-      keys.map(function(k){return '<button class="chip" data-co="'+k+'">'+ids[k]+'</button>';}).join('');
+  function buildOrgIndex(){
+    var host=document.getElementById('org-index');if(!host)return;
+    var by={};
+    D.forEach(function(d){if(!by[d.companyId])by[d.companyId]={name:d.company,logo:LOGO[d.companyId]};});
+    host.innerHTML=Object.keys(by).sort(function(a,b){return by[a].name.localeCompare(by[b].name);})
+      .map(function(k){
+        var o=by[k];
+        var lg=o.logo?'<img src="assets/logos/'+o.logo+'.png" alt="" width="16" height="16">':'<span class="org-ph"></span>';
+        return '<button class="org" data-co="'+k+'">'+lg+'<span>'+o.name+'</span></button>';
+      }).join('');
     host.addEventListener('click',function(e){
       var b=e.target.closest('[data-co]');if(!b)return;
-      host.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on');current=b.getAttribute('data-co');selected=null;
+      var co=b.getAttribute('data-co');
+      current=(current===co?'all':co);
+      host.querySelectorAll('.org').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-co')===current);});
+      selected=null;
       document.getElementById('model-detail').innerHTML='<p class="detail-idle">点图中任意一点，看它的规格。</p>';
       buildChart();
+      if(tbRender)tbRender();
     });
   }
+
 
   function buildTable(){
     var tb=document.getElementById('model-tbody');if(!tb)return;
@@ -105,7 +130,7 @@
   var tbRender=null;
 
   function init(){
-    buildFilters();buildChart();buildTable();
+    buildOrgIndex();buildChart();buildTable();
     tbRender=function(){document.getElementById('model-tbody')._render();};
     document.querySelectorAll('.viewtab').forEach(function(b){
       b.addEventListener('click',function(){switchView(b.getAttribute('data-view'));});
