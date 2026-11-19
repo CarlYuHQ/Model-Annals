@@ -130,6 +130,8 @@ table.hand tbody tr:hover{background:var(--hl-green)}
 .cell p{font-family:var(--ui);font-size:13px;color:var(--muted);margin:0;line-height:1.6}
 .cell .num{font-size:34px;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1}
 .cell .co{font-family:var(--ui);font-size:12px;color:var(--muted);margin-top:12px;display:block}
+.cell .co a{color:var(--blue)}
+.cell .co a:hover{color:var(--red)}
 .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
 .chip{font-family:var(--ui);font-size:12px;color:var(--muted);background:none;border:1px solid var(--rule);padding:8px 16px;border-radius:2px;transition:color .2s,border-color .2s}
 .chip:hover{color:var(--ink);border-color:var(--ink)}
