@@ -1,4 +1,6 @@
-/* 横向编年长轴：精确到月，356 个模型按发布日期铺开，带机构 logo */
+/* 横向编年长轴：精确到月，356 个模型按发布日期铺开，带机构 logo
+   布局：贪心分层——相邻点 x 距离够近就同层，太近就换层。
+   稀疏段自动贴轴，密集段自动铺开，不留大片空白。 */
 (function(){
   'use strict';
   var D=window.TIMELINE_DATA||[];
@@ -6,16 +8,49 @@
   if(!host||!D.length)return;
 
   var Y0=2018,Y1=2026,MO=12;
-  var COL=44;                       // 每月宽度
-  var X0=90;                        // 左侧留白
+  var COL=40;                        // 每月宽度
+  var X0=90;
   var TOTAL=(Y1-Y0+1)*MO*COL+X0+120;
-  var AXIS_Y=300;                   // 主轴 y
-  var LEVELS=[-40,-96,-152,52,108,164];  // 上下交错层
-  var H=560;
+  var AXIS_Y=190;                    // 主轴 y（画布压到 380）
+  var H=380;
   var W=TOTAL;
+  var LAYERS=[-150,-120,-90,-60,-30, 30,60,90,120,150];  // 上下各 5 层，间距 30
+  var MIN_GAP=46;                    // 同层两点最小 x 间距（小于此就换层）
+  var selectedId=null;
 
-  function xOf(y,m){return X0+((y-Y0)*12+(m-1))*COL;}
+  function xOf(y,m,day){
+    var d=day||15;
+    return X0+((y-Y0)*12+(m-1)+(d-1)/30)*COL;
+  }
   function logoURL(l){return l?'assets/logos/'+l+'.png':'';}
+
+  // 解析日
+  D.forEach(function(d){
+    var p=d.date.split('-');d.day=p.length>2?parseInt(p[2],10):15;
+  });
+
+  // ---- 贪心分层：稀疏段贴轴，密集段铺开 ----
+  var lastX=LAYERS.map(function(){return -Infinity;});
+  D.forEach(function(d){
+    var x=xOf(d.y,d.m,d.day);
+    d.x=x;
+    var best=-1,bestScore=-Infinity;
+    for(var i=0;i<LAYERS.length;i++){
+      var gap=x-lastX[i];
+      if(gap<MIN_GAP)continue;
+      // 优先靠近轴（|layer| 小），且复用刚用过的层（gap 越大分越高但离轴远的惩罚）
+      var score=(Math.abs(LAYERS[i])<=30?40:0) - Math.abs(LAYERS[i])*0.5 + Math.min(gap,MIN_GAP*3)*0.2;
+      if(score>bestScore){bestScore=score;best=i;}
+    }
+    if(best<0){
+      // 所有层都太近：选最远的一层覆盖
+      best=0;
+      for(var j=1;j<LAYERS.length;j++)if(lastX[j]<lastX[best])best=j;
+    }
+    d.layer=best;
+    d.yPos=AXIS_Y+LAYERS[best];
+    lastX[best]=x;
+  });
 
   var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
   s.setAttribute('viewBox','0 0 '+W+' '+H);
@@ -30,60 +65,53 @@
   axis.setAttribute('stroke','var(--ink)');axis.setAttribute('stroke-width',2);
   s.appendChild(axis);
 
-  // 年份分界 + 月份刻度
+  // 年份 + 季度月份
   for(var y=Y0;y<=Y1;y++){
-    for(var mo=1;mo<=MO;mo++){
-      if(mo===1){
-        var x=xOf(y,mo);
-        var t=document.createElementNS('http://www.w3.org/2000/svg','text');
-        t.setAttribute('x',x);t.setAttribute('y',AXIS_Y-14);
-        t.setAttribute('font-size','30');t.setAttribute('font-family','var(--hand)');
-        t.setAttribute('fill','var(--red)');t.textContent=y;
-        s.appendChild(t);
-        var big=document.createElementNS('http://www.w3.org/2000/svg','line');
-        big.setAttribute('x1',x);big.setAttribute('y1',AXIS_Y-6);
-        big.setAttribute('x2',x);big.setAttribute('y2',AXIS_Y+6);
-        big.setAttribute('stroke','var(--red)');big.setAttribute('stroke-width',2);
-        s.appendChild(big);
-      } else {
-        var xm=xOf(y,mo);
-        var tick=document.createElementNS('http://www.w3.org/2000/svg','line');
-        tick.setAttribute('x1',xm);tick.setAttribute('y1',AXIS_Y);
-        tick.setAttribute('x2',xm);tick.setAttribute('y2',AXIS_Y+6);
-        tick.setAttribute('stroke','var(--muted)');tick.setAttribute('stroke-width',1);
-        s.appendChild(tick);
-      }
-    }
+    var xYear=xOf(y,1,1);
+    var t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',xYear);t.setAttribute('y',AXIS_Y-12);
+    t.setAttribute('font-size','28');t.setAttribute('font-family','var(--hand)');
+    t.setAttribute('fill','var(--red)');t.textContent=y;
+    s.appendChild(t);
+    var big=document.createElementNS('http://www.w3.org/2000/svg','line');
+    big.setAttribute('x1',xYear);big.setAttribute('y1',AXIS_Y-6);
+    big.setAttribute('x2',xYear);big.setAttribute('y2',AXIS_Y+6);
+    big.setAttribute('stroke','var(--red)');big.setAttribute('stroke-width',2);
+    s.appendChild(big);
+    [4,7,10].forEach(function(mm){
+      var xm=xOf(y,mm,1);
+      var tk=document.createElementNS('http://www.w3.org/2000/svg','line');
+      tk.setAttribute('x1',xm);tk.setAttribute('y1',AXIS_Y);
+      tk.setAttribute('x2',xm);tk.setAttribute('y2',AXIS_Y+5);
+      tk.setAttribute('stroke','var(--muted)');tk.setAttribute('stroke-width',1);
+      s.appendChild(tk);
+    });
   }
-  // 月份数字（每季度标一次，避免密）
   for(var yy=Y0;yy<=Y1;yy++){
     [1,4,7,10].forEach(function(mm){
-      var x=xOf(yy,mm);
+      var x=xOf(yy,mm,1);
       var mt=document.createElementNS('http://www.w3.org/2000/svg','text');
-      mt.setAttribute('x',x);mt.setAttribute('y',AXIS_Y+26);
-      mt.setAttribute('font-size','15');mt.setAttribute('font-family','var(--ui)');
+      mt.setAttribute('x',x);mt.setAttribute('y',AXIS_Y+24);
+      mt.setAttribute('font-size','14');mt.setAttribute('font-family','var(--ui)');
       mt.setAttribute('text-anchor','middle');mt.setAttribute('fill','var(--muted)');
       mt.textContent=mm+'月';
       s.appendChild(mt);
     });
   }
 
-  // 模型点：按年月聚合，同月多模型分层
-  var used={};
+  // 模型点
   D.forEach(function(d,idx){
-    var x=xOf(d.y,d.m);
-    var key=Math.round(x/16);
-    var lv=used[key]===undefined?0:(used[key]+1)%LEVELS.length;
-    used[key]=lv;
-    var y=AXIS_Y+LEVELS[lv];
-    var up=LEVELS[lv]<0;
+    var x=d.x,y=d.yPos;
+    var up=LAYERS[d.layer]<0;
 
-    // 竖线连接主轴
-    var stem=document.createElementNS('http://www.w3.org/2000/svg','line');
-    stem.setAttribute('x1',x);stem.setAttribute('y1',AXIS_Y+(up?-4:4));
-    stem.setAttribute('x2',x);stem.setAttribute('y2',y+(up?8:-8));
-    stem.setAttribute('stroke','var(--rule)');stem.setAttribute('stroke-width',1);
-    s.appendChild(stem);
+    // 竖线连主轴（只在离轴较远时画，近的直接贴轴不画）
+    if(Math.abs(LAYERS[d.layer])>30){
+      var stem=document.createElementNS('http://www.w3.org/2000/svg','line');
+      stem.setAttribute('x1',x);stem.setAttribute('y1',AXIS_Y+(up?-3:3));
+      stem.setAttribute('x2',x);stem.setAttribute('y2',y+(up?9:-9));
+      stem.setAttribute('stroke','var(--rule)');stem.setAttribute('stroke-width',1);
+      s.appendChild(stem);
+    }
 
     var g=document.createElementNS('http://www.w3.org/2000/svg','g');
     g.setAttribute('class','tl-model');
@@ -92,36 +120,37 @@
     g.setAttribute('data-id',d.id);
     g.setAttribute('aria-label',d.name+'，'+d.date);
 
-    // logo 圆片（用 image 裁圆）
     var logo=logoURL(d.logo);
+    var r=8;
     if(logo){
       var clip=document.createElementNS('http://www.w3.org/2000/svg','clipPath');
       var cid='clip-'+idx;clip.setAttribute('id',cid);
       var cc=document.createElementNS('http://www.w3.org/2000/svg','circle');
-      cc.setAttribute('cx',x);cc.setAttribute('cy',y);cc.setAttribute('r',9);
+      cc.setAttribute('cx',x);cc.setAttribute('cy',y);cc.setAttribute('r',r);
       clip.appendChild(cc);s.appendChild(clip);
       var img=document.createElementNS('http://www.w3.org/2000/svg','image');
-      img.setAttribute('x',x-9);img.setAttribute('y',y-9);
-      img.setAttribute('width',18);img.setAttribute('height',18);
+      img.setAttribute('x',x-r);img.setAttribute('y',y-r);
+      img.setAttribute('width',r*2);img.setAttribute('height',r*2);
       img.setAttribute('href',logo);
       img.setAttribute('clip-path','url(#'+cid+')');
       g.appendChild(img);
     } else {
       var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
-      dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r',7);
+      dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r',6);
       dot.setAttribute('fill','var(--muted)');g.appendChild(dot);
     }
 
-    // 模型名（旋转 -35°，向左上或右上）
+    // 名字标签预建但默认隐藏，点击才显示，任何密度都不压字
     var label=document.createElementNS('http://www.w3.org/2000/svg','text');
-    var nm=d.name.length>22?d.name.slice(0,21)+'…':d.name;
-    label.setAttribute('x',x+13);
-    label.setAttribute('y',y+(up?-6:14));
-    label.setAttribute('font-size','17');
-    label.setAttribute('font-family','var(--hand)');
-    label.setAttribute('fill',d.key?'var(--red)':'var(--ink-2)');
-    label.setAttribute('transform','rotate(-38 '+(x+13)+' '+(y+(up?-6:14))+')');
-    label.textContent=nm;
+    var ly=y+(up?-14:22);
+    label.setAttribute('x',x);label.setAttribute('y',ly);
+    label.setAttribute('font-size','16');label.setAttribute('font-family','var(--hand)');
+    label.setAttribute('fill','var(--red)');label.setAttribute('text-anchor','middle');
+    label.setAttribute('stroke','var(--paper)');label.setAttribute('stroke-width','4');
+    label.setAttribute('paint-order','stroke');
+    label.setAttribute('class','tl-name');
+    label.setAttribute('opacity','0');
+    label.textContent=d.name;
     g.appendChild(label);
 
     g.addEventListener('click',function(){showDetail(d);});
@@ -131,13 +160,16 @@
 
   host.appendChild(s);
 
-  // 详情
   function showDetail(d){
     var p=document.getElementById('timeline-detail');
     p.innerHTML='<b>'+d.name+'</b> · '+d.coName+' · '+d.date+
       (d.ctx?' · 上下文 '+d.ctx+'K':'')+(d.param?' · 参数 '+d.param+'B':'');
+    selectedId=d.id;
     document.querySelectorAll('.tl-model').forEach(function(g){
-      g.classList.toggle('sel',g.getAttribute('data-id')===d.id);
+      var on=g.getAttribute('data-id')===d.id;
+      g.classList.toggle('sel',on);
+      var lab=g.querySelector('.tl-name');
+      if(lab)lab.setAttribute('opacity',on?'1':'0');
     });
   }
 })();
