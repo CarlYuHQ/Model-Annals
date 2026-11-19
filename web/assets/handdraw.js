@@ -233,11 +233,12 @@
     var items = Array.prototype.slice.call(document.querySelectorAll('.draw-svg path'));
     // 把 svg 的绘制绑定到其父元素进入视口
     var targets = new Map();
-    document.querySelectorAll('.tl-item,.stat-block,.hero-inner,#lineages,.note-item,.takeaway,.closing').forEach(function (el) {
+    var SEL = '.tl-item,.stat-block,.hero-inner,#lineages,#compare,.note-item,.diff-item,.takeaway,.closing';
+    document.querySelectorAll(SEL).forEach(function (el) {
       targets.set(el, []);
     });
     document.querySelectorAll('.draw-svg').forEach(function (svg) {
-      var p = svg.closest('.tl-item,.stat-block,.hero-inner,#lineages,.note-item,.takeaway,.closing') || svg.parentElement;
+      var p = svg.closest(SEL) || svg.parentElement;
       if (!targets.has(p)) targets.set(p, []);
       targets.get(p).push(svg);
     });
@@ -280,6 +281,30 @@
     }, { passive: true });
     update();
   }
+
+  /* 视图切换后，为刚显示出来的面板补画标记线（隐藏时宽度为 0 无法测量） */
+  window.addEventListener('annals:viewshown', function (e) {
+    var root = e.detail && e.detail.root;
+    if (!root) return;
+    root.querySelectorAll('[data-underline],[data-underline-blue],[data-highlight],[data-circle],[data-box],[data-box-red]').forEach(function (el) {
+      if (el.querySelector('.draw-svg')) return; // 已画过
+      if (el === root || el.getAttribute('data-box') === '' || el.getAttribute('data-box-red') === '') {
+        box(el, el.hasAttribute('data-box-red') ? 'var(--red)' : 'var(--ink)');
+      } else if (el.hasAttribute('data-underline-blue')) underline(el, 'var(--blue)');
+      else if (el.hasAttribute('data-underline')) underline(el, 'var(--red)');
+      else if (el.hasAttribute('data-highlight')) highlight(el);
+      else if (el.hasAttribute('data-circle')) circle(el);
+      // 描线动画
+      var svg = el.querySelector('.draw-svg');
+      if (svg) svg.querySelectorAll('path').forEach(function (p) {
+        var len = p.getTotalLength ? p.getTotalLength() : 0;
+        if (!len) return;
+        p.style.strokeDasharray = len;
+        p.style.strokeDashoffset = prefersReduced ? '0' : len;
+        requestAnimationFrame(function () { p.style.strokeDashoffset = '0'; });
+      });
+    });
+  });
 
   /* 启动 */
   window.addEventListener('DOMContentLoaded', function () {

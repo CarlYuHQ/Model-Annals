@@ -16,8 +16,9 @@
 <header class="topbar">
   <div class="topbar-inner">
     <a class="wordmark" href="#top" data-ul>Model Annals</a>
-    <nav class="nav" aria-label="章节导航">
+    <nav class="nav" aria-label="章节导航" id="nav">
       <a href="#chronicle">编年</a>
+      <a href="#compare">对比</a>
       <a href="#lineages">谱系</a>
       <a href="#data">数据</a>
       <a href="#about">关于</a>
@@ -123,6 +124,67 @@
     </div>
   </section>
 
+  <!-- 模型对比（多模型同图 + 差异明细） -->
+  <section class="section" id="compare">
+    <div class="sec-head">
+      <h2 class="sec-title">放在同一张图上</h2>
+      <p class="sec-lead">十二个代表模型，同一坐标系。横轴是发布时间，纵轴是上下文长度。<span class="ul-blue" data-underline-blue>点一个点</span>，看它的详细规格。</p>
+    </div>
+
+    <!-- 视图切换：图 / 表 / 差异 -->
+    <div class="viewbar" role="tablist" aria-label="对比视图">
+      <button class="viewtab on" role="tab" aria-selected="true" data-view="chart">坐标图</button>
+      <button class="viewtab" role="tab" aria-selected="false" data-view="table">规格表</button>
+      <button class="viewtab" role="tab" aria-selected="false" data-view="diff">差异</button>
+      <span class="view-hint" id="view-hint">每个点只画公开披露的上下文长度</span>
+    </div>
+
+    <!-- 视图一：坐标图 -->
+    <div class="viewpanel on" id="view-chart" role="tabpanel">
+      <div class="chart-legend" id="chart-legend">
+        <span class="lg"><i class="lg-dot lg-us"></i>北美</span>
+        <span class="lg"><i class="lg-dot lg-cn"></i>中国</span>
+        <span class="lg"><i class="lg-dot lg-other"></i>其他</span>
+        <span class="lg"><i class="lg-ring"></i>权重开放</span>
+      </div>
+      <div class="compare-chart" id="compare-chart" aria-label="模型发布时间与上下文长度散点图"></div>
+      <p class="chart-swipe">图可左右滑动查看</p>
+      <aside class="model-detail" id="model-detail" aria-live="polite">
+        <p class="detail-idle">点图中任意一点，这里显示它的机构、发布、参数与模态。</p>
+      </aside>
+    </div>
+
+    <!-- 视图二：规格表 -->
+    <div class="viewpanel" id="view-table" role="tabpanel">
+      <div class="table-wrap">
+        <table class="hand-table compare-table">
+          <thead><tr><th>模型</th><th>机构</th><th>发布</th><th>上下文</th><th>参数</th><th>许可</th></tr></thead>
+          <tbody id="compare-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 视图三：差异 -->
+    <div class="viewpanel" id="view-diff" role="tabpanel">
+      <p class="diff-intro">同一年、同一批模型，差别落在三处。<span class="ul" data-underline>先看能查证的</span>。</p>
+      <div class="diff-grid">
+        <div class="diff-item" data-box>
+          <span class="diff-mark">上下文</span>
+          <p>从 128K 到 1050K，差 <span class="hl" data-highlight>8 倍</span>。长文档因此可行。</p>
+        </div>
+        <div class="diff-item" data-box>
+          <span class="diff-mark">参数</span>
+          <p>披露值 24B 到 2400B，差 <span class="hl" data-highlight>100 倍</span>。参数并非唯一标尺。</p>
+        </div>
+        <div class="diff-item" data-box>
+          <span class="diff-mark">模态</span>
+          <p>从纯文本到图文音视频，<span class="circle" data-circle>边界被抹平</span>。</p>
+        </div>
+      </div>
+      <p class="diff-note">以上只比较公开披露的规格，不引用任何第三方跑分。未知字段留空。</p>
+    </div>
+  </section>
+
   <!-- 三条谱系 -->
   <section class="section" id="lineages">
     <div class="sec-head">
@@ -208,6 +270,11 @@
   </div>
 </footer>
 
+<!-- 回到顶部 -->
+<a class="to-top" id="to-top" href="#top" aria-label="回到顶部">↑</a>
+
+<script src="assets/compare-data.js"></script>
 <script src="assets/handdraw.js"></script>
+<script src="assets/compare.js"></script>
 </body>
 </html>
