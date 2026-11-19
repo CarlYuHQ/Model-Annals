@@ -10,7 +10,7 @@
       .sort(function(a,b){return (a.year||0)-(b.year||0);})
       .map(function(t){
         return '<article class="cell"><div class="num">'+t.year+'</div><h3>'+(t.zh||t.name)+'</h3>'+
-          '<p>'+(t.summary||'').slice(0,72)+'…</p><span class="co">'+t.cat+' · '+t.origin+'</span></article>';
+          '<p>'+((t.summary||'').split('。')[0]||'')+'。</p><span class="co">'+t.cat+' · '+t.origin+'</span></article>';
       }).join('');
   }
   var fb=document.getElementById('tech-filters');
