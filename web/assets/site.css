@@ -100,7 +100,7 @@ html.js .tl-year,html.js .tl-body{opacity:0;transform:translateY(14px);transitio
 .lg-us{background:var(--blue)}.lg-cn{background:var(--red)}.lg-other{background:var(--green)}
 .lg-ring{border:2px solid var(--ink);background:var(--paper)}
 .chart-wrap{width:100%;overflow-x:auto;margin-bottom:20px}
-.chart-wrap svg{display:block;width:100%;height:auto;min-width:620px}
+.chart-wrap svg{display:block;width:100%;height:auto;min-width:780px}
 .cmp-dot{cursor:pointer;transition:r .2s var(--ease)}
 .cmp-dot:hover{r:11}
 .cmp-label{font-family:var(--hand);font-size:13px;fill:var(--ink-2);pointer-events:none}

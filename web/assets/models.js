@@ -8,14 +8,14 @@
   function el(t,c){var e=document.createElementNS(SVGNS,t);if(c)e.setAttribute('class',c);return e;}
   function attr(n,o){Object.keys(o).forEach(function(k){n.setAttribute(k,o[k]);});return n;}
 
-  var W=1000,H=520,m={t:24,r:26,b:54,l:70};
-  var ctxMax=1100;
+  var W=1000,H=470,m={t:18,r:24,b:48,l:64};
+  var ctxMax=1080;
   var yrMin=2017,yrMax=2027;
   var X=function(y){return m.l+(y-yrMin)/(yrMax-yrMin)*(W-m.l-m.r);};
   var Y=function(c){return H-m.b-(c/ctxMax)*(H-m.t-m.b);};
 
   var current='all', selected=null;
-  var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:null};
+  var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:'internlm'};
 
   function buildChart(){
     var host=document.getElementById('chart-wrap');
@@ -42,7 +42,7 @@
       g.setAttribute('role','button');g.setAttribute('aria-label',d.name+' · '+d.company);
 
       var lf=LOGO[d.companyId];
-      var r=selected===d.id?16:12;
+      var r=selected===d.id?15:12;
       if(lf){
         var cid='clip-'+d.id.replace(/[^a-z0-9]/gi,'-');
         var clip=el('clipPath');clip.setAttribute('id',cid);
@@ -51,11 +51,11 @@
         attr(img,{x:cx-r,y:cy-r,width:r*2,height:r*2,href:'assets/logos/'+lf+'.png','clip-path':'url(#'+cid+')'});
         g.appendChild(img);
         var ring=el('circle','cmp-dot');
-        attr(ring,{cx:cx,cy:cy,r:r,fill:'none',stroke:open?'var(--ink)':color,'stroke-width':selected===d.id?3:1.5});
+        attr(ring,{cx:cx,cy:cy,r:r,fill:'none',stroke:open?'var(--ink-2)':color,'stroke-width':selected===d.id?1.6:0.8});
         g.appendChild(ring);
       } else {
         var dot=el('circle','cmp-dot');
-        attr(dot,{cx:cx,cy:cy,r:selected===d.id?9:7,fill:open?'var(--paper)':color,stroke:color,'stroke-width':2});
+        attr(dot,{cx:cx,cy:cy,r:selected===d.id?10:8,fill:open?'var(--paper)':color,stroke:color,'stroke-width':1});
         g.appendChild(dot);
       }
       // 选中点显示模型名 + 机构名；其余点用下方机构缩写标记
