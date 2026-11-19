@@ -52,11 +52,11 @@
     lastX[best]=x;
   });
 
-  var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-  s.setAttribute('viewBox','0 0 '+W+' '+H);
-  s.setAttribute('width',W);s.setAttribute('height',H);
-  s.setAttribute('role','img');
-  s.setAttribute('aria-label','2018 至 2026 按月份排列的模型发布时间轴');
+    var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('viewBox','0 0 '+W+' '+H);
+    s.setAttribute('preserveAspectRatio','xMidYMid meet');
+    s.setAttribute('role','img');
+    s.setAttribute('aria-label','2018 至 2026 按月份排列的模型发布时间轴');
 
   // 主轴
   var axis=document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -159,6 +159,49 @@
   });
 
   host.appendChild(s);
+
+  /* ---- 完整显示 + 缩放看局部：改 viewBox 实现地图式交互 ---- */
+  var vb={x:0,y:0,w:W,h:H};
+  var full={x:0,y:0,w:W,h:H};
+  function applyVB(){s.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.w+' '+vb.h);}
+  function zoomAt(factor,cx,cy){
+    // 横向时间轴：只缩放 X，Y 保持完整高度
+    var nw=Math.max(W*.06,Math.min(W,vb.w/factor));
+    var rx=cx-vb.x;
+    vb.x=cx-rx*(nw/vb.w);
+    vb.w=nw;vb.h=H;vb.y=0;
+    if(vb.w>=W*.999){vb.x=0;vb.w=W;}
+    vb.x=Math.max(0,Math.min(W-vb.w,vb.x));
+    applyVB();updateZoomUI();
+  }
+  function updateZoomUI(){
+    var z=document.getElementById('zoom-level');
+    if(z)z.textContent=Math.round(W/vb.w*100)+'%';
+  }
+  // 滚轮缩放
+  s.addEventListener('wheel',function(e){
+    e.preventDefault();
+    var pt=s.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+    var loc=pt.matrixTransform(s.getScreenCTM().inverse());
+    zoomAt(e.deltaY<0?1.25:0.8,loc.x,loc.y);
+  },{passive:false});
+  // 拖拽平移
+  var dragging=false,start=null;
+  s.addEventListener('pointerdown',function(e){dragging=true;start={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y};s.setPointerCapture(e.pointerId);});
+  s.addEventListener('pointermove',function(e){
+    if(!dragging||!start)return;
+    var rect=s.getBoundingClientRect();
+    var dx=(e.clientX-start.x)/rect.width*vb.w;
+    vb.x=Math.max(0,Math.min(W-vb.w,start.vx-dx));
+    applyVB();
+  });
+  s.addEventListener('pointerup',function(){dragging=false;start=null;});
+  s.addEventListener('pointercancel',function(){dragging=false;start=null;});
+  // 按钮
+  var zin=document.getElementById('zoom-in'),zout=document.getElementById('zoom-out'),zreset=document.getElementById('zoom-reset');
+  if(zin)zin.addEventListener('click',function(){zoomAt(1.6,vb.x+vb.w/2,vb.y+vb.h/2);});
+  if(zout)zout.addEventListener('click',function(){zoomAt(0.625,vb.x+vb.w/2,vb.y+vb.h/2);});
+  if(zreset)zreset.addEventListener('click',function(){vb={x:0,y:0,w:W,h:H};applyVB();updateZoomUI();});
 
   function showDetail(d){
     var p=document.getElementById('timeline-detail');

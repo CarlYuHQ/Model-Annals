@@ -35,7 +35,7 @@
     D.forEach(function(d){
       if(current!=='all'&&d.companyId!==current)return;
       var yr=parseInt(d.date.slice(0,4),10)+(parseInt(d.date.slice(5,7)||'6',10)-1)/12;
-      var cx=X(yr),cy=Y(Math.min(d.ctx,ctxMax));
+      var cx=X(yr),cy=d.ctx?Y(Math.min(d.ctx,ctxMax)):(H-m.b-10);
       var color=d.region==='cn'?'var(--red)':(d.region==='us'?'var(--blue)':'var(--green)');
       var open=d.license==='open'||d.license==='weighted';
       var g=el('g','cmp-point');g.setAttribute('data-id',d.id);g.setAttribute('tabindex','0');
