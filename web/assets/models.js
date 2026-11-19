@@ -112,7 +112,7 @@
     var lic={open:'开放',weighted:'受限',proprietary:'闭源'};
     function render(){
       tb.innerHTML=D.filter(function(d){return current==='all'||d.companyId===current;})
-        .map(function(d){return '<tr data-id="'+d.id+'"><td>'+d.name+'</td><td>'+d.company+'</td><td>'+d.date+'</td><td>'+d.ctx+'K</td><td>'+(d.param?d.param+'B':'—')+'</td><td>'+(lic[d.license]||'—')+'</td></tr>';}).join('');
+        .map(function(d){return '<tr data-id="'+d.id+'"><td>'+d.name+'</td><td>'+d.company+'</td><td>'+d.date+'</td><td>'+(d.ctx?d.ctx+'K':'—')+'</td><td>'+(d.param?d.param+'B':'—')+'</td><td>'+(lic[d.license]||'—')+'</td></tr>';}).join('');
       tb.querySelectorAll('tr').forEach(function(tr){tr.addEventListener('click',function(){select(tr.getAttribute('data-id'));switchView('chart');});});
     }
     render();tb._render=render;
