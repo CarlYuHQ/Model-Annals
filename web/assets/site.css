@@ -38,6 +38,14 @@ a{color:inherit;text-decoration:none}
 .kicker{font-family:var(--ui);font-size:13px;color:var(--muted);margin:0 0 20px}
 .page-title{font-size:clamp(44px,6vw,72px);font-weight:400;line-height:1.05;margin:0 0 16px;letter-spacing:.01em;text-wrap:balance}
 .page-lede{font-size:clamp(18px,2.2vw,26px);color:var(--ink-2);margin:0;max-width:48ch;line-height:1.65}
+.page-quote{font-family:var(--hand);font-size:clamp(20px,2.6vw,32px);color:var(--ink-2);margin:0;letter-spacing:.04em;line-height:1.5;display:inline-block;position:relative}
+.page-quote::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;animation:drawLine .8s var(--ease) 1.1s forwards}
+@keyframes drawLine{to{transform:scaleX(1)}}
+.quote-by{font-family:var(--ui);font-size:12px;color:var(--muted);margin:8px 0 0}
+/* 逐字手写入场：隐藏态只在脚本启用时生效，脚本失效时文字默认可见 */
+html.js .ink-char{opacity:0;transform:translateY(8px)}
+.ink-char{display:inline-block;animation:inkIn .5s var(--ease) forwards;white-space:pre}
+@keyframes inkIn{to{opacity:1;transform:translateY(0)}}
 .sec-title{font-size:clamp(30px,4vw,46px);font-weight:400;margin:0 0 28px}
 
 /* 短红线（不用 JS，纯 CSS 伪元素，绝不穿字） */

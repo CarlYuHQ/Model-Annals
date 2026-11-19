@@ -7,6 +7,31 @@
   function el(t,c){var e=document.createElementNS(SVGNS,t);if(c)e.setAttribute('class',c);return e;}
   function attr(n,o){Object.keys(o).forEach(function(k){n.setAttribute(k,o[k]);});return n;}
 
+  /* 逐字手写入场：把文字拆成单字，逐个显现 */
+  function handwrite(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    document.querySelectorAll('[data-write]').forEach(function(el){
+      var text=el.textContent.trim();
+      if(!text)return;
+      el.textContent='';
+      var step=el.classList.contains('quote-by')?0.018:(el.classList.contains('page-title')?0.07:0.04);
+      for(var i=0;i<text.length;i++){
+        var sp=document.createElement('span');
+        sp.className='ink-char';
+        sp.style.animationDelay=(0.15+i*step).toFixed(3)+'s';
+        sp.textContent=text[i];
+        el.appendChild(sp);
+      }
+      // 保证动画结束后一定可见（内联样式优先于 html.js .ink-char 的 opacity:0）
+      var last=0.15+text.length*step+0.6;
+      window.setTimeout(function(){
+        Array.prototype.forEach.call(el.querySelectorAll('.ink-char'),function(sp){
+          sp.style.opacity='1';sp.style.transform='none';
+        });
+      },last*1000);
+    });
+  }
+
   /* 进度条 */
   function progress(){
     var bar=document.getElementById('progress');if(!bar)return;
@@ -44,6 +69,6 @@
     host.appendChild(s);
   }
 
-  function start(){progress();reveal();heroArt();}
+  function start(){handwrite();progress();reveal();heroArt();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();

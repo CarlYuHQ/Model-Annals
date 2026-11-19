@@ -1,0 +1,258 @@
+{
+  "technologies": [
+    {
+      "id": "sft",
+      "name": "Supervised Fine-Tuning",
+      "name_zh": "监督微调",
+      "year": 2022,
+      "category": "训练方法",
+      "origin": "OpenAI",
+      "summary": "用人工示范的高质量问答对对预训练模型做监督式微调，是 InstructGPT/ChatGPT 对齐流程的第一步（SFT）。",
+      "impact": "把只会续写文本的基座模型转变为能遵循指令的助手，是几乎所有后续对齐方法的起点。",
+      "source": "https://arxiv.org/abs/2203.02155",
+      "models": [
+        "InstructGPT",
+        "ChatGPT"
+      ]
+    },
+    {
+      "id": "ppo",
+      "name": "Proximal Policy Optimization",
+      "name_zh": "近端策略优化",
+      "year": 2017,
+      "category": "训练方法",
+      "origin": "OpenAI（Schulman 等）",
+      "summary": "通过裁剪概率比率目标限制策略更新幅度的 on-policy 策略梯度算法，只需一阶优化即兼具 TRPO 的稳定性与实现简易性。",
+      "impact": "成为 RLHF 的标准优化器，支撑了 InstructGPT、ChatGPT、Llama 2-Chat 等主流对齐流程。",
+      "source": "https://arxiv.org/abs/1707.06347",
+      "models": [
+        "InstructGPT",
+        "ChatGPT",
+        "Llama 2-Chat"
+      ]
+    },
+    {
+      "id": "rlvr",
+      "name": "Reinforcement Learning with Verifiable Rewards",
+      "name_zh": "可验证奖励强化学习",
+      "year": 2024,
+      "category": "训练方法",
+      "origin": "Allen Institute for AI（Tülu 3， coined）；DeepSeek（2025 推广）",
+      "summary": "用程序可自动判定对错的验证器（数学答案匹配、单元测试、格式校验）提供奖励，替代人工偏好训练的奖励模型。",
+      "impact": "奖励信号干净、难以被模型“讨好”，成为 o1/R1 类推理模型训练的核心范式。",
+      "source": "https://arxiv.org/abs/2411.15124",
+      "models": [
+        "Tülu 3",
+        "DeepSeek-R1",
+        "Qwen3"
+      ]
+    },
+    {
+      "id": "prm",
+      "name": "Process Reward Model",
+      "name_zh": "过程奖励模型",
+      "year": 2023,
+      "category": "对齐",
+      "origin": "OpenAI（Lightman 等）；概念源自 DeepMind Uesato 等 2022",
+      "summary": "对推理链的每一步而非只看最终答案打分的验证器，论文《Let's Verify Step by Step》证明过程监督显著优于结果监督并开源 PRM800K。",
+      "impact": "能在推理中途定位错误并引导搜索，是 o1/R1 等推理模型测试时计算的关键组件。",
+      "source": "https://arxiv.org/abs/2305.20050",
+      "models": [
+        "GPT-4 验证器",
+        "PRM800K"
+      ]
+    },
+    {
+      "id": "rlaif",
+      "name": "Reinforcement Learning from AI Feedback",
+      "name_zh": "基于 AI 反馈的强化学习",
+      "year": 2022,
+      "category": "对齐",
+      "origin": "Anthropic（Constitutional AI 中提出）；Google（2023 专门研究）",
+      "summary": "由 AI 模型依据书面原则对回答两两评分生成偏好数据并训练奖励模型，再用该奖励做 RL，从而大幅减少人工标注。",
+      "impact": "把对齐从人工标注瓶颈中解放出来，是 Claude 系列以及可扩展对齐研究的基础。",
+      "source": "https://arxiv.org/abs/2212.08073",
+      "models": [
+        "Claude",
+        "PaLM（Google RLAIF 研究）"
+      ]
+    },
+    {
+      "id": "self-rewarding",
+      "name": "Self-Rewarding / Self-Improvement",
+      "name_zh": "自奖励 / 自进化",
+      "year": 2024,
+      "category": "对齐",
+      "origin": "Meta AI + 纽约大学（Yuan 等）",
+      "summary": "让语言模型通过 LLM-as-a-Judge 自己给自己的回答打分、构造偏好对，并在迭代 DPO 循环中同时提升指令遵循与打分能力。",
+      "impact": "展示了模型在无需外部奖励模型情况下自我改进的可能，是迭代式在线对齐的重要起点。",
+      "source": "https://arxiv.org/abs/2401.10020",
+      "models": [
+        "Llama 2-70B（研究原型）"
+      ]
+    },
+    {
+      "id": "graphrag",
+      "name": "GraphRAG / Agentic RAG",
+      "name_zh": "图检索增强 / 智能体式检索增强",
+      "year": 2024,
+      "category": "检索",
+      "origin": "Microsoft Research（Edge 等）",
+      "summary": "用 LLM 从语料抽取实体关系知识图谱、做社区聚类并预生成社区摘要，以 map-reduce 方式回答全局性问题。",
+      "impact": "解决了传统向量检索无法回答“整个语料主题是什么”这类全局问题的短板，把 RAG 推向结构化与智能体化。",
+      "source": "https://arxiv.org/abs/2404.16130",
+      "models": []
+    },
+    {
+      "id": "long-cot",
+      "name": "Long CoT / Reasoning Distillation",
+      "name_zh": "长思维链与推理蒸馏",
+      "year": 2025,
+      "category": "推理",
+      "origin": "DeepSeek（DeepSeek-R1）",
+      "summary": "通过纯强化学习或冷启动+RL 让模型自发产生长链推理、自我验证与反思（“aha moment”），再把这些推理轨迹蒸馏到小模型。",
+      "impact": "证明推理能力可由 RL 激励并高效迁移，直接引发了开源推理模型浪潮。",
+      "source": "https://arxiv.org/abs/2501.12948",
+      "models": [
+        "DeepSeek-R1",
+        "DeepSeek-R1-Distill"
+      ]
+    },
+    {
+      "id": "reflection",
+      "name": "Reflection / Self-Correction",
+      "name_zh": "自我反思与修正",
+      "year": 2023,
+      "category": "智能体",
+      "origin": "Northeastern University / MIT / Princeton（Shinn 等）",
+      "summary": "Reflexion 让智能体在失败后用自然语言写下自我批评并存入情节记忆，在下一次尝试中据此改进，无需更新模型权重。",
+      "impact": "把自我改进从训练阶段移到推理阶段，成为现代智能体“思考—检查—重试”循环的基础模式。",
+      "source": "https://arxiv.org/abs/2303.11366",
+      "models": []
+    },
+    {
+      "id": "multi-agent",
+      "name": "Multi-Agent / Agentic Workflow",
+      "name_zh": "多智能体协作",
+      "year": 2023,
+      "category": "智能体",
+      "origin": "DeepWisdom（MetaGPT）；Microsoft（AutoGen）；CAMEL 等",
+      "summary": "把不同角色的 LLM 智能体按标准作业流程（SOP）或对话图组织起来协作完成复杂任务，如 MetaGPT 模拟软件公司产出完整代码。",
+      "impact": "通过角色分工与结构化交付物减少幻觉、提升复杂任务可靠性，是智能体工程的主流形态。",
+      "source": "https://arxiv.org/abs/2308.00352",
+      "models": [
+        "MetaGPT",
+        "AutoGen",
+        "CAMEL"
+      ]
+    },
+    {
+      "id": "tir",
+      "name": "Tool-Integrated Reasoning",
+      "name_zh": "工具集成推理",
+      "year": 2023,
+      "category": "推理",
+      "origin": "Microsoft Research Asia / 清华大学（ToRA，Gou 等）",
+      "summary": "在自然语言推理中穿插调用代码解释器、符号求解器等外部工具，用执行结果指导后续推理（ToRA 为代表性工作）。",
+      "impact": "突破纯文本模型的算术与符号计算上限，是数学推理和代码智能体常用范式。",
+      "source": "https://arxiv.org/abs/2309.17452",
+      "models": [
+        "ToRA",
+        "Qwen2.5-Math（TIR 模式）"
+      ]
+    },
+    {
+      "id": "pd-disaggregation",
+      "name": "Prefill/Decode Disaggregation",
+      "name_zh": "Prefill/Decode 分离（PD 分离）",
+      "year": 2024,
+      "category": "效率",
+      "origin": "北京大学 / 字节跳动等（DistServe，Zhong 等），OSDI 2024",
+      "summary": "将 LLM 推理的 prefill 与 decode 阶段部署到不同 GPU 并分别优化并行策略，消除两阶段干扰以同时满足 TTFT 与 TPOT 约束。",
+      "impact": "显著提升推理服务每卡吞吐与 SLO 达成率，已成为大规模推理系统的标准架构选项。",
+      "source": "https://arxiv.org/abs/2401.09670",
+      "models": [
+        "DistServe"
+      ]
+    },
+    {
+      "id": "context-engineering",
+      "name": "Context Engineering / Prompt Caching",
+      "name_zh": "上下文工程与提示缓存",
+      "year": 2024,
+      "category": "效率",
+      "origin": "Anthropic（2024-08 Prompt Caching）；Google、OpenAI 跟进；“Context Engineering”术语 2025 流行",
+      "summary": "把稳定上下文（系统提示、工具定义、长文档）置于前缀并跨请求缓存其 KV 计算，同时系统化设计模型“看到什么信息”。",
+      "impact": "将上下文从一次性消耗品变为可复用资产，大幅降低长上下文与智能体应用的成本和延迟。",
+      "source": "https://www.anthropic.com/news/prompt-caching",
+      "models": []
+    },
+    {
+      "id": "orm",
+      "name": "Outcome Reward Model",
+      "name_zh": "结果奖励模型",
+      "year": 2022,
+      "category": "对齐",
+      "origin": "DeepMind（Uesato 等）",
+      "summary": "只根据最终答案是否正确来训练的验证器（ORM），与逐步打分的 PRM 对比，发现其标签效率更高但易出现“答案对、推理错”。",
+      "impact": "确立了过程监督 vs 结果监督的分析框架，是 PRM、RLVR 等后续奖励工作的概念起点。",
+      "source": "https://arxiv.org/abs/2211.14275",
+      "models": []
+    },
+    {
+      "id": "rejection-sampling",
+      "name": "Rejection Sampling / Best-of-N",
+      "name_zh": "拒绝采样与 Best-of-N",
+      "year": 2023,
+      "category": "训练方法",
+      "origin": "阿里巴巴达摩院（RFT，Yuan 等）；STaR 2022、RAFT 2023 同源",
+      "summary": "对每个提示采样多个回答，只保留答案正确或奖励最高的样本做监督微调（RFT/RAFT），可迭代进行。",
+      "impact": "无需 RL 即可利用模型自身成功样本提升推理与对齐，是 Llama 3、DeepSeek-R1 等生产流程的一环。",
+      "source": "https://arxiv.org/abs/2308.01825",
+      "models": [
+        "Llama 3",
+        "DeepSeek-R1"
+      ]
+    },
+    {
+      "id": "online-rl",
+      "name": "Online RL / Iterative DPO",
+      "name_zh": "在线强化学习与迭代 DPO",
+      "year": 2024,
+      "category": "对齐",
+      "origin": "Google DeepMind（Online DPO / OAIF，Guo、Mesnard 等）",
+      "summary": "每轮从当前模型采样回答对，由 LLM 标注器实时给出偏好并用 DPO/IPO/SLiC 更新，避免离线偏好数据的分布偏移。",
+      "impact": "把 DPO 的简洁性与 on-policy 反馈结合，显著缓解过拟合，是迭代对齐的重要方向。",
+      "source": "https://arxiv.org/abs/2402.04792",
+      "models": []
+    },
+    {
+      "id": "world-model",
+      "name": "World Model (LLM-related)",
+      "name_zh": "世界模型（LLM 相关）",
+      "year": 2018,
+      "category": "多模态",
+      "origin": "Ha & Schmidhuber（2018 提出）；LLM 融合见 LLM-DM（NeurIPS 2023）、WorldGPT（2024）、OpenAI Sora（2024）",
+      "summary": "让模型学习环境状态转移规律以预测“下一状态”并据此规划；与 LLM 结合后用语言模型构建/充当隐式世界模型或生成式世界模拟器。",
+      "impact": "被视为突破纯 token 预测范式、赋予模型物理常识与规划能力的关键方向。",
+      "source": "https://arxiv.org/abs/1803.10122",
+      "models": [
+        "LLM-DM",
+        "WorldGPT",
+        "Sora"
+      ]
+    },
+    {
+      "id": "mixture-of-agents",
+      "name": "Mixture-of-Agents",
+      "name_zh": "混合智能体",
+      "year": 2024,
+      "category": "智能体",
+      "origin": "Together AI / 芝加哥大学 / 杜克大学（Wang 等）",
+      "summary": "将多个 LLM 分层编排：每层智能体把上一层所有回答作为参考综合改进，末层聚合器合成最终答案，纯提示、无需训练。",
+      "impact": "用开源模型的集合在 AlpacaEval 2.0 上超越 GPT-4o，证明“模型级集成”是提升质量的有效路径。",
+      "source": "https://arxiv.org/abs/2406.04692",
+      "models": []
+    }
+  ]
+}
