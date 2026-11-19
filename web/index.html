@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Annals · 大模型编年史</title>
+<meta name="description" content="一部关于模型、机构与关键技术的编年史。2017 至 2026，356 个模型，21 家机构。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- 进度线 -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- 顶栏 -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#top" data-ul>Model Annals</a>
+    <nav class="nav" aria-label="章节导航">
+      <a href="#chronicle">编年</a>
+      <a href="#lineages">谱系</a>
+      <a href="#data">数据</a>
+      <a href="#about">关于</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="kicker">A chronicle of language models, 2017 to 2026</p>
+      <h1 class="hero-title">大模型<span class="ul" data-underline>编年史</span></h1>
+      <p class="hero-sub">从一篇论文到 <span class="hl" data-highlight>356 个模型</span>，<br>把十年压缩成一条可以走完的时间轴。</p>
+      <div class="hero-art" id="hero-art"></div>
+      <a class="scroll-hint" href="#chronicle"><span>往下读</span><span class="arrow-down">↓</span></a>
+    </div>
+  </section>
+
+  <!-- 编年时间轴（主线） -->
+  <section class="section" id="chronicle">
+    <div class="sec-head">
+      <h2 class="sec-title">一条时间轴</h2>
+      <p class="sec-lead">每个节点只记一件事。<span class="ul-blue" data-underline-blue>颜色不装饰</span>，红色标转折，蓝色标技术。</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="tl-spine" aria-hidden="true"></div>
+
+      <article class="tl-item" data-side="left">
+        <div class="tl-year">2017</div>
+        <div class="tl-card" data-box>
+          <h3>Attention Is All You Need</h3>
+          <p>Transformer 去掉循环结构，只保留注意力。训练可以并行，规模才上得去。</p>
+          <p class="tl-tag">起点 · Google</p>
+        </div>
+      </article>
+
+      <article class="tl-item" data-side="right">
+        <div class="tl-year">2018</div>
+        <div class="tl-card" data-box>
+          <h3>GPT-1 与 BERT</h3>
+          <p>一条自回归生成路线，一条掩码理解路线。<span class="circle" data-circle>分叉</span>从这里开始。</p>
+          <p class="tl-tag">两条谱系</p>
+        </div>
+      </article>
+
+      <article class="tl-item" data-side="left">
+        <div class="tl-year">2020</div>
+        <div class="tl-card" data-box>
+          <h3>GPT-3 · 1750 亿参数</h3>
+          <p>缩放法则被写进共识：更大就是更好。参数从亿级冲向千亿级。</p>
+          <p class="tl-tag">规模时代</p>
+        </div>
+      </article>
+
+      <article class="tl-item key" data-side="right">
+        <div class="tl-year">2022</div>
+        <div class="tl-card" data-box-red>
+          <h3>ChatGPT · RLHF</h3>
+          <p>突破不来自更大的模型，而来自<span class="hl" data-highlight>人类反馈强化学习</span>。模型终于会听话了。</p>
+          <p class="tl-tag">转折 · 对齐</p>
+        </div>
+      </article>
+
+      <article class="tl-item" data-side="left">
+        <div class="tl-year">2023</div>
+        <div class="tl-card" data-box>
+          <h3>LLaMA 点燃开源</h3>
+          <p>权重放出后，衍生模型迅速上千。Qwen、DeepSeek、GLM 几乎全部选择开源路线。</p>
+          <p class="tl-tag">开源浪潮</p>
+        </div>
+      </article>
+
+      <article class="tl-item key" data-side="right">
+        <div class="tl-year">2024</div>
+        <div class="tl-card" data-box-red>
+          <h3>o1 · 推理时计算</h3>
+          <p>让模型在回答前<span class="circle" data-circle>先想一会儿</span>。算力从训练侧搬到推理侧。</p>
+          <p class="tl-tag">转折 · 推理</p>
+        </div>
+      </article>
+
+      <article class="tl-item" data-side="left">
+        <div class="tl-year">2025</div>
+        <div class="tl-card" data-box>
+          <h3>DeepSeek-R1</h3>
+          <p>GRPO 强化学习直接激发推理，权重公开。开源追到第一梯队。</p>
+          <p class="tl-tag">追赶 · 开源推理</p>
+        </div>
+      </article>
+
+      <article class="tl-item key" data-side="right">
+        <div class="tl-year">2026</div>
+        <div class="tl-card" data-box-red>
+          <h3>GPT-6.2、Gemini 4、Claude 5</h3>
+          <p>竞争变成一整个系列。同一代按能力和价格切成多档，<span class="hl" data-highlight>下半年 68 个新模型</span>。</p>
+          <p class="tl-tag">加速 · 产品线分化</p>
+        </div>
+      </article>
+
+      <div class="tl-end"><span>··· 时间轴仍在延伸</span></div>
+    </div>
+  </section>
+
+  <!-- 三条谱系 -->
+  <section class="section" id="lineages">
+    <div class="sec-head">
+      <h2 class="sec-title">不是一条线，是六条</h2>
+      <p class="sec-lead">规模、对齐、推理、开源、多模态、智能体，它们互相交织，才有了今天的密度。</p>
+    </div>
+    <div class="lineage-map" id="lineage-map" aria-label="六条谱系思维导图"></div>
+  </section>
+
+  <!-- 数据 -->
+  <section class="section" id="data">
+    <div class="sec-head">
+      <h2 class="sec-title">档案里有什么</h2>
+      <p class="sec-lead">一个可以被追溯的编年史，不是一张排行榜。</p>
+    </div>
+
+    <div class="data-grid">
+      <div class="stat-block">
+        <div class="stat-num" data-tally="356">356</div>
+        <div class="stat-label">模型</div>
+        <div class="stat-note">2018 至 2026</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-tally="21">21</div>
+        <div class="stat-label">机构</div>
+        <div class="stat-note">中美欧为主</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-tally="30">30</div>
+        <div class="stat-label">关键技术</div>
+        <div class="stat-note">Transformer 到 GRPO</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-tally="64">64</div>
+        <div class="stat-label">历史事件</div>
+        <div class="stat-note">全部附一手来源</div>
+      </div>
+    </div>
+
+    <div class="takeaway" data-highlight>未公开的数据一律留空，不做推测。</div>
+
+    <div class="table-wrap">
+      <table class="hand-table">
+        <thead><tr><th>机构</th><th>旗舰线</th><th>最新 · 2026.11</th></tr></thead>
+        <tbody>
+          <tr><td>OpenAI</td><td>GPT-6</td><td>GPT-6.2 Astra / Sol</td></tr>
+          <tr><td>Anthropic</td><td>Claude 5</td><td>Fable 5.2 / Mythos 5.2</td></tr>
+          <tr><td>Google</td><td>Gemini 4</td><td>Hydrogen / Neon</td></tr>
+          <tr><td>腾讯</td><td>混元 Hy</td><td>Hy4 / Hy Realtime</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="section" id="about">
+    <div class="sec-head">
+      <h2 class="sec-title">读这份档案，小心三件事</h2>
+    </div>
+    <div class="notes-grid">
+      <div class="note-item" data-box>
+        <span class="note-mark">01</span>
+        <p>版本号不等于能力。同为 GPT-6，Astra 与 Luna 的价格差 20 倍。</p>
+      </div>
+      <div class="note-item" data-box>
+        <span class="note-mark">02</span>
+        <p>发布日期常有分歧。只确认到月的，就只写到月，不补造具体某一天。</p>
+      </div>
+      <div class="note-item" data-box>
+        <span class="note-mark">03</span>
+        <p>谱系关系是整理出来的，不同来源并不总一致。</p>
+      </div>
+    </div>
+    <p class="closing">所有条目都附原始链接。<span class="ul" data-underline>请回到一手来源。</span></p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-brand">Model Annals · 大模型编年史</p>
+    <p>独立整理，与文中所列机构无隶属关系。数据来自公开来源，按条目附链接。</p>
+    <p class="footer-links"><a href="../index.html">查看完整数据视图</a> <span>或</span> <a href="../sources.html">阅读数据来源说明</a></p>
+  </div>
+</footer>
+
+<script src="assets/handdraw.js"></script>
+</body>
+</html>
