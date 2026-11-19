@@ -80,6 +80,9 @@ html.js .ink-char{opacity:0;transform:translateY(8px)}
 .d-logo{width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);flex:none}
 .d-card b{display:block;font-size:clamp(20px,2.4vw,28px);font-weight:400;color:var(--ink);line-height:1.2}
 .d-card span{display:block;font-family:var(--ui);font-size:13px;color:var(--muted);margin-top:4px}
+.d-chain{color:var(--blue)!important}
+.d-chain em{font-style:normal;color:var(--red)}
+.d-note{font-family:var(--ui);font-size:12px;color:var(--muted);margin-top:8px!important;line-height:1.6}
 
 /* ===== 首页：时间轴 ===== */
 .hero-art{margin:40px 0 56px;max-width:760px}

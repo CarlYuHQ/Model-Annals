@@ -1,0 +1,27 @@
+{
+  "companies": [],
+  "models": [
+    {
+      "id": "deepseek-v4-1-flash-1017",
+      "company": "deepseek",
+      "family": "DeepSeek",
+      "name": "DeepSeek-V4.1-Flash-1017",
+      "release": "2026-10-17",
+      "params_b": 763,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "deepseek-v4-1-flash",
+      "highlights": [
+        "V4.1 Flash 的小更新，版本号 1017 对应 10 月 17 日，网页端、App 与 API 同步切换",
+        "552B MoE 主干加 196B Engram 条件记忆，共 763B，激活 8B prefill / 16B decode",
+        "基于自反馈强化学习训练，提升推理、编程、智能体与视觉表现，同时缩短运行时间与输出长度",
+        "MIT 许可权重开放于 Hugging Face 与 ModelScope，API 仍以 deepseek-flash 调用"
+      ],
+      "source": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "note": "来源含 DeepSeek 官方变更日志与 Hugging Face 模型卡。初版 V4.1-Flash 于 2026-09-10 发布，本条目为其 1017 更新。"
+    }
+  ],
+  "technologies": [],
+  "events": []
+}

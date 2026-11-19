@@ -1,2700 +1,2700 @@
 {
-  "companies": [
-    {
-      "id": "deepseek",
-      "name": "DeepSeek",
-      "name_zh": "深度求索",
-      "country": "CN",
-      "founded": 2023,
-      "hq": "杭州",
-      "site": "https://www.deepseek.com",
-      "blurb": "以高性价比 MoE 与强化学习推理模型著称，代表作 DeepSeek-V3、R1。"
-    },
-    {
-      "id": "alibaba",
-      "name": "Alibaba Qwen",
-      "name_zh": "阿里巴巴通义千问",
-      "country": "CN",
-      "founded": 1999,
-      "hq": "杭州",
-      "site": "https://qwen.ai",
-      "blurb": "开源模型生态全球领先，覆盖全尺寸文本、推理与多模态模型。"
-    },
-    {
-      "id": "bytedance",
-      "name": "ByteDance Seed",
-      "name_zh": "字节跳动 Seed",
-      "country": "CN",
-      "founded": 2012,
-      "hq": "北京",
-      "site": "https://www.bytedance.com",
-      "blurb": "研发豆包大模型，以多模态生成与低成本 API 见长。"
-    },
-    {
-      "id": "moonshot",
-      "name": "Moonshot AI",
-      "name_zh": "月之暗面",
-      "country": "CN",
-      "founded": 2023,
-      "hq": "北京",
-      "site": "https://www.moonshot.cn",
-      "blurb": "以长文本 Kimi 助手与 K2 系列开源 Agent 模型闻名。"
-    },
-    {
-      "id": "zhipu",
-      "name": "Zhipu AI",
-      "name_zh": "智谱 AI",
-      "country": "CN",
-      "founded": 2019,
-      "hq": "北京",
-      "site": "https://www.zhipuai.cn",
-      "blurb": "清华系 GLM 系列坚持 MIT 开源，保持季度级稳定迭代。"
-    },
-    {
-      "id": "minimax",
-      "name": "MiniMax",
-      "name_zh": "稀宇科技",
-      "country": "CN",
-      "founded": 2021,
-      "hq": "上海",
-      "site": "https://www.minimaxi.com",
-      "blurb": "从 abab 到 M 系列，专注线性注意力长上下文与编码 Agent。"
-    },
-    {
-      "id": "baidu",
-      "name": "Baidu ERNIE",
-      "name_zh": "百度文心",
-      "country": "CN",
-      "founded": 2000,
-      "hq": "北京",
-      "site": "https://ernie.baidu.com",
-      "blurb": "知识增强起家，2025 年起系列开源，5.0 为原生全模态模型。"
-    },
-    {
-      "id": "tencent",
-      "name": "Tencent Hunyuan",
-      "name_zh": "腾讯混元",
-      "country": "CN",
-      "founded": 1998,
-      "hq": "深圳",
-      "site": "https://hunyuan.tencent.com",
-      "blurb": "架构多样（Mamba/MoE），开源多模态与 Hy 系列语言模型。"
-    },
-    {
-      "id": "huawei",
-      "name": "Huawei Pangu",
-      "name_zh": "华为盘古",
-      "country": "CN",
-      "founded": 1987,
-      "hq": "深圳",
-      "site": "https://www.huaweicloud.com",
-      "blurb": "基于昇腾全栈自研，主打行业落地与 openPangu 开源。"
-    },
-    {
-      "id": "stepfun",
-      "name": "StepFun",
-      "name_zh": "阶跃星辰",
-      "country": "CN",
-      "founded": 2023,
-      "hq": "上海",
-      "site": "https://www.stepfun.com",
-      "blurb": "Step 系列原生多模态推理，走端云协同与高效稀疏路线。"
-    },
-    {
-      "id": "internlm",
-      "name": "InternLM",
-      "name_zh": "上海 AI Lab 书生",
-      "country": "CN",
-      "founded": 2021,
-      "hq": "上海",
-      "site": "https://internlm.intern-ai.org.cn",
-      "blurb": "上海人工智能实验室开源小而精模型与科学多模态模型。"
-    },
-    {
-      "id": "01ai",
-      "name": "01.AI",
-      "name_zh": "零一万物",
-      "country": "CN",
-      "founded": 2023,
-      "hq": "北京",
-      "site": "https://www.lingyiwanwu.com",
-      "blurb": "李开复创立，Yi 系列中英双语开源模型，后转向企业智能体。"
-    }
-  ],
-  "models": [
-    {
-      "id": "deepseek-llm",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek LLM",
-      "release": "2023-11-29",
-      "params_b": 67,
-      "context_k": 64,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": null,
-      "highlights": [
-        "首个通用大模型，含 7B 与 67B 两档",
-        "沿用 Llama 的 decoder-only 架构与训练算法",
-        "67B 上下文可扩展至 64K"
-      ],
-      "source": "https://github.com/deepseek-ai/DeepSeek-LLM",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v2",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V2",
-      "release": "2024-05-06",
-      "params_b": 236,
-      "context_k": 128,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "deepseek-llm",
-      "highlights": [
-        "引入多头潜在注意力 MLA 压缩 KV 缓存",
-        "DeepSeekMoE 含共享专家，236B 总参/21B 激活",
-        "8.1 万亿 tokens 预训练，推理成本大幅下降"
-      ],
-      "source": "https://github.com/deepseek-ai/DeepSeek-V2",
-      "note": ""
-    },
-    {
-      "id": "deepseek-coder-v2",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-Coder-V2",
-      "release": "2024-06-17",
-      "params_b": 236,
-      "context_k": 128,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "deepseek-v2",
-      "highlights": [
-        "基于 V2 的代码专精 MoE，21B 激活",
-        "支持 338 种编程语言",
-        "128K 上下文"
-      ],
-      "source": "https://github.com/deepseek-ai/DeepSeek-Coder-V2",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v2-5",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V2.5",
-      "release": "2024-09-05",
-      "params_b": 236,
-      "context_k": 128,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "deepseek-v2",
-      "highlights": [
-        "合并 Coder V2 的代码能力与 V2 Chat 的通用对话",
-        "强化写作与指令跟随",
-        "V2 系列最终版为 V2.5-1210"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3",
-      "release": "2024-12-26",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v2",
-      "highlights": [
-        "671B MoE，每 token 激活 37B，延续 MLA 与 DeepSeekMoE",
-        "首创无辅助损失的负载均衡策略",
-        "多 Token 预测 MTP 训练目标",
-        "14.8 万亿 tokens、约 278 万 H800 GPU 时"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3-0324",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3-0324",
-      "release": "2025-03-24",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3",
-      "highlights": [
-        "V3 的 3 月小版本升级",
-        "编程与前端页面生成明显增强",
-        "MMLU-Pro 75.9 提升至 81.2"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-r1-zero",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-R1-Zero",
-      "release": "2025-01-20",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3",
-      "highlights": [
-        "不经过 SFT/冷启动，直接对基座做大规模强化学习",
-        "采用 GRPO 与基于规则的可验证奖励",
-        "自发涌现长思维链与自我反思的顿悟时刻"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": ""
-    },
-    {
-      "id": "deepseek-r1",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-R1",
-      "release": "2025-01-20",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3",
-      "highlights": [
-        "多阶段 RL 加冷启动数据，输出更可读",
-        "GRPO 省去 critic 网络，规则奖励与模型奖励混合",
-        "MIT 许可开源权重，可蒸馏",
-        "同步发布 1.5B 至 70B 六个蒸馏模型"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": ""
-    },
-    {
-      "id": "deepseek-r1-0528",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-R1-0528",
-      "release": "2025-05-28",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-r1",
-      "highlights": [
-        "5 月推理增强版",
-        "AIME 2025 由 70.0 升至 87.5",
-        "抑制幻觉并支持 JSON 输出与函数调用"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3-1",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3.1",
-      "release": "2025-08-21",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3-0324",
-      "highlights": [
-        "混合推理架构，单模型支持思考与非思考模式",
-        "在 V3 基础上追加逾 8000 亿 tokens 训练",
-        "工具调用与 Agent 能力提升，SWE-bench Verified 66.0"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3-1-terminus",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3.1-Terminus",
-      "release": "2025-09-22",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3-1",
-      "highlights": [
-        "缓解中英文混杂与异常字符",
-        "优化 Code Agent 与 Search Agent",
-        "能力基本不变的问题修复版"
-      ],
-      "source": "https://api-docs.deepseek.com/zh-cn/updates",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3-2-exp",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3.2-Exp",
-      "release": "2025-09-29",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3-1-terminus",
-      "highlights": [
-        "引入 DeepSeek Sparse Attention（DSA）稀疏注意力",
-        "基于 NSA 改进，长上下文训练与推理提效",
-        "API 价格下调 50% 以上"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v3-2",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V3.2",
-      "release": "2025-12-01",
-      "params_b": 671,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3-2-exp",
-      "highlights": [
-        "首个把思考融入工具调用的模型",
-        "IMO、CMO、ICPC、IOI 获金牌",
-        "Speciale 为长思考增强版，融入定理证明能力"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": ""
-    },
-    {
-      "id": "deepseek-v4",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V4",
-      "release": "2026-04-24",
-      "params_b": 1600,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "deepseek-v3-2",
-      "highlights": [
-        "预览版开源，V4-Pro 1.6T 总参/49B 激活，V4-Flash 284B/13B",
-        "百万 token 上下文、384K 输出",
-        "CSA 压缩稀疏注意力加 HCA 重度压缩，分级处理长上下文",
-        "KV 缓存占用降至 V3.2 的约十分之一"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": "params_b 记旗舰 Pro；V4-Flash 总参 284B；正式版 V4-Flash 2026-07-31、V4-Pro 2026-08-13"
-    },
-    {
-      "id": "deepseek-v4-1-flash",
-      "company": "deepseek",
-      "family": "DeepSeek",
-      "name": "DeepSeek-V4.1-Flash",
-      "release": "2026-09-10",
-      "params_b": 552,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "deepseek-v4",
-      "highlights": [
-        "CED 非对称结构，预填充激活 8B、解码激活 16B",
-        "CSA2 注意力，KV 缓存压至每 token 约 890 字节",
-        "原生视觉理解，DeepSeek 首个带视觉的开源模型"
-      ],
-      "source": "https://www.deepseek.com/en/news",
-      "note": ""
-    },
-    {
-      "id": "qwen-7b",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen-7B",
-      "release": "2023-08-03",
-      "params_b": 7,
-      "context_k": 32,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": null,
-      "highlights": [
-        "通义千问首批开放权重模型之一",
-        "decoder-only Transformer，中英双语",
-        "自定义 Tongyi Qianwen 许可，非 Apache"
-      ],
-      "source": "https://qwenlm.github.io/blog/introducing-qwen/",
-      "note": ""
-    },
-    {
-      "id": "qwen-72b",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen-72B",
-      "release": "2023-11-30",
-      "params_b": 72,
-      "context_k": 32,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "qwen-7b",
-      "highlights": [
-        "初代最大规模，3 万亿 tokens 训练",
-        "32K 上下文",
-        "沿用自定义许可"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen/",
-      "note": ""
-    },
-    {
-      "id": "qwen1-5",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen1.5",
-      "release": "2024-02-05",
-      "params_b": 72,
-      "context_k": 32,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "qwen-72b",
-      "highlights": [
-        "覆盖 0.5B 至 72B 全尺寸",
-        "全系稳定支持 32K 上下文",
-        "首次突破百亿的 110B 与 MoE 变体后续补发"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen1.5/",
-      "note": "各尺寸许可不完全一致，params_b 记最大稠密档"
-    },
-    {
-      "id": "qwen1-5-moe",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen1.5-MoE-A2.7B",
-      "release": "2024-03-28",
-      "params_b": 14,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen1-5",
-      "highlights": [
-        "首个 Qwen MoE 模型，约 14.3B 总参/2.7B 激活",
-        "推理成本接近 7B 稠密模型",
-        "以 Apache 2.0 开放"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen1.5-moe/",
-      "note": ""
-    },
-    {
-      "id": "qwen2",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen2",
-      "release": "2024-06-07",
-      "params_b": 72,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen1-5",
-      "highlights": [
-        "0.5B/1.5B/7B/57B-A14B/72B 多档",
-        "全系采用 GQA，新增 27 种语言",
-        "7B 与 72B 指令版支持 128K 上下文",
-        "多数尺寸转向 Apache 2.0"
-      ],
-      "source": "https://qwen.ai/blog?id=qwen2",
-      "note": "72B 仍为自定义许可"
-    },
-    {
-      "id": "qwen2-5",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen2.5",
-      "release": "2024-09-19",
-      "params_b": 72,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen2",
-      "highlights": [
-        "预训练数据提升至 18 万亿 tokens",
-        "0.5B 至 72B 全尺寸，新增 3B/14B/32B",
-        "128K 上下文、生成 8K，强化代码与数学",
-        "衍生 Coder、Math、VL 分支"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen2.5/",
-      "note": "72B 用 Qwen License、3B 为研究许可；params_b 记最大稠密档"
-    },
-    {
-      "id": "qwen2-5-max",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen2.5-Max",
-      "release": "2025-01-28",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "qwen2-5",
-      "highlights": [
-        "大规模 MoE，训练数据超 20 万亿 tokens",
-        "仅通过 API 提供",
-        "多项基准超过 GPT-4o 与 DeepSeek-V3"
-      ],
-      "source": "https://aiwiki.ai/wiki/tongyi_qianwen",
-      "note": "参数未官方披露"
-    },
-    {
-      "id": "qwq-32b-preview",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "QwQ-32B-Preview",
-      "release": "2024-11-28",
-      "params_b": 32,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen2-5",
-      "highlights": [
-        "Qwen 首个推理模型预览版",
-        "以 Apache 2.0 开放权重",
-        "对标 o1 的开源尝试"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwq-32b-preview/",
-      "note": ""
-    },
-    {
-      "id": "qwq-32b",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "QwQ-32B",
-      "release": "2025-03-06",
-      "params_b": 32,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwq-32b-preview",
-      "highlights": [
-        "正式推理版，强化学习提升长链推理",
-        "官方称以 32B 参数达到接近 DeepSeek-R1 的推理水平",
-        "Apache 2.0 开源"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwq-32b/",
-      "note": ""
-    },
-    {
-      "id": "qwen3",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3",
-      "release": "2025-04-29",
-      "params_b": 235,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen2-5",
-      "highlights": [
-        "旗舰 235B-A22B 与小型 30B-A3B 双 MoE，另有六款稠密",
-        "混合推理，可切换思考/非思考并调控思考预算",
-        "36 万亿 tokens、119 种语言，原生支持 MCP",
-        "全系 Apache 2.0"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen3/",
-      "note": "params_b 记旗舰 235B-A22B"
-    },
-    {
-      "id": "qwen3-30b-a3b",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3-30B-A3B",
-      "release": "2025-04-29",
-      "params_b": 30,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen2-5",
-      "highlights": [
-        "约 30B 总参、3B 激活的小型 MoE",
-        "128 专家中激活 8 个",
-        "激活量约为 QwQ-32B 的十分之一而性能更高"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen3/",
-      "note": ""
-    },
-    {
-      "id": "qwen3-coder",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3-Coder",
-      "release": "2025-07-23",
-      "params_b": 480,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen3",
-      "highlights": [
-        "480B 总参、35B 激活的编码 MoE",
-        "面向 Agentic Coding 与工具调用",
-        "长上下文代码仓库理解"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen3-coder/",
-      "note": ""
-    },
-    {
-      "id": "qwen3-next",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3-Next",
-      "release": "2025-09-11",
-      "params_b": 80,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen3",
-      "highlights": [
-        "80B 总参、3B 激活的超稀疏 MoE",
-        "混合 Gated DeltaNet 与全注意力",
-        "面向超长上下文的低成本推理"
-      ],
-      "source": "https://qwenlm.github.io/blog/qwen3-next/",
-      "note": ""
-    },
-    {
-      "id": "qwen3-max",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3-Max",
-      "release": "2025-09-24",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "qwen2-5-max",
-      "highlights": [
-        "总参数超 1 万亿",
-        "36 万亿 tokens 训练",
-        "仅通过 API 提供的闭源旗舰"
-      ],
-      "source": "https://qwen.ai/blog",
-      "note": "参数未精确披露"
-    },
-    {
-      "id": "qwen3-omni",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3-Omni",
-      "release": "2025-09-15",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,audio,video",
-      "license": "weighted",
-      "predecessor": "qwen3",
-      "highlights": [
-        "原生全模态，统一处理文本、图像、音频与视频",
-        "实时语音与音视频交互",
-        "开源 30B-A3B 变体，旗舰以 API 提供"
-      ],
-      "source": "https://qwen.ai/blog",
-      "note": "参数与许可随具体变体不同"
-    },
-    {
-      "id": "qwen-image",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen-Image",
-      "release": "2025-08-04",
-      "params_b": 20,
-      "context_k": null,
-      "modality": "image",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "20B MMDiT 图像生成基础模型",
-        "擅长中英文图内文字渲染与精确编辑",
-        "9 项公开基准居首，Apache 2.0 开源"
-      ],
-      "source": "https://github.com/QwenLM/Qwen-Image",
-      "note": ""
-    },
-    {
-      "id": "qwen3-5",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3.5",
-      "release": "2026-02-16",
-      "params_b": 397,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "qwen3",
-      "highlights": [
-        "397B 总参、17B 激活的开源旗舰",
-        "Gated DeltaNet 加 MoE，原生多模态",
-        "支持 201 种语言与方言",
-        "Apache 2.0"
-      ],
-      "source": "https://qwen.ai/blog",
-      "note": ""
-    },
-    {
-      "id": "qwen3-6",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3.6",
-      "release": "2026-04",
-      "params_b": 35,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "qwen3-5",
-      "highlights": [
-        "35B-A3B MoE 与 27B 稠密开源档",
-        "新增 Thinking Preservation",
-        "商用线另设 Max/Plus/Flash 闭源 SKU"
-      ],
-      "source": "http://quidproquo.cc/posts/tech/2026-08-24-ai-model-family-qwen",
-      "note": "params_b 记 MoE 档；来源为第三方汇总"
-    },
-    {
-      "id": "qwen3-7-max",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3.7-Max",
-      "release": "2026-05-20",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "qwen3-max",
-      "highlights": [
-        "面向 Agent 的闭源模型",
-        "宣称完成逾 35 小时、上千次工具调用的自主优化",
-        "无开放权重"
-      ],
-      "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
-      "note": ""
-    },
-    {
-      "id": "qwen3-8-max",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen3.8-Max",
-      "release": "2026-08-03",
-      "params_b": 2400,
-      "context_k": null,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "qwen3-7-max",
-      "highlights": [
-        "2.4 万亿参数、95B 激活",
-        "8 月 12 日公开权重，为 Max 级首次",
-        "自定义许可允许有条件商用"
-      ],
-      "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
-      "note": ""
-    },
-    {
-      "id": "qwen4-max",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen4-Max",
-      "release": "2026-11-16",
-      "params_b": 2400,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "qwen3-8-max",
-      "highlights": [
-        "基于全新 Qwen4 架构，2.4 万亿主干参数",
-        "原生视觉能力，百万 token 上下文",
-        "主打专业工具运用与长程任务执行"
-      ],
-      "source": "https://qwen.ai/",
-      "note": ""
-    },
-    {
-      "id": "qwen-image-2-1",
-      "company": "alibaba",
-      "family": "Qwen",
-      "name": "Qwen-Image-2.1",
-      "release": "2026-09-20",
-      "params_b": 7,
-      "context_k": null,
-      "modality": "image",
-      "license": "weighted",
-      "predecessor": "qwen-image",
-      "highlights": [
-        "7B 单流 DiT，文生图与图像编辑统一",
-        "内置 RGBA VAE，原生支持透明图像生成与编辑",
-        "开源权重但采用非商用 Research License"
-      ],
-      "source": "https://qwen.ai/",
-      "note": ""
-    },
-    {
-      "id": "doubao-pro",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao Pro",
-      "release": "2023-08",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "随豆包 App 首批推出的基础模型",
-        "含 Pro 与 Lite 两档",
-        "仅通过火山引擎 API 提供"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": ""
-    },
-    {
-      "id": "doubao-1-5-pro",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao 1.5 Pro",
-      "release": "2025-01",
-      "params_b": null,
-      "context_k": 256,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "doubao-pro",
-      "highlights": [
-        "稀疏 MoE 架构，多语言推理增强",
-        "256K 上下文",
-        "发起大幅降价，重塑国内 API 定价"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": "参数官方未公开"
-    },
-    {
-      "id": "seed-thinking-v1-5",
-      "company": "bytedance",
-      "family": "Seed",
-      "name": "Seed-Thinking-v1.5",
-      "release": "2025-04",
-      "params_b": 200,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "doubao-1-5-pro",
-      "highlights": [
-        "MoE，200B 总参/20B 激活的深度推理模型",
-        "采用自研 VAPO 与 DAPO 强化学习算法",
-        "AIME 2024 达 86.7，GPQA 77.3"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": ""
-    },
-    {
-      "id": "seed1-5-vl",
-      "company": "bytedance",
-      "family": "Seed",
-      "name": "Seed1.5-VL",
-      "release": "2025-05",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "proprietary",
-      "predecessor": "doubao-pro",
-      "highlights": [
-        "视觉语言 MoE，约 20B 激活参数",
-        "基于超 3 万亿多模态 tokens 训练",
-        "在 60 项公开基准中的 38 项报告领先"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": ""
-    },
-    {
-      "id": "doubao-1-6",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao 1.6",
-      "release": "2025-06",
-      "params_b": 230,
-      "context_k": 256,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "doubao-1-5-pro",
-      "highlights": [
-        "230B 总参/23B 激活的稀疏 MoE，全系少数公开参数者",
-        "自适应思维链 AdaCoT，256K 上下文",
-        "多模态深度思考与图形界面操作"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": ""
-    },
-    {
-      "id": "seedance-1-0",
-      "company": "bytedance",
-      "family": "Seedance",
-      "name": "Seedance 1.0 Pro",
-      "release": "2025-06-11",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "在 FORCE 大会发布的视频生成模型",
-        "文生视频与图生视频榜单一度居首",
-        "生成 5 秒 1080p 片段约 41 秒"
-      ],
-      "source": "https://aiwiki.ai/wiki/doubao",
-      "note": ""
-    },
-    {
-      "id": "doubao-2-0",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao Seed 2.0",
-      "release": "2026-02-14",
-      "params_b": null,
-      "context_k": 256,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "doubao-1-6",
-      "highlights": [
-        "面向 agent 时代，含 Pro/Lite/Mini/Code 四档",
-        "全系 256K 上下文",
-        "Pro 对标 GPT-5.2 与 Gemini 3 Pro，成本大幅下降"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": "第三方报道参数约 1 万亿，官方未公开"
-    },
-    {
-      "id": "doubao-2-1",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao Seed 2.1",
-      "release": "2026-06",
-      "params_b": null,
-      "context_k": 256,
-      "modality": "text,image,video",
-      "license": "proprietary",
-      "predecessor": "doubao-2-0",
-      "highlights": [
-        "2.x 系列旗舰，含 Pro 与 Turbo",
-        "256K 上下文，强化 Coding 与长链路 Agent",
-        "文本+图像+视频输入"
-      ],
-      "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
-      "note": ""
-    },
-    {
-      "id": "seed-evolving",
-      "company": "bytedance",
-      "family": "Doubao",
-      "name": "Doubao-Seed-Evolving",
-      "release": "2026",
-      "params_b": null,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "doubao-2-0",
-      "highlights": [
-        "周级迭代、固定 Model ID 的持续更新模型",
-        "百万 token 上下文",
-        "面向 Coding 与 Agent 场景"
-      ],
-      "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
-      "note": ""
-    },
-    {
-      "id": "seedream-4-5",
-      "company": "bytedance",
-      "family": "Seedream",
-      "name": "Seedream 4.5",
-      "release": "2025-12",
-      "params_b": null,
-      "context_k": null,
-      "modality": "image",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "原生 4K 文生图，可同时处理 14 张参考图",
-        "复杂排版渲染准确率约 94%",
-        "针对中文美学调优"
-      ],
-      "source": "https://aiwiki.ai/wiki/doubao",
-      "note": ""
-    },
-    {
-      "id": "seedream-5-0",
-      "company": "bytedance",
-      "family": "Seedream",
-      "name": "Seedream 5.0",
-      "release": "2026-02",
-      "params_b": null,
-      "context_k": null,
-      "modality": "image",
-      "license": "proprietary",
-      "predecessor": "seedream-4-5",
-      "highlights": [
-        "引入链式视觉推理，先规划构图再生成",
-        "接入实时联网搜索",
-        "指令遵循较 4.5 提升约 30%"
-      ],
-      "source": "https://aiwiki.ai/wiki/doubao",
-      "note": "含轻量版 5.0 Lite"
-    },
-    {
-      "id": "seedance-2-0",
-      "company": "bytedance",
-      "family": "Seedance",
-      "name": "Seedance 2.0",
-      "release": "2026-02",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video,audio",
-      "license": "proprietary",
-      "predecessor": "seedance-1-0",
-      "highlights": [
-        "首个同时接受文本、9 图、3 视频、3 音频四模态输入",
-        "原生音视频联合生成，VBench 得分 88.5",
-        "单次 4 至 15 秒，最高 1080P"
-      ],
-      "source": "https://aiwiki.ai/wiki/doubao",
-      "note": ""
-    },
-    {
-      "id": "seedance-2-5",
-      "company": "bytedance",
-      "family": "Seedance",
-      "name": "Seedance 2.5",
-      "release": "2026-07",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video,audio",
-      "license": "proprietary",
-      "predecessor": "seedance-2-0",
-      "highlights": [
-        "长叙事旗舰，单次最长 30 秒并可多轮延长",
-        "1080P/24fps，原生同步立体声",
-        "最多 30 图+10 视频+10 音频参考素材"
-      ],
-      "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
-      "note": ""
-    },
-    {
-      "id": "seed-oss",
-      "company": "bytedance",
-      "family": "Seed",
-      "name": "Seed-OSS",
-      "release": "2025",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "Seed 团队在 Hugging Face 开源的 LLM",
-        "采用宽松许可",
-        "面向长上下文场景"
-      ],
-      "source": "https://aiwiki.ai/wiki/bytedance",
-      "note": "具体参数与日期待核实"
-    },
-    {
-      "id": "kimi-chat",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi Chat",
-      "release": "2023-10",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "月之暗面首款对话助手",
-        "以长文本处理见长，2024 年宣称支持 200 万汉字",
-        "闭源服务"
-      ],
-      "source": "https://wikiwand.com/en/articles/Moonshot_AI",
-      "note": ""
-    },
-    {
-      "id": "kimi-k1-5",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi k1.5",
-      "release": "2025-01-20",
-      "params_b": null,
-      "context_k": 128,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "kimi-chat",
-      "highlights": [
-        "多模态推理模型，对标 o1",
-        "长上下文强化学习与 partial rollouts",
-        "强化学习上下文扩展至 128K"
-      ],
-      "source": "https://aiwiki.ai/wiki/kimi",
-      "note": "参数未公开"
-    },
-    {
-      "id": "kimi-k2",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2",
-      "release": "2025-07-11",
-      "params_b": 1000,
-      "context_k": 128,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "kimi-k1-5",
-      "highlights": [
-        "1T 总参、32B 激活的 MoE，384 专家中激活 8 个",
-        "引入 MuonClip 优化器，15.5 万亿 tokens 零损失尖峰",
-        "采用 MLA，面向 Agent 编码与工具调用",
-        "修改版 MIT 许可开源"
-      ],
-      "source": "https://wikiwand.com/en/articles/Moonshot_AI",
-      "note": ""
-    },
-    {
-      "id": "kimi-k2-instruct-0905",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2-Instruct-0905",
-      "release": "2025-09-05",
-      "params_b": 1000,
-      "context_k": 256,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "kimi-k2",
-      "highlights": [
-        "K2 的 9 月指令版",
-        "Agentic Coding 能力增强",
-        "上下文从 128K 翻倍至 256K"
-      ],
-      "source": "https://wikiwand.com/en/articles/Moonshot_AI",
-      "note": ""
-    },
-    {
-      "id": "kimi-k2-thinking",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2 Thinking",
-      "release": "2025-11",
-      "params_b": 1000,
-      "context_k": 256,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "kimi-k2",
-      "highlights": [
-        "开源思考模型，原生边思考边调用工具",
-        "1T MoE/32B 激活，256K 上下文，原生 INT4",
-        "可自主执行 200 至 300 次连续工具调用",
-        "训练成本约 460 万美元"
-      ],
-      "source": "https://aiwiki.ai/wiki/kimi",
-      "note": ""
-    },
-    {
-      "id": "kimi-k2-5",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2.5",
-      "release": "2026-01-27",
-      "params_b": 1000,
-      "context_k": 256,
-      "modality": "text,image,video",
-      "license": "weighted",
-      "predecessor": "kimi-k2-thinking",
-      "highlights": [
-        "加入 4 亿参数 MoonViT 视觉编码器，原生理解图像与视频",
-        "Agent Swarm 可调度上百子智能体、1500 步任务",
-        "强化办公文档与表格的端到端输出"
-      ],
-      "source": "https://www.kimi.com/en-cn/help/agent/agent-overview",
-      "note": ""
-    },
-    {
-      "id": "kimi-k2-6",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2.6",
-      "release": "2026-04-20",
-      "params_b": 1000,
-      "context_k": 256,
-      "modality": "text,image,video",
-      "license": "weighted",
-      "predecessor": "kimi-k2-5",
-      "highlights": [
-        "1T MoE/32B 激活，262144 上下文，原生 INT4",
-        "统一处理文本、图像与视频",
-        "Agent Swarm 支持 300 子智能体、4000 协作步",
-        "最长可连续编码 13 小时"
-      ],
-      "source": "https://www.kimi.com/en-cn/help/agent/agent-overview",
-      "note": ""
-    },
-    {
-      "id": "kimi-k2-7-code",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K2.7 Code",
-      "release": "2026-06-12",
-      "params_b": 1000,
-      "context_k": 256,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "kimi-k2-6",
-      "highlights": [
-        "K2 形状的编码模型，1T/32B 激活，256K 上下文",
-        "推理 token 用量较 K2.6 降低约 30%",
-        "权重公开，修改版 MIT 许可"
-      ],
-      "source": "https://aiwiki.ai/wiki/kimi",
-      "note": ""
-    },
-    {
-      "id": "kimi-k3",
-      "company": "moonshot",
-      "family": "Kimi",
-      "name": "Kimi K3",
-      "release": "2026-07-16",
-      "params_b": 2800,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "weighted",
-      "predecessor": "kimi-k2-6",
-      "highlights": [
-        "首个达 2.8 万亿参数的开放权重模型",
-        "896 专家、每 token 选 16 个，含 Kimi Delta Attention",
-        "MoonViT-V2 视觉编码器，MXFP4 量化感知训练",
-        "7 月 27 日公开权重"
-      ],
-      "source": "https://aiwiki.ai/wiki/kimi",
-      "note": ""
-    },
-    {
-      "id": "glm-130b",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-130B",
-      "release": "2022-08",
-      "params_b": 130,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "清华 KEG 与智谱的中英双语基座",
-        "开放权重，ICLR 2023 论文",
-        "自回归填空的 GLM 架构"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "chatglm-6b",
-      "company": "zhipu",
-      "family": "ChatGLM",
-      "name": "ChatGLM-6B",
-      "release": "2023-03",
-      "params_b": 6,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-130b",
-      "highlights": [
-        "面向中文对话的轻量开源模型",
-        "INT4 下 6GB 显存可跑",
-        "推动中文开源微调生态"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "chatglm2-6b",
-      "company": "zhipu",
-      "family": "ChatGLM",
-      "name": "ChatGLM2-6B",
-      "release": "2023-06",
-      "params_b": 6,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "chatglm-6b",
-      "highlights": [
-        "上下文扩展至 32K",
-        "推理速度提升约 42%"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "chatglm3-6b",
-      "company": "zhipu",
-      "family": "ChatGLM",
-      "name": "ChatGLM3-6B",
-      "release": "2023-10",
-      "params_b": 6,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "chatglm2-6b",
-      "highlights": [
-        "原生函数调用与代码解释器",
-        "支持 Agent 工作流"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-4",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4",
-      "release": "2024-01-16",
-      "params_b": null,
-      "context_k": 128,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "chatglm3-6b",
-      "highlights": [
-        "闭源旗舰，128K 上下文",
-        "较 GLM-3 提升约 60%，支持 26 种语言"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-9b",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4-9B",
-      "release": "2024-06-05",
-      "params_b": 9,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4",
-      "highlights": [
-        "GLM-4 的开源 9B 版本",
-        "支持网页浏览与代码执行",
-        "128K 上下文"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-plus",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4-Plus",
-      "release": "2024-08",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "glm-4",
-      "highlights": [
-        "闭源升级版，性能对标 GPT-4o",
-        "参数未披露"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-4-32b",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4-32B-0414",
-      "release": "2025-04",
-      "params_b": 32,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-9b",
-      "highlights": [
-        "32B 开源模型，MIT 许可",
-        "约 15TB 数据训练",
-        "含 GLM-Z1 推理变体"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-z1-32b",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-Z1-32B-0414",
-      "release": "2025-04",
-      "params_b": 32,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-32b",
-      "highlights": [
-        "推理模型，部分任务对标 DeepSeek-R1",
-        "与 GLM-4-32B 同期发布，MIT 许可"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-4-5",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.5",
-      "release": "2025-07-28",
-      "params_b": 355,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4",
-      "highlights": [
-        "355B 总参、32B 激活的 MoE 旗舰",
-        "面向 Agent、推理与编码三合一",
-        "Z.ai 国际化品牌与 MIT 开源的标志作"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-5-air",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.5-Air",
-      "release": "2025-07-28",
-      "params_b": 106,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-5",
-      "highlights": [
-        "106B 总参、12B 激活的紧凑版",
-        "128K 上下文，面向高效 Agent 推理"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-5v",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.5V",
-      "release": "2025-08-11",
-      "params_b": 106,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "open",
-      "predecessor": "glm-4-5",
-      "highlights": [
-        "基于 4.5-Air 的 106B/12B 视觉语言 MoE",
-        "覆盖图像、视频、文档与 GUI Agent 任务",
-        "MIT 开源"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-6",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.6",
-      "release": "2025-09-30",
-      "params_b": 357,
-      "context_k": 200,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-5",
-      "highlights": [
-        "约 357B/32B 激活，上下文扩至 200K",
-        "Agentic 编码与推理增强",
-        "首个在寒武纪芯片上 FP8+Int4 落地的中国旗舰"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-6v",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.6V",
-      "release": "2025-12-08",
-      "params_b": 106,
-      "context_k": 128,
-      "modality": "text,image,video",
-      "license": "open",
-      "predecessor": "glm-4-5v",
-      "highlights": [
-        "106B 级视觉语言模型，含 9B Flash 变体",
-        "原生多模态函数调用，128K 上下文"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-4-7",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-4.7",
-      "release": "2026-01-08",
-      "params_b": 358,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-6",
-      "highlights": [
-        "358B MoE，编码专精",
-        "强化多语言 Agentic 编码、终端任务与工具调用",
-        "开源"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-5",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-5",
-      "release": "2026-02-11",
-      "params_b": 744,
-      "context_k": 200,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-4-7",
-      "highlights": [
-        "744B 总参、40B 激活，规模较 4.5 翻倍",
-        "200K 上下文，面向长程系统工程与 Agent",
-        "基于华为昇腾芯片训练，MIT 许可",
-        "Z.ai 于 2026 年 1 月在港交所上市"
-      ],
-      "source": "https://llm-releases.com/labs/zhipu",
-      "note": ""
-    },
-    {
-      "id": "glm-5-1",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-5.1",
-      "release": "2026-04-08",
-      "params_b": 744,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-5",
-      "highlights": [
-        "744B/40B 激活的开源升级",
-        "面向长程 Agentic 任务",
-        "整体性能对标 Claude Opus 4.6"
-      ],
-      "source": "http://bigmodel.cn",
-      "note": ""
-    },
-    {
-      "id": "glm-5-2",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-5.2",
-      "release": "2026-06",
-      "params_b": 744,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "glm-5-1",
-      "highlights": [
-        "744B/40B 激活，上下文扩至 100 万 token",
-        "MIT 许可，开源编码分数领先"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-5-3",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-5.3",
-      "release": "2026-08",
-      "params_b": 744,
-      "context_k": null,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "glm-5-2",
-      "highlights": [
-        "沿用 5.2 底座，后训练强化编码与网络安全",
-        "采用自定义 GLM-5.3 许可",
-        "对超大规模 MaaS 运营方附加安全审查条件"
-      ],
-      "source": "https://aiwiki.ai/wiki/zhipu_ai",
-      "note": ""
-    },
-    {
-      "id": "glm-5-3-flash",
-      "company": "zhipu",
-      "family": "GLM",
-      "name": "GLM-5.3-Flash",
-      "release": "2026-08-26",
-      "params_b": 320,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "glm-5-3",
-      "highlights": [
-        "320B 总参、18B 激活，45 层 MoE",
-        "原生多模态，混合线性与稀疏注意力",
-        "百万 token 上下文，MIT 许可"
-      ],
-      "source": "https://theainews.cc/articles/2026-09-24-flash-models-deepseek-glm-mimo",
-      "note": ""
-    },
-    {
-      "id": "abab-6-5",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "abab 6.5",
-      "release": "2024-04-17",
-      "params_b": null,
-      "context_k": 200,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "官方称为万亿参数 MoE",
-        "200K 上下文",
-        "闭源 API，含更快变体 abab 6.5s"
-      ],
-      "source": "https://presenc.ai/research/minimax-model-lineage-2026",
-      "note": "万亿参数为官方口径，未给精确数字"
-    },
-    {
-      "id": "minimax-text-01",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-Text-01",
-      "release": "2025-01-15",
-      "params_b": 456,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "abab-6-5",
-      "highlights": [
-        "456B 总参、45.9B 激活，32 个 MoE 专家",
-        "混合 Lightning Attention 与 Softmax Attention",
-        "训练 1M 上下文，推理可外推至 4M",
-        "权重与代码开放，采用自有模型协议"
-      ],
-      "source": "https://aiwiki.ai/wiki/minimax",
-      "note": ""
-    },
-    {
-      "id": "minimax-vl-01",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-VL-01",
-      "release": "2025-01-15",
-      "params_b": 456,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "weighted",
-      "predecessor": "minimax-text-01",
-      "highlights": [
-        "基于 Text-01 的多模态版本",
-        "额外在 5120 亿视觉语言 tokens 上继续训练",
-        "百万级上下文"
-      ],
-      "source": "https://aiwiki.ai/wiki/minimax",
-      "note": ""
-    },
-    {
-      "id": "minimax-m1",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M1",
-      "release": "2025-06-16",
-      "params_b": 456,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "minimax-text-01",
-      "highlights": [
-        "首个开放权重的大规模混合注意力推理模型",
-        "1M 上下文，80K 思维链，Apache 2.0",
-        "CISPO 强化学习算法，512 卡 H800 训练三周、成本约 53.5 万美元",
-        "深度推理算力约为 R1 的 30%"
-      ],
-      "source": "https://aiwiki.ai/wiki/minimax",
-      "note": ""
-    },
-    {
-      "id": "minimax-m2",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M2",
-      "release": "2025-10-27",
-      "params_b": 230,
-      "context_k": 205,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "minimax-m1",
-      "highlights": [
-        "230B 总参、10B 激活的紧凑 MoE",
-        "面向编码、工具调用与深度搜索",
-        "MIT 许可，4 张 H100 即可 FP8 部署",
-        "定价为输入 0.30、输出 1.20 美元/百万 token"
-      ],
-      "source": "https://presenc.ai/research/minimax-model-lineage-2026",
-      "note": "MIT 附加大流量产品需标注的条件"
-    },
-    {
-      "id": "minimax-m2-1",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M2.1",
-      "release": "2025-12-23",
-      "params_b": 230,
-      "context_k": 205,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "minimax-m2",
-      "highlights": [
-        "M2 的多语言编程增强版",
-        "强化复杂真实世界任务",
-        "权重在 Hugging Face 开放"
-      ],
-      "source": "https://aiwiki.ai/wiki/minimax",
-      "note": ""
-    },
-    {
-      "id": "minimax-m2-5",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M2.5",
-      "release": "2026-02-12",
-      "params_b": 230,
-      "context_k": 205,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "minimax-m2-1",
-      "highlights": [
-        "SWE-Bench Verified 报告 80.2%",
-        "Multi-SWE-Bench 51.3%、BrowseComp 76.3%",
-        "较 M2.1 完成速度提升约 37%"
-      ],
-      "source": "https://aiwiki.ai/index.php?diff=14771&oldid=14770&title=MiniMax",
-      "note": ""
-    },
-    {
-      "id": "minimax-m2-7",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M2.7",
-      "release": "2026-03-18",
-      "params_b": 230,
-      "context_k": 205,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "minimax-m2-5",
-      "highlights": [
-        "主打自我进化的智能体模型",
-        "面向 Agent 工作流与办公任务",
-        "权重 4 月上线 Hugging Face，商用需另行授权"
-      ],
-      "source": "https://aiwiki.ai/wiki/minimax",
-      "note": ""
-    },
-    {
-      "id": "minimax-m3",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M3",
-      "release": "2026-06-01",
-      "params_b": 428,
-      "context_k": 1000,
-      "modality": "text,image,video",
-      "license": "weighted",
-      "predecessor": "minimax-m2-7",
-      "highlights": [
-        "约 428B 总参、23B 激活，重回百万上下文",
-        "原生图像与视频输入、电脑操作",
-        "采用 minimax-community 许可"
-      ],
-      "source": "https://presenc.ai/research/minimax-model-lineage-2026",
-      "note": ""
-    },
-    {
-      "id": "minimax-m3-1-flash-preview",
-      "company": "minimax",
-      "family": "MiniMax",
-      "name": "MiniMax-M3.1-Flash-Preview",
-      "release": "2026-09-27",
-      "params_b": null,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "minimax-m3",
-      "highlights": [
-        "预览版，提供 low 到 max 五档思考强度",
-        "思考不可关闭",
-        "仅在 MiniMax Code 与订阅中提供，无模型卡"
-      ],
-      "source": "https://presenc.ai/research/minimax-model-lineage-2026",
-      "note": ""
-    },
-    {
-      "id": "ernie-4-0",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE 4.0",
-      "release": "2023-10-17",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "文心大模型 4.0，知识增强路线",
-        "闭源，通过千帆平台提供",
-        "中文理解与生成能力显著提升"
-      ],
-      "source": "https://baike.baidu.com/item/文心大模型",
-      "note": ""
-    },
-    {
-      "id": "ernie-4-5",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE 4.5",
-      "release": "2025-03-16",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "ernie-4-0",
-      "highlights": [
-        "2025 年 3 月与 X1 一同发布",
-        "6 月 30 日起部分系列开源",
-        "与深度思考模型配套"
-      ],
-      "source": "https://ernie.baidu.com",
-      "note": "旗舰参数未精确披露；开源版本另列"
-    },
-    {
-      "id": "ernie-4-5-21b-a3b",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE-4.5-21B-A3B",
-      "release": "2025-06-30",
-      "params_b": 21,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "ernie-4-5",
-      "highlights": [
-        "4.5 开源系列中的 MoE，21B 总参/3B 激活",
-        "Thinking 思考版一度登顶 Hugging Face 趋势榜",
-        "开源三个月星标快速增长"
-      ],
-      "source": "https://baike.baidu.com/item/百度艾尼",
-      "note": ""
-    },
-    {
-      "id": "ernie-x1",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE X1",
-      "release": "2025-03-16",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "ernie-4-5",
-      "highlights": [
-        "首个深度思考模型，与 4.5 同期发布",
-        "侧重逻辑推理与数学",
-        "闭源 API"
-      ],
-      "source": "https://baike.baidu.com/item/文心大模型算法",
-      "note": ""
-    },
-    {
-      "id": "ernie-x1-1",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE X1.1",
-      "release": "2025-09-09",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "ernie-x1",
-      "highlights": [
-        "X1 的升级版",
-        "推理与工具调用增强",
-        "闭源服务"
-      ],
-      "source": "https://baike.baidu.com/item/百度艾尼",
-      "note": ""
-    },
-    {
-      "id": "ernie-5-0-preview",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE 5.0 Preview",
-      "release": "2025-11-13",
-      "params_b": 2400,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "ernie-4-5",
-      "highlights": [
-        "5.0 预览版，2.4 万亿参数",
-        "LMArena 文本榜中国第一、进入全球前十",
-        "预览版本号包括 1103/1120/1203/1220"
-      ],
-      "source": "https://ernie.baidu.com",
-      "note": ""
-    },
-    {
-      "id": "ernie-5-0",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE 5.0",
-      "release": "2026-01-22",
-      "params_b": 2400,
-      "context_k": null,
-      "modality": "text,image,video,audio",
-      "license": "proprietary",
-      "predecessor": "ernie-5-0-preview",
-      "highlights": [
-        "2.4 万亿参数原生全模态统一模型",
-        "文本、图像、视频、音频纳入单一自回归框架",
-        "超大规模 MoE，激活参数比低于 3%"
-      ],
-      "source": "https://ernie.baidu.com",
-      "note": "官方博客 2026-02-06 刊发介绍"
-    },
-    {
-      "id": "ernie-5-1",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE 5.1",
-      "release": "2026-05-09",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "ernie-5-0",
-      "highlights": [
-        "采用多维弹性预训练，成本约为同规模模型 6%",
-        "解耦全异步强化学习与规模化智能体后训练",
-        "Arena 搜索榜中国第一"
-      ],
-      "source": "https://ernie.baidu.com",
-      "note": ""
-    },
-    {
-      "id": "ernie-image",
-      "company": "baidu",
-      "family": "ERNIE",
-      "name": "ERNIE-Image",
-      "release": "2026-04-15",
-      "params_b": 8,
-      "context_k": null,
-      "modality": "image",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "单流 Diffusion Transformer，8B DiT 参数",
-        "开放权重文生图模型",
-        "在开放权重模型中表现领先"
-      ],
-      "source": "https://ernie.baidu.com",
-      "note": ""
-    },
-    {
-      "id": "hunyuan-large",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "Hunyuan-Large",
-      "release": "2024-11",
-      "params_b": 389,
-      "context_k": 256,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": null,
-      "highlights": [
-        "389B 总参、52B 激活的开源 MoE",
-        "GQA 加 CLA 跨层注意力压缩 KV 缓存约 95%",
-        "当时最大开源 Transformer-MoE"
-      ],
-      "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
-      "note": ""
-    },
-    {
-      "id": "hunyuan-turbos",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "Hunyuan-TurboS",
-      "release": "2025-02-27",
-      "params_b": 560,
-      "context_k": 256,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "hunyuan-large",
-      "highlights": [
-        "560B 总参、56B 激活",
-        "Mamba2 加注意力加 MoE 混合架构",
-        "16T tokens 训练，支持快慢思考"
-      ],
-      "source": "https://blog.csdn.net/Together_CZ/article/details/164961552",
-      "note": ""
-    },
-    {
-      "id": "hunyuan-t1",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "Hunyuan T1",
-      "release": "2025-03",
-      "params_b": null,
-      "context_k": 256,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "hunyuan-large",
-      "highlights": [
-        "深度推理模型，Hybrid-Transformer-Mamba MoE",
-        "约 96.7% 后训练算力用于强化学习",
-        "256K 上下文"
-      ],
-      "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
-      "note": "参数未披露"
-    },
-    {
-      "id": "hunyuan-a13b",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "Hunyuan-A13B",
-      "release": "2025-06-27",
-      "params_b": 80,
-      "context_k": 256,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "hunyuan-large",
-      "highlights": [
-        "业界首个 13B 级 MoE 开源混合推理模型",
-        "80B 总参、13B 激活，可在单张中低端 GPU 部署",
-        "原生 256K 上下文，快慢思考动态切换"
-      ],
-      "source": "https://baike.baidu.com/item/混元-A13B",
-      "note": ""
-    },
-    {
-      "id": "hunyuan-2-0",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "Hunyuan 2.0",
-      "release": "2025-12",
-      "params_b": 406,
-      "context_k": 256,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "hunyuan-t1",
-      "highlights": [
-        "406B 总参、32B 激活的上一代旗舰",
-        "Think/Instruct 双版本，256K 上下文",
-        "SWE-bench 53.0，tau2-Bench 72.4"
-      ],
-      "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
-      "note": ""
-    },
-    {
-      "id": "hy3-preview",
-      "company": "tencent",
-      "family": "Hy",
-      "name": "Hy3 Preview",
-      "release": "2026-04-23",
-      "params_b": 295,
-      "context_k": 256,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "hunyuan-2-0",
-      "highlights": [
-        "295B 总参、21B 激活，192 专家 top-8",
-        "重建混元的第一步，面向编程、办公与 Agent",
-        "采用 Hy 社区许可开源"
-      ],
-      "source": "http://hunyuan.tencent.com",
-      "note": ""
-    },
-    {
-      "id": "hy3",
-      "company": "tencent",
-      "family": "Hy",
-      "name": "Hy3",
-      "release": "2026-07-06",
-      "params_b": 295,
-      "context_k": 256,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "hy3-preview",
-      "highlights": [
-        "Hy3 正式版改为 Apache 2.0",
-        "强化强化学习与后训练，重点提升推理、Agent 与工具使用"
-      ],
-      "source": "https://funian.blog.csdn.net/article/details/170295004",
-      "note": ""
-    },
-    {
-      "id": "hy4-preview",
-      "company": "tencent",
-      "family": "Hy",
-      "name": "Hy4 Preview",
-      "release": "2026-08-28",
-      "params_b": 770,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "hy3",
-      "highlights": [
-        "770B 总参、49B 激活，上下文超百万 token",
-        "Apache 2.0 开源",
-        "大容量低激活，推理成本约等于 50B 稠密模型"
-      ],
-      "source": "https://funian.blog.csdn.net/article/details/170295004",
-      "note": ""
-    },
-    {
-      "id": "hy4",
-      "company": "tencent",
-      "family": "Hy",
-      "name": "Hy4",
-      "release": "2026-11-04",
-      "params_b": 770,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "hy4-preview",
-      "highlights": [
-        "参数规模不变，提升预训练与后训练数据量",
-        "加入视觉与电脑操作能力",
-        "Apache 2.0 开源"
-      ],
-      "source": "https://funian.blog.csdn.net/article/details/170295004",
-      "note": ""
-    },
-    {
-      "id": "hunyuanimage-3-0",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "HunyuanImage 3.0",
-      "release": "2025-09-28",
-      "params_b": 80,
-      "context_k": null,
-      "modality": "image",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "80B MoE 自回归文生图，推理激活 13B",
-        "号称参数量最大的开源图像模型",
-        "2026 年 1 月补齐图生图版本"
-      ],
-      "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
-      "note": ""
-    },
-    {
-      "id": "hunyuanvideo-1-5",
-      "company": "tencent",
-      "family": "Hunyuan",
-      "name": "HunyuanVideo 1.5",
-      "release": "2025-11-21",
-      "params_b": 8,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "DiT 架构，仅 8.3B 参数",
-        "3D 因果 VAE 空间压缩 16 倍、时间压缩 4 倍",
-        "消费级显卡可生成 5 至 10 秒高清视频"
-      ],
-      "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
-      "note": ""
-    },
-    {
-      "id": "pangu-3-0",
-      "company": "huawei",
-      "family": "Pangu",
-      "name": "盘古 3.0",
-      "release": "2023-07",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "主打行业落地的闭源基座",
-        "盘古气象同月上《自然》正刊",
-        "不做通用聊天机器人的路线宣示"
-      ],
-      "source": "https://mengbaoliang.cn/single/144523",
-      "note": ""
-    },
-    {
-      "id": "pangu-5-0",
-      "company": "huawei",
-      "family": "Pangu",
-      "name": "盘古 5.0",
-      "release": "2024-06-21",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "proprietary",
-      "predecessor": "pangu-3-0",
-      "highlights": [
-        "全系列覆盖十亿至万亿参数",
-        "E/P/U/S 四档适配端侧到企业底座",
-        "昇腾亲和的 π 架构，多模态理解"
-      ],
-      "source": "https://baike.baidu.com/item/盘古",
-      "note": ""
-    },
-    {
-      "id": "pangu-5-5",
-      "company": "huawei",
-      "family": "Pangu",
-      "name": "盘古 5.5",
-      "release": "2025-06-20",
-      "params_b": 718,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "pangu-5-0",
-      "highlights": [
-        "718B 参数 MoE 深度思考模型",
-        "自适应快慢思考合一，推理效率提升 8 倍",
-        "发布五个行业专属大模型"
-      ],
-      "source": "https://www.wanyuna.com/post/573.html",
-      "note": ""
-    },
-    {
-      "id": "openpangu-7b",
-      "company": "huawei",
-      "family": "openPangu",
-      "name": "openPangu-7B",
-      "release": "2025-06-30",
-      "params_b": 7,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "华为首次开源大模型之一",
-        "70 亿参数稠密模型",
-        "同步开放昇腾推理技术"
-      ],
-      "source": "https://baike.baidu.com/item/盘古",
-      "note": ""
-    },
-    {
-      "id": "openpangu-pro-moe",
-      "company": "huawei",
-      "family": "openPangu",
-      "name": "openPangu-Pro-MoE",
-      "release": "2025-06-30",
-      "params_b": 72,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "720 亿参数 MoE 开源模型",
-        "基于昇腾训练与推理",
-        "曾引发与 Qwen2.5-14B 相似性的讨论"
-      ],
-      "source": "https://baike.baidu.com/item/盘古",
-      "note": ""
-    },
-    {
-      "id": "openpangu-ultra-moe-718b",
-      "company": "huawei",
-      "family": "openPangu",
-      "name": "openPangu-Ultra-MoE-718B-V1.1",
-      "release": "2025-10-15",
-      "params_b": 718,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "openpangu-pro-moe",
-      "highlights": [
-        "718B 总参、39B 激活，基于昇腾 NPU 训练",
-        "GitCode 开源权重与技术细节",
-        "V1.1 增强 Agent 工具调用、降低幻觉"
-      ],
-      "source": "https://baike.baidu.com/item/盘古",
-      "note": ""
-    },
-    {
-      "id": "openpangu-2-0",
-      "company": "huawei",
-      "family": "openPangu",
-      "name": "openPangu 2.0",
-      "release": "2026-06",
-      "params_b": 505,
-      "context_k": 512,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "openpangu-ultra-moe-718b",
-      "highlights": [
-        "Pro 505B、Flash 92B，512K 上下文",
-        "全部在昇腾上完成训练",
-        "7 月开源权重、9 月开放预训练与后训练代码"
-      ],
-      "source": "https://mengbaoliang.cn/single/144523",
-      "note": "params_b 记 Pro"
-    },
-    {
-      "id": "step-2",
-      "company": "stepfun",
-      "family": "Step",
-      "name": "Step-2",
-      "release": "2025-01",
-      "params_b": 1000,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": null,
-      "highlights": [
-        "万亿参数自研 MoE 底座",
-        "深度推理对标前沿，精准多层指令跟随",
-        "闭源服务"
-      ],
-      "source": "https://platform.stepfun.com",
-      "note": ""
-    },
-    {
-      "id": "step-3",
-      "company": "stepfun",
-      "family": "Step",
-      "name": "Step-3",
-      "release": "2025-07-25",
-      "params_b": 321,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "step-2",
-      "highlights": [
-        "321B 总参、约 38B 激活的全尺寸多模态推理模型",
-        "多矩阵分解注意力将 KV 缓存压至 V3 约两成",
-        "注意力与前馈网络分离提升推理效率",
-        "7 月 31 日以 Apache 2.0 开源"
-      ],
-      "source": "https://www.stepfun.com/share/137990334105604096",
-      "note": ""
-    },
-    {
-      "id": "step-3-5-flash",
-      "company": "stepfun",
-      "family": "Step",
-      "name": "Step 3.5 Flash",
-      "release": "2026-02",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "step-3",
-      "highlights": [
-        "面向实时 Agent 场景",
-        "Artificial Analysis 上约 409 token/秒",
-        "多家国产芯片第一时间完成适配"
-      ],
-      "source": "https://mengbaoliang.cn/single/144519",
-      "note": ""
-    },
-    {
-      "id": "step-3-7-flash",
-      "company": "stepfun",
-      "family": "Step",
-      "name": "Step 3.7 Flash",
-      "release": "2026-08-06",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "proprietary",
-      "predecessor": "step-3-5-flash",
-      "highlights": [
-        "面向生产级 Agent 的高效率 Flash 模型",
-        "稀疏架构压低成本，原生多模态理解与执行",
-        "强化联网与视觉搜索、工具编排"
-      ],
-      "source": "https://platform.stepfun.com",
-      "note": "第三方称总参接近 2000 亿，官方未披露"
-    },
-    {
-      "id": "step-5-preview",
-      "company": "stepfun",
-      "family": "Step",
-      "name": "Step 5 Preview",
-      "release": "2026-09-20",
-      "params_b": 600,
-      "context_k": 1000,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": "step-3",
-      "highlights": [
-        "600B 总参、27B 激活的稀疏 MoE",
-        "百万 token 上下文，原生文本与视觉输入",
-        "面向 AI 编程、软件工程与专业工作"
-      ],
-      "source": "https://baike.baidu.com/item/Step/68326006",
-      "note": "计划 2026-10-15 开源"
-    },
-    {
-      "id": "internlm",
-      "company": "internlm",
-      "family": "InternLM",
-      "name": "InternLM",
-      "release": "2023-07",
-      "params_b": 7,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "上海 AI 实验室书生浦语初代开源模型",
-        "Apache 2.0 许可",
-        "中英双语基座"
-      ],
-      "source": "https://github.com/InternLM/InternLM",
-      "note": ""
-    },
-    {
-      "id": "internlm2",
-      "company": "internlm",
-      "family": "InternLM",
-      "name": "InternLM2",
-      "release": "2024-01-31",
-      "params_b": 20,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "internlm",
-      "highlights": [
-        "含 1.8B、7B、20B 等规模",
-        "同期发布 InternLM2-Math 系列",
-        "2024 年 3 月发布技术报告"
-      ],
-      "source": "https://github.com/InternLM/InternLM",
-      "note": "params_b 记最大档"
-    },
-    {
-      "id": "internlm2-5",
-      "company": "internlm",
-      "family": "InternLM",
-      "name": "InternLM2.5",
-      "release": "2024-06-30",
-      "params_b": 20,
-      "context_k": 1000,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "internlm2",
-      "highlights": [
-        "实用导向的 20B 与 7B 模型",
-        "数学推理达同级最优，工具调用升级",
-        "7B-Chat-1M 支持百万 token 上下文"
-      ],
-      "source": "https://opencsg.com/models/ShangHaiAILab/internlm2_5-20b-chat",
-      "note": ""
-    },
-    {
-      "id": "internlm3",
-      "company": "internlm",
-      "family": "InternLM",
-      "name": "InternLM3-8B-Instruct",
-      "release": "2025-01-15",
-      "params_b": 8,
-      "context_k": null,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "internlm2-5",
-      "highlights": [
-        "80 亿参数，仅用 4 万亿 tokens 训练，成本节省逾 75%",
-        "常规对话与深度思考模式融合",
-        "推理与知识任务超过 Llama3.1-8B 与 Qwen2.5-7B"
-      ],
-      "source": "https://github.com/InternLM/InternLM",
-      "note": ""
-    },
-    {
-      "id": "intern-s1",
-      "company": "internlm",
-      "family": "Intern",
-      "name": "Intern-S1",
-      "release": "2025-07-27",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "科学多模态大模型并开源",
-        "科学能力全模态达国际领先",
-        "融合科学专业能力的基础模型"
-      ],
-      "source": "https://baike.baidu.com/item/书生通用大模型",
-      "note": ""
-    },
-    {
-      "id": "internvl3",
-      "company": "internlm",
-      "family": "InternVL",
-      "name": "InternVL3",
-      "release": "2025-04-16",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text,image,video",
-      "license": "open",
-      "predecessor": null,
-      "highlights": [
-        "书生万象 3.0 通用多模态模型",
-        "升级并开源",
-        "图文视频理解能力增强"
-      ],
-      "source": "https://baike.baidu.com/item/书生通用大模型",
-      "note": ""
-    },
-    {
-      "id": "yi-6b",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-6B",
-      "release": "2023-11-06",
-      "params_b": 6,
-      "context_k": null,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": null,
-      "highlights": [
-        "零一万物首批开源中英双语模型",
-        "自定义可免费商用许可",
-        "同批发布 Yi-34B"
-      ],
-      "source": "https://baike.baidu.com/item/Yi",
-      "note": ""
-    },
-    {
-      "id": "yi-34b",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-34B",
-      "release": "2023-11-06",
-      "params_b": 34,
-      "context_k": 200,
-      "modality": "text",
-      "license": "weighted",
-      "predecessor": "yi-6b",
-      "highlights": [
-        "34B 开源模型，发布时登顶 Hugging Face 榜单",
-        "支持 200K 上下文，约 40 万汉字",
-        "中英双语"
-      ],
-      "source": "https://baike.baidu.com/item/Yi",
-      "note": ""
-    },
-    {
-      "id": "yi-vl-34b",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-VL-34B",
-      "release": "2024-01-22",
-      "params_b": 34,
-      "context_k": 4,
-      "modality": "text,image",
-      "license": "weighted",
-      "predecessor": "yi-34b",
-      "highlights": [
-        "基于 CLIP 编码器加 MLP 适配器的视觉语言模型",
-        "中文场景图内文字理解较强",
-        "4K 上下文"
-      ],
-      "source": "https://www.opensourceaimodels.net/families/yi",
-      "note": ""
-    },
-    {
-      "id": "yi-large",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-Large",
-      "release": "2024-05-13",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "yi-34b",
-      "highlights": [
-        "千亿参数闭源模型",
-        "AlpacaEval 2.0 排名世界第三",
-        "LMSYS 盲测中国第一"
-      ],
-      "source": "http://lingyiwanwu.com/about.html",
-      "note": "精确参数未披露"
-    },
-    {
-      "id": "yi-1-5",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-1.5",
-      "release": "2024-05-13",
-      "params_b": 34,
-      "context_k": 32,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "yi-34b",
-      "highlights": [
-        "6B/9B/34B 多档，增量训练 500B tokens",
-        "数学逻辑与代码能力大幅提升",
-        "切换为 Apache 2.0，提供 16K Chat 与 32K 基座"
-      ],
-      "source": "http://mp.weixin.qq.com/s?__biz=Mzk0OTUxNTM0NA==&mid=2247484325&idx=1&sn=97ffcbcef8985d8f8dd7c25078d26c3c",
-      "note": "params_b 记最大档"
-    },
-    {
-      "id": "yi-coder",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-Coder-1.5B/9B",
-      "release": "2024-09",
-      "params_b": 9,
-      "context_k": 128,
-      "modality": "text",
-      "license": "open",
-      "predecessor": "yi-1-5",
-      "highlights": [
-        "1.5B 与 9B 代码模型",
-        "128K 长上下文，支持 52 种编程语言",
-        "Apache 2.0 开源"
-      ],
-      "source": "https://www.lingyiwanwu.com/en",
-      "note": "params_b 记最大档；具体月份待核实"
-    },
-    {
-      "id": "yi-lightning",
-      "company": "01ai",
-      "family": "Yi",
-      "name": "Yi-Lightning",
-      "release": "2024-10",
-      "params_b": null,
-      "context_k": null,
-      "modality": "text",
-      "license": "proprietary",
-      "predecessor": "yi-large",
-      "highlights": [
-        "千亿参数 MoE 模型",
-        "LMSYS 榜单世界第六、中国第一",
-        "闭源 API"
-      ],
-      "source": "http://lingyiwanwu.com/about.html",
-      "note": "精确参数未披露"
-    }
-  ],
-  "technologies": [],
-  "events": []
+ "companies": [
+  {
+   "id": "deepseek",
+   "name": "DeepSeek",
+   "name_zh": "深度求索",
+   "country": "CN",
+   "founded": 2023,
+   "hq": "杭州",
+   "site": "https://www.deepseek.com",
+   "blurb": "以高性价比 MoE 与强化学习推理模型著称，代表作 DeepSeek-V3、R1。"
+  },
+  {
+   "id": "alibaba",
+   "name": "Alibaba Qwen",
+   "name_zh": "阿里巴巴通义千问",
+   "country": "CN",
+   "founded": 1999,
+   "hq": "杭州",
+   "site": "https://qwen.ai",
+   "blurb": "开源模型生态全球领先，覆盖全尺寸文本、推理与多模态模型。"
+  },
+  {
+   "id": "bytedance",
+   "name": "ByteDance Seed",
+   "name_zh": "字节跳动 Seed",
+   "country": "CN",
+   "founded": 2012,
+   "hq": "北京",
+   "site": "https://www.bytedance.com",
+   "blurb": "研发豆包大模型，以多模态生成与低成本 API 见长。"
+  },
+  {
+   "id": "moonshot",
+   "name": "Moonshot AI",
+   "name_zh": "月之暗面",
+   "country": "CN",
+   "founded": 2023,
+   "hq": "北京",
+   "site": "https://www.moonshot.cn",
+   "blurb": "以长文本 Kimi 助手与 K2 系列开源 Agent 模型闻名。"
+  },
+  {
+   "id": "zhipu",
+   "name": "Zhipu AI",
+   "name_zh": "智谱 AI",
+   "country": "CN",
+   "founded": 2019,
+   "hq": "北京",
+   "site": "https://www.zhipuai.cn",
+   "blurb": "清华系 GLM 系列坚持 MIT 开源，保持季度级稳定迭代。"
+  },
+  {
+   "id": "minimax",
+   "name": "MiniMax",
+   "name_zh": "稀宇科技",
+   "country": "CN",
+   "founded": 2021,
+   "hq": "上海",
+   "site": "https://www.minimaxi.com",
+   "blurb": "从 abab 到 M 系列，专注线性注意力长上下文与编码 Agent。"
+  },
+  {
+   "id": "baidu",
+   "name": "Baidu ERNIE",
+   "name_zh": "百度文心",
+   "country": "CN",
+   "founded": 2000,
+   "hq": "北京",
+   "site": "https://ernie.baidu.com",
+   "blurb": "知识增强起家，2025 年起系列开源，5.0 为原生全模态模型。"
+  },
+  {
+   "id": "tencent",
+   "name": "Tencent Hunyuan",
+   "name_zh": "腾讯混元",
+   "country": "CN",
+   "founded": 1998,
+   "hq": "深圳",
+   "site": "https://hunyuan.tencent.com",
+   "blurb": "架构多样（Mamba/MoE），开源多模态与 Hy 系列语言模型。"
+  },
+  {
+   "id": "huawei",
+   "name": "Huawei Pangu",
+   "name_zh": "华为盘古",
+   "country": "CN",
+   "founded": 1987,
+   "hq": "深圳",
+   "site": "https://www.huaweicloud.com",
+   "blurb": "基于昇腾全栈自研，主打行业落地与 openPangu 开源。"
+  },
+  {
+   "id": "stepfun",
+   "name": "StepFun",
+   "name_zh": "阶跃星辰",
+   "country": "CN",
+   "founded": 2023,
+   "hq": "上海",
+   "site": "https://www.stepfun.com",
+   "blurb": "Step 系列原生多模态推理，走端云协同与高效稀疏路线。"
+  },
+  {
+   "id": "internlm",
+   "name": "InternLM",
+   "name_zh": "上海 AI Lab 书生",
+   "country": "CN",
+   "founded": 2021,
+   "hq": "上海",
+   "site": "https://internlm.intern-ai.org.cn",
+   "blurb": "上海人工智能实验室开源小而精模型与科学多模态模型。"
+  },
+  {
+   "id": "01ai",
+   "name": "01.AI",
+   "name_zh": "零一万物",
+   "country": "CN",
+   "founded": 2023,
+   "hq": "北京",
+   "site": "https://www.lingyiwanwu.com",
+   "blurb": "李开复创立，Yi 系列中英双语开源模型，后转向企业智能体。"
+  }
+ ],
+ "models": [
+  {
+   "id": "deepseek-llm",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek LLM",
+   "release": "2023-11-29",
+   "params_b": 67,
+   "context_k": 64,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": null,
+   "highlights": [
+    "首个通用大模型，含 7B 与 67B 两档",
+    "沿用 Llama 的 decoder-only 架构与训练算法",
+    "67B 上下文可扩展至 64K"
+   ],
+   "source": "https://github.com/deepseek-ai/DeepSeek-LLM",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v2",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V2",
+   "release": "2024-05-06",
+   "params_b": 236,
+   "context_k": 128,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "deepseek-llm",
+   "highlights": [
+    "引入多头潜在注意力 MLA 压缩 KV 缓存",
+    "DeepSeekMoE 含共享专家，236B 总参/21B 激活",
+    "8.1 万亿 tokens 预训练，推理成本大幅下降"
+   ],
+   "source": "https://github.com/deepseek-ai/DeepSeek-V2",
+   "note": ""
+  },
+  {
+   "id": "deepseek-coder-v2",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-Coder-V2",
+   "release": "2024-06-17",
+   "params_b": 236,
+   "context_k": 128,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "deepseek-v2",
+   "highlights": [
+    "基于 V2 的代码专精 MoE，21B 激活",
+    "支持 338 种编程语言",
+    "128K 上下文"
+   ],
+   "source": "https://github.com/deepseek-ai/DeepSeek-Coder-V2",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v2-5",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V2.5",
+   "release": "2024-09-05",
+   "params_b": 236,
+   "context_k": 128,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "deepseek-v2",
+   "highlights": [
+    "合并 Coder V2 的代码能力与 V2 Chat 的通用对话",
+    "强化写作与指令跟随",
+    "V2 系列最终版为 V2.5-1210"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3",
+   "release": "2024-12-26",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v2",
+   "highlights": [
+    "671B MoE，每 token 激活 37B，延续 MLA 与 DeepSeekMoE",
+    "首创无辅助损失的负载均衡策略",
+    "多 Token 预测 MTP 训练目标",
+    "14.8 万亿 tokens、约 278 万 H800 GPU 时"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3-0324",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3-0324",
+   "release": "2025-03-24",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3",
+   "highlights": [
+    "V3 的 3 月小版本升级",
+    "编程与前端页面生成明显增强",
+    "MMLU-Pro 75.9 提升至 81.2"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-r1-zero",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-R1-Zero",
+   "release": "2025-01-20",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3",
+   "highlights": [
+    "不经过 SFT/冷启动，直接对基座做大规模强化学习",
+    "采用 GRPO 与基于规则的可验证奖励",
+    "自发涌现长思维链与自我反思的顿悟时刻"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": ""
+  },
+  {
+   "id": "deepseek-r1",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-R1",
+   "release": "2025-01-20",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3",
+   "highlights": [
+    "多阶段 RL 加冷启动数据，输出更可读",
+    "GRPO 省去 critic 网络，规则奖励与模型奖励混合",
+    "MIT 许可开源权重，可蒸馏",
+    "同步发布 1.5B 至 70B 六个蒸馏模型"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": ""
+  },
+  {
+   "id": "deepseek-r1-0528",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-R1-0528",
+   "release": "2025-05-28",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-r1",
+   "highlights": [
+    "5 月推理增强版",
+    "AIME 2025 由 70.0 升至 87.5",
+    "抑制幻觉并支持 JSON 输出与函数调用"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3-1",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3.1",
+   "release": "2025-08-21",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3-0324",
+   "highlights": [
+    "混合推理架构，单模型支持思考与非思考模式",
+    "在 V3 基础上追加逾 8000 亿 tokens 训练",
+    "工具调用与 Agent 能力提升，SWE-bench Verified 66.0"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3-1-terminus",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3.1-Terminus",
+   "release": "2025-09-22",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3-1",
+   "highlights": [
+    "缓解中英文混杂与异常字符",
+    "优化 Code Agent 与 Search Agent",
+    "能力基本不变的问题修复版"
+   ],
+   "source": "https://api-docs.deepseek.com/zh-cn/updates",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3-2-exp",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3.2-Exp",
+   "release": "2025-09-29",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3-1-terminus",
+   "highlights": [
+    "引入 DeepSeek Sparse Attention（DSA）稀疏注意力",
+    "基于 NSA 改进，长上下文训练与推理提效",
+    "API 价格下调 50% 以上"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v3-2",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V3.2",
+   "release": "2025-12-01",
+   "params_b": 671,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3-2-exp",
+   "highlights": [
+    "首个把思考融入工具调用的模型",
+    "IMO、CMO、ICPC、IOI 获金牌",
+    "Speciale 为长思考增强版，融入定理证明能力"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": ""
+  },
+  {
+   "id": "deepseek-v4",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V4",
+   "release": "2026-04-24",
+   "params_b": 1600,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "deepseek-v3-2",
+   "highlights": [
+    "预览版开源，V4-Pro 1.6T 总参/49B 激活，V4-Flash 284B/13B",
+    "百万 token 上下文、384K 输出",
+    "CSA 压缩稀疏注意力加 HCA 重度压缩，分级处理长上下文",
+    "KV 缓存占用降至 V3.2 的约十分之一"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": "params_b 记旗舰 Pro；V4-Flash 总参 284B；正式版 V4-Flash 2026-07-31、V4-Pro 2026-08-13"
+  },
+  {
+   "id": "deepseek-v4-1-flash",
+   "company": "deepseek",
+   "family": "DeepSeek",
+   "name": "DeepSeek-V4.1-Flash",
+   "release": "2026-09-10",
+   "params_b": 552,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "deepseek-v4",
+   "highlights": [
+    "CED 非对称结构，预填充激活 8B、解码激活 16B",
+    "CSA2 注意力，KV 缓存压至每 token 约 890 字节",
+    "原生视觉理解，DeepSeek 首个带视觉的开源模型"
+   ],
+   "source": "https://www.deepseek.com/en/news",
+   "note": "2026-09-10 发布的初版；同年 10-17 更新为 V4.1-Flash-1017，API 已切换至更新版本。"
+  },
+  {
+   "id": "qwen-7b",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen-7B",
+   "release": "2023-08-03",
+   "params_b": 7,
+   "context_k": 32,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": null,
+   "highlights": [
+    "通义千问首批开放权重模型之一",
+    "decoder-only Transformer，中英双语",
+    "自定义 Tongyi Qianwen 许可，非 Apache"
+   ],
+   "source": "https://qwenlm.github.io/blog/introducing-qwen/",
+   "note": ""
+  },
+  {
+   "id": "qwen-72b",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen-72B",
+   "release": "2023-11-30",
+   "params_b": 72,
+   "context_k": 32,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "qwen-7b",
+   "highlights": [
+    "初代最大规模，3 万亿 tokens 训练",
+    "32K 上下文",
+    "沿用自定义许可"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen/",
+   "note": ""
+  },
+  {
+   "id": "qwen1-5",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen1.5",
+   "release": "2024-02-05",
+   "params_b": 72,
+   "context_k": 32,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "qwen-72b",
+   "highlights": [
+    "覆盖 0.5B 至 72B 全尺寸",
+    "全系稳定支持 32K 上下文",
+    "首次突破百亿的 110B 与 MoE 变体后续补发"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen1.5/",
+   "note": "各尺寸许可不完全一致，params_b 记最大稠密档"
+  },
+  {
+   "id": "qwen1-5-moe",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen1.5-MoE-A2.7B",
+   "release": "2024-03-28",
+   "params_b": 14,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen1-5",
+   "highlights": [
+    "首个 Qwen MoE 模型，约 14.3B 总参/2.7B 激活",
+    "推理成本接近 7B 稠密模型",
+    "以 Apache 2.0 开放"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen1.5-moe/",
+   "note": ""
+  },
+  {
+   "id": "qwen2",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen2",
+   "release": "2024-06-07",
+   "params_b": 72,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen1-5",
+   "highlights": [
+    "0.5B/1.5B/7B/57B-A14B/72B 多档",
+    "全系采用 GQA，新增 27 种语言",
+    "7B 与 72B 指令版支持 128K 上下文",
+    "多数尺寸转向 Apache 2.0"
+   ],
+   "source": "https://qwen.ai/blog?id=qwen2",
+   "note": "72B 仍为自定义许可"
+  },
+  {
+   "id": "qwen2-5",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen2.5",
+   "release": "2024-09-19",
+   "params_b": 72,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen2",
+   "highlights": [
+    "预训练数据提升至 18 万亿 tokens",
+    "0.5B 至 72B 全尺寸，新增 3B/14B/32B",
+    "128K 上下文、生成 8K，强化代码与数学",
+    "衍生 Coder、Math、VL 分支"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen2.5/",
+   "note": "72B 用 Qwen License、3B 为研究许可；params_b 记最大稠密档"
+  },
+  {
+   "id": "qwen2-5-max",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen2.5-Max",
+   "release": "2025-01-28",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "qwen2-5",
+   "highlights": [
+    "大规模 MoE，训练数据超 20 万亿 tokens",
+    "仅通过 API 提供",
+    "多项基准超过 GPT-4o 与 DeepSeek-V3"
+   ],
+   "source": "https://aiwiki.ai/wiki/tongyi_qianwen",
+   "note": "参数未官方披露"
+  },
+  {
+   "id": "qwq-32b-preview",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "QwQ-32B-Preview",
+   "release": "2024-11-28",
+   "params_b": 32,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen2-5",
+   "highlights": [
+    "Qwen 首个推理模型预览版",
+    "以 Apache 2.0 开放权重",
+    "对标 o1 的开源尝试"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwq-32b-preview/",
+   "note": ""
+  },
+  {
+   "id": "qwq-32b",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "QwQ-32B",
+   "release": "2025-03-06",
+   "params_b": 32,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwq-32b-preview",
+   "highlights": [
+    "正式推理版，强化学习提升长链推理",
+    "官方称以 32B 参数达到接近 DeepSeek-R1 的推理水平",
+    "Apache 2.0 开源"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwq-32b/",
+   "note": ""
+  },
+  {
+   "id": "qwen3",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3",
+   "release": "2025-04-29",
+   "params_b": 235,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen2-5",
+   "highlights": [
+    "旗舰 235B-A22B 与小型 30B-A3B 双 MoE，另有六款稠密",
+    "混合推理，可切换思考/非思考并调控思考预算",
+    "36 万亿 tokens、119 种语言，原生支持 MCP",
+    "全系 Apache 2.0"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen3/",
+   "note": "params_b 记旗舰 235B-A22B"
+  },
+  {
+   "id": "qwen3-30b-a3b",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3-30B-A3B",
+   "release": "2025-04-29",
+   "params_b": 30,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen2-5",
+   "highlights": [
+    "约 30B 总参、3B 激活的小型 MoE",
+    "128 专家中激活 8 个",
+    "激活量约为 QwQ-32B 的十分之一而性能更高"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen3/",
+   "note": ""
+  },
+  {
+   "id": "qwen3-coder",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3-Coder",
+   "release": "2025-07-23",
+   "params_b": 480,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen3",
+   "highlights": [
+    "480B 总参、35B 激活的编码 MoE",
+    "面向 Agentic Coding 与工具调用",
+    "长上下文代码仓库理解"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen3-coder/",
+   "note": ""
+  },
+  {
+   "id": "qwen3-next",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3-Next",
+   "release": "2025-09-11",
+   "params_b": 80,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen3",
+   "highlights": [
+    "80B 总参、3B 激活的超稀疏 MoE",
+    "混合 Gated DeltaNet 与全注意力",
+    "面向超长上下文的低成本推理"
+   ],
+   "source": "https://qwenlm.github.io/blog/qwen3-next/",
+   "note": ""
+  },
+  {
+   "id": "qwen3-max",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3-Max",
+   "release": "2025-09-24",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "qwen2-5-max",
+   "highlights": [
+    "总参数超 1 万亿",
+    "36 万亿 tokens 训练",
+    "仅通过 API 提供的闭源旗舰"
+   ],
+   "source": "https://qwen.ai/blog",
+   "note": "参数未精确披露"
+  },
+  {
+   "id": "qwen3-omni",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3-Omni",
+   "release": "2025-09-15",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,audio,video",
+   "license": "weighted",
+   "predecessor": "qwen3",
+   "highlights": [
+    "原生全模态，统一处理文本、图像、音频与视频",
+    "实时语音与音视频交互",
+    "开源 30B-A3B 变体，旗舰以 API 提供"
+   ],
+   "source": "https://qwen.ai/blog",
+   "note": "参数与许可随具体变体不同"
+  },
+  {
+   "id": "qwen-image",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen-Image",
+   "release": "2025-08-04",
+   "params_b": 20,
+   "context_k": null,
+   "modality": "image",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "20B MMDiT 图像生成基础模型",
+    "擅长中英文图内文字渲染与精确编辑",
+    "9 项公开基准居首，Apache 2.0 开源"
+   ],
+   "source": "https://github.com/QwenLM/Qwen-Image",
+   "note": ""
+  },
+  {
+   "id": "qwen3-5",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3.5",
+   "release": "2026-02-16",
+   "params_b": 397,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "qwen3",
+   "highlights": [
+    "397B 总参、17B 激活的开源旗舰",
+    "Gated DeltaNet 加 MoE，原生多模态",
+    "支持 201 种语言与方言",
+    "Apache 2.0"
+   ],
+   "source": "https://qwen.ai/blog",
+   "note": ""
+  },
+  {
+   "id": "qwen3-6",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3.6",
+   "release": "2026-04",
+   "params_b": 35,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "qwen3-5",
+   "highlights": [
+    "35B-A3B MoE 与 27B 稠密开源档",
+    "新增 Thinking Preservation",
+    "商用线另设 Max/Plus/Flash 闭源 SKU"
+   ],
+   "source": "http://quidproquo.cc/posts/tech/2026-08-24-ai-model-family-qwen",
+   "note": "params_b 记 MoE 档；来源为第三方汇总"
+  },
+  {
+   "id": "qwen3-7-max",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3.7-Max",
+   "release": "2026-05-20",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "qwen3-max",
+   "highlights": [
+    "面向 Agent 的闭源模型",
+    "宣称完成逾 35 小时、上千次工具调用的自主优化",
+    "无开放权重"
+   ],
+   "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
+   "note": ""
+  },
+  {
+   "id": "qwen3-8-max",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen3.8-Max",
+   "release": "2026-08-03",
+   "params_b": 2400,
+   "context_k": null,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "qwen3-7-max",
+   "highlights": [
+    "2.4 万亿参数、95B 激活",
+    "8 月 12 日公开权重，为 Max 级首次",
+    "自定义许可允许有条件商用"
+   ],
+   "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
+   "note": ""
+  },
+  {
+   "id": "qwen4-max",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen4-Max",
+   "release": "2026-11-16",
+   "params_b": 2400,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "qwen3-8-max",
+   "highlights": [
+    "基于全新 Qwen4 架构，2.4 万亿主干参数",
+    "原生视觉能力，百万 token 上下文",
+    "主打专业工具运用与长程任务执行"
+   ],
+   "source": "https://qwen.ai/",
+   "note": ""
+  },
+  {
+   "id": "qwen-image-2-1",
+   "company": "alibaba",
+   "family": "Qwen",
+   "name": "Qwen-Image-2.1",
+   "release": "2026-09-20",
+   "params_b": 7,
+   "context_k": null,
+   "modality": "image",
+   "license": "weighted",
+   "predecessor": "qwen-image",
+   "highlights": [
+    "7B 单流 DiT，文生图与图像编辑统一",
+    "内置 RGBA VAE，原生支持透明图像生成与编辑",
+    "开源权重但采用非商用 Research License"
+   ],
+   "source": "https://qwen.ai/",
+   "note": ""
+  },
+  {
+   "id": "doubao-pro",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao Pro",
+   "release": "2023-08",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "随豆包 App 首批推出的基础模型",
+    "含 Pro 与 Lite 两档",
+    "仅通过火山引擎 API 提供"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": ""
+  },
+  {
+   "id": "doubao-1-5-pro",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao 1.5 Pro",
+   "release": "2025-01",
+   "params_b": null,
+   "context_k": 256,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "doubao-pro",
+   "highlights": [
+    "稀疏 MoE 架构，多语言推理增强",
+    "256K 上下文",
+    "发起大幅降价，重塑国内 API 定价"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": "参数官方未公开"
+  },
+  {
+   "id": "seed-thinking-v1-5",
+   "company": "bytedance",
+   "family": "Seed",
+   "name": "Seed-Thinking-v1.5",
+   "release": "2025-04",
+   "params_b": 200,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "doubao-1-5-pro",
+   "highlights": [
+    "MoE，200B 总参/20B 激活的深度推理模型",
+    "采用自研 VAPO 与 DAPO 强化学习算法",
+    "AIME 2024 达 86.7，GPQA 77.3"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": ""
+  },
+  {
+   "id": "seed1-5-vl",
+   "company": "bytedance",
+   "family": "Seed",
+   "name": "Seed1.5-VL",
+   "release": "2025-05",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "proprietary",
+   "predecessor": "doubao-pro",
+   "highlights": [
+    "视觉语言 MoE，约 20B 激活参数",
+    "基于超 3 万亿多模态 tokens 训练",
+    "在 60 项公开基准中的 38 项报告领先"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": ""
+  },
+  {
+   "id": "doubao-1-6",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao 1.6",
+   "release": "2025-06",
+   "params_b": 230,
+   "context_k": 256,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "doubao-1-5-pro",
+   "highlights": [
+    "230B 总参/23B 激活的稀疏 MoE，全系少数公开参数者",
+    "自适应思维链 AdaCoT，256K 上下文",
+    "多模态深度思考与图形界面操作"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": ""
+  },
+  {
+   "id": "seedance-1-0",
+   "company": "bytedance",
+   "family": "Seedance",
+   "name": "Seedance 1.0 Pro",
+   "release": "2025-06-11",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "在 FORCE 大会发布的视频生成模型",
+    "文生视频与图生视频榜单一度居首",
+    "生成 5 秒 1080p 片段约 41 秒"
+   ],
+   "source": "https://aiwiki.ai/wiki/doubao",
+   "note": ""
+  },
+  {
+   "id": "doubao-2-0",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao Seed 2.0",
+   "release": "2026-02-14",
+   "params_b": null,
+   "context_k": 256,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "doubao-1-6",
+   "highlights": [
+    "面向 agent 时代，含 Pro/Lite/Mini/Code 四档",
+    "全系 256K 上下文",
+    "Pro 对标 GPT-5.2 与 Gemini 3 Pro，成本大幅下降"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": "第三方报道参数约 1 万亿，官方未公开"
+  },
+  {
+   "id": "doubao-2-1",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao Seed 2.1",
+   "release": "2026-06",
+   "params_b": null,
+   "context_k": 256,
+   "modality": "text,image,video",
+   "license": "proprietary",
+   "predecessor": "doubao-2-0",
+   "highlights": [
+    "2.x 系列旗舰，含 Pro 与 Turbo",
+    "256K 上下文，强化 Coding 与长链路 Agent",
+    "文本+图像+视频输入"
+   ],
+   "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
+   "note": ""
+  },
+  {
+   "id": "seed-evolving",
+   "company": "bytedance",
+   "family": "Doubao",
+   "name": "Doubao-Seed-Evolving",
+   "release": "2026",
+   "params_b": null,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "doubao-2-0",
+   "highlights": [
+    "周级迭代、固定 Model ID 的持续更新模型",
+    "百万 token 上下文",
+    "面向 Coding 与 Agent 场景"
+   ],
+   "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
+   "note": ""
+  },
+  {
+   "id": "seedream-4-5",
+   "company": "bytedance",
+   "family": "Seedream",
+   "name": "Seedream 4.5",
+   "release": "2025-12",
+   "params_b": null,
+   "context_k": null,
+   "modality": "image",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "原生 4K 文生图，可同时处理 14 张参考图",
+    "复杂排版渲染准确率约 94%",
+    "针对中文美学调优"
+   ],
+   "source": "https://aiwiki.ai/wiki/doubao",
+   "note": ""
+  },
+  {
+   "id": "seedream-5-0",
+   "company": "bytedance",
+   "family": "Seedream",
+   "name": "Seedream 5.0",
+   "release": "2026-02",
+   "params_b": null,
+   "context_k": null,
+   "modality": "image",
+   "license": "proprietary",
+   "predecessor": "seedream-4-5",
+   "highlights": [
+    "引入链式视觉推理，先规划构图再生成",
+    "接入实时联网搜索",
+    "指令遵循较 4.5 提升约 30%"
+   ],
+   "source": "https://aiwiki.ai/wiki/doubao",
+   "note": "含轻量版 5.0 Lite"
+  },
+  {
+   "id": "seedance-2-0",
+   "company": "bytedance",
+   "family": "Seedance",
+   "name": "Seedance 2.0",
+   "release": "2026-02",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video,audio",
+   "license": "proprietary",
+   "predecessor": "seedance-1-0",
+   "highlights": [
+    "首个同时接受文本、9 图、3 视频、3 音频四模态输入",
+    "原生音视频联合生成，VBench 得分 88.5",
+    "单次 4 至 15 秒，最高 1080P"
+   ],
+   "source": "https://aiwiki.ai/wiki/doubao",
+   "note": ""
+  },
+  {
+   "id": "seedance-2-5",
+   "company": "bytedance",
+   "family": "Seedance",
+   "name": "Seedance 2.5",
+   "release": "2026-07",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video,audio",
+   "license": "proprietary",
+   "predecessor": "seedance-2-0",
+   "highlights": [
+    "长叙事旗舰，单次最长 30 秒并可多轮延长",
+    "1080P/24fps，原生同步立体声",
+    "最多 30 图+10 视频+10 音频参考素材"
+   ],
+   "source": "http://mp.weixin.qq.com/s?__biz=Mzg5OTU3MzMxMQ==&mid=2247488117&idx=1&sn=012386d80318457aba83383d6d29a86a",
+   "note": ""
+  },
+  {
+   "id": "seed-oss",
+   "company": "bytedance",
+   "family": "Seed",
+   "name": "Seed-OSS",
+   "release": "2025",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "Seed 团队在 Hugging Face 开源的 LLM",
+    "采用宽松许可",
+    "面向长上下文场景"
+   ],
+   "source": "https://aiwiki.ai/wiki/bytedance",
+   "note": "具体参数与日期待核实"
+  },
+  {
+   "id": "kimi-chat",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi Chat",
+   "release": "2023-10",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "月之暗面首款对话助手",
+    "以长文本处理见长，2024 年宣称支持 200 万汉字",
+    "闭源服务"
+   ],
+   "source": "https://wikiwand.com/en/articles/Moonshot_AI",
+   "note": ""
+  },
+  {
+   "id": "kimi-k1-5",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi k1.5",
+   "release": "2025-01-20",
+   "params_b": null,
+   "context_k": 128,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "kimi-chat",
+   "highlights": [
+    "多模态推理模型，对标 o1",
+    "长上下文强化学习与 partial rollouts",
+    "强化学习上下文扩展至 128K"
+   ],
+   "source": "https://aiwiki.ai/wiki/kimi",
+   "note": "参数未公开"
+  },
+  {
+   "id": "kimi-k2",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2",
+   "release": "2025-07-11",
+   "params_b": 1000,
+   "context_k": 128,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "kimi-k1-5",
+   "highlights": [
+    "1T 总参、32B 激活的 MoE，384 专家中激活 8 个",
+    "引入 MuonClip 优化器，15.5 万亿 tokens 零损失尖峰",
+    "采用 MLA，面向 Agent 编码与工具调用",
+    "修改版 MIT 许可开源"
+   ],
+   "source": "https://wikiwand.com/en/articles/Moonshot_AI",
+   "note": ""
+  },
+  {
+   "id": "kimi-k2-instruct-0905",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2-Instruct-0905",
+   "release": "2025-09-05",
+   "params_b": 1000,
+   "context_k": 256,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "kimi-k2",
+   "highlights": [
+    "K2 的 9 月指令版",
+    "Agentic Coding 能力增强",
+    "上下文从 128K 翻倍至 256K"
+   ],
+   "source": "https://wikiwand.com/en/articles/Moonshot_AI",
+   "note": ""
+  },
+  {
+   "id": "kimi-k2-thinking",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2 Thinking",
+   "release": "2025-11",
+   "params_b": 1000,
+   "context_k": 256,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "kimi-k2",
+   "highlights": [
+    "开源思考模型，原生边思考边调用工具",
+    "1T MoE/32B 激活，256K 上下文，原生 INT4",
+    "可自主执行 200 至 300 次连续工具调用",
+    "训练成本约 460 万美元"
+   ],
+   "source": "https://aiwiki.ai/wiki/kimi",
+   "note": ""
+  },
+  {
+   "id": "kimi-k2-5",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2.5",
+   "release": "2026-01-27",
+   "params_b": 1000,
+   "context_k": 256,
+   "modality": "text,image,video",
+   "license": "weighted",
+   "predecessor": "kimi-k2-thinking",
+   "highlights": [
+    "加入 4 亿参数 MoonViT 视觉编码器，原生理解图像与视频",
+    "Agent Swarm 可调度上百子智能体、1500 步任务",
+    "强化办公文档与表格的端到端输出"
+   ],
+   "source": "https://www.kimi.com/en-cn/help/agent/agent-overview",
+   "note": ""
+  },
+  {
+   "id": "kimi-k2-6",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2.6",
+   "release": "2026-04-20",
+   "params_b": 1000,
+   "context_k": 256,
+   "modality": "text,image,video",
+   "license": "weighted",
+   "predecessor": "kimi-k2-5",
+   "highlights": [
+    "1T MoE/32B 激活，262144 上下文，原生 INT4",
+    "统一处理文本、图像与视频",
+    "Agent Swarm 支持 300 子智能体、4000 协作步",
+    "最长可连续编码 13 小时"
+   ],
+   "source": "https://www.kimi.com/en-cn/help/agent/agent-overview",
+   "note": ""
+  },
+  {
+   "id": "kimi-k2-7-code",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K2.7 Code",
+   "release": "2026-06-12",
+   "params_b": 1000,
+   "context_k": 256,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "kimi-k2-6",
+   "highlights": [
+    "K2 形状的编码模型，1T/32B 激活，256K 上下文",
+    "推理 token 用量较 K2.6 降低约 30%",
+    "权重公开，修改版 MIT 许可"
+   ],
+   "source": "https://aiwiki.ai/wiki/kimi",
+   "note": ""
+  },
+  {
+   "id": "kimi-k3",
+   "company": "moonshot",
+   "family": "Kimi",
+   "name": "Kimi K3",
+   "release": "2026-07-16",
+   "params_b": 2800,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "weighted",
+   "predecessor": "kimi-k2-6",
+   "highlights": [
+    "首个达 2.8 万亿参数的开放权重模型",
+    "896 专家、每 token 选 16 个，含 Kimi Delta Attention",
+    "MoonViT-V2 视觉编码器，MXFP4 量化感知训练",
+    "7 月 27 日公开权重"
+   ],
+   "source": "https://aiwiki.ai/wiki/kimi",
+   "note": ""
+  },
+  {
+   "id": "glm-130b",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-130B",
+   "release": "2022-08",
+   "params_b": 130,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "清华 KEG 与智谱的中英双语基座",
+    "开放权重，ICLR 2023 论文",
+    "自回归填空的 GLM 架构"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "chatglm-6b",
+   "company": "zhipu",
+   "family": "ChatGLM",
+   "name": "ChatGLM-6B",
+   "release": "2023-03",
+   "params_b": 6,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-130b",
+   "highlights": [
+    "面向中文对话的轻量开源模型",
+    "INT4 下 6GB 显存可跑",
+    "推动中文开源微调生态"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "chatglm2-6b",
+   "company": "zhipu",
+   "family": "ChatGLM",
+   "name": "ChatGLM2-6B",
+   "release": "2023-06",
+   "params_b": 6,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "chatglm-6b",
+   "highlights": [
+    "上下文扩展至 32K",
+    "推理速度提升约 42%"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "chatglm3-6b",
+   "company": "zhipu",
+   "family": "ChatGLM",
+   "name": "ChatGLM3-6B",
+   "release": "2023-10",
+   "params_b": 6,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "chatglm2-6b",
+   "highlights": [
+    "原生函数调用与代码解释器",
+    "支持 Agent 工作流"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-4",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4",
+   "release": "2024-01-16",
+   "params_b": null,
+   "context_k": 128,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "chatglm3-6b",
+   "highlights": [
+    "闭源旗舰，128K 上下文",
+    "较 GLM-3 提升约 60%，支持 26 种语言"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-9b",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4-9B",
+   "release": "2024-06-05",
+   "params_b": 9,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4",
+   "highlights": [
+    "GLM-4 的开源 9B 版本",
+    "支持网页浏览与代码执行",
+    "128K 上下文"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-plus",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4-Plus",
+   "release": "2024-08",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "glm-4",
+   "highlights": [
+    "闭源升级版，性能对标 GPT-4o",
+    "参数未披露"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-4-32b",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4-32B-0414",
+   "release": "2025-04",
+   "params_b": 32,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-9b",
+   "highlights": [
+    "32B 开源模型，MIT 许可",
+    "约 15TB 数据训练",
+    "含 GLM-Z1 推理变体"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-z1-32b",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-Z1-32B-0414",
+   "release": "2025-04",
+   "params_b": 32,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-32b",
+   "highlights": [
+    "推理模型，部分任务对标 DeepSeek-R1",
+    "与 GLM-4-32B 同期发布，MIT 许可"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-4-5",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.5",
+   "release": "2025-07-28",
+   "params_b": 355,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4",
+   "highlights": [
+    "355B 总参、32B 激活的 MoE 旗舰",
+    "面向 Agent、推理与编码三合一",
+    "Z.ai 国际化品牌与 MIT 开源的标志作"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-5-air",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.5-Air",
+   "release": "2025-07-28",
+   "params_b": 106,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-5",
+   "highlights": [
+    "106B 总参、12B 激活的紧凑版",
+    "128K 上下文，面向高效 Agent 推理"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-5v",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.5V",
+   "release": "2025-08-11",
+   "params_b": 106,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "open",
+   "predecessor": "glm-4-5",
+   "highlights": [
+    "基于 4.5-Air 的 106B/12B 视觉语言 MoE",
+    "覆盖图像、视频、文档与 GUI Agent 任务",
+    "MIT 开源"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-6",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.6",
+   "release": "2025-09-30",
+   "params_b": 357,
+   "context_k": 200,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-5",
+   "highlights": [
+    "约 357B/32B 激活，上下文扩至 200K",
+    "Agentic 编码与推理增强",
+    "首个在寒武纪芯片上 FP8+Int4 落地的中国旗舰"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-6v",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.6V",
+   "release": "2025-12-08",
+   "params_b": 106,
+   "context_k": 128,
+   "modality": "text,image,video",
+   "license": "open",
+   "predecessor": "glm-4-5v",
+   "highlights": [
+    "106B 级视觉语言模型，含 9B Flash 变体",
+    "原生多模态函数调用，128K 上下文"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-4-7",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-4.7",
+   "release": "2026-01-08",
+   "params_b": 358,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-6",
+   "highlights": [
+    "358B MoE，编码专精",
+    "强化多语言 Agentic 编码、终端任务与工具调用",
+    "开源"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-5",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-5",
+   "release": "2026-02-11",
+   "params_b": 744,
+   "context_k": 200,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-4-7",
+   "highlights": [
+    "744B 总参、40B 激活，规模较 4.5 翻倍",
+    "200K 上下文，面向长程系统工程与 Agent",
+    "基于华为昇腾芯片训练，MIT 许可",
+    "Z.ai 于 2026 年 1 月在港交所上市"
+   ],
+   "source": "https://llm-releases.com/labs/zhipu",
+   "note": ""
+  },
+  {
+   "id": "glm-5-1",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-5.1",
+   "release": "2026-04-08",
+   "params_b": 744,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-5",
+   "highlights": [
+    "744B/40B 激活的开源升级",
+    "面向长程 Agentic 任务",
+    "整体性能对标 Claude Opus 4.6"
+   ],
+   "source": "http://bigmodel.cn",
+   "note": ""
+  },
+  {
+   "id": "glm-5-2",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-5.2",
+   "release": "2026-06",
+   "params_b": 744,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "glm-5-1",
+   "highlights": [
+    "744B/40B 激活，上下文扩至 100 万 token",
+    "MIT 许可，开源编码分数领先"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-5-3",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-5.3",
+   "release": "2026-08",
+   "params_b": 744,
+   "context_k": null,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "glm-5-2",
+   "highlights": [
+    "沿用 5.2 底座，后训练强化编码与网络安全",
+    "采用自定义 GLM-5.3 许可",
+    "对超大规模 MaaS 运营方附加安全审查条件"
+   ],
+   "source": "https://aiwiki.ai/wiki/zhipu_ai",
+   "note": ""
+  },
+  {
+   "id": "glm-5-3-flash",
+   "company": "zhipu",
+   "family": "GLM",
+   "name": "GLM-5.3-Flash",
+   "release": "2026-08-26",
+   "params_b": 320,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "glm-5-3",
+   "highlights": [
+    "320B 总参、18B 激活，45 层 MoE",
+    "原生多模态，混合线性与稀疏注意力",
+    "百万 token 上下文，MIT 许可"
+   ],
+   "source": "https://theainews.cc/articles/2026-09-24-flash-models-deepseek-glm-mimo",
+   "note": ""
+  },
+  {
+   "id": "abab-6-5",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "abab 6.5",
+   "release": "2024-04-17",
+   "params_b": null,
+   "context_k": 200,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "官方称为万亿参数 MoE",
+    "200K 上下文",
+    "闭源 API，含更快变体 abab 6.5s"
+   ],
+   "source": "https://presenc.ai/research/minimax-model-lineage-2026",
+   "note": "万亿参数为官方口径，未给精确数字"
+  },
+  {
+   "id": "minimax-text-01",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-Text-01",
+   "release": "2025-01-15",
+   "params_b": 456,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "abab-6-5",
+   "highlights": [
+    "456B 总参、45.9B 激活，32 个 MoE 专家",
+    "混合 Lightning Attention 与 Softmax Attention",
+    "训练 1M 上下文，推理可外推至 4M",
+    "权重与代码开放，采用自有模型协议"
+   ],
+   "source": "https://aiwiki.ai/wiki/minimax",
+   "note": ""
+  },
+  {
+   "id": "minimax-vl-01",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-VL-01",
+   "release": "2025-01-15",
+   "params_b": 456,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "weighted",
+   "predecessor": "minimax-text-01",
+   "highlights": [
+    "基于 Text-01 的多模态版本",
+    "额外在 5120 亿视觉语言 tokens 上继续训练",
+    "百万级上下文"
+   ],
+   "source": "https://aiwiki.ai/wiki/minimax",
+   "note": ""
+  },
+  {
+   "id": "minimax-m1",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M1",
+   "release": "2025-06-16",
+   "params_b": 456,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "minimax-text-01",
+   "highlights": [
+    "首个开放权重的大规模混合注意力推理模型",
+    "1M 上下文，80K 思维链，Apache 2.0",
+    "CISPO 强化学习算法，512 卡 H800 训练三周、成本约 53.5 万美元",
+    "深度推理算力约为 R1 的 30%"
+   ],
+   "source": "https://aiwiki.ai/wiki/minimax",
+   "note": ""
+  },
+  {
+   "id": "minimax-m2",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M2",
+   "release": "2025-10-27",
+   "params_b": 230,
+   "context_k": 205,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "minimax-m1",
+   "highlights": [
+    "230B 总参、10B 激活的紧凑 MoE",
+    "面向编码、工具调用与深度搜索",
+    "MIT 许可，4 张 H100 即可 FP8 部署",
+    "定价为输入 0.30、输出 1.20 美元/百万 token"
+   ],
+   "source": "https://presenc.ai/research/minimax-model-lineage-2026",
+   "note": "MIT 附加大流量产品需标注的条件"
+  },
+  {
+   "id": "minimax-m2-1",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M2.1",
+   "release": "2025-12-23",
+   "params_b": 230,
+   "context_k": 205,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "minimax-m2",
+   "highlights": [
+    "M2 的多语言编程增强版",
+    "强化复杂真实世界任务",
+    "权重在 Hugging Face 开放"
+   ],
+   "source": "https://aiwiki.ai/wiki/minimax",
+   "note": ""
+  },
+  {
+   "id": "minimax-m2-5",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M2.5",
+   "release": "2026-02-12",
+   "params_b": 230,
+   "context_k": 205,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "minimax-m2-1",
+   "highlights": [
+    "SWE-Bench Verified 报告 80.2%",
+    "Multi-SWE-Bench 51.3%、BrowseComp 76.3%",
+    "较 M2.1 完成速度提升约 37%"
+   ],
+   "source": "https://aiwiki.ai/index.php?diff=14771&oldid=14770&title=MiniMax",
+   "note": ""
+  },
+  {
+   "id": "minimax-m2-7",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M2.7",
+   "release": "2026-03-18",
+   "params_b": 230,
+   "context_k": 205,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "minimax-m2-5",
+   "highlights": [
+    "主打自我进化的智能体模型",
+    "面向 Agent 工作流与办公任务",
+    "权重 4 月上线 Hugging Face，商用需另行授权"
+   ],
+   "source": "https://aiwiki.ai/wiki/minimax",
+   "note": ""
+  },
+  {
+   "id": "minimax-m3",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M3",
+   "release": "2026-06-01",
+   "params_b": 428,
+   "context_k": 1000,
+   "modality": "text,image,video",
+   "license": "weighted",
+   "predecessor": "minimax-m2-7",
+   "highlights": [
+    "约 428B 总参、23B 激活，重回百万上下文",
+    "原生图像与视频输入、电脑操作",
+    "采用 minimax-community 许可"
+   ],
+   "source": "https://presenc.ai/research/minimax-model-lineage-2026",
+   "note": ""
+  },
+  {
+   "id": "minimax-m3-1-flash-preview",
+   "company": "minimax",
+   "family": "MiniMax",
+   "name": "MiniMax-M3.1-Flash-Preview",
+   "release": "2026-09-27",
+   "params_b": null,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "minimax-m3",
+   "highlights": [
+    "预览版，提供 low 到 max 五档思考强度",
+    "思考不可关闭",
+    "仅在 MiniMax Code 与订阅中提供，无模型卡"
+   ],
+   "source": "https://presenc.ai/research/minimax-model-lineage-2026",
+   "note": ""
+  },
+  {
+   "id": "ernie-4-0",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE 4.0",
+   "release": "2023-10-17",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "文心大模型 4.0，知识增强路线",
+    "闭源，通过千帆平台提供",
+    "中文理解与生成能力显著提升"
+   ],
+   "source": "https://baike.baidu.com/item/文心大模型",
+   "note": ""
+  },
+  {
+   "id": "ernie-4-5",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE 4.5",
+   "release": "2025-03-16",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "ernie-4-0",
+   "highlights": [
+    "2025 年 3 月与 X1 一同发布",
+    "6 月 30 日起部分系列开源",
+    "与深度思考模型配套"
+   ],
+   "source": "https://ernie.baidu.com",
+   "note": "旗舰参数未精确披露；开源版本另列"
+  },
+  {
+   "id": "ernie-4-5-21b-a3b",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE-4.5-21B-A3B",
+   "release": "2025-06-30",
+   "params_b": 21,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "ernie-4-5",
+   "highlights": [
+    "4.5 开源系列中的 MoE，21B 总参/3B 激活",
+    "Thinking 思考版一度登顶 Hugging Face 趋势榜",
+    "开源三个月星标快速增长"
+   ],
+   "source": "https://baike.baidu.com/item/百度艾尼",
+   "note": ""
+  },
+  {
+   "id": "ernie-x1",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE X1",
+   "release": "2025-03-16",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "ernie-4-5",
+   "highlights": [
+    "首个深度思考模型，与 4.5 同期发布",
+    "侧重逻辑推理与数学",
+    "闭源 API"
+   ],
+   "source": "https://baike.baidu.com/item/文心大模型算法",
+   "note": ""
+  },
+  {
+   "id": "ernie-x1-1",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE X1.1",
+   "release": "2025-09-09",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "ernie-x1",
+   "highlights": [
+    "X1 的升级版",
+    "推理与工具调用增强",
+    "闭源服务"
+   ],
+   "source": "https://baike.baidu.com/item/百度艾尼",
+   "note": ""
+  },
+  {
+   "id": "ernie-5-0-preview",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE 5.0 Preview",
+   "release": "2025-11-13",
+   "params_b": 2400,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "ernie-4-5",
+   "highlights": [
+    "5.0 预览版，2.4 万亿参数",
+    "LMArena 文本榜中国第一、进入全球前十",
+    "预览版本号包括 1103/1120/1203/1220"
+   ],
+   "source": "https://ernie.baidu.com",
+   "note": ""
+  },
+  {
+   "id": "ernie-5-0",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE 5.0",
+   "release": "2026-01-22",
+   "params_b": 2400,
+   "context_k": null,
+   "modality": "text,image,video,audio",
+   "license": "proprietary",
+   "predecessor": "ernie-5-0-preview",
+   "highlights": [
+    "2.4 万亿参数原生全模态统一模型",
+    "文本、图像、视频、音频纳入单一自回归框架",
+    "超大规模 MoE，激活参数比低于 3%"
+   ],
+   "source": "https://ernie.baidu.com",
+   "note": "官方博客 2026-02-06 刊发介绍"
+  },
+  {
+   "id": "ernie-5-1",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE 5.1",
+   "release": "2026-05-09",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "ernie-5-0",
+   "highlights": [
+    "采用多维弹性预训练，成本约为同规模模型 6%",
+    "解耦全异步强化学习与规模化智能体后训练",
+    "Arena 搜索榜中国第一"
+   ],
+   "source": "https://ernie.baidu.com",
+   "note": ""
+  },
+  {
+   "id": "ernie-image",
+   "company": "baidu",
+   "family": "ERNIE",
+   "name": "ERNIE-Image",
+   "release": "2026-04-15",
+   "params_b": 8,
+   "context_k": null,
+   "modality": "image",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "单流 Diffusion Transformer，8B DiT 参数",
+    "开放权重文生图模型",
+    "在开放权重模型中表现领先"
+   ],
+   "source": "https://ernie.baidu.com",
+   "note": ""
+  },
+  {
+   "id": "hunyuan-large",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "Hunyuan-Large",
+   "release": "2024-11",
+   "params_b": 389,
+   "context_k": 256,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": null,
+   "highlights": [
+    "389B 总参、52B 激活的开源 MoE",
+    "GQA 加 CLA 跨层注意力压缩 KV 缓存约 95%",
+    "当时最大开源 Transformer-MoE"
+   ],
+   "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
+   "note": ""
+  },
+  {
+   "id": "hunyuan-turbos",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "Hunyuan-TurboS",
+   "release": "2025-02-27",
+   "params_b": 560,
+   "context_k": 256,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "hunyuan-large",
+   "highlights": [
+    "560B 总参、56B 激活",
+    "Mamba2 加注意力加 MoE 混合架构",
+    "16T tokens 训练，支持快慢思考"
+   ],
+   "source": "https://blog.csdn.net/Together_CZ/article/details/164961552",
+   "note": ""
+  },
+  {
+   "id": "hunyuan-t1",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "Hunyuan T1",
+   "release": "2025-03",
+   "params_b": null,
+   "context_k": 256,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "hunyuan-large",
+   "highlights": [
+    "深度推理模型，Hybrid-Transformer-Mamba MoE",
+    "约 96.7% 后训练算力用于强化学习",
+    "256K 上下文"
+   ],
+   "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
+   "note": "参数未披露"
+  },
+  {
+   "id": "hunyuan-a13b",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "Hunyuan-A13B",
+   "release": "2025-06-27",
+   "params_b": 80,
+   "context_k": 256,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "hunyuan-large",
+   "highlights": [
+    "业界首个 13B 级 MoE 开源混合推理模型",
+    "80B 总参、13B 激活，可在单张中低端 GPU 部署",
+    "原生 256K 上下文，快慢思考动态切换"
+   ],
+   "source": "https://baike.baidu.com/item/混元-A13B",
+   "note": ""
+  },
+  {
+   "id": "hunyuan-2-0",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "Hunyuan 2.0",
+   "release": "2025-12",
+   "params_b": 406,
+   "context_k": 256,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "hunyuan-t1",
+   "highlights": [
+    "406B 总参、32B 激活的上一代旗舰",
+    "Think/Instruct 双版本，256K 上下文",
+    "SWE-bench 53.0，tau2-Bench 72.4"
+   ],
+   "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
+   "note": ""
+  },
+  {
+   "id": "hy3-preview",
+   "company": "tencent",
+   "family": "Hy",
+   "name": "Hy3 Preview",
+   "release": "2026-04-23",
+   "params_b": 295,
+   "context_k": 256,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "hunyuan-2-0",
+   "highlights": [
+    "295B 总参、21B 激活，192 专家 top-8",
+    "重建混元的第一步，面向编程、办公与 Agent",
+    "采用 Hy 社区许可开源"
+   ],
+   "source": "http://hunyuan.tencent.com",
+   "note": ""
+  },
+  {
+   "id": "hy3",
+   "company": "tencent",
+   "family": "Hy",
+   "name": "Hy3",
+   "release": "2026-07-06",
+   "params_b": 295,
+   "context_k": 256,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "hy3-preview",
+   "highlights": [
+    "Hy3 正式版改为 Apache 2.0",
+    "强化强化学习与后训练，重点提升推理、Agent 与工具使用"
+   ],
+   "source": "https://funian.blog.csdn.net/article/details/170295004",
+   "note": ""
+  },
+  {
+   "id": "hy4-preview",
+   "company": "tencent",
+   "family": "Hy",
+   "name": "Hy4 Preview",
+   "release": "2026-08-28",
+   "params_b": 770,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "hy3",
+   "highlights": [
+    "770B 总参、49B 激活，上下文超百万 token",
+    "Apache 2.0 开源",
+    "大容量低激活，推理成本约等于 50B 稠密模型"
+   ],
+   "source": "https://funian.blog.csdn.net/article/details/170295004",
+   "note": ""
+  },
+  {
+   "id": "hy4",
+   "company": "tencent",
+   "family": "Hy",
+   "name": "Hy4",
+   "release": "2026-11-04",
+   "params_b": 770,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "hy4-preview",
+   "highlights": [
+    "参数规模不变，提升预训练与后训练数据量",
+    "加入视觉与电脑操作能力",
+    "Apache 2.0 开源"
+   ],
+   "source": "https://funian.blog.csdn.net/article/details/170295004",
+   "note": ""
+  },
+  {
+   "id": "hunyuanimage-3-0",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "HunyuanImage 3.0",
+   "release": "2025-09-28",
+   "params_b": 80,
+   "context_k": null,
+   "modality": "image",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "80B MoE 自回归文生图，推理激活 13B",
+    "号称参数量最大的开源图像模型",
+    "2026 年 1 月补齐图生图版本"
+   ],
+   "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
+   "note": ""
+  },
+  {
+   "id": "hunyuanvideo-1-5",
+   "company": "tencent",
+   "family": "Hunyuan",
+   "name": "HunyuanVideo 1.5",
+   "release": "2025-11-21",
+   "params_b": 8,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "DiT 架构，仅 8.3B 参数",
+    "3D 因果 VAE 空间压缩 16 倍、时间压缩 4 倍",
+    "消费级显卡可生成 5 至 10 秒高清视频"
+   ],
+   "source": "https://www.aiexpress.news/wiki/tencent-hunyuan-profile",
+   "note": ""
+  },
+  {
+   "id": "pangu-3-0",
+   "company": "huawei",
+   "family": "Pangu",
+   "name": "盘古 3.0",
+   "release": "2023-07",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "主打行业落地的闭源基座",
+    "盘古气象同月上《自然》正刊",
+    "不做通用聊天机器人的路线宣示"
+   ],
+   "source": "https://mengbaoliang.cn/single/144523",
+   "note": ""
+  },
+  {
+   "id": "pangu-5-0",
+   "company": "huawei",
+   "family": "Pangu",
+   "name": "盘古 5.0",
+   "release": "2024-06-21",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "proprietary",
+   "predecessor": "pangu-3-0",
+   "highlights": [
+    "全系列覆盖十亿至万亿参数",
+    "E/P/U/S 四档适配端侧到企业底座",
+    "昇腾亲和的 π 架构，多模态理解"
+   ],
+   "source": "https://baike.baidu.com/item/盘古",
+   "note": ""
+  },
+  {
+   "id": "pangu-5-5",
+   "company": "huawei",
+   "family": "Pangu",
+   "name": "盘古 5.5",
+   "release": "2025-06-20",
+   "params_b": 718,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "pangu-5-0",
+   "highlights": [
+    "718B 参数 MoE 深度思考模型",
+    "自适应快慢思考合一，推理效率提升 8 倍",
+    "发布五个行业专属大模型"
+   ],
+   "source": "https://www.wanyuna.com/post/573.html",
+   "note": ""
+  },
+  {
+   "id": "openpangu-7b",
+   "company": "huawei",
+   "family": "openPangu",
+   "name": "openPangu-7B",
+   "release": "2025-06-30",
+   "params_b": 7,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "华为首次开源大模型之一",
+    "70 亿参数稠密模型",
+    "同步开放昇腾推理技术"
+   ],
+   "source": "https://baike.baidu.com/item/盘古",
+   "note": ""
+  },
+  {
+   "id": "openpangu-pro-moe",
+   "company": "huawei",
+   "family": "openPangu",
+   "name": "openPangu-Pro-MoE",
+   "release": "2025-06-30",
+   "params_b": 72,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "720 亿参数 MoE 开源模型",
+    "基于昇腾训练与推理",
+    "曾引发与 Qwen2.5-14B 相似性的讨论"
+   ],
+   "source": "https://baike.baidu.com/item/盘古",
+   "note": ""
+  },
+  {
+   "id": "openpangu-ultra-moe-718b",
+   "company": "huawei",
+   "family": "openPangu",
+   "name": "openPangu-Ultra-MoE-718B-V1.1",
+   "release": "2025-10-15",
+   "params_b": 718,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "openpangu-pro-moe",
+   "highlights": [
+    "718B 总参、39B 激活，基于昇腾 NPU 训练",
+    "GitCode 开源权重与技术细节",
+    "V1.1 增强 Agent 工具调用、降低幻觉"
+   ],
+   "source": "https://baike.baidu.com/item/盘古",
+   "note": ""
+  },
+  {
+   "id": "openpangu-2-0",
+   "company": "huawei",
+   "family": "openPangu",
+   "name": "openPangu 2.0",
+   "release": "2026-06",
+   "params_b": 505,
+   "context_k": 512,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "openpangu-ultra-moe-718b",
+   "highlights": [
+    "Pro 505B、Flash 92B，512K 上下文",
+    "全部在昇腾上完成训练",
+    "7 月开源权重、9 月开放预训练与后训练代码"
+   ],
+   "source": "https://mengbaoliang.cn/single/144523",
+   "note": "params_b 记 Pro"
+  },
+  {
+   "id": "step-2",
+   "company": "stepfun",
+   "family": "Step",
+   "name": "Step-2",
+   "release": "2025-01",
+   "params_b": 1000,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": null,
+   "highlights": [
+    "万亿参数自研 MoE 底座",
+    "深度推理对标前沿，精准多层指令跟随",
+    "闭源服务"
+   ],
+   "source": "https://platform.stepfun.com",
+   "note": ""
+  },
+  {
+   "id": "step-3",
+   "company": "stepfun",
+   "family": "Step",
+   "name": "Step-3",
+   "release": "2025-07-25",
+   "params_b": 321,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "step-2",
+   "highlights": [
+    "321B 总参、约 38B 激活的全尺寸多模态推理模型",
+    "多矩阵分解注意力将 KV 缓存压至 V3 约两成",
+    "注意力与前馈网络分离提升推理效率",
+    "7 月 31 日以 Apache 2.0 开源"
+   ],
+   "source": "https://www.stepfun.com/share/137990334105604096",
+   "note": ""
+  },
+  {
+   "id": "step-3-5-flash",
+   "company": "stepfun",
+   "family": "Step",
+   "name": "Step 3.5 Flash",
+   "release": "2026-02",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "step-3",
+   "highlights": [
+    "面向实时 Agent 场景",
+    "Artificial Analysis 上约 409 token/秒",
+    "多家国产芯片第一时间完成适配"
+   ],
+   "source": "https://mengbaoliang.cn/single/144519",
+   "note": ""
+  },
+  {
+   "id": "step-3-7-flash",
+   "company": "stepfun",
+   "family": "Step",
+   "name": "Step 3.7 Flash",
+   "release": "2026-08-06",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "proprietary",
+   "predecessor": "step-3-5-flash",
+   "highlights": [
+    "面向生产级 Agent 的高效率 Flash 模型",
+    "稀疏架构压低成本，原生多模态理解与执行",
+    "强化联网与视觉搜索、工具编排"
+   ],
+   "source": "https://platform.stepfun.com",
+   "note": "第三方称总参接近 2000 亿，官方未披露"
+  },
+  {
+   "id": "step-5-preview",
+   "company": "stepfun",
+   "family": "Step",
+   "name": "Step 5 Preview",
+   "release": "2026-09-20",
+   "params_b": 600,
+   "context_k": 1000,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": "step-3",
+   "highlights": [
+    "600B 总参、27B 激活的稀疏 MoE",
+    "百万 token 上下文，原生文本与视觉输入",
+    "面向 AI 编程、软件工程与专业工作"
+   ],
+   "source": "https://baike.baidu.com/item/Step/68326006",
+   "note": "计划 2026-10-15 开源"
+  },
+  {
+   "id": "internlm",
+   "company": "internlm",
+   "family": "InternLM",
+   "name": "InternLM",
+   "release": "2023-07",
+   "params_b": 7,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "上海 AI 实验室书生浦语初代开源模型",
+    "Apache 2.0 许可",
+    "中英双语基座"
+   ],
+   "source": "https://github.com/InternLM/InternLM",
+   "note": ""
+  },
+  {
+   "id": "internlm2",
+   "company": "internlm",
+   "family": "InternLM",
+   "name": "InternLM2",
+   "release": "2024-01-31",
+   "params_b": 20,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "internlm",
+   "highlights": [
+    "含 1.8B、7B、20B 等规模",
+    "同期发布 InternLM2-Math 系列",
+    "2024 年 3 月发布技术报告"
+   ],
+   "source": "https://github.com/InternLM/InternLM",
+   "note": "params_b 记最大档"
+  },
+  {
+   "id": "internlm2-5",
+   "company": "internlm",
+   "family": "InternLM",
+   "name": "InternLM2.5",
+   "release": "2024-06-30",
+   "params_b": 20,
+   "context_k": 1000,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "internlm2",
+   "highlights": [
+    "实用导向的 20B 与 7B 模型",
+    "数学推理达同级最优，工具调用升级",
+    "7B-Chat-1M 支持百万 token 上下文"
+   ],
+   "source": "https://opencsg.com/models/ShangHaiAILab/internlm2_5-20b-chat",
+   "note": ""
+  },
+  {
+   "id": "internlm3",
+   "company": "internlm",
+   "family": "InternLM",
+   "name": "InternLM3-8B-Instruct",
+   "release": "2025-01-15",
+   "params_b": 8,
+   "context_k": null,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "internlm2-5",
+   "highlights": [
+    "80 亿参数，仅用 4 万亿 tokens 训练，成本节省逾 75%",
+    "常规对话与深度思考模式融合",
+    "推理与知识任务超过 Llama3.1-8B 与 Qwen2.5-7B"
+   ],
+   "source": "https://github.com/InternLM/InternLM",
+   "note": ""
+  },
+  {
+   "id": "intern-s1",
+   "company": "internlm",
+   "family": "Intern",
+   "name": "Intern-S1",
+   "release": "2025-07-27",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "科学多模态大模型并开源",
+    "科学能力全模态达国际领先",
+    "融合科学专业能力的基础模型"
+   ],
+   "source": "https://baike.baidu.com/item/书生通用大模型",
+   "note": ""
+  },
+  {
+   "id": "internvl3",
+   "company": "internlm",
+   "family": "InternVL",
+   "name": "InternVL3",
+   "release": "2025-04-16",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text,image,video",
+   "license": "open",
+   "predecessor": null,
+   "highlights": [
+    "书生万象 3.0 通用多模态模型",
+    "升级并开源",
+    "图文视频理解能力增强"
+   ],
+   "source": "https://baike.baidu.com/item/书生通用大模型",
+   "note": ""
+  },
+  {
+   "id": "yi-6b",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-6B",
+   "release": "2023-11-06",
+   "params_b": 6,
+   "context_k": null,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": null,
+   "highlights": [
+    "零一万物首批开源中英双语模型",
+    "自定义可免费商用许可",
+    "同批发布 Yi-34B"
+   ],
+   "source": "https://baike.baidu.com/item/Yi",
+   "note": ""
+  },
+  {
+   "id": "yi-34b",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-34B",
+   "release": "2023-11-06",
+   "params_b": 34,
+   "context_k": 200,
+   "modality": "text",
+   "license": "weighted",
+   "predecessor": "yi-6b",
+   "highlights": [
+    "34B 开源模型，发布时登顶 Hugging Face 榜单",
+    "支持 200K 上下文，约 40 万汉字",
+    "中英双语"
+   ],
+   "source": "https://baike.baidu.com/item/Yi",
+   "note": ""
+  },
+  {
+   "id": "yi-vl-34b",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-VL-34B",
+   "release": "2024-01-22",
+   "params_b": 34,
+   "context_k": 4,
+   "modality": "text,image",
+   "license": "weighted",
+   "predecessor": "yi-34b",
+   "highlights": [
+    "基于 CLIP 编码器加 MLP 适配器的视觉语言模型",
+    "中文场景图内文字理解较强",
+    "4K 上下文"
+   ],
+   "source": "https://www.opensourceaimodels.net/families/yi",
+   "note": ""
+  },
+  {
+   "id": "yi-large",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-Large",
+   "release": "2024-05-13",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "yi-34b",
+   "highlights": [
+    "千亿参数闭源模型",
+    "AlpacaEval 2.0 排名世界第三",
+    "LMSYS 盲测中国第一"
+   ],
+   "source": "http://lingyiwanwu.com/about.html",
+   "note": "精确参数未披露"
+  },
+  {
+   "id": "yi-1-5",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-1.5",
+   "release": "2024-05-13",
+   "params_b": 34,
+   "context_k": 32,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "yi-34b",
+   "highlights": [
+    "6B/9B/34B 多档，增量训练 500B tokens",
+    "数学逻辑与代码能力大幅提升",
+    "切换为 Apache 2.0，提供 16K Chat 与 32K 基座"
+   ],
+   "source": "http://mp.weixin.qq.com/s?__biz=Mzk0OTUxNTM0NA==&mid=2247484325&idx=1&sn=97ffcbcef8985d8f8dd7c25078d26c3c",
+   "note": "params_b 记最大档"
+  },
+  {
+   "id": "yi-coder",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-Coder-1.5B/9B",
+   "release": "2024-09",
+   "params_b": 9,
+   "context_k": 128,
+   "modality": "text",
+   "license": "open",
+   "predecessor": "yi-1-5",
+   "highlights": [
+    "1.5B 与 9B 代码模型",
+    "128K 长上下文，支持 52 种编程语言",
+    "Apache 2.0 开源"
+   ],
+   "source": "https://www.lingyiwanwu.com/en",
+   "note": "params_b 记最大档；具体月份待核实"
+  },
+  {
+   "id": "yi-lightning",
+   "company": "01ai",
+   "family": "Yi",
+   "name": "Yi-Lightning",
+   "release": "2024-10",
+   "params_b": null,
+   "context_k": null,
+   "modality": "text",
+   "license": "proprietary",
+   "predecessor": "yi-large",
+   "highlights": [
+    "千亿参数 MoE 模型",
+    "LMSYS 榜单世界第六、中国第一",
+    "闭源 API"
+   ],
+   "source": "http://lingyiwanwu.com/about.html",
+   "note": "精确参数未披露"
+  }
+ ],
+ "technologies": [],
+ "events": []
 }

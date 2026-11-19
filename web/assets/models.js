@@ -79,7 +79,12 @@
     var p=document.getElementById('model-detail');
     var lf=LOGO[d.companyId];
     var lg=lf?'<img class="d-logo" src="assets/logos/'+lf+'.png" alt="">':'';
-    p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.company+' · '+d.date+'</span></div></div>';
+    var chain='';
+    if(d.predecessor){
+      var pred=D.filter(function(x){return x.id===d.predecessor;})[0];
+      chain=pred?'<span class="d-chain">'+pred.name+' → <em>'+d.name+'</em></span>':'';
+    }
+    p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.company+' · '+d.date+'</span>'+chain+'</div></div>';
     buildChart();
   }
 
