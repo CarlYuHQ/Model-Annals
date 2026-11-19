@@ -229,11 +229,7 @@
     var id=near?near.id:null;
     if(id!==hoverId){
       hoverId=id;applyHighlight();
-      if(near){
-        var p=document.getElementById('timeline-detail');
-        if(p)p.innerHTML='<b>'+near.name+'</b> · '+near.coName+' · '+near.date+
-          (near.ctx?' · 上下文 '+near.ctx+'K':'')+(near.param?' · 参数 '+near.param+'B':'');
-      }
+      if(near)showDetail(near);
     }
   });
   s.addEventListener('pointerleave',function(){hoverId=null;applyHighlight();});
@@ -247,8 +243,10 @@
 
   function showDetail(d){
     var p=document.getElementById('timeline-detail');
-    p.innerHTML='<b>'+d.name+'</b> · '+d.coName+' · '+d.date+
-      (d.ctx?' · 上下文 '+d.ctx+'K':'')+(d.param?' · 参数 '+d.param+'B':'');
+    if(p){
+      var lg=d.logo?'<img class="d-logo" src="'+logoURL(d.logo)+'" alt="">':'';
+      p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.coName+' · '+d.date+'</span></div></div>';
+    }
     selectedId=d.id;
     applyHighlight();
   }

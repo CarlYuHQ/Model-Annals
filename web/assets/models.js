@@ -77,10 +77,9 @@
     var d=D.filter(function(x){return x.id===id;})[0];if(!d)return;
     selected=id;
     var p=document.getElementById('model-detail');
-    p.innerHTML='<h3 class="detail-name">'+d.name+'</h3><div class="detail-meta">'+
-      '<span>机构 <b>'+d.company+'</b></span><span>发布 <b>'+d.date+'</b></span>'+
-      '<span>上下文 <b>'+d.ctx+'K</b></span><span>参数 <b>'+(d.param?d.param+'B':'未公开')+'</b></span>'+
-      '<span>模态 <b>'+(d.modality?d.modality.replace(/,/g,'、'):'—')+'</b></span></div>';
+    var lf=LOGO[d.companyId];
+    var lg=lf?'<img class="d-logo" src="assets/logos/'+lf+'.png" alt="">':'';
+    p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.company+' · '+d.date+'</span></div></div>';
     buildChart();
   }
 
