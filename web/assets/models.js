@@ -100,7 +100,7 @@
       current=(current===co?'all':co);
       host.querySelectorAll('.org').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-co')===current);});
       selected=null;
-      document.getElementById('model-detail').innerHTML='<p class="detail-idle">点图中任意一点，看它的规格。</p>';
+      document.getElementById('model-detail').innerHTML='';
       buildChart();
       if(tbRender)tbRender();
     });
