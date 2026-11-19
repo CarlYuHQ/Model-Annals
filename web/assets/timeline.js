@@ -178,6 +178,35 @@
     var z=document.getElementById('zoom-level');
     if(z)z.textContent=Math.round(W/vb.w*100)+'%';
   }
+
+  /* ---- hover 就近吸附 + 展开（移植自 ccfddls DeadlineAxis）---- */
+  var hoverId=null;
+  var nodeEls={}; // id -> {g, label, logo, ring}
+  // 收集节点元素引用
+  document.querySelectorAll('.tl-model').forEach(function(g){
+    var id=g.getAttribute('data-id');
+    nodeEls[id]={g:g,label:g.querySelector('.tl-name')};
+  });
+  function applyHighlight(){
+    Object.keys(nodeEls).forEach(function(id){
+      var n=nodeEls[id];
+      var on=(id===hoverId||id===selectedId);
+      var dim=hoverId&&!on;
+      n.g.style.opacity=dim?'0.55':'1';
+      if(n.label)n.label.setAttribute('opacity',on?'1':'0');
+      n.g.classList.toggle('expanded',id===hoverId);
+    });
+  }
+  function nearestAt(clientX){
+    var pt=s.createSVGPoint();pt.x=clientX;pt.y=0;
+    var loc=pt.matrixTransform(s.getScreenCTM().inverse());
+    var best=null,bd=Infinity;
+    D.forEach(function(d){
+      var dist=Math.abs(d.x-loc.x);
+      if(dist<bd){bd=dist;best=d;}
+    });
+    return best;
+  }
   // 滚轮缩放
   s.addEventListener('wheel',function(e){
     e.preventDefault();
@@ -189,12 +218,25 @@
   var dragging=false,start=null;
   s.addEventListener('pointerdown',function(e){dragging=true;start={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y};s.setPointerCapture(e.pointerId);});
   s.addEventListener('pointermove',function(e){
-    if(!dragging||!start)return;
-    var rect=s.getBoundingClientRect();
-    var dx=(e.clientX-start.x)/rect.width*vb.w;
-    vb.x=Math.max(0,Math.min(W-vb.w,start.vx-dx));
-    applyVB();
+    if(dragging&&start){
+      var rect=s.getBoundingClientRect();
+      var dx=(e.clientX-start.x)/rect.width*vb.w;
+      vb.x=Math.max(0,Math.min(W-vb.w,start.vx-dx));
+      applyVB();return;
+    }
+    // 非拖拽：就近吸附展开
+    var near=nearestAt(e.clientX);
+    var id=near?near.id:null;
+    if(id!==hoverId){
+      hoverId=id;applyHighlight();
+      if(near){
+        var p=document.getElementById('timeline-detail');
+        if(p)p.innerHTML='<b>'+near.name+'</b> · '+near.coName+' · '+near.date+
+          (near.ctx?' · 上下文 '+near.ctx+'K':'')+(near.param?' · 参数 '+near.param+'B':'');
+      }
+    }
   });
+  s.addEventListener('pointerleave',function(){hoverId=null;applyHighlight();});
   s.addEventListener('pointerup',function(){dragging=false;start=null;});
   s.addEventListener('pointercancel',function(){dragging=false;start=null;});
   // 按钮
@@ -208,11 +250,6 @@
     p.innerHTML='<b>'+d.name+'</b> · '+d.coName+' · '+d.date+
       (d.ctx?' · 上下文 '+d.ctx+'K':'')+(d.param?' · 参数 '+d.param+'B':'');
     selectedId=d.id;
-    document.querySelectorAll('.tl-model').forEach(function(g){
-      var on=g.getAttribute('data-id')===d.id;
-      g.classList.toggle('sel',on);
-      var lab=g.querySelector('.tl-name');
-      if(lab)lab.setAttribute('opacity',on?'1':'0');
-    });
+    applyHighlight();
   }
 })();
