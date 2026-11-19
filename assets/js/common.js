@@ -63,8 +63,8 @@
         <div class="masthead-inner">
           <div class="brand">
             <span class="brand-mark">Atlas · Vol. 01</span>
-            <a class="brand-title" href="index.html">大模型发展全景档案</a>
-            <span class="brand-sub">LLM EVOLUTION ATLAS · 2017—2026</span>
+            <a class="brand-title" href="index.html">Model Annals · 大模型编年史</a>
+            <span class="brand-sub">MODEL ANNALS · 2017—2026</span>
           </div>
           <div class="masthead-meta">
             收录 <b>${A.stats.models}</b> 个模型 · <b>${A.stats.companies}</b> 家机构<br>

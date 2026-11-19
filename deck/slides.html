@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Annals · 大模型编年史</title>
+<style>
+  .yr { color: var(--red); font-weight: 600; margin-right: .4em; }
+  .co { color: var(--blue); font-size: 30px; }
+  .tiny { font-size: 26px; color: var(--muted); }
+  table.hand-table td:first-child { color: var(--blue); }
+</style>
+</head>
+<body>
+<main class="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide cover" data-title="封面">
+    <h1 class="title">大模型编年史</h1>
+    <div class="cover-art">
+      <svg class="diagram" viewBox="0 0 1000 380" width="1000" height="380" aria-label="模型发展时间轴示意">
+        <path class="s" d="M60 300 L 950 300"/>
+        <path class="s-blue" d="M120 280 C 300 250, 430 190, 600 140 S 820 70, 930 55"/>
+        <circle class="s-red" cx="120" cy="280" r="12"/>
+        <circle class="s-red" cx="430" cy="190" r="12"/>
+        <circle class="s-red" cx="700" cy="100" r="12"/>
+        <circle class="s-red" cx="930" cy="55" r="12"/>
+        <text x="80" y="340" font-size="28" fill="#7a7f99">2017</text>
+        <text x="400" y="340" font-size="28" fill="#7a7f99">2021</text>
+        <text x="670" y="340" font-size="28" fill="#7a7f99">2024</text>
+        <text x="900" y="340" font-size="28" fill="#7a7f99">2026</text>
+      </svg>
+    </div>
+    <div class="cover-meta"><div>Model Annals · 一部关于尺度的编年史</div><div>2017 — 2026 · 356 个模型 · 21 家机构</div></div>
+    <aside class="notes">从一篇论文到数百个模型，我们沿着一条时间轴，看清楚这十年发生了什么。</aside>
+  </section>
+
+  <!-- 2 起点 -->
+  <section class="slide" data-title="起点">
+    <h2 class="lead">一切从 <span class="ul">2017 年的一篇论文</span> 开始</h2>
+    <div class="body">
+      <p class="line"><span class="yr">2017</span> Attention Is All You Need 提出 Transformer</p>
+      <p class="line indent">去掉循环结构，只保留注意力——训练可并行，规模才上得去</p>
+      <p class="line"><span class="yr">2018</span> GPT-1 与 BERT 分出两条路</p>
+      <div class="flow">
+        <span class="box-blue">BERT · 掩码双向</span><span class="arrow">←</span>
+        <span class="box">Transformer</span><span class="arrow">→</span>
+        <span class="box-blue">GPT · 自回归</span>
+      </div>
+      <p class="takeaway">架构一旦确定，接下来十年只是在把它做大、做对、做得会思考</p>
+    </div>
+    <aside class="notes">先讲清楚分叉：一条是理解式，一条是生成式，今天走的是后一条。</aside>
+  </section>
+
+  <!-- 3 总时间轴 1 -->
+  <section class="slide" data-title="总时间轴一" data-auto>
+    <h2 class="lead">先看一条主线：<span class="ul">2018 到 2021</span></h2>
+    <div class="body">
+      <svg class="diagram" viewBox="0 0 1500 520" width="1500" height="520" aria-label="2018-2021 时间轴">
+        <path class="s" d="M60 250 L 1440 250"/>
+        <circle class="s-red" cx="150" cy="250" r="14"/>
+        <circle class="s-red" cx="430" cy="250" r="14"/>
+        <circle class="s-red" cx="720" cy="250" r="14"/>
+        <circle class="s-red" cx="1010" cy="250" r="14"/>
+        <circle class="s-red" cx="1320" cy="250" r="14"/>
+        <text x="110" y="200" font-size="34" fill="#1c2147">2018</text>
+        <text x="390" y="200" font-size="34" fill="#1c2147">2019</text>
+        <text x="680" y="200" font-size="34" fill="#1c2147">2020</text>
+        <text x="970" y="200" font-size="34" fill="#1c2147">2021</text>
+        <text x="1280" y="200" font-size="34" fill="#1c2147">2022</text>
+        <text x="90" y="310" font-size="28" fill="#5b6079">GPT-1 · BERT</text>
+        <text x="360" y="310" font-size="28" fill="#5b6079">GPT-2 · 15 亿参数</text>
+        <text x="640" y="310" font-size="28" fill="#5b6079">GPT-3 · 1750 亿</text>
+        <text x="930" y="310" font-size="28" fill="#5b6079">缩放法则 · Codex</text>
+        <text x="1220" y="310" font-size="28" fill="#5b6079">千亿模型普及</text>
+      </svg>
+      <p class="takeaway">这一期的关键词只有两个：架构，和规模</p>
+    </div>
+    <aside class="notes">参数从亿级冲到千亿级，大家相信更大就是更好。</aside>
+  </section>
+
+  <!-- 4 三条谱系 -->
+  <section class="slide" data-title="三条谱系">
+    <h2 class="lead">其实不是一条线，是<span class="circle">三条并行</span>的谱系</h2>
+    <div class="body">
+      <div class="map" style="--map-h: 620px">
+        <div class="node big" id="m-core" style="left:50%; top:48%"><span class="dot-yellow">大模型</span></div>
+        <div class="node" id="m-scale" style="left:16%; top:16%">规模</div>
+        <div class="node blue" id="m-align" style="left:50%; top:14%">对齐</div>
+        <div class="node" id="m-reason" style="left:84%; top:16%">推理</div>
+        <div class="node" id="m-open" style="left:16%; top:82%">开源</div>
+        <div class="node blue" id="m-multi" style="left:50%; top:86%">多模态</div>
+        <div class="node" id="m-agent" style="left:84%; top:82%">智能体</div>
+        <i class="link" data-from="#m-core" data-to="#m-scale"></i>
+        <i class="link blue" data-from="#m-core" data-to="#m-align"></i>
+        <i class="link" data-from="#m-core" data-to="#m-reason"></i>
+        <i class="link" data-from="#m-core" data-to="#m-open"></i>
+        <i class="link blue" data-from="#m-core" data-to="#m-multi"></i>
+        <i class="link" data-from="#m-core" data-to="#m-agent"></i>
+      </div>
+    </div>
+    <aside class="notes">这六条线互相交织。后面几页沿时间轴，看它们分别在什么时候发力。</aside>
+  </section>
+
+  <!-- 5 对齐转折 -->
+  <section class="slide" data-title="2022 对齐">
+    <h2 class="lead"><span class="yr">2022</span> 模型突然<span class="ul">会听话了</span></h2>
+    <div class="body">
+      <p class="line">ChatGPT 把语言模型变成一个人人能用的产品</p>
+      <p class="line indent">背后的关键不是更大的模型，而是 RLHF——人类反馈强化学习</p>
+      <div class="flow">
+        <span class="box-ink">预训练</span><span class="arrow">→</span>
+        <span>指令微调</span><span class="arrow">→</span>
+        <span class="box">RLHF</span><span class="arrow">→</span>
+        <span class="box-blue">能对话的助手</span>
+      </div>
+      <p class="line"><span class="yr">2023</span> GPT-4 发布，多模态登场</p>
+      <p class="takeaway">能力之外，对齐第一次成为和规模同等重要的事</p>
+    </div>
+    <aside class="notes">这是第一次，技术突破来自训练方式而不是参数规模。</aside>
+  </section>
+
+  <!-- 6 开源浪潮 -->
+  <section class="slide" data-title="开源浪潮">
+    <h2 class="lead"><span class="yr">2023</span> 开源阵营从 <span class="ul">LLaMA</span> 开始爆发</h2>
+    <div class="body">
+      <p class="line">Meta 放出 LLaMA 权重，一个研究模型点燃整个生态</p>
+      <div class="flow">
+        <span class="box-blue">LLaMA</span><span class="arrow">→</span>
+        <span>Alpaca · Vicuna</span><span class="arrow">→</span>
+        <span class="box">上千个衍生模型</span>
+      </div>
+      <p class="line">此后中国厂商几乎全部选择开源路线：</p>
+      <p class="line indent"><span class="co">Qwen</span> · <span class="co">DeepSeek</span> · <span class="co">GLM</span> · <span class="co">InternLM</span> · <span class="co">MiniMax</span></p>
+      <p class="tiny">档案中 111 个模型为开放权重，占全部的三分之一</p>
+      <p class="takeaway">闭源拼上限，开源拼生态——两条腿走到今天</p>
+    </div>
+    <aside class="notes">开源不是副线，是今天半壁江山。</aside>
+  </section>
+
+  <!-- 7 2024 推理 -->
+  <section class="slide" data-title="2024 推理">
+    <h2 class="lead"><span class="yr">2024</span> 算力从训练侧，搬到<span class="ul">推理侧</span></h2>
+    <div class="body">
+      <p class="line">o1 发布：让模型在回答前<span class="circle">先想一会儿</span></p>
+      <p class="line indent">思维链 + 强化学习，用更长的推理换取更高的正确率</p>
+      <p class="line"><span class="box formula">能力 ≈ 预训练算力 + 推理时算力</span></p>
+      <p class="line">从此多了一条 Scaling 方向：<span class="blue">test-time compute</span></p>
+      <p class="takeaway">"想得更久"成为和"训得更大"并列的一条路</p>
+    </div>
+    <aside class="notes">这是第三个转折点，前两个是架构和 RLHF。</aside>
+  </section>
+
+  <!-- 8 DeepSeek R1 -->
+  <section class="slide" data-title="DeepSeek R1">
+    <h2 class="lead"><span class="yr">2025</span> R1 把推理模型的<span class="ul">门槛打下来</span></h2>
+    <div class="body">
+      <p class="line">DeepSeek-R1 开源，用强化学习直接激发推理能力</p>
+      <p class="line indent">GRPO 算法 + 冷启动，绕开大量人工标注的思维链数据</p>
+      <div class="flow">
+        <span class="box-ink">V3 基座</span><span class="arrow">→</span>
+        <span>R1-Zero</span><span class="arrow">→</span>
+        <span class="box">R1</span>
+      </div>
+      <p class="line">性能接近当时闭源前沿，权重公开</p>
+      <p class="takeaway">推理不再是少数公司的专属，开源追到了第一梯队</p>
+    </div>
+    <aside class="notes">这是档案里最值得记住的一次"追赶"。</aside>
+  </section>
+
+  <!-- 9 总时间轴 2 -->
+  <section class="slide" data-title="总时间轴二" data-auto>
+    <h2 class="lead">再看后半段：<span class="ul">2024 到 2026</span></h2>
+    <div class="body">
+      <svg class="diagram" viewBox="0 0 1500 540" width="1500" height="540" aria-label="2024-2026 时间轴">
+        <path class="s" d="M60 260 L 1440 260"/>
+        <circle class="s-red" cx="150" cy="260" r="14"/>
+        <circle class="s-red" cx="470" cy="260" r="14"/>
+        <circle class="s-red" cx="790" cy="260" r="14"/>
+        <circle class="s-red" cx="1110" cy="260" r="14"/>
+        <circle class="s-red" cx="1380" cy="260" r="14"/>
+        <text x="112" y="212" font-size="34" fill="#1c2147">2024</text>
+        <text x="430" y="212" font-size="34" fill="#1c2147">2025</text>
+        <text x="750" y="212" font-size="34" fill="#1c2147">2025末</text>
+        <text x="1070" y="212" font-size="34" fill="#1c2147">2026中</text>
+        <text x="1340" y="212" font-size="34" fill="#1c2147">2026末</text>
+        <text x="80" y="322" font-size="28" fill="#5b6079">GPT-4o · o1</text>
+        <text x="380" y="322" font-size="28" fill="#5b6079">Gemini 2.5 · R1</text>
+        <text x="700" y="322" font-size="28" fill="#5b6079">GPT-5 · Gemini 3</text>
+        <text x="1000" y="322" font-size="28" fill="#5b6079">GPT-6 · Claude 5</text>
+        <text x="1280" y="322" font-size="28" fill="#5b6079">GPT-6.2 · Gemini 4</text>
+      </svg>
+      <p class="takeaway">发布节奏越来越快：2026 下半年就有 68 个新模型</p>
+    </div>
+    <aside class="notes">注意密度：仅 11 月一个月就收录了 13 个模型。</aside>
+  </section>
+
+  <!-- 10 长上下文 -->
+  <section class="slide" data-title="长上下文">
+    <h2 class="lead">上下文窗口，是一条<span class="ul">安静的军备竞赛</span></h2>
+    <div class="body">
+      <table class="hand-table">
+        <thead><tr><th>年份</th><th>代表模型</th><th>上下文</th></tr></thead>
+        <tbody>
+          <tr><td>2023</td><td>GPT-4</td><td>32K</td></tr>
+          <tr><td>2024</td><td>Gemini 1.5</td><td>1M</td></tr>
+          <tr class="pick"><td>2026</td><td>GPT-6.1 Terra</td><td>1.05M</td></tr>
+        </tbody>
+      </table>
+      <p class="line">百万 token 从惊艳变成标配，长文档、整库代码成为可能</p>
+      <p class="takeaway">对做证据约束和长文本推理的人，这条线比参数更有用</p>
+    </div>
+    <aside class="notes">这一页特别留给长上下文方向。</aside>
+  </section>
+
+  <!-- 11 多模态 -->
+  <section class="slide" data-title="多模态">
+    <h2 class="lead">模型不再只读<span class="circle">文字</span></h2>
+    <div class="body">
+      <p class="line">图像、音频、视频陆续被塞进同一个模型</p>
+      <div class="flow">
+        <span class="box-ink">文本</span><span class="arrow">→</span>
+        <span class="box-blue">+ 图像</span><span class="arrow">→</span>
+        <span>+ 音频</span><span class="arrow">→</span>
+        <span class="box">+ 视频</span>
+      </div>
+      <p class="line indent">GPT-4o 端到端多模态；Gemini 从一开始就是原生多模态</p>
+      <p class="line indent">国产这边，Seedance、HunyuanVideo、Qwen-Image 各占一角</p>
+      <p class="takeaway">模态的边界，到 2026 年基本被抹平了</p>
+    </div>
+    <aside class="notes">多模态不是加功能，是换骨干网络。</aside>
+  </section>
+
+  <!-- 12 2026 全景 -->
+  <section class="slide" data-title="2026 全景">
+    <h2 class="lead">到了 <span class="yr">2026</span>，竞争变成<span class="ul">一整个系列</span></h2>
+    <div class="body">
+      <table class="hand-table">
+        <thead><tr><th>机构</th><th>旗舰线</th><th>最新（11 月）</th></tr></thead>
+        <tbody>
+          <tr><td>OpenAI</td><td>GPT-6 系列</td><td>GPT-6.2 Astra / Sol</td></tr>
+          <tr><td>Anthropic</td><td>Claude 5 系列</td><td>Fable 5.2 / Mythos 5.2</td></tr>
+          <tr class="pick"><td>Google</td><td>Gemini 4</td><td>Hydrogen / Neon</td></tr>
+          <tr><td>腾讯</td><td>混元 Hy</td><td>Hy4 / Hy Realtime</td></tr>
+        </tbody>
+      </table>
+      <p class="tiny">同一代里按能力、价格切成 Astra / Sol / Terra / Luna 多档</p>
+      <p class="takeaway">不再问"哪个模型最好"，而是问"这个任务用哪一档"</p>
+    </div>
+    <aside class="notes">这是产业成熟的标志：产品线分化。</aside>
+  </section>
+
+  <!-- 13 数据总览 -->
+  <section class="slide" data-title="数据总览">
+    <h2 class="lead">这份档案里，<span class="ul">到底有多少东西</span></h2>
+    <div class="body">
+      <table class="hand-table">
+        <thead><tr><th>维度</th><th>数量</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>模型</td><td>356</td><td>2018 — 2026</td></tr>
+          <tr><td>机构</td><td>21</td><td>中美欧为主</td></tr>
+          <tr><td>关键技术</td><td>30</td><td>从 Transformer 到 GRPO</td></tr>
+          <tr class="pick"><td>历史事件</td><td>64</td><td>全部附一手来源</td></tr>
+        </tbody>
+      </table>
+      <p class="line indent">每条都标注发布日期、参数、上下文、许可与前代</p>
+      <p class="tiny">未公开的数据一律留空，不做推测</p>
+      <p class="takeaway">这是一份可以被追溯的编年史，不是一份排行榜</p>
+    </div>
+    <aside class="notes">强调数据的严谨性：未知就留空。</aside>
+  </section>
+
+  <!-- 14 六个视角 -->
+  <section class="slide" data-title="六个视角">
+    <h2 class="lead">同一段历史，还可以这样看</h2>
+    <div class="body">
+      <div class="map" style="--map-h: 600px">
+        <div class="node big" id="v-core" style="left:50%; top:48%"><span class="dot-green">编年史</span></div>
+        <div class="node" id="v-time" style="left:18%; top:18%">时间线</div>
+        <div class="node blue" id="v-graph" style="left:50%; top:14%">关系图谱</div>
+        <div class="node" id="v-tree" style="left:82%; top:18%">模型家谱</div>
+        <div class="node" id="v-stat" style="left:18%; top:82%">数据观察</div>
+        <div class="node blue" id="v-geo" style="left:50%; top:86%">地理分布</div>
+        <div class="node" id="v-idx" style="left:82%; top:82%">模型索引</div>
+        <i class="link" data-from="#v-core" data-to="#v-time"></i>
+        <i class="link blue" data-from="#v-core" data-to="#v-graph"></i>
+        <i class="link" data-from="#v-core" data-to="#v-tree"></i>
+        <i class="link" data-from="#v-core" data-to="#v-stat"></i>
+        <i class="link blue" data-from="#v-core" data-to="#v-geo"></i>
+        <i class="link" data-from="#v-core" data-to="#v-idx"></i>
+      </div>
+    </div>
+    <aside class="notes">完整数据仓库仍在仓库里，这套手写稿聚焦时间轴。</aside>
+  </section>
+
+  <!-- 15 三个判断 -->
+  <section class="slide" data-title="三个判断">
+    <h2 class="lead">把这十年压缩成<span class="ul">三句话</span></h2>
+    <div class="body">
+      <p class="line"><span class="box">一</span> 架构确定以后，规模是第一个引擎</p>
+      <p class="line"><span class="box-blue">二</span> 对齐和推理，是另外两个引擎</p>
+      <p class="line"><span class="box">三</span> 开源把上限拉平，生态成了新战场</p>
+      <p class="takeaway">三条线叠加，才有了 2026 年这个密度</p>
+    </div>
+    <aside class="notes">给听众一个可以带走的框架。</aside>
+  </section>
+
+  <!-- 16 陷阱 -->
+  <section class="slide" data-title="读档案的陷阱">
+    <h2 class="lead">读这份编年史，要<span class="ul">小心三件事</span></h2>
+    <div class="body">
+      <p class="line"><span class="warn"></span>版本号不等于能力：同为 GPT-6，Astra 和 Luna 差了 20 倍价格</p>
+      <p class="line"><span class="warn"></span>发布日期常有分歧：只确认到月的，就只写到月</p>
+      <p class="line"><span class="warn"></span>谱系关系是整理出来的，不同来源并不总一致</p>
+      <p class="takeaway">所有条目都附原始链接，请顺着链接回到一手来源</p>
+    </div>
+    <aside class="notes">这一页是诚实的边界声明。</aside>
+  </section>
+
+  <!-- 17 结语 -->
+  <section class="slide end" data-title="结束">
+    <p class="big">编年史没有结尾，只有<span class="ul">最新的那一页</span></p>
+    <p class="small muted">Model Annals · 2017 — 2026 · 持续更新</p>
+    <aside class="notes">收尾：时间轴会继续往前走，这份档案也会跟着更新。</aside>
+  </section>
+
+</main>
+</body>
+</html>

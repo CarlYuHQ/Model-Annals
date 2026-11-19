@@ -123,8 +123,8 @@ def main():
 
     atlas = {
         "meta": {
-            "title": "大模型发展全景档案",
-            "subtitle": "LLM Evolution Atlas",
+            "title": "Model Annals · 大模型编年史",
+            "subtitle": "Model Annals",
             "updated": "2026-11-19",
             "note": "数据来自公开来源，各条目附原始链接。未知字段留空，不做推测。",
         },

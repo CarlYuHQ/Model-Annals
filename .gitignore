@@ -15,3 +15,6 @@ Thumbs.db
 
 # 本地服务与构建产物
 *.log
+
+# 手写幻灯片工具链自带的示例预览图（非必需）
+deck/toolchain/assets/preview-*.png
