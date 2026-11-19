@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据观察 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.charts-grid .wide{grid-column:1/-1}
+@media(max-width:900px){.charts-grid{grid-template-columns:1fr}.charts-grid .wide{grid-column:auto}}
+.note-inline{font-family:var(--mono);font-size:11px;color:var(--ink-3);line-height:1.7}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:24px">
+    <span class="kicker">视图 04 / 数据观察</span>
+    <h1 style="margin:14px 0 18px">用数字看</h1>
+    <p class="lede">300 个模型能告诉我们什么？发布节奏、上下文军备竞赛、参数规模的天花板，以及开源与闭源的力量对比。</p>
+  </div>
+
+  <div class="charts-grid">
+    <div class="panel wide">
+      <div class="panel-h"><h3>历年模型发布数量</h3><span class="hint">按首次发布日期统计 · 仅计有明确年份者</span></div>
+      <div class="chart-wrap" id="chart-year"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>许可分布</h3><span class="hint">开放 / 受限 / 闭源</span></div>
+      <div class="chart-wrap" id="chart-license"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h3>各机构收录模型数</h3><span class="hint">Top 12</span></div>
+      <div class="chart-wrap" id="chart-company"></div>
+    </div>
+    <div class="panel wide">
+      <div class="panel-h"><h3>上下文长度演进</h3><span class="hint">每个点为一个模型 · 对数轴 · 单位 token</span></div>
+      <div class="chart-wrap" id="chart-context"></div>
+      <div class="note-inline" style="margin-top:14px">纵轴为对数刻度。仅绘制公开披露上下文长度的模型；未披露者不参与。</div>
+    </div>
+    <div class="panel wide">
+      <div class="panel-h"><h3>已知参数规模分布</h3><span class="hint">仅含官方披露参数量的模型 · 单位十亿 (B)</span></div>
+      <div class="chart-wrap" id="chart-params"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>图表直接由 data/atlas.json 计算生成，无手工录入。统计口径与局限见数据来源页。<br>参数与上下文仅统计公开披露值。</p>
+  <p><a href="sources.html">数据来源与说明 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/vendor/d3.v7.min.js"></script>
+<script>
+(function(){
+  const {A, esc, renderChrome, companyName} = ATLAS_UI;
+  renderChrome('stats.html');
+  const ACCENT='#c96442', INK='#141413', INK3='#5e5d59', BORDER='#f0eee6';
+  const font='IBM Plex Mono, monospace';
+
+  // ---------- 1. 历年发布 ----------
+  (function(){
+    const data=Object.entries(A.stats.by_year).filter(([y])=>/^\d{4}$/.test(y)).sort((a,b)=>a[0]-b[0]);
+    const W=1120,H=300,m={t:20,r:20,b:44,l:44};
+    const x=d3.scaleBand().domain(data.map(d=>d[0])).range([m.l,W-m.r]).padding(.32);
+    const y=d3.scaleLinear().domain([0,d3.max(data,d=>d[1])]).nice().range([H-m.b,m.t]);
+    const svg=d3.select('#chart-year').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+    y.ticks(5).forEach(t=>{
+      svg.append('line').attr('class','grid-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(t)).attr('y2',y(t));
+      svg.append('text').attr('class','axis-text').attr('x',m.l-10).attr('y',y(t)+4).attr('text-anchor','end').text(t);
+    });
+    svg.append('line').attr('class','axis-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',H-m.b).attr('y2',H-m.b);
+    svg.selectAll('rect').data(data).join('rect')
+      .attr('x',d=>x(d[0])).attr('width',x.bandwidth())
+      .attr('y',d=>y(d[1])).attr('height',d=>H-m.b-y(d[1]))
+      .attr('fill',d=>+d[0]>=2024?ACCENT:'#d9d5c8').attr('rx',3)
+      .append('title').text(d=>`${d[0]} 年：${d[1]} 个模型`);
+    svg.selectAll('.bl').data(data).join('text').attr('class','bar-label').attr('text-anchor','middle')
+      .attr('x',d=>x(d[0])+x.bandwidth()/2).attr('y',d=>y(d[1])-7).text(d=>d[1]);
+    svg.selectAll('.xl').data(data).join('text').attr('class','axis-text').attr('text-anchor','middle')
+      .attr('x',d=>x(d[0])+x.bandwidth()/2).attr('y',H-m.b+20).text(d=>d[0]);
+  })();
+
+  // ---------- 2. 许可分布（环形） ----------
+  (function(){
+    const raw=A.stats.by_license;
+    const labels={open:'开放权重',weighted:'受限开源',proprietary:'闭源'};
+    const colors={open:'#6f8f7b',weighted:'#c9a24a',proprietary:ACCENT};
+    const data=Object.entries(raw).map(([k,v])=>({k,v,label:labels[k]||k,color:colors[k]||INK3}));
+    const total=d3.sum(data,d=>d.v);
+    const W=520,H=320,cx=170,cy=160,r=105,r2=66;
+    const svg=d3.select('#chart-license').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+    const arc=d3.arc().innerRadius(r2).outerRadius(r);
+    const pie=d3.pie().sort(null).value(d=>d.v)(data);
+    svg.append('g').attr('transform',`translate(${cx},${cy})`).selectAll('path').data(pie).join('path')
+      .attr('d',arc).attr('fill',d=>d.data.color).attr('stroke','var(--surface)').attr('stroke-width',2)
+      .append('title').text(d=>`${d.data.label}: ${d.data.v} (${Math.round(d.data.v/total*100)}%)`);
+    svg.append('text').attr('x',cx).attr('y',cy-4).attr('text-anchor','middle').attr('style',`font-family:${font};font-size:34px;fill:${INK}`).text(total);
+    svg.append('text').attr('x',cx).attr('y',cy+18).attr('text-anchor','middle').attr('class','axis-text').text('模型总数');
+    // 图例
+    const lg=svg.append('g').attr('transform',`translate(330,90)`);
+    data.forEach((d,i)=>{
+      const yy=i*54;
+      lg.append('rect').attr('x',0).attr('y',yy).attr('width',14).attr('height',14).attr('rx',3).attr('fill',d.color);
+      lg.append('text').attr('x',24).attr('y',yy+12).attr('style',`font-family:${font};font-size:13px;fill:${INK}`).text(`${d.label} ${Math.round(d.v/total*100)}%`);
+      lg.append('text').attr('x',24).attr('y',yy+30).attr('class','axis-text').text(`${d.v} 个模型`);
+    });
+  })();
+
+  // ---------- 3. 各机构模型数 ----------
+  (function(){
+    const data=Object.entries(A.stats.by_company).sort((a,b)=>b[1]-a[1]).slice(0,12)
+      .map(([id,v])=>({label:companyName(id),v}));
+    const W=520,H=360,m={t:10,r:50,b:20,l:130};
+    const x=d3.scaleLinear().domain([0,d3.max(data,d=>d.v)]).range([m.l,W-m.r]);
+    const y=d3.scaleBand().domain(data.map(d=>d.label)).range([m.t,H-m.b]).padding(.28);
+    const svg=d3.select('#chart-company').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+    svg.selectAll('.gl').data(x.ticks(4)).join('line').attr('class','grid-line')
+      .attr('x1',d=>x(d)).attr('x2',d=>x(d)).attr('y1',m.t).attr('y2',H-m.b);
+    svg.selectAll('rect').data(data).join('rect')
+      .attr('x',m.l).attr('y',d=>y(d.label)).attr('width',d=>x(d.v)-m.l)
+      .attr('height',y.bandwidth()).attr('fill',(d,i)=>i===0?ACCENT:'#cfc9b9').attr('rx',3)
+      .append('title').text(d=>`${d.label}: ${d.v}`);
+    svg.selectAll('.yl').data(data).join('text').attr('class','bar-label').attr('text-anchor','end')
+      .attr('x',m.l-8).attr('y',d=>y(d.label)+y.bandwidth()/2+4).text(d=>d.label);
+    svg.selectAll('.vl').data(data).join('text').attr('class','bar-value').attr('text-anchor','start')
+      .attr('x',d=>x(d.v)+6).attr('y',d=>y(d.label)+y.bandwidth()/2+4).text(d=>d.v);
+  })();
+
+  // ---------- 4. 上下文长度演进（对数散点） ----------
+  (function(){
+    const data=A.models.filter(m=>m.context_k&&m.year).map(m=>({x:m.year+(parseInt((m.release||'').slice(5,7)||'6')-1)/12,y:m.context_k,name:m.name,company:m.company,license:m.license}));
+    const W=1120,H=380,m={t:20,r:24,b:44,l:64};
+    const x=d3.scaleLinear().domain(d3.extent(data,d=>d.x)).range([m.l,W-m.r]);
+    const y=d3.scaleLog().domain([1,d3.max(data,d=>d.y)*1.2]).range([H-m.b,m.t]);
+    const svg=d3.select('#chart-context').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+    const ticks=[1,8,32,128,1000,10000];
+    ticks.forEach(t=>{
+      if(t>d3.max(data,d=>d.y)*1.5)return;
+      svg.append('line').attr('class','grid-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(t)).attr('y2',y(t));
+      svg.append('text').attr('class','axis-text').attr('x',m.l-10).attr('y',y(t)+4).attr('text-anchor','end')
+        .text(t>=1000?(t/1000)+'M':t+'K');
+    });
+    svg.append('line').attr('class','axis-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',H-m.b).attr('y2',H-m.b);
+    for(let yr=Math.floor(data[0].x);yr<=Math.ceil(data[data.length-1].x);yr++){
+      svg.append('text').attr('class','axis-text').attr('text-anchor','middle').attr('x',x(yr)).attr('y',H-m.b+20).text(yr);
+    }
+    svg.selectAll('circle').data(data).join('circle')
+      .attr('cx',d=>x(d.x)).attr('cy',d=>y(d.y)).attr('r',4)
+      .attr('fill',d=>d.license==='proprietary'?ACCENT:'#8a8577').attr('fill-opacity',.6)
+      .append('title').text(d=>`${d.name} · ${companyName(d.company)}\n${d.context_k>=1000?(d.context_k/1000)+'M':d.context_k+'K'} tokens`);
+    // 标注几个关键点
+    const notable=data.filter(d=>d.y>=1000).slice(0,8);
+    svg.selectAll('.nt').data(notable).join('text').attr('class','axis-text')
+      .attr('x',d=>x(d.x)+7).attr('y',d=>y(d.y)-6).text(d=>d.name.length>18?d.name.slice(0,17)+'…':d.name);
+  })();
+
+  // ---------- 5. 参数规模分布 ----------
+  (function(){
+    const data=A.models.filter(m=>m.params_b&&m.year).map(m=>m.params_b).sort((a,b)=>a-b);
+    const bins=[0,1,7,13,34,70,100,200,400,1000];
+    const hist=bins.slice(0,-1).map((lo,i)=>({lo,hi:bins[i+1],v:data.filter(p=>p>=lo&&p<bins[i+1]).length}));
+    const W=1120,H=280,m={t:20,r:20,b:52,l:44};
+    const x=d3.scaleBand().domain(hist.map(d=>d.lo+'-'+d.hi)).range([m.l,W-m.r]).padding(.18);
+    const y=d3.scaleLinear().domain([0,d3.max(hist,d=>d.v)]).nice().range([H-m.b,m.t]);
+    const svg=d3.select('#chart-params').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+    y.ticks(5).forEach(t=>{
+      svg.append('line').attr('class','grid-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(t)).attr('y2',y(t));
+      svg.append('text').attr('class','axis-text').attr('x',m.l-10).attr('y',y(t)+4).attr('text-anchor','end').text(t);
+    });
+    svg.append('line').attr('class','axis-line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',H-m.b).attr('y2',H-m.b);
+    svg.selectAll('rect').data(hist).join('rect')
+      .attr('x',d=>x(d.lo+'-'+d.hi)).attr('width',x.bandwidth())
+      .attr('y',d=>y(d.v)).attr('height',d=>H-m.b-y(d.v))
+      .attr('fill',d=>(d.lo>=100)?ACCENT:'#cfc9b9').attr('rx',3)
+      .append('title').text(d=>`${d.lo}–${d.hi}B: ${d.v} 个`);
+    svg.selectAll('.vl').data(hist).join('text').attr('class','bar-value').attr('text-anchor','middle')
+      .attr('x',d=>x(d.lo+'-'+d.hi)+x.bandwidth()/2).attr('y',d=>y(d.v)-7).text(d=>d.v||'');
+    svg.selectAll('.xl').data(hist).join('text').attr('class','axis-text').attr('text-anchor','middle')
+      .attr('x',d=>x(d.lo+'-'+d.hi)+x.bandwidth()/2).attr('y',H-m.b+18)
+      .text(d=>d.lo+'-'+d.hi);
+    svg.append('text').attr('class','axis-text').attr('x',W/2).attr('y',H-8).attr('text-anchor','middle').text('参数量区间 (B)');
+  })();
+})();
+</script>
+</body>
+</html>

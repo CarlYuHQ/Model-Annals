@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模型索引 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:24px;font-family:var(--mono);font-size:12px}
+.pager button{padding:7px 12px;border:1px solid var(--border);background:var(--surface);border-radius:8px;color:var(--ink-2)}
+.pager button:disabled{opacity:.35;cursor:default}
+.pager button:not(:disabled):hover{border-color:var(--accent);color:var(--accent)}
+.sort-ind{color:var(--accent)}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:20px">
+    <span class="kicker">视图 06 / 模型索引</span>
+    <h1 style="margin:14px 0 18px">完整清单</h1>
+    <p class="lede">全部 <span class="mono" id="total"></span> 个模型，可搜索、筛选、排序。点击任意一行查看档案与来源链接。</p>
+  </div>
+
+  <div class="toolbar">
+    <span class="label">机构</span>
+    <div id="company-chips" style="display:flex;gap:7px;flex-wrap:wrap"></div>
+  </div>
+  <div class="toolbar" style="margin-top:-18px">
+    <span class="label">许可</span>
+    <button class="chip on" data-lic="all">全部</button>
+    <button class="chip" data-lic="open">开放权重</button>
+    <button class="chip" data-lic="weighted">受限开源</button>
+    <button class="chip" data-lic="proprietary">闭源</button>
+    <input class="search" id="q" placeholder="搜索模型名 / 机构 / 要点…">
+    <span class="result-count" id="count"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table class="idx">
+      <thead><tr>
+        <th data-sort="name">模型</th>
+        <th data-sort="company">机构</th>
+        <th data-sort="release">发布日期 <span class="sort-ind">↓</span></th>
+        <th data-sort="params_b">参数</th>
+        <th data-sort="context_k">上下文</th>
+        <th data-sort="license">许可</th>
+        <th data-sort="family">谱系</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="pager" id="pager"></div>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>参数与上下文仅填官方披露值，空白即未披露。<br>所有条目均附来源链接，详见详情抽屉。</p>
+  <p><a href="sources.html">数据来源与说明 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+(function(){
+  const {A, esc, fmtDate, renderChrome, companyName, licenseLabel} = ATLAS_UI;
+  renderChrome('catalog.html');
+  document.getElementById('total').textContent=A.models.length;
+
+  const comps=Object.keys(A.stats.by_company).sort((a,b)=>A.stats.by_company[b]-A.stats.by_company[a]);
+  const cbox=document.getElementById('company-chips');
+  cbox.innerHTML=`<button class="chip on" data-c="all">全部</button>`+comps.map(c=>
+    `<button class="chip" data-c="${esc(c)}">${esc(companyName(c))}</button>`).join('');
+
+  let fCompany='all',fLic='all',query='',sortKey='release',sortDir=-1,page=1;
+  const PER=40;
+
+  function filtered(){
+    return A.models.filter(m=>{
+      if(fCompany!=='all'&&m.company!==fCompany)return false;
+      if(fLic!=='all'&&m.license!==fLic)return false;
+      if(query){
+        const hay=[m.name,m.family,companyName(m.company),...(m.highlights||[])].join(' ').toLowerCase();
+        if(!hay.includes(query))return false;
+      }
+      return true;
+    }).sort((a,b)=>{
+      let va=a[sortKey],vb=b[sortKey];
+      if(sortKey==='company'){va=companyName(a.company);vb=companyName(b.company);}
+      va=va==null?'':va;vb=vb==null?'':vb;
+      if(typeof va==='number'&&typeof vb==='number')return (va-vb)*sortDir;
+      return String(va).localeCompare(String(vb),'zh')*sortDir;
+    });
+  }
+
+  function render(){
+    const all=filtered();
+    const pages=Math.max(1,Math.ceil(all.length/PER));
+    if(page>pages)page=pages;
+    const rows=all.slice((page-1)*PER,page*PER);
+    document.getElementById('count').textContent=`${all.length} 条 · 第 ${page}/${pages} 页`;
+    document.getElementById('tbody').innerHTML=rows.map(m=>`
+      <tr data-open-model="${esc(m.id)}" style="cursor:pointer">
+        <td><span class="m-name">${esc(m.name)}</span></td>
+        <td class="m-company">${esc(companyName(m.company))}</td>
+        <td class="m-num">${fmtDate(m.release)}</td>
+        <td class="m-num">${m.params_b?m.params_b+'B':'—'}</td>
+        <td class="m-num">${m.context_k?(m.context_k>=1000?(m.context_k/1000)+'M':m.context_k+'K'):'—'}</td>
+        <td><span class="tag ${esc(m.license||'')}">${esc(licenseLabel[m.license]||'—')}</span></td>
+        <td class="m-num">${esc(m.family||'—')}</td>
+      </tr>`).join('')||`<tr><td colspan="7" style="padding:50px;text-align:center;color:var(--ink-3)">没有匹配的模型</td></tr>`;
+
+    document.getElementById('pager').innerHTML=`
+      <button id="prev" ${page===1?'disabled':''}>← 上一页</button>
+      <span>${page} / ${pages}</span>
+      <button id="next" ${page===pages?'disabled':''}>下一页 →</button>`;
+    document.getElementById('prev').onclick=()=>{if(page>1){page--;render();window.scrollTo({top:document.querySelector('.toolbar').offsetTop-60,behavior:'smooth'});}};
+    document.getElementById('next').onclick=()=>{if(page<pages){page++;render();window.scrollTo({top:document.querySelector('.toolbar').offsetTop-60,behavior:'smooth'});}};
+  }
+
+  cbox.addEventListener('click',e=>{
+    const b=e.target.closest('[data-c]');if(!b)return;
+    cbox.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    fCompany=b.dataset.c;page=1;render();
+  });
+  document.querySelectorAll('[data-lic]').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('[data-lic]').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    fLic=b.dataset.lic;page=1;render();
+  }));
+  document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();page=1;render();});
+  document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
+    const k=th.dataset.sort;
+    if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==='release'||k==='params_b'||k==='context_k')?-1:1;}
+    document.querySelectorAll('th[data-sort]').forEach(x=>x.querySelector('.sort-ind')?.remove());
+    th.insertAdjacentHTML('beforeend',`<span class="sort-ind">${sortDir===-1?' ↓':' ↑'}</span>`);
+    render();
+  }));
+
+  render();
+})();
+</script>
+</body>
+</html>

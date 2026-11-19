@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关系图谱 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.graph-stage{height:660px}
+.graph-stage svg{height:660px}
+.gmode{display:flex;gap:8px}
+.legend{margin-top:0}
+.inspect-title{font-family:var(--serif);font-size:24px;font-weight:600;margin:10px 0 4px}
+.inspect-sub{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.inspect-list{margin:14px 0 0;padding:0;list-style:none;max-height:360px;overflow-y:auto}
+.inspect-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--ink-2);cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.inspect-list li:hover{color:var(--accent)}
+.inspect-list li span.mono{color:var(--ink-3);font-size:11px;flex-shrink:0}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:20px">
+    <span class="kicker">视图 02 / 关系图谱</span>
+    <h1 style="margin:14px 0 18px">一张网</h1>
+    <p class="lede">机构研发模型，模型体现技术。拖动节点重排，滚轮缩放，点击任意节点在右侧查看它的档案与关联。</p>
+  </div>
+
+  <div class="toolbar">
+    <span class="label">范围</span>
+    <div class="gmode">
+      <button class="chip on" data-mode="curated">精选</button>
+      <button class="chip" data-mode="all">全部模型</button>
+    </div>
+    <span class="label" style="margin-left:16px">显示</span>
+    <button class="chip on" data-layer="company">机构</button>
+    <button class="chip on" data-layer="tech">技术</button>
+    <div class="legend" style="margin-left:auto">
+      <span class="item"><i class="swatch" style="background:#141413"></i>机构</span>
+      <span class="item"><i class="swatch" style="background:#c96442"></i>模型</span>
+      <span class="item"><i class="swatch" style="background:#5e5d59"></i>技术</span>
+    </div>
+  </div>
+
+  <div class="graph-layout">
+    <div class="graph-stage" id="stage">
+      <div class="graph-tip" id="tip"></div>
+    </div>
+    <aside class="graph-inspect" id="inspect">
+      <div class="placeholder">点击左侧任意节点<br>查看它的档案与关联。</div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>精选模式展示每家机构的代表模型与全部技术节点；全部模式载入 300 个模型节点。<br>连线表示"机构→模型"的研发关系与"模型→前代"的迭代关系。</p>
+  <p><a href="sources.html">数据来源与说明 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/vendor/d3.v7.min.js"></script>
+<script>
+(function(){
+  const {A, esc, renderChrome, companyName, MODELS, TECHS, COMPANIES, openModel, openTech} = ATLAS_UI;
+  renderChrome('graph.html');
+
+  const stage=document.getElementById('stage'), tip=document.getElementById('tip'), inspect=document.getElementById('inspect');
+  let mode='curated', showCompany=true, showTech=true, simulation=null, svg=null;
+
+  function buildData(){
+    let models;
+    if(mode==='curated'){
+      // 每家机构取被事件引用或最新/参数最大的若干代表模型
+      const referenced=new Set(A.events.map(e=>e.model_id).filter(Boolean));
+      const per=Object.fromEntries(Object.keys(COMPANIES).map(c=>[c,[]]));
+      A.models.forEach(m=>{ if(per[m.company]) per[m.company].push(m); });
+      models=[];
+      Object.values(per).forEach(arr=>{
+        arr.sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+        const top=arr.filter(m=>referenced.has(m.id)).slice(0,4);
+        const recent=arr.slice(0,4);
+        const set=new Set([...top,...recent].map(m=>m.id));
+        models.push(...arr.filter(m=>set.has(m.id)));
+      });
+    } else {
+      models=A.models.slice();
+    }
+    const mids=new Set(models.map(m=>m.id));
+    const nodes=[], links=[];
+    // 机构节点
+    const usedCompanies=new Set(models.map(m=>m.company).filter(c=>COMPANIES[c]));
+    if(showCompany) usedCompanies.forEach(c=>nodes.push({id:'c:'+c,type:'company',label:companyName(c),ref:c}));
+    // 模型节点
+    models.forEach(m=>nodes.push({id:'m:'+m.id,type:'model',label:m.name,ref:m.id}));
+    // 技术节点
+    if(showTech){
+      const usedTech=new Set();
+      A.technologies.forEach(t=>(t.model_refs||[]).forEach(mid=>{if(mids.has(mid)) usedTech.add(t.id)}));
+      usedTech.forEach(t=>{const T=TECHS[t];nodes.push({id:'t:'+t,type:'tech',label:T.name,ref:t});});
+    }
+    // 连线：机构→模型
+    if(showCompany) models.forEach(m=>{ if(COMPANIES[m.company]) links.push({source:'c:'+m.company,target:'m:'+m.id,rel:'dev'}); });
+    // 连线：模型→前代（仅当两端都在）
+    models.forEach(m=>{ if(m.predecessor&&mids.has(m.predecessor)) links.push({source:'m:'+m.predecessor,target:'m:'+m.id,rel:'next'}); });
+    // 连线：模型→技术
+    if(showTech){
+      A.technologies.forEach(t=>(t.model_refs||[]).forEach(mid=>{
+        if(mids.has(mid)&&nodes.some(n=>n.id==='t:'+t.id)) links.push({source:'m:'+mid,target:'t:'+t.id,rel:'tech'});
+      }));
+    }
+    return {nodes,links};
+  }
+
+  function render(){
+    if(simulation){simulation.stop();}
+    stage.querySelector('svg')?.remove();
+    const {nodes,links}=buildData();
+    const W=stage.clientWidth||900, H=660;
+    svg=d3.select(stage).insert('svg',':first-child').attr('viewBox',`0 0 ${W} ${H}`);
+
+    const color={company:'#141413',model:'#c96442',tech:'#5e5d59'};
+    const radius={company:16,model:6,tech:9};
+
+    const link=svg.append('g').selectAll('line').data(links).join('line')
+      .attr('class','link')
+      .attr('stroke',d=>d.rel==='next'?'#d8c3b8':'var(--border)')
+      .attr('stroke-opacity',d=>d.rel==='tech'?0.5:0.8);
+
+    const node=svg.append('g').selectAll('g').data(nodes).join('g')
+      .attr('class','node')
+      .call(d3.drag()
+        .on('start',(ev,d)=>{if(!ev.active)simulation.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y;})
+        .on('drag',(ev,d)=>{d.fx=ev.x;d.fy=ev.y;})
+        .on('end',(ev,d)=>{if(!ev.active)simulation.alphaTarget(0);d.fx=null;d.fy=null;}));
+
+    node.each(function(d){
+      const g=d3.select(this);
+      if(d.type==='company'){
+        g.append('rect').attr('x',-radius.company).attr('y',-radius.company)
+          .attr('width',radius.company*2).attr('height',radius.company*2).attr('rx',5)
+          .attr('fill',color[d.type]);
+      } else {
+        g.append('circle').attr('r',radius[d.type]).attr('fill',color[d.type])
+          .attr('stroke','var(--surface)').attr('stroke-width',d.type==='model'?0:1.5);
+      }
+      const showLabel = d.type==='company' || mode==='curated' || d.type==='tech';
+      if(showLabel) g.append('text').attr('x',radius[d.type]+5).attr('y',4).text(d.label.length>16?d.label.slice(0,15)+'…':d.label);
+    });
+
+    node.on('mouseover',(ev,d)=>{
+      const nb=new Set([d.id]);
+      links.forEach(l=>{const s=l.source.id||l.source,t=l.target.id||l.target;if(s===d.id)nb.add(t);if(t===d.id)nb.add(s);});
+      node.classed('faded',n=>!nb.has(n.id));
+      link.classed('faded',l=>{const s=l.source.id||l.source,t=l.target.id||l.target;return s!==d.id&&t!==d.id;});
+      tip.style('opacity',1).html(esc(d.label)).style('left',(ev.offsetX+12)+'px').style('top',(ev.offsetY)+'px');
+    }).on('mousemove',ev=>{tip.style('left',(ev.offsetX+12)+'px').style('top',(ev.offsetY)+'px');})
+      .on('mouseout',()=>{node.classed('faded',false);link.classed('faded',false);tip.style('opacity',0);})
+      .on('click',(ev,d)=>{ev.stopPropagation();showInspect(d);});
+    svg.on('click',()=>{node.classed('faded',false);link.classed('faded',false);});
+
+    simulation=d3.forceSimulation(nodes)
+      .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.rel==='next'?45:(d.rel==='tech'?70:90)).strength(.35))
+      .force('charge',d3.forceManyBody().strength(d=>d.type==='company'?-420:d.type==='tech'?-220:-90))
+      .force('center',d3.forceCenter(W/2,H/2))
+      .force('collide',d3.forceCollide().radius(d=>radius[d.type]+(d.type==='company'?26:6)))
+      .on('tick',()=>{
+        link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+        node.attr('transform',d=>`translate(${d.x},${d.y})`);
+      });
+
+    // 缩放
+    const zoom=d3.zoom().scaleExtent([.3,4]).on('zoom',ev=>svg.selectAll('g').attr('transform',ev.transform));
+    svg.call(zoom).on('dblclick.zoom',null);
+  }
+
+  function showInspect(d){
+    if(d.type==='model'){
+      const m=MODELS[d.ref];
+      inspect.innerHTML=`<span class="inspect-sub">模型 · ${esc(m.family||'')}</span>
+        <div class="inspect-title">${esc(m.name)}</div>
+        <div class="inspect-sub">${esc(companyName(m.company))} · ${fmtShort(m.release)}</div>
+        <button class="chip accent" id="open-detail" style="margin-top:16px">查看完整档案 →</button>
+        <div class="d-section"><h4>要点</h4><ul class="hl">${(m.highlights||[]).map(h=>`<li>${esc(h)}</li>`).join('')||'<li>暂无</li>'}</ul></div>`;
+      document.getElementById('open-detail').onclick=()=>openModel(m.id);
+    } else if(d.type==='company'){
+      const list=A.models.filter(m=>m.company===d.ref).sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+      inspect.innerHTML=`<span class="inspect-sub">机构</span>
+        <div class="inspect-title">${esc(companyName(d.ref))}</div>
+        <p style="color:var(--ink-2);font-size:14px;line-height:1.6">${esc(COMPANIES[d.ref].blurb||'')}</p>
+        <div class="d-section"><h4>收录模型 ${list.length}</h4>
+          <ul class="inspect-list">${list.slice(0,40).map(m=>`<li data-open-model="${esc(m.id)}">${esc(m.name)}<span class="mono">${fmtShort(m.release)}</span></li>`).join('')}</ul></div>`;
+    } else {
+      const t=TECHS[d.ref];
+      const refs=(t.model_refs||[]).map(mid=>MODELS[mid]).filter(Boolean).sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+      inspect.innerHTML=`<span class="inspect-sub">技术 · ${esc(t.category||'')} · ${t.year||''}</span>
+        <div class="inspect-title">${esc(t.name_zh||t.name)}</div>
+        <p style="color:var(--ink-2);font-size:14px;line-height:1.6">${esc(t.summary)}</p>
+        <button class="chip accent" id="open-tech" style="margin-top:8px">查看技术档案 →</button>
+        <div class="d-section"><h4>相关模型 ${refs.length}</h4>
+          <ul class="inspect-list">${refs.slice(0,40).map(m=>`<li data-open-model="${esc(m.id)}">${esc(m.name)}<span class="mono">${fmtShort(m.release)}</span></li>`).join('')}</ul></div>`;
+      document.getElementById('open-tech').onclick=()=>openTech(t.id);
+    }
+  }
+  const fmtShort=d=>d?String(d).replace(/-/g,'.'):'—';
+
+  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('[data-mode]').forEach(x=>x.classList.remove('on'));b.classList.add('on');mode=b.dataset.mode;render();
+  }));
+  document.querySelectorAll('[data-layer]').forEach(b=>b.addEventListener('click',()=>{
+    b.classList.toggle('on');
+    if(b.dataset.layer==='company')showCompany=b.classList.contains('on');
+    else showTech=b.classList.contains('on');
+    render();
+  }));
+
+  render();
+})();
+</script>
+</body>
+</html>

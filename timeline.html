@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>时间线 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.year-jump{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.year-jump a{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding:5px 9px;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.year-jump a:hover{color:var(--accent);border-color:var(--accent)}
+.tl-empty{padding:60px 0;text-align:center;font-family:var(--serif);font-size:20px;color:var(--ink-3)}
+.tl-event .src-link{font-family:var(--mono);font-size:10px;color:var(--accent)}
+.tl-event .src-link:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:24px">
+    <span class="kicker">视图 01 / 时间线</span>
+    <h1 style="margin:14px 0 18px">编年</h1>
+    <p class="lede">把模型发布与行业事件放进同一条时间轴。金色圆点是被标记为关键的事件，其余为常规发布。</p>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <span class="label">机构</span>
+    <div id="company-chips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+  </div>
+  <div class="toolbar" style="margin-top:-18px">
+    <span class="label">类型</span>
+    <button class="chip on" data-type="all">全部</button>
+    <button class="chip" data-type="模型">模型发布</button>
+    <button class="chip" data-type="技术">技术</button>
+    <button class="chip" data-type="产品">产品</button>
+    <button class="chip" data-type="政策">政策</button>
+    <input class="search" id="q" placeholder="搜索名称 / 机构 / 关键词…">
+    <span class="result-count" id="count"></span>
+  </div>
+
+  <div class="year-jump" id="year-jump"></div>
+  <div class="timeline" id="timeline"></div>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>时间以官方公告为准；仅能确认到月或年的条目按原精度呈现。<br>点击任意条目查看来源与关联档案。</p>
+  <p><a href="sources.html">数据来源与说明 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+(function(){
+  const {A, esc, fmtDate, renderChrome, companyName, openModel, openEvent, openTech} = ATLAS_UI;
+  renderChrome('timeline.html');
+
+  // 合并模型发布与事件为统一条目
+  const items = [];
+  A.models.filter(m=>m.release).forEach(m=>items.push({
+    date:m.release, kind:'模型', title:m.name,
+    desc:(m.highlights&&m.highlights[0])||'', company:m.company,
+    model_id:m.id, source:m.source, key:false,
+    tags:[m.license&&({open:'开放权重',weighted:'受限开源',proprietary:'闭源'})[m.license]].filter(Boolean)
+  }));
+  A.events.forEach(e=>items.push({
+    id:e.id, date:e.date, kind:e.type, title:e.title, desc:e.summary,
+    company:e.company, model_id:e.model_id, tech_id:e.tech_id,
+    source:e.source, key:true, tags:[e.type]
+  }));
+  items.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+
+  // 机构筛选器
+  const comps = Object.keys(A.stats.by_company).sort((a,b)=>A.stats.by_company[b]-A.stats.by_company[a]);
+  const cbox = document.getElementById('company-chips');
+  let companyFilter='all';
+  cbox.innerHTML = `<button class="chip on" data-c="all">全部</button>` + comps.map(c=>
+    `<button class="chip" data-c="${esc(c)}">${esc(companyName(c))}</button>`).join('');
+
+  let typeFilter='all', query='';
+
+  function apply(){
+    const out = items.filter(it=>{
+      if(companyFilter!=='all' && it.company!==companyFilter) return false;
+      if(typeFilter!=='all' && it.kind!==typeFilter) return false;
+      if(query){
+        const hay = [it.title,it.desc,companyName(it.company),...it.tags].join(' ').toLowerCase();
+        if(!hay.includes(query)) return false;
+      }
+      return true;
+    });
+    document.getElementById('count').textContent = `${out.length} 条记录`;
+    render(out);
+  }
+
+  function render(out){
+    const tl = document.getElementById('timeline');
+    if(!out.length){ tl.innerHTML='<div class="tl-empty">没有匹配的记录</div>'; return; }
+    let html='', curYear=null;
+    out.forEach(it=>{
+      const y=(it.date||'未知').slice(0,4);
+      if(y!==curYear){
+        curYear=y;
+        if(html) html+='</div>';
+        html+=`<div class="tl-year" id="y-${y}"><span class="yr">${y}</span></div>`;
+      }
+      const open = it.model_id ? `data-open-model="${esc(it.model_id)}"`
+                 : (it.tech_id ? `data-open-tech="${esc(it.tech_id)}"`
+                 : (it.title ? `data-open-event="${esc(it.id||'')}"` : ''));
+      html+=`<div class="tl-event ${it.key?'key':''}">
+        <div class="date">${fmtDate(it.date)}</div>
+        <div class="body">
+          <div class="etitle"><a href="#" ${open}>${esc(it.title)}</a></div>
+          ${it.desc?`<div class="edesc">${esc(it.desc)}</div>`:''}
+          <div class="emeta">
+            <span class="tag">${esc(companyName(it.company))}</span>
+            ${it.tags.filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}
+            ${it.source?`<a class="src-link" href="${esc(it.source)}" target="_blank" rel="noopener">来源 ↗</a>`:''}
+          </div>
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+    tl.innerHTML=html;
+  }
+
+  // 年份跳转
+  const years=[...new Set(items.map(i=>(i.date||'').slice(0,4)).filter(Boolean))].sort();
+  document.getElementById('year-jump').innerHTML=years.map(y=>`<a href="#y-${y}">${y}</a>`).join('');
+
+  // 事件绑定
+  cbox.addEventListener('click',e=>{
+    const b=e.target.closest('[data-c]'); if(!b) return;
+    cbox.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); companyFilter=b.dataset.c; apply();
+  });
+  document.querySelectorAll('[data-type]').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('[data-type]').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); typeFilter=b.dataset.type; apply();
+  }));
+  document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();apply();});
+
+  apply();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1379 @@
+{
+  "companies": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "name_zh": "OpenAI",
+      "country": "US",
+      "founded": 2015,
+      "hq": "San Francisco",
+      "site": "https://openai.com",
+      "blurb": "2015 年成立的美国人工智能研究公司，研发了 GPT 系列语言模型、ChatGPT 对话产品与推理模型。"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "name_zh": "Anthropic",
+      "country": "US",
+      "founded": 2021,
+      "hq": "San Francisco",
+      "site": "https://www.anthropic.com",
+      "blurb": "2021 年由前 OpenAI 成员创立的美国人工智能安全公司，以宪法式 AI 方法研发 Claude 系列模型。"
+    }
+  ],
+  "models": [
+    {
+      "id": "gpt-1",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-1",
+      "release": "2018-06-11",
+      "params_b": 0.117,
+      "context_k": 0.5,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "论文《Improving Language Understanding by Generative Pre-Training》提出生成式预训练加任务微调范式",
+        "12 层 decoder-only Transformer，在 BookCorpus 语料上预训练",
+        "上下文 512 token，参数约 1.17 亿"
+      ],
+      "source": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf",
+      "note": ""
+    },
+    {
+      "id": "gpt-2",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-2",
+      "release": "2019-02-14",
+      "params_b": 1.5,
+      "context_k": 1,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "gpt-1",
+      "highlights": [
+        "论文《Language Models are Unsupervised Multitask Learners》提出语言模型是无监督多任务学习者",
+        "共四档规模，最大 15 亿参数，训练语料 WebText 约 40GB",
+        "因担心滥用分阶段发布，先放出小模型，2019-11 才公开完整 1.5B 权重",
+        "上下文 1024 token；此后直到 2025 年 gpt-oss 才再次开放语言模型权重"
+      ],
+      "source": "https://openai.com/index/better-language-models/",
+      "note": "release 取 2019-02 小模型首发日；完整 1.5B 权重于 2019-11-05 放出"
+    },
+    {
+      "id": "gpt-3",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-3",
+      "release": "2020-05-28",
+      "params_b": 175,
+      "context_k": 2,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-2",
+      "highlights": [
+        "论文《Language Models are Few-Shot Learners》展示上下文内少样本学习，无需微调",
+        "1750 亿参数，在约 4000 亿 token 上训练",
+        "2020-06 开放 API beta；论文获 NeurIPS 2020 最佳论文"
+      ],
+      "source": "https://arxiv.org/abs/2005.14165",
+      "note": "release 取论文发表日 2020-05-28，API beta 为 2020-06-11"
+    },
+    {
+      "id": "codex",
+      "company": "openai",
+      "family": "Codex",
+      "name": "Codex",
+      "release": "2021-08-10",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-3",
+      "highlights": [
+        "基于 GPT-3 的代码专精模型",
+        "引入 HumanEval 代码生成评测基准",
+        "为 GitHub Copilot 提供早期技术基础"
+      ],
+      "source": "https://openai.com/index/openai-codex/",
+      "note": "参数量与上下文未在来源中明确披露"
+    },
+    {
+      "id": "instructgpt",
+      "company": "openai",
+      "family": "GPT",
+      "name": "InstructGPT",
+      "release": "2022-01-27",
+      "params_b": null,
+      "context_k": 2,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-3",
+      "highlights": [
+        "论文《Training language models to follow instructions with human feedback》",
+        "OpenAI 首个公开采用人类反馈强化学习（RLHF）的语言模型",
+        "参数量 13 亿至 1750 亿多个版本；对齐后的小模型在人类偏好评分上优于更大的原始 GPT-3",
+        "2022-01-27 成为 API 默认模型，论文于 2022-03 发表"
+      ],
+      "source": "https://arxiv.org/abs/2203.02155",
+      "note": "存在多个参数规模，故 params_b 留空"
+    },
+    {
+      "id": "gpt-3.5",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-3.5",
+      "release": "2022-03-15",
+      "params_b": null,
+      "context_k": 4,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "instructgpt",
+      "highlights": [
+        "以 text-davinci-002 为代表，2022-03 发布",
+        "在 GPT-3 基础上用 RLHF 改进指令遵循",
+        "是初代 ChatGPT 的底层模型"
+      ],
+      "source": "https://openai.com/index/chatgpt/",
+      "note": ""
+    },
+    {
+      "id": "chatgpt",
+      "company": "openai",
+      "family": "ChatGPT",
+      "name": "ChatGPT",
+      "release": "2022-11-30",
+      "params_b": null,
+      "context_k": 4,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-3.5",
+      "highlights": [
+        "2022-11-30 以免费网页对话产品形式发布",
+        "基于 GPT-3.5，加入多轮对话与对话式微调",
+        "五天内用户破百万，两个月月活约一亿"
+      ],
+      "source": "https://openai.com/index/chatgpt/",
+      "note": "作为重要产品节点收录；底层为 GPT-3.5"
+    },
+    {
+      "id": "gpt-4",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4",
+      "release": "2023-03-14",
+      "params_b": null,
+      "context_k": 8,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-3.5",
+      "highlights": [
+        "首次支持图像与文本输入的多模态 GPT",
+        "OpenAI 未公开参数量、架构与训练数据细节",
+        "提供 8K 与 32K 两种上下文版本",
+        "在模拟律师资格考试中成绩位于前约 10%"
+      ],
+      "source": "https://openai.com/index/gpt-4-research/",
+      "note": "参数量官方未披露；业界估算不写入"
+    },
+    {
+      "id": "gpt-4-turbo",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4 Turbo",
+      "release": "2023-11-06",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image",
+      "predecessor": "gpt-4",
+      "license": "proprietary",
+      "highlights": [
+        "在 2023 DevDay 发布，上下文扩至 128K",
+        "相比 GPT-4 价格下降、速度提升",
+        "知识截止更新至 2023 年 4 月，支持 JSON 模式"
+      ],
+      "source": "https://openai.com/index/new-models-and-developer-products-announced-at-devday/",
+      "note": ""
+    },
+    {
+      "id": "gpt-4o",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4o",
+      "release": "2024-05-13",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image,audio",
+      "license": "proprietary",
+      "predecessor": "gpt-4-turbo",
+      "highlights": [
+        "Omni 模型，单一端到端神经网络统一处理文本、图像与音频",
+        "128K 上下文，音频响应延迟低至约 232 毫秒",
+        "文本与代码能力对标 GPT-4 Turbo，但成本更低"
+      ],
+      "source": "https://openai.com/index/hello-gpt-4o/",
+      "note": ""
+    },
+    {
+      "id": "gpt-4o-mini",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4o mini",
+      "release": "2024-07-18",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image,audio",
+      "license": "proprietary",
+      "predecessor": "gpt-4o",
+      "highlights": [
+        "GPT-4o 的低成本轻量版，128K 上下文",
+        "取代 GPT-3.5 Turbo 成为免费层与 API 的默认低成本模型",
+        "支持文本与图像输入，后续版本支持音频"
+      ],
+      "source": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+      "note": ""
+    },
+    {
+      "id": "o1-preview",
+      "company": "openai",
+      "family": "o",
+      "name": "o1-preview",
+      "release": "2024-09-12",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-4o",
+      "highlights": [
+        "首个面向公众的推理模型预览版",
+        "通过大规模强化学习训练，回答前生成长链式思考",
+        "在数学、编程、科学题上显著优于 GPT-4o"
+      ],
+      "source": "https://openai.com/index/introducing-openai-o1-preview/",
+      "note": ""
+    },
+    {
+      "id": "o1-mini",
+      "company": "openai",
+      "family": "o",
+      "name": "o1-mini",
+      "release": "2024-09-12",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "o1-preview",
+      "highlights": [
+        "o1 的小型快速版，与 o1-preview 同期发布",
+        "针对 STEM 推理优化，成本更低、速度更快",
+        "不支持图像输入"
+      ],
+      "source": "https://openai.com/index/introducing-openai-o1-preview/",
+      "note": ""
+    },
+    {
+      "id": "o1",
+      "company": "openai",
+      "family": "o",
+      "name": "o1",
+      "release": "2024-12-05",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "o1-preview",
+      "highlights": [
+        "完整版 o1，2024-12 正式发布（12 Days 活动）",
+        "支持 200K 上下文，可用更长时间思考换取更高准确度",
+        "同期推出每月 200 美元的 ChatGPT Pro 订阅"
+      ],
+      "source": "https://openai.com/index/introducing-openai-o1/",
+      "note": ""
+    },
+    {
+      "id": "o1-pro",
+      "company": "openai",
+      "family": "o",
+      "name": "o1 Pro",
+      "release": "2024-12-05",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "o1",
+      "highlights": [
+        "o1 的高算力版本，随 ChatGPT Pro 订阅提供",
+        "用更多测试时计算换取更高答案质量，仅 Pro 用户可用"
+      ],
+      "source": "https://openai.com/index/introducing-openai-o1/",
+      "note": ""
+    },
+    {
+      "id": "o3-mini",
+      "company": "openai",
+      "family": "o",
+      "name": "o3-mini",
+      "release": "2025-01-31",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "o1-mini",
+      "highlights": [
+        "2025-01-31 发布的小型推理模型",
+        "首个向 ChatGPT 免费用户开放的推理模型",
+        "支持 low / medium / high 三档推理强度"
+      ],
+      "source": "https://openai.com/index/openai-o3-mini/",
+      "note": ""
+    },
+    {
+      "id": "gpt-4.5",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4.5",
+      "release": "2025-02-27",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-4o",
+      "highlights": [
+        "OpenAI 规模最大的非推理模型，以研究预览形式发布",
+        "在写作、情感智能与对话流畅度上改进，幻觉率更低",
+        "2025-07-14 从 API 下架"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-4-5/",
+      "note": "参数量官方未披露"
+    },
+    {
+      "id": "gpt-4.1",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4.1",
+      "release": "2025-04-14",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-4o",
+      "highlights": [
+        "2025-04-14 发布，仅通过 API 提供",
+        "上下文窗口达 100 万 token，约合 3000 页文本",
+        "在编程、指令遵循与长上下文理解上全面优于 GPT-4o"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-4-1/",
+      "note": ""
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-4.1 mini",
+      "release": "2025-04-14",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-4o-mini",
+      "highlights": [
+        "GPT-4.1 的轻量低价版，与 GPT-4.1 同日发布",
+        "同样支持 100 万 token 上下文，延迟与成本低于 GPT-4.1"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-4-1/",
+      "note": ""
+    },
+    {
+      "id": "o3",
+      "company": "openai",
+      "family": "o",
+      "name": "o3",
+      "release": "2025-04-16",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "o1",
+      "highlights": [
+        "2025-04-16 发布的推理模型",
+        "可在推理链内部调用工具，如网页搜索与 Python 代码执行",
+        "支持图像输入与分析"
+      ],
+      "source": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "note": ""
+    },
+    {
+      "id": "o4-mini",
+      "company": "openai",
+      "family": "o",
+      "name": "o4-mini",
+      "release": "2025-04-16",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "o3-mini",
+      "highlights": [
+        "2025-04-16 发布的小型推理模型",
+        "在数学、编程与视觉任务上表现强，成本低于 o3",
+        "同样可在推理过程中调用工具"
+      ],
+      "source": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "note": ""
+    },
+    {
+      "id": "o3-pro",
+      "company": "openai",
+      "family": "o",
+      "name": "o3-pro",
+      "release": "2025-06-10",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "o3",
+      "highlights": [
+        "o3 的高测试时算力版本，2025-06 发布",
+        "用更多推理计算换取更可靠答案，仅向 Pro 与 Team 用户开放",
+        "价格高于 o3，响应耗时更长"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": ""
+    },
+    {
+      "id": "gpt-oss-120b",
+      "company": "openai",
+      "family": "GPT-OSS",
+      "name": "gpt-oss-120b",
+      "release": "2025-08-05",
+      "params_b": 117,
+      "context_k": 128,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "OpenAI 自 GPT-2 以来首个开放权重语言模型，Apache 2.0 许可",
+        "MoE 架构，总参数 1170 亿，每 token 激活 51 亿；128 个专家中激活 4 个",
+        "128K 上下文，原生 MXFP4 量化，可在单张 80GB GPU 上运行",
+        "核心推理基准接近闭源模型 o4-mini"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-oss/",
+      "note": "为全新开放权重系列，predecessor 记 null；训练方法借鉴 o3 等内部模型"
+    },
+    {
+      "id": "gpt-oss-20b",
+      "company": "openai",
+      "family": "GPT-OSS",
+      "name": "gpt-oss-20b",
+      "release": "2025-08-05",
+      "params_b": 21,
+      "context_k": 128,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "gpt-oss 的较小版本，Apache 2.0 许可",
+        "MoE 架构，总参数 210 亿，每 token 激活 36 亿；32 个专家中激活 4 个",
+        "128K 上下文，16GB 内存即可在边缘设备运行",
+        "常见基准表现接近 o3-mini"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-oss/",
+      "note": ""
+    },
+    {
+      "id": "gpt-5",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5",
+      "release": "2025-08-07",
+      "params_b": null,
+      "context_k": 400,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-4o",
+      "highlights": [
+        "2025-08-07 发布，统一系统含路由器，自动在快速回答与深度推理间切换",
+        "文本与视觉输入，400K 上下文、128K 最大输出",
+        "API 首次引入 minimal 推理强度与 verbosity 参数",
+        "同系列包含 mini、nano 与 Pro 版本"
+      ],
+      "source": "https://openai.com/gpt-5/",
+      "note": "上下文 400K 取自官方 GPT-5 页面；另有资料记为 256K，存在差异"
+    },
+    {
+      "id": "gpt-5-mini",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5 mini",
+      "release": "2025-08-07",
+      "params_b": null,
+      "context_k": 400,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5",
+      "highlights": [
+        "GPT-5 的轻量版，与 GPT-5 同日发布",
+        "同样 400K 上下文、128K 最大输出，价格低于 GPT-5"
+      ],
+      "source": "https://openai.com/gpt-5/",
+      "note": ""
+    },
+    {
+      "id": "gpt-5-nano",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5 nano",
+      "release": "2025-08-07",
+      "params_b": null,
+      "context_k": 400,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5",
+      "highlights": [
+        "GPT-5 最小最快的一档，仅通过 API 提供",
+        "400K 上下文，面向高并发、低成本场景"
+      ],
+      "source": "https://openai.com/gpt-5/",
+      "note": ""
+    },
+    {
+      "id": "gpt-5-codex",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5-Codex",
+      "release": "2025-09-15",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-5",
+      "highlights": [
+        "GPT-5 的代码专精版本，2025-09 发布",
+        "面向 Codex 中长时间、智能体式编码会话优化"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": "上下文窗口未在所查来源中明确披露"
+    },
+    {
+      "id": "gpt-5.1",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.1",
+      "release": "2025-11-12",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5",
+      "highlights": [
+        "2025-11-12 发布，拆分为 Instant 与 Thinking 两种模式",
+        "新增多种人格预设，如友善、高效、愤世嫉俗等",
+        "改进指令遵循、对话语气与个性化设置"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": "上下文窗口未在所查来源中明确披露"
+    },
+    {
+      "id": "gpt-5.2",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.2",
+      "release": "2025-12-10",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.1",
+      "highlights": [
+        "2025-12 发布，含 Instant、Thinking、Pro 三档",
+        "Thinking 强化电子表格与财务建模；Pro 面向高难问题",
+        "新增第五级推理强度 xhigh；知识截止更新至 2025 年 8 月"
+      ],
+      "source": "https://openai.com/index/introducing-gpt-5-2/",
+      "note": "发布日来源记为 2025-12-10（部分页面记为 12-11）"
+    },
+    {
+      "id": "gpt-5.3-codex",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.3-Codex",
+      "release": "2026-02-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-5.2",
+      "highlights": [
+        "2026-02-05 发布的代码专精模型，无独立 GPT-5.3 旗舰",
+        "面向自主诊断、长程任务执行与实时协作"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": "上下文窗口未在所查来源中明确披露"
+    },
+    {
+      "id": "gpt-5.4",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.4",
+      "release": "2026-03-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.2",
+      "highlights": [
+        "2026-03 发布，整合高级推理与原生计算机操作",
+        "可通过解读浏览器与桌面截图自动点击，跨软件执行任务",
+        "面向企业场景，用更少 token 解决问题"
+      ],
+      "source": "https://en.wikipedia.org/wiki/ChatGPT",
+      "note": "上下文窗口未在所查来源中明确披露"
+    },
+    {
+      "id": "gpt-5.5",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.5",
+      "release": "2026-04-23",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.4",
+      "highlights": [
+        "2026-04 发布，面向复杂多步骤专业工作",
+        "强化智能体编码与计算机使用能力",
+        "另有面向网络防御的变体 GPT-5.5-Cyber"
+      ],
+      "source": "https://en.wikipedia.org/wiki/ChatGPT",
+      "note": "上下文窗口未在所查来源中明确披露"
+    },
+    {
+      "id": "gpt-5.6",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-5.6",
+      "release": "2026-07",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.5",
+      "highlights": [
+        "2026 年中发布，分 Luna、Terra、Sol 三档能力",
+        "Sol 为最强档，用于 ChatGPT 与 Codex",
+        "引入按用户等待时间交错输出思考与回答的早期形态"
+      ],
+      "source": "https://en.wikipedia.org/wiki/ChatGPT",
+      "note": "发布月份在不同维基来源中记为 2026-06 与 2026-07-09，故仅记到月"
+    },
+    {
+      "id": "gpt-6-astra",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6 Astra",
+      "release": "2026-09-04",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.6",
+      "highlights": [
+        "2026-09 发布的旗舰模型，为 GPT-6 分层体系中的最高档",
+        "采用名为 looped transformers 的架构，效率更高但更难监控",
+        "ARC-AGI 3 得 99.9%，FrontierMath Tier 4 达 98%",
+        "通过 API、Azure 与 AWS Bedrock 提供"
+      ],
+      "source": "https://openai.com/zh-Hans-CN/index/gpt-6-astra/",
+      "note": "官方页面附 2026-09-22 与 2026-09-29 更新说明；参数量与上下文未披露"
+    },
+    {
+      "id": "gpt-6-sol",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6 Sol",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.6",
+      "highlights": [
+        "GPT-6 的通用高档版本，2026-09 作为系列新成员推出",
+        "面向 ChatGPT Plus、Pro、Business 与 Enterprise 的日常对话",
+        "2026-10-07 起随智能界面更新向免费与 Go 用户全球开放"
+      ],
+      "source": "https://openai.com/index/gpt-6-for-everyone/",
+      "note": "官方另有 2026-10 版（Codex/Work 仍用 9 月版）；release 取 9 月首发"
+    },
+    {
+      "id": "gpt-6-luna",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6 Luna",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-5.6",
+      "highlights": [
+        "GPT-6 的轻量档，2026-09 作为系列新成员推出",
+        "面向免费版与 Go 用户，针对日常对话调优"
+      ],
+      "source": "https://openai.com/index/gpt-6-for-everyone/",
+      "note": ""
+    },
+    {
+      "id": "gpt-6.1-sol",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6.1 Sol",
+      "release": "2026-09-29",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-6-sol",
+      "highlights": [
+        "2026-09-29 更新中推出的最新版本",
+        "官方称其智能水平接近 Astra，但每任务成本显著更低"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": "上下文窗口未披露"
+    },
+    {
+      "id": "gpt-6-rosalind",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6 Rosalind Research",
+      "release": "2026-10-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026-10-30 发布，将 GPT-6 推理能力用于多步骤生命科学研究",
+        "采用面向生物研究的安全防护措施，仅向获批 Research 客户开放",
+        "不在聊天标签页提供；API 名称 gpt-6-rosalind"
+      ],
+      "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
+      "note": "领域专用分支，predecessor 记 null；前代为 GPT-5.5 Rosalind Research"
+    },
+    {
+      "id": "claude-1",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 1",
+      "release": "2023-03-14",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Anthropic 首个 Claude 模型，2023-03 发布",
+        "仅向受邀用户开放，未面向公众",
+        "以宪法式 AI（Constitutional AI）对齐方法为特色"
+      ],
+      "source": "https://www.wikiwand.com/en/articles/Claude_(language_model)",
+      "note": "参数量与上下文未在所查来源中明确披露"
+    },
+    {
+      "id": "claude-2",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 2",
+      "release": "2023-07-11",
+      "params_b": null,
+      "context_k": 100,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "claude-1",
+      "highlights": [
+        "首个面向公众开放的 Claude 模型，2023-07 发布",
+        "上线网页端与 iOS 应用",
+        "支持约 100K token 的上下文"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "上下文约 100K 的记录来自维基；官方 system card 仅标月份"
+    },
+    {
+      "id": "claude-instant-1.2",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Instant 1.2",
+      "release": "2023-08-09",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "claude-1",
+      "highlights": [
+        "2023-08 发布的轻量快速版",
+        "面向低成本、低延迟场景"
+      ],
+      "source": "https://www.wikiwand.com/en/articles/Claude_(language_model)",
+      "note": ""
+    },
+    {
+      "id": "claude-2.1",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 2.1",
+      "release": "2023-11-21",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "claude-2",
+      "highlights": [
+        "2023-11 发布，上下文窗口翻倍至 20 万 token，约合 500 页文本",
+        "引入工具使用（tool use）beta 功能"
+      ],
+      "source": "https://www.wikiwand.com/en/articles/Claude_(language_model)",
+      "note": ""
+    },
+    {
+      "id": "claude-3-opus",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3 Opus",
+      "release": "2024-03-04",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-2.1",
+      "highlights": [
+        "Claude 3 系列顶级版，2024-03-04 发布",
+        "支持图像输入与视觉理解，200K 上下文",
+        "在多项基准上对标 GPT-4"
+      ],
+      "source": "https://www.anthropic.com/news/claude-3-family",
+      "note": ""
+    },
+    {
+      "id": "claude-3-sonnet",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3 Sonnet",
+      "release": "2024-03-04",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-2.1",
+      "highlights": [
+        "Claude 3 中档模型，2024-03-04 发布",
+        "平衡速度与能力，200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-3-family",
+      "note": ""
+    },
+    {
+      "id": "claude-3-haiku",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3 Haiku",
+      "release": "2024-03-13",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-2.1",
+      "highlights": [
+        "Claude 3 最小最快版，2024-03-13 发布",
+        "面向低延迟场景，200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-3-family",
+      "note": ""
+    },
+    {
+      "id": "claude-3.5-sonnet",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3.5 Sonnet",
+      "release": "2024-06-20",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3-sonnet",
+      "highlights": [
+        "2024-06-20 发布，官方基准中超过更大的 Claude 3 Opus",
+        "同期推出 Artifacts 功能，可在独立窗口实时预览代码、SVG 与网页",
+        "200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-3-5-sonnet",
+      "note": ""
+    },
+    {
+      "id": "claude-3.5-sonnet-new",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3.5 Sonnet (new)",
+      "release": "2024-10-22",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3.5-sonnet",
+      "highlights": [
+        "2024-10-22 发布的 Sonnet 3.5 升级版",
+        "与计算机使用（computer use）能力同期推出",
+        "知识截止更新至 2024 年 4 月"
+      ],
+      "source": "https://www.anthropic.com/news/3-5-models-and-computer-use",
+      "note": ""
+    },
+    {
+      "id": "claude-3.5-haiku",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3.5 Haiku",
+      "release": "2024-10-22",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3-haiku",
+      "highlights": [
+        "2024-10-22 发布的小型模型",
+        "知识截止更新至 2024 年 7 月"
+      ],
+      "source": "https://www.anthropic.com/news/3-5-models-and-computer-use",
+      "note": ""
+    },
+    {
+      "id": "claude-3.7-sonnet",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude 3.7 Sonnet",
+      "release": "2025-02-24",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3.5-sonnet-new",
+      "highlights": [
+        "2025-02-24 发布，首个提供扩展思考（extended thinking）的 Claude 模型",
+        "可显式控制推理预算，在快速回答与深度推理间切换",
+        "在编程任务上较前代显著提升"
+      ],
+      "source": "https://www.anthropic.com/news/claude-3-7-sonnet",
+      "note": ""
+    },
+    {
+      "id": "claude-sonnet-4",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Sonnet 4",
+      "release": "2025-05-22",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3.7-sonnet",
+      "highlights": [
+        "Claude 4 系列中档模型，2025-05-22 发布",
+        "在编程与智能体任务上大幅改进，200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-4",
+      "note": ""
+    },
+    {
+      "id": "claude-opus-4",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4",
+      "release": "2025-05-22",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3-opus",
+      "highlights": [
+        "Claude 4 旗舰，2025-05-22 发布",
+        "可连续工作数小时的智能体编码能力",
+        "200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-4",
+      "note": ""
+    },
+    {
+      "id": "claude-opus-4.1",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4.1",
+      "release": "2025-08-05",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4",
+      "highlights": [
+        "2025-08-05 发布，在 Opus 4 基础上提升编码与长程任务可靠性",
+        "200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-opus-4-1",
+      "note": ""
+    },
+    {
+      "id": "claude-sonnet-4.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Sonnet 4.5",
+      "release": "2025-09-29",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-sonnet-4",
+      "highlights": [
+        "2025-09-29 发布，在编码、工具使用与计算机操作上大幅提升",
+        "200K 上下文，后被标记为弃用（deprecated）",
+        "官方上下文文档将其列为 200K 档"
+      ],
+      "source": "https://www.anthropic.com/news/claude-sonnet-4-5",
+      "note": ""
+    },
+    {
+      "id": "claude-haiku-4.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Haiku 4.5",
+      "release": "2025-10-15",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-3.5-haiku",
+      "highlights": [
+        "2025-10-15 发布，小型模型中强调强推理与低延迟",
+        "知识截止 2025 年 2 月，200K 上下文"
+      ],
+      "source": "https://www.anthropic.com/news/claude-haiku-4-5",
+      "note": ""
+    },
+    {
+      "id": "claude-opus-4.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4.5",
+      "release": "2025-11-24",
+      "params_b": null,
+      "context_k": 200,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4.1",
+      "highlights": [
+        "2025-11-24 发布，当时被视为最强编码模型之一",
+        "常与 Claude Code 搭配使用，200K 上下文",
+        "知识截止 2025 年 5 月"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "官方 system card 仅标月份 2025-11；具体日期来自维基"
+    },
+    {
+      "id": "claude-opus-4.6",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4.6",
+      "release": "2026-02-05",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4.5",
+      "highlights": [
+        "2026-02 发布，上下文扩至 100 万 token",
+        "面向长程智能体编码，支持 effort 参数调节推理投入",
+        "官方上下文文档将其列入 1M 档"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-02"
+    },
+    {
+      "id": "claude-sonnet-4.6",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Sonnet 4.6",
+      "release": "2026-02-17",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-sonnet-4.5",
+      "highlights": [
+        "2026-02-17 发布，1M 上下文窗口",
+        "面向日常编码、智能体与企业工作负载"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": ""
+    },
+    {
+      "id": "claude-mythos-preview",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Mythos Preview",
+      "release": "2026-04-07",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026-04 发布的研究预览模型，限量提供",
+        "官方上下文文档将其列入 1M 上下文档"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "全新预览分支，predecessor 记 null"
+    },
+    {
+      "id": "claude-opus-4.7",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4.7",
+      "release": "2026-04-16",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4.6",
+      "highlights": [
+        "2026-04 发布，1M 上下文",
+        "支持 xhigh 推理强度，介于 high 与 max 之间",
+        "面向编码与智能体任务"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-04"
+    },
+    {
+      "id": "claude-opus-4.8",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 4.8",
+      "release": "2026-05-28",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4.7",
+      "highlights": [
+        "2026-05 发布，1M 上下文",
+        "支持 fast mode 快速模式与 xhigh 推理强度",
+        "面向复杂系统工程与视觉密集工作流"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-05"
+    },
+    {
+      "id": "claude-fable-5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Fable 5",
+      "release": "2026-06-09",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Fable 系列首版，2026-06-09 发布",
+        "Anthropic 面向所有客户开放的顶级模型之一",
+        "1M 上下文，默认开启自适应思考"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "全新系列分支，predecessor 记 null"
+    },
+    {
+      "id": "claude-mythos-5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Mythos 5",
+      "release": "2026-06-09",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-mythos-preview",
+      "highlights": [
+        "Mythos 系列版本，2026-06-09 发布",
+        "1M 上下文，限量或预览方式提供"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": ""
+    },
+    {
+      "id": "claude-sonnet-5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Sonnet 5",
+      "release": "2026-06-30",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-sonnet-4.6",
+      "highlights": [
+        "2026-06-30 发布，1M 上下文",
+        "面向代码生成、数据分析、视觉理解与智能体工具调用"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-06"
+    },
+    {
+      "id": "claude-opus-5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 5",
+      "release": "2026-07-24",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-4.8",
+      "highlights": [
+        "2026-07 发布，1M 上下文",
+        "支持 effort 参数调节智能水平、延迟与成本",
+        "面向复杂推理与长程智能体工作"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-07"
+    },
+    {
+      "id": "claude-fable-5.1",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Fable 5.1",
+      "release": "2026-09-01",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-fable-5",
+      "highlights": [
+        "2026-09 发布，在 Fable 5 基础上强化长程智能体编码、知识工作与研究",
+        "1M 上下文，缓存读取成本降至四分之一",
+        "默认开启自适应思考，与 Mythos 5.1 输入输出价格相同"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-09"
+    },
+    {
+      "id": "claude-mythos-5.1",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Mythos 5.1",
+      "release": "2026-09-01",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-mythos-5",
+      "highlights": [
+        "2026-09 发布，仅向 Project Glasswing 参与者开放",
+        "1M 上下文，始终开启自适应思考"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-09"
+    },
+    {
+      "id": "claude-opus-5.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Opus 5.5",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-opus-5",
+      "highlights": [
+        "2026-09 发布，面向多小时自主编码与知识工作",
+        "1M 上下文，自适应思考默认开启，默认 effort 为 medium",
+        "支持 fast mode 快速模式"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-09"
+    },
+    {
+      "id": "claude-sonnet-5.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Sonnet 5.5",
+      "release": "2026-09-28",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-sonnet-5",
+      "highlights": [
+        "2026-09 发布，Sonnet 系列 5.x 升级版",
+        "1M 上下文，128K 最大输出"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-09"
+    },
+    {
+      "id": "claude-haiku-5.5",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Haiku 5.5",
+      "release": "2026-10-07",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-haiku-4.5",
+      "highlights": [
+        "2026-10 发布，Haiku 系列首个 1M 上下文版本",
+        "超过 10 万 token 的提示按更高价格计费",
+        "知识截止 2026 年 6 月"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-10"
+    },
+    {
+      "id": "claude-fable-5.2",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Fable 5.2",
+      "release": "2026-11-09",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-fable-5.1",
+      "highlights": [
+        "Fable 系列最新版本，2026-11 发布",
+        "1M 上下文、128K 最大输出，知识截止 2026 年 6 月"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方仅标 2026-11"
+    },
+    {
+      "id": "claude-mythos-5.2",
+      "company": "anthropic",
+      "family": "Claude",
+      "name": "Claude Mythos 5.2",
+      "release": "2026-11-09",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "claude-mythos-5.1",
+      "highlights": [
+        "Mythos 系列最新版本，2026-11 发布",
+        "1M 上下文，限量提供"
+      ],
+      "source": "https://www.anthropic.com/system-cards",
+      "note": "具体日期来自维基；官方 system card 与 Fable 5.2 同页"
+    }
+  ],
+  "technologies": [],
+  "events": []
+}

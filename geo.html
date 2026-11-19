@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地理分布 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.map-stage{padding:22px}
+.geo-card{cursor:pointer;transition:border-color .15s,transform .15s}
+.geo-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.geo-card .gname{font-family:var(--serif);font-size:17px;font-weight:600}
+.geo-card .ghq{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-top:2px}
+.geo-card .gnum{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:10px}
+.cluster-label{font-family:var(--mono);font-size:9px;fill:var(--ink-2)}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:20px">
+    <span class="kicker">视图 05 / 地理分布</span>
+    <h1 style="margin:14px 0 18px">在哪里发生</h1>
+    <p class="lede">21 家机构的总部落在北美、欧洲与东亚三处集群。圆点大小代表该机构收录的模型数，点击圆点查看它的谱系。</p>
+  </div>
+
+  <div class="map-stage">
+    <div id="map"></div>
+    <div class="legend" style="padding:0 8px 6px">
+      <span class="item"><i class="swatch" style="background:#c96442;border-radius:50%"></i>机构总部（面积 ∝ 模型数）</span>
+      <span class="item">底图 Natural Earth 110m · 等距圆柱投影</span>
+    </div>
+  </div>
+
+  <div class="section-tight">
+    <div class="section-head"><h2 style="font-size:26px">机构名录</h2><div class="note">按收录模型数排序</div></div>
+    <div class="geo-list" id="geo-list"></div>
+  </div>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>总部坐标按主要办公地点取近似值，同一城市的多家机构做了轻微位移以便区分。<br>地图仅用于展示地理聚集，不代表研发活动全部发生地。</p>
+  <p><a href="sources.html">数据来源与说明 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="data/world.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/vendor/d3.v7.min.js"></script>
+<script src="assets/vendor/topojson-client.min.js"></script>
+<script>
+(function(){
+  const {A, esc, renderChrome, companyName, COMPANIES} = ATLAS_UI;
+  renderChrome('geo.html');
+
+  const com=A.companies.filter(c=>c.lon!=null&&c.lat!=null);
+  const W=1100,H=520;
+  const projection=d3.geoEquirectangular().scale(W/(2*Math.PI)*1.02).translate([W/2,H/2+16]);
+  const path=d3.geoPath(projection);
+  const svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+
+  const countries=topojson.feature(window.WORLD, window.WORLD.objects.countries).features;
+  svg.append('g').selectAll('path').data(countries).join('path')
+    .attr('class','country').attr('d',path);
+  svg.append('path').attr('d',path({type:'Sphere'})).attr('fill','none').attr('stroke','var(--border)').attr('stroke-width',1);
+
+  const maxN=d3.max(com,c=>A.stats.by_company[c.id]||0);
+  const rScale=d3.scaleSqrt().domain([1,maxN]).range([5,17]);
+
+  const dots=svg.append('g').selectAll('g').data(com).join('g')
+    .attr('transform',d=>{const p=projection([d.lon,d.lat]);return `translate(${p[0]},${p[1]})`;})
+    .style('cursor','pointer')
+    .on('click',(ev,d)=>{ev.stopPropagation();showCompany(d.id);});
+
+  dots.append('circle').attr('r',d=>rScale(A.stats.by_company[d.id]||0))
+    .attr('fill','var(--accent)').attr('fill-opacity',.78).attr('stroke','var(--surface)').attr('stroke-width',1.5)
+    .append('title').text(d=>`${companyName(d.id)} · ${A.stats.by_company[d.id]||0} 个模型`);
+  dots.filter(d=>(A.stats.by_company[d.id]||0)>=12)
+    .append('text').attr('class','cluster-label').attr('x',d=>rScale(A.stats.by_company[d.id]||0)+5).attr('y',4)
+    .text(d=>companyName(d.id));
+
+  // 名录
+  const sorted=[...com].sort((a,b)=>(A.stats.by_company[b.id]||0)-(A.stats.by_company[a.id]||0));
+  document.getElementById('geo-list').innerHTML=sorted.map(c=>`
+    <div class="card geo-card" data-c="${esc(c.id)}">
+      <div class="gname">${esc(companyName(c.id))}</div>
+      <div class="ghq">${esc(c.hq||'—')} · ${esc(c.country||'')}</div>
+      <div class="gnum">${A.stats.by_company[c.id]||0} 个模型 →</div>
+    </div>`).join('');
+
+  function showCompany(id){
+    const list=A.models.filter(m=>m.company===id).sort((a,b)=>(b.release||'').localeCompare(a.release||''));
+    const c=COMPANIES[id];
+    ATLAS_UI.openDrawer(`
+      <span class="d-kicker">机构档案 / ${esc(c.country||'')}</span>
+      <h2>${esc(companyName(id))}</h2>
+      <p class="muted" style="margin-top:-6px">${esc(c.hq||'')} · 成立于 ${c.founded||'—'}</p>
+      <div class="d-section"><p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin:0">${esc(c.blurb||'')}</p></div>
+      <div class="d-section"><h4>收录模型 ${list.length}</h4>
+        <ul class="hl">${list.slice(0,30).map(m=>`<li><a href="#" data-open-model="${esc(m.id)}">${esc(m.name)}</a> <span class="muted mono" style="font-size:11px">${String(m.release||'').slice(0,7)}</span></li>`).join('')}</ul>
+        ${list.length>30?`<p class="note">仅显示最近 30 个，完整列表见模型索引。</p>`:''}
+      </div>
+      ${c.site?`<div class="d-section"><h4>官网</h4><a class="src" href="${esc(c.site)}" target="_blank" rel="noopener">${esc(c.site)} ↗</a></div>`:''}
+    `);
+  }
+
+  document.getElementById('geo-list').addEventListener('click',e=>{
+    const c=e.target.closest('[data-c]'); if(c) showCompany(c.dataset.c);
+  });
+})();
+</script>
+</body>
+</html>

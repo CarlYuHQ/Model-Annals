@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据来源与说明 · 大模型发展全景档案</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+.src-block{margin-top:34px}
+.src-block h3{margin-bottom:14px}
+.src-block ul{color:var(--ink-2);line-height:1.9;padding-left:22px}
+.src-block li{margin-bottom:4px}
+.kv-table{width:100%;border-collapse:collapse;font-size:14px}
+.kv-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+.kv-table td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-3);width:160px;white-space:nowrap}
+</style>
+</head>
+<body>
+<header id="masthead"></header>
+<div id="navbar"></div>
+
+<main class="wrap">
+  <div class="section" style="padding-bottom:16px">
+    <span class="kicker">附录 / 数据来源与说明</span>
+    <h1 style="margin:14px 0 18px">关于这份档案</h1>
+    <p class="lede">它如何被整理、数据从哪里来、有哪些局限。读完这一页，你就知道该在多大程度上相信任何一个数字。</p>
+  </div>
+
+  <section class="section-tight">
+    <h2 style="font-size:28px;margin-bottom:20px">统计口径</h2>
+    <div class="panel">
+      <table class="kv-table" id="scope-table"></table>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <h2 style="font-size:28px;margin-bottom:20px">数据来源</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>一手来源</h3>
+        <p>优先采用机构官方发布页、产品公告、系统卡（system card）、技术报告与 arXiv 论文。每个模型与事件条目在详情抽屉的"来源"字段都给出了原始链接。</p>
+      </div>
+      <div class="card">
+        <h3>二手来源</h3>
+        <p>部分 2026 年新模型的精确日期来自可靠媒体报道（如路透社）或行业时间线聚合站；这类条目已在各自 <span class="mono">note</span> 字段标注，便于你复核。</p>
+      </div>
+    </div>
+    <div class="src-block">
+      <h3>整理原则</h3>
+      <ul>
+        <li>参数量与上下文长度：仅填官方公开披露的数值，未披露一律留空，不做推测。</li>
+        <li>发布日期：精确到日的用 <span class="mono">YYYY-MM-DD</span>，只能确认到月或年的按原精度记录，不补造具体日期。</li>
+        <li>许可分类：<span class="mono">open</span> = 权重与代码较宽松开放；<span class="mono">weighted</span> = 权重开放但附许可限制；<span class="mono">proprietary</span> = 闭源。</li>
+        <li>同一模型在不同来源间日期或参数冲突时，取更接近一手来源的一方，并在 note 说明。</li>
+        <li>MoE 模型的 <span class="mono">params_b</span> 填总参数量，激活参数写在要点中。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <h2 style="font-size:28px;margin-bottom:20px">已知局限</h2>
+    <div class="grid-2">
+      <div class="card"><h3>覆盖不等于完整</h3><p>300 个模型是"尽量详尽"的结果，不是全部。地区性模型、垂直小模型与未公开细节的内部版本难免遗漏。</p></div>
+      <div class="card"><h3>谱系有争议</h3><p>predecessor 关系来自公开的版本叙述，不同来源对"某模型是不是另一模型的直接后继"并不总是一致。</p></div>
+      <div class="card"><h3>时间是移动的</h3><p>数据截止于 <span class="mono" id="upd"></span>。此后发布的模型不在本版内；仓库按 commit 记录修订历史。</p></div>
+      <div class="card"><h3>分期是叙述工具</h3><p>"三个时代"为阅读便利而设，真实的技术演化彼此重叠，没有清晰断点。</p></div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <h2 style="font-size:28px;margin-bottom:20px">如何更新</h2>
+    <div class="panel">
+      <p style="color:var(--ink-2);line-height:1.8;margin:0 0 12px">
+        原始数据按机构分文件放在 <span class="mono">data/raw/</span>，运行构建脚本即可重新合并为统一数据层：
+      </p>
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;overflow-x:auto;font-family:var(--mono);font-size:13px;color:var(--ink)">python3 scripts/build_data.py</pre>
+      <p style="color:var(--ink-3);font-size:13px;margin:12px 0 0;line-height:1.7">
+        脚本会校验引用完整性、按日期排序、派生统计字段，并同时输出 <span class="mono">data/atlas.json</span>（便于查阅）与 <span class="mono">data/atlas.js</span>（供页面加载）。
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="wrap fg">
+  <p>本项目为独立整理，与文中所列任何机构无隶属或背书关系。<br>如需引用，请标注具体条目的原始来源链接。</p>
+  <p><a href="index.html">返回总览 →</a></p>
+</div></footer>
+
+<script src="data/atlas.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+(function(){
+  const {A,renderChrome}=ATLAS_UI;
+  renderChrome('sources.html');
+  document.getElementById('upd').textContent=A.meta.updated;
+  const rows=[
+    ['模型条目',`${A.stats.models} 个，含发布日、参数、上下文、模态、许可、谱系`],
+    ['机构',`${A.stats.companies} 家`],
+    ['关键技术',`${A.stats.technologies} 项`],
+    ['历史事件',`${A.stats.events} 个`],
+    ['时间跨度',`${A.stats.year_min} — ${A.stats.year_max}（模型）`],
+    ['许可分布',`闭源 ${A.stats.by_license.proprietary||0} · 开放 ${A.stats.by_license.open||0} · 受限 ${A.stats.by_license.weighted||0}`],
+  ];
+  document.getElementById('scope-table').innerHTML=rows.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+})();
+</script>
+</body>
+</html>

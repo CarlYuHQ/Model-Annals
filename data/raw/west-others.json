@@ -1,0 +1,1812 @@
+{
+  "companies": [
+    {
+      "id": "google",
+      "name": "Google DeepMind",
+      "name_zh": "谷歌 DeepMind",
+      "country": "US",
+      "founded": 2010,
+      "hq": "London / Mountain View",
+      "site": "https://deepmind.google",
+      "blurb": "2010 年创立于伦敦的 AI 研究机构，2014 年被谷歌收购，2023 年 4 月与 Google Brain 合并为 Google DeepMind，主导 Gemini、Gemma 与 AlphaFold 系列。"
+    },
+    {
+      "id": "meta",
+      "name": "Meta AI",
+      "name_zh": "Meta 人工智能研究院",
+      "country": "US",
+      "founded": 2013,
+      "hq": "Menlo Park",
+      "site": "https://ai.meta.com",
+      "blurb": "Meta 旗下 AI 研究机构，前身是 2013 年成立的 Facebook AI Research（FAIR），以 LLaMA 开源权重模型和 2026 年的 Muse 系列著称。"
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "name_zh": "xAI",
+      "country": "US",
+      "founded": 2023,
+      "hq": "Palo Alto / Memphis",
+      "site": "https://x.ai",
+      "blurb": "埃隆·马斯克 2023 年创立的 AI 公司，以 Grok 系列和与 X 平台的实时数据融合为特色，训练依托 Colossus 超算集群。"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "name_zh": "Mistral AI",
+      "country": "FR",
+      "founded": 2023,
+      "hq": "Paris",
+      "site": "https://mistral.ai",
+      "blurb": "法国开源大模型公司，2023 年成立，以 Mistral 7B、Mixtral 混合专家模型和 Apache 2.0 许可的 Mistral 3 系列著称。"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "name_zh": "Cohere",
+      "country": "CA",
+      "founded": 2019,
+      "hq": "Toronto",
+      "site": "https://cohere.com",
+      "blurb": "加拿大企业级大模型公司，专注检索增强生成、工具调用与多语言，代表模型为 Command 与 Aya 系列。"
+    },
+    {
+      "id": "ai21",
+      "name": "AI21 Labs",
+      "name_zh": "AI21 Labs",
+      "country": "IL",
+      "founded": 2017,
+      "hq": "Tel Aviv",
+      "site": "https://www.ai21.com",
+      "blurb": "以色列 AI 公司，以 Jurassic 系列和 Jamba（Mamba-Transformer 混合架构）长上下文模型著称。"
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "name_zh": "英伟达",
+      "country": "US",
+      "founded": 1993,
+      "hq": "Santa Clara",
+      "site": "https://www.nvidia.com",
+      "blurb": "美国芯片与 AI 公司，开源 Nemotron 系列模型并公开训练数据与工具链，面向智能体和推理场景。"
+    }
+  ],
+  "models": [
+    {
+      "id": "bert",
+      "company": "google",
+      "family": "BERT",
+      "name": "BERT-Large",
+      "release": "2018-10",
+      "params_b": 0.34,
+      "context_k": 0.5,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "论文《BERT: Pre-training of Deep Bidirectional Transformers》提出双向 Transformer 预训练加任务微调范式",
+        "基于掩码语言模型与下一句预测两个预训练目标",
+        "BERT-Large 为 24 层、参数约 3.4 亿，上下文 512 token"
+      ],
+      "source": "https://arxiv.org/abs/1810.04805",
+      "note": "params_b 按 BERT-Large 计"
+    },
+    {
+      "id": "t5",
+      "company": "google",
+      "family": "T5",
+      "name": "T5",
+      "release": "2019-10",
+      "params_b": null,
+      "context_k": 0.5,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "论文《Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer》将所有 NLP 任务统一为文本到文本格式",
+        "在 C4 语料上预训练，开源代码与多个规模权重",
+        "引入相对位置编码与编码器-解码器架构"
+      ],
+      "source": "https://arxiv.org/abs/1910.10683",
+      "note": "存在 60M 至 11B 多种规模，官方未给单一参数量"
+    },
+    {
+      "id": "lamda",
+      "company": "google",
+      "family": "LaMDA",
+      "name": "LaMDA",
+      "release": "2022-01",
+      "params_b": 137,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "论文《LaMDA: Language Models for Dialog Applications》面向对话应用",
+        "1370 亿参数的 decoder-only Transformer，在对话数据上预训练",
+        "通过引用外部来源与细粒度安全分类提升事实性与安全性"
+      ],
+      "source": "https://arxiv.org/abs/2201.08239",
+      "note": ""
+    },
+    {
+      "id": "palm",
+      "company": "google",
+      "family": "PaLM",
+      "name": "PaLM",
+      "release": "2022-04",
+      "params_b": 540,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "论文《PaLM: Scaling Language Modeling with Pathways》采用 5400 亿参数稠密 Transformer",
+        "在 Pathways 系统上使用 TPU v4 训练，强调少样本推理与思维链能力",
+        "未开放权重，仅通过论文披露"
+      ],
+      "source": "https://arxiv.org/abs/2204.02311",
+      "note": ""
+    },
+    {
+      "id": "palm-2",
+      "company": "google",
+      "family": "PaLM",
+      "name": "PaLM 2",
+      "release": "2023-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "palm",
+      "highlights": [
+        "官方技术报告于 2023 年 5 月 Google I/O 发布，未披露具体参数量",
+        "改进多语言、数学与代码能力，是 Bard 初期的基础模型",
+        "提供从 nano 到 unicorn 的多档规模"
+      ],
+      "source": "https://ai.google/static/documents/palm2techreport.pdf",
+      "note": "参数量官方未披露"
+    },
+    {
+      "id": "gemini-1-0-ultra",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 1.0 Ultra",
+      "release": "2023-12-06",
+      "params_b": null,
+      "context_k": 32,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "palm-2",
+      "highlights": [
+        "Gemini 系列首发三档（Ultra/Pro/Nano）中的最大规模版本",
+        "从预训练阶段即联合训练文本、图像、音频与视频，属原生多模态模型",
+        "2024 年 2 月以 Gemini Advanced 形式面向消费者开放"
+      ],
+      "source": "https://deepmind.google/models/gemini/",
+      "note": "参数量未公开"
+    },
+    {
+      "id": "gemini-1-5-pro",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 1.5 Pro",
+      "release": "2024-02-15",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-1-0-ultra",
+      "highlights": [
+        "采用稀疏混合专家架构，初始上下文窗口 100 万 token，后续对部分用户扩展到 200 万",
+        "可直接处理长视频、长文档与完整代码库",
+        "2024 年 6 月 200 万 token 上下文正式 GA"
+      ],
+      "source": "https://deepmind.google/discover/blog/gemini-15/",
+      "note": ""
+    },
+    {
+      "id": "gemini-1-5-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 1.5 Flash",
+      "release": "2024-05-14",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-1-5-pro",
+      "highlights": [
+        "1.5 系列的轻量低延迟版本，面向高频调用场景",
+        "保持百万 token 级上下文能力，成为 2024 年开发者使用最广的 Gemini 模型",
+        "提供 8B 规模的 flash-8b 变体"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "note": ""
+    },
+    {
+      "id": "gemini-2-0-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.0 Flash",
+      "release": "2024-12-11",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-1-5-flash",
+      "highlights": [
+        "以实验版首发，是 Gemini 2.0 系列首个模型，主打智能体与原生工具调用",
+        "支持原生多模态输出（文本、图像、可控语音）及多轮工具调用",
+        "速度约为 1.5 Pro 的两倍，2025 年 1 月正式 GA"
+      ],
+      "source": "https://blog.google/intl/en-nz/company-news/2024_12_introducing-gemini-20-our-new-ai-mode/",
+      "note": ""
+    },
+    {
+      "id": "gemini-2-5-pro",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Pro",
+      "release": "2025-03-25",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-0-flash",
+      "highlights": [
+        "首个内置显式推理（thinking）阶段的 Gemini Pro 模型，2025 年 3 月 25 日以实验版发布",
+        "原生多模态，100 万 token 上下文，可解析完整代码仓库",
+        "发布时在 LMArena 以 1443 分排名第一；6 月更新预览版提升编程能力"
+      ],
+      "source": "https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025",
+      "note": "已联网核实 2025 年发布日期"
+    },
+    {
+      "id": "gemini-2-5-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Flash",
+      "release": "2025-04-17",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-0-flash",
+      "highlights": [
+        "2.5 系列的低延迟版本，引入开发者可控的 thinking budget",
+        "支持多模态输入与工具调用，价格低于 2.5 Pro"
+      ],
+      "source": "https://www.aiwiki.ai/index.php?diff=prev&oldid=14779&title=Google_DeepMind",
+      "note": "已联网核实，日期依据第三方资料库汇总的官方公告"
+    },
+    {
+      "id": "gemini-2-5-deep-think",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Deep Think",
+      "release": "2025-08-01",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-pro",
+      "highlights": [
+        "在推理时并行探索多条候选解路径的增强推理模式",
+        "2025 年 5 月 I/O 预告，8 月 1 日正式向 Google AI Ultra 订阅者开放",
+        "在 USAMO 与竞赛编程基准上取得高分"
+      ],
+      "source": "https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemini-3-pro",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Pro",
+      "release": "2025-11-18",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-pro",
+      "highlights": [
+        "2025 年 11 月 18 日发布，首发即以 1501 Elo 成为 LMArena 首个突破 1500 分的公开模型",
+        "Humanity's Last Exam 无工具 37.5%、GPQA Diamond 91.9%",
+        "100 万 token 上下文，首次在模型发布首日进入 Google 搜索"
+      ],
+      "source": "https://deepmind.google/blog/a-new-era-of-intelligence-with-gemini-3",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemini-3-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Flash",
+      "release": "2025-12-17",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-pro",
+      "highlights": [
+        "2025 年 12 月上线，将 Pro 级推理与 Flash 级延迟结合",
+        "成为 Gemini 应用与搜索 AI 模式的默认模型",
+        "质量超过前代 2.5 Pro 量级模型，成本与延迟显著降低"
+      ],
+      "source": "https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemini-3-1-pro",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Pro",
+      "release": "2026-02-19",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-pro",
+      "highlights": [
+        "2026 年 2 月 19 日以预览版发布，ARC-AGI-2 得分 77.1%，约为 Gemini 3 Pro 的两倍",
+        "在 Antigravity 平台支持调节推理预算以平衡速度与准确性",
+        "定价与 Gemini 3 Pro 预览版持平，2026 年 3 月 9 日起取代后者"
+      ],
+      "source": "https://gemini.google/release-notes/",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemini-3-5-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Flash",
+      "release": "2026-05-19",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-pro",
+      "highlights": [
+        "2026 年 5 月 19 日 I/O 大会发布，主打智能体和代码任务",
+        "Terminal-Bench 2.1 76.2%、MCP Atlas 83.6%，输出速度约为同级前沿模型的 4 倍",
+        "发布即成为 Gemini 应用与搜索 AI 模式的默认模型"
+      ],
+      "source": "https://china.googleblog.com/2026/05/gemini-35.html",
+      "note": "已联网核实；同系列 3.5 Pro 原计划 2026 年 6 月发布但据 Bloomberg 报道因编程表现延期"
+    },
+    {
+      "id": "gemini-3-8-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Flash",
+      "release": "2026-09",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "Gemini API 更新日志显示 2026 年 9 月起 3.7 Flash 被 3.8 Flash 取代",
+        "同期发布 3.8 Flash TTS 与 Flash-Lite TTS 语音模型"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "note": "已联网核实；仅确认月份，官方变更日志未单列发布日"
+    },
+    {
+      "id": "gemini-4-argon",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Argon",
+      "release": "2026-10-13",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "2026 年 10 月 13 日正式 GA，是 Gemini 4 系列首发前沿模型",
+        "定位复杂编程、智能体、数学与科学任务，API 价格 $2/百万输入 token、$10/百万输出 token",
+        "谷歌未强调参数规模，转而突出软件工程、企业知识与网络防御场景"
+      ],
+      "source": "https://ai.google.dev/gemini-api/docs/changelog",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemini-4-carbon",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Carbon",
+      "release": "2026-11",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-4-argon",
+      "highlights": [
+        "Argon 之后推出的更强版本，面向长周期智能体工作流与开放式科学推理",
+        "在 CursorBench 4.0、WANDR、AutomationBench 排名第一，单次任务成本约为次优模型的一半",
+        "通过 Google Antigravity 的 /swarm 支持多智能体协同"
+      ],
+      "source": "https://deepmind.google/blog/gemini-4-carbon-is-now-available",
+      "note": "已联网核实；官方博客未标注精确日期，仅确认为 2026 年 11 月上线"
+    },
+    {
+      "id": "gemma",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma",
+      "release": "2024-02-21",
+      "params_b": 7,
+      "context_k": 8,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": null,
+      "highlights": [
+        "与 Gemini 同源研究和技术构建的轻量开放权重模型，首发 2B 与 7B 两档",
+        "在问答、推理、数学与代码任务上超过同规模开放模型",
+        "使用 Gemma 使用条款，非标准开源许可证"
+      ],
+      "source": "https://blog.google/technology/ai/google-gemma-ai/",
+      "note": "params_b 按 7B 版本计"
+    },
+    {
+      "id": "gemma-2",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma 2",
+      "release": "2024-06-27",
+      "params_b": 27,
+      "context_k": 8,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "gemma",
+      "highlights": [
+        "提供 2B、9B、27B 三种规模，27B 在发布时号称同规模最强",
+        "引入知识蒸馏训练与交替的局部/全局注意力层"
+      ],
+      "source": "https://ai.google.dev/gemma/docs",
+      "note": "params_b 按 27B 版本计"
+    },
+    {
+      "id": "gemma-3",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma 3 27B",
+      "release": "2025-03-12",
+      "params_b": 27,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "weighted",
+      "predecessor": "gemma-2",
+      "highlights": [
+        "2025 年 3 月 12 日发布，提供 1B、4B、12B、27B 四档",
+        "加入视觉输入、128K 上下文与 140 多种语言支持",
+        "采用 decoder-only Transformer、GQA 与 SigLIP 视觉编码器，附量化版本"
+      ],
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-3/",
+      "note": "已联网核实"
+    },
+    {
+      "id": "gemma-3-270m",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma 3 270M",
+      "release": "2025-08",
+      "params_b": 0.27,
+      "context_k": 32,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "gemma-3",
+      "highlights": [
+        "2025 年 8 月发布的超小型版本，面向端侧与微调场景",
+        "32K 上下文，模型卡标注使用 6 万亿 token 训练"
+      ],
+      "source": "https://deepmind.google/blog/googles-year-in-review-8-areas-with-research-breakthroughs-in-2025",
+      "note": "已联网核实；精确日期未标注"
+    },
+    {
+      "id": "gemma-4",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma 4 31B / 26B MoE",
+      "release": "2026-04-02",
+      "params_b": 31,
+      "context_k": 256,
+      "modality": "text,image,audio,video",
+      "license": "open",
+      "predecessor": "gemma-3",
+      "highlights": [
+        "2026 年 4 月 2 日发布，基于 Gemini 3 研究，改用 Apache 2.0 许可",
+        "四档规模：E2B、E4B、26B MoE（激活 3.8B）与 31B Dense",
+        "大模型的上下文窗口达 256K，原生处理图像与视频，E2B/E4B 另支持音频输入"
+      ],
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+      "note": "已联网核实；params_b 按 31B Dense 版本计"
+    },
+    {
+      "id": "gemma-4-12b",
+      "company": "google",
+      "family": "Gemma",
+      "name": "Gemma 4 12B",
+      "release": "2026-06-03",
+      "params_b": 12,
+      "context_k": 256,
+      "modality": "text,image,audio,video",
+      "license": "open",
+      "predecessor": "gemma-4",
+      "highlights": [
+        "2026 年 6 月 3 日加入 Gemma 4 家族的中等规模版本",
+        "采用统一多模态架构，可不依赖独立编码器直接处理图像与音频"
+      ],
+      "source": "https://www.wikiwand.com/en/Gemma_4",
+      "note": "已联网核实，来源为第三方资料库"
+    },
+    {
+      "id": "alphafold-2",
+      "company": "google",
+      "family": "AlphaFold",
+      "name": "AlphaFold 2",
+      "release": "2020",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "2020 年 CASP14 上以原子级精度预测蛋白质结构，被视为解决 50 年蛋白质折叠问题",
+        "2021 年 7 月论文发表于 Nature 并开源代码，2022 年与 EMBL-EBI 开放 2 亿余条结构预测"
+      ],
+      "source": "https://deepmind.google/science/alphafold/",
+      "note": "非语言模型；modality 的 text 指氨基酸序列输入；参数量未披露"
+    },
+    {
+      "id": "alphafold-3",
+      "company": "google",
+      "family": "AlphaFold",
+      "name": "AlphaFold 3",
+      "release": "2024-05-08",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "alphafold-2",
+      "highlights": [
+        "2024 年 5 月 8 日由 Google DeepMind 与 Isomorphic Labs 发布",
+        "预测范围从蛋白质扩展到 DNA、RNA、配体与离子及其相互作用",
+        "引入 Pairformer 模块与扩散模型，权重仅对学术用途开放"
+      ],
+      "source": "https://deepmind.google/science/alphafold/",
+      "note": "非语言模型；modality 的 text 指分子序列输入"
+    },
+    {
+      "id": "opt",
+      "company": "meta",
+      "family": "OPT",
+      "name": "OPT-175B",
+      "release": "2022-05-05",
+      "params_b": 175,
+      "context_k": 2,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": null,
+      "highlights": [
+        "论文《OPT: Open Pre-trained Transformer Language Models》发布 125M 至 175B 的开放预训练模型",
+        "采用纯 decoder-only Transformer，复现 GPT-3 规模并公开训练日志",
+        "权重按自定义研究许可发布"
+      ],
+      "source": "https://arxiv.org/abs/2205.01068",
+      "note": "params_b 按最大版本 175B 计"
+    },
+    {
+      "id": "llama-1",
+      "company": "meta",
+      "family": "LLaMA",
+      "name": "LLaMA 65B",
+      "release": "2023-02-24",
+      "params_b": 65,
+      "context_k": 2,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": null,
+      "highlights": [
+        "论文《LLaMA: Open and Efficient Foundation Language Models》发布 7B 至 65B 模型",
+        "仅用公开可得数据训练，在多数基准上超过更大规模的 GPT-3",
+        "权重以研究许可发布，标志 Meta 开放权重路线的起点"
+      ],
+      "source": "https://arxiv.org/abs/2302.13971",
+      "note": "params_b 按最大版本 65B 计"
+    },
+    {
+      "id": "llama-2",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 2 70B",
+      "release": "2023-07-18",
+      "params_b": 70,
+      "context_k": 4,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-1",
+      "highlights": [
+        "提供 7B、13B、70B，首次允许商业使用（受社区许可约束）",
+        "训练语料 2 万亿 token，上下文 4096",
+        "引入分组查询注意力与监督微调、RLHF 对齐版本"
+      ],
+      "source": "https://github.com/meta-llama/llama-models",
+      "note": "params_b 按 70B 版本计"
+    },
+    {
+      "id": "code-llama",
+      "company": "meta",
+      "family": "Code Llama",
+      "name": "Code Llama 34B",
+      "release": "2023-08-24",
+      "params_b": 34,
+      "context_k": 16,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-2",
+      "highlights": [
+        "基于 Llama 2 的代码专用模型，提供 7B、13B、34B 及 Python 专精版",
+        "支持 16K 上下文与代码填充（infilling）任务"
+      ],
+      "source": "https://ai.meta.com/blog/code-llama/",
+      "note": "params_b 按 34B 版本计"
+    },
+    {
+      "id": "llama-3",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 3 70B",
+      "release": "2024-04-18",
+      "params_b": 70,
+      "context_k": 8,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-2",
+      "highlights": [
+        "首发 8B 与 70B，使用 15 万亿 token 公开数据训练",
+        "采用改进的分词器与分组查询注意力，知识截止 2023 年 3 月",
+        "Meta 称 70B 在多数基准上超过同期 Gemini 与 Claude"
+      ],
+      "source": "https://ai.meta.com/blog/meta-llama-3/",
+      "note": "params_b 按 70B 版本计"
+    },
+    {
+      "id": "llama-3-1",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 3.1 405B",
+      "release": "2024-07-23",
+      "params_b": 405,
+      "context_k": 128,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-3",
+      "highlights": [
+        "提供 8B、70B、405B，405B 是首个前沿级开放权重模型",
+        "上下文扩展到 128K，支持 8 种语言，训练语料约 15.6 万亿 token",
+        "405B 用于合成数据生成以蒸馏小模型"
+      ],
+      "source": "https://ai.meta.com/blog/meta-llama-3-1/",
+      "note": "params_b 按 405B 版本计"
+    },
+    {
+      "id": "llama-3-2",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 3.2 90B Vision",
+      "release": "2024-09-25",
+      "params_b": 90,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "weighted",
+      "predecessor": "llama-3-1",
+      "highlights": [
+        "Meta 首批多模态 Llama，提供 11B 与 90B 视觉模型",
+        "同时发布 1B 与 3B 纯文本轻量模型，面向边缘与移动设备",
+        "全系列支持 128K 上下文"
+      ],
+      "source": "https://github.com/meta-llama/llama-models",
+      "note": "params_b 按 90B 视觉版本计"
+    },
+    {
+      "id": "llama-3-3",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 3.3 70B",
+      "release": "2024-12-06",
+      "params_b": 70,
+      "context_k": 128,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-3-1",
+      "highlights": [
+        "纯文本 70B 模型，官方称性能接近 3.1 405B 但服务成本大幅降低",
+        "训练语料 15 万亿 token，支持英、德、法、意、葡、印地、西、泰 8 种语言",
+        "使用 SFT 与 RLHF 对齐，上下文 128K"
+      ],
+      "source": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md",
+      "note": "已联网核实"
+    },
+    {
+      "id": "llama-4-scout",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 4 Scout",
+      "release": "2025-04-05",
+      "params_b": 109,
+      "context_k": 10000,
+      "modality": "text,image",
+      "license": "weighted",
+      "predecessor": "llama-3-3",
+      "highlights": [
+        "Llama 4 首批模型之一，混合专家架构，16 个专家、170 亿激活参数、总参数 1090 亿",
+        "上下文窗口 1000 万 token，为当时业界最长",
+        "采用早期融合的原生多模态预训练，可用单张 H100（Int4）运行"
+      ],
+      "source": "https://ai.meta.com/blog/llama-4-multimodal-intelligence",
+      "note": "已联网核实；params_b 为总参数，激活 17B"
+    },
+    {
+      "id": "llama-4-maverick",
+      "company": "meta",
+      "family": "Llama",
+      "name": "Llama 4 Maverick",
+      "release": "2025-04-05",
+      "params_b": 400,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "weighted",
+      "predecessor": "llama-3-3",
+      "highlights": [
+        "混合专家架构，128 个专家、170 亿激活参数、总参数 4000 亿，上下文 100 万 token",
+        "由尚在训练的 Llama 4 Behemoth 共同蒸馏而来",
+        "官方称在多项基准上超过 GPT-4o 与 Gemini 2.0 Flash"
+      ],
+      "source": "https://ai.meta.com/blog/llama-4-multimodal-intelligence",
+      "note": "已联网核实；params_b 为总参数，激活 17B"
+    },
+    {
+      "id": "muse-spark",
+      "company": "meta",
+      "family": "Muse",
+      "name": "Muse Spark",
+      "release": "2026-04-08",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 4 月 8 日由 Meta Superintelligence Labs 发布，是 Muse 系列首个模型",
+        "驱动 Meta AI 应用与 meta.ai，初期仅向部分合作伙伴提供私有 API 预览",
+        "Meta 未发布 Llama 5；官方称希望未来开源后续版本"
+      ],
+      "source": "https://ragyfied.com/articles/meta-llama-5-released",
+      "note": "已联网核实；来源为第三方汇总，Meta 官方页面确认名称与日期但未列参数"
+    },
+    {
+      "id": "muse-glimmer",
+      "company": "meta",
+      "family": "Muse",
+      "name": "Muse Glimmer",
+      "release": "2026-08-10",
+      "params_b": 30,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 8 月 10 日发布的开放权重模型，参数约 300 亿",
+        "采用 Apache 2.0 许可，是扎克伯格 8 月 10 年公开信中承诺恢复开放发布后的首款权重模型"
+      ],
+      "source": "https://vdf.ai/blog/llama-5",
+      "note": "已联网核实；来源为第三方汇总，上下文窗口未披露"
+    },
+    {
+      "id": "muse-spark-open",
+      "company": "meta",
+      "family": "Muse",
+      "name": "Muse Spark Open",
+      "release": "2026-10-15",
+      "params_b": 816,
+      "context_k": null,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "muse-spark",
+      "highlights": [
+        "2026 年 10 月 15 日发布，总参数约 8160 亿、激活约 420 亿",
+        "采用 Meta 自有的 Muse Model License 开放权重，定位智能体编程",
+        "是 Meta 目前规模最大的可下载权重模型"
+      ],
+      "source": "https://vdf.ai/blog/llama-5",
+      "note": "已联网核实；来源为第三方汇总"
+    },
+    {
+      "id": "grok-1",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-1",
+      "release": "2023-11",
+      "params_b": 314,
+      "context_k": 8,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "xAI 首个公开模型，3140 亿参数的混合专家架构，约 25% 权重激活",
+        "2024 年 3 月 17 日以 Apache 2.0 许可开源完整权重",
+        "上下文 8192 token，可实时访问 X 平台数据"
+      ],
+      "source": "https://github.com/xai-org/grok-1",
+      "note": "release 按首次公开发布月份；开源发生在 2024-03"
+    },
+    {
+      "id": "grok-1-5",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-1.5",
+      "release": "2024-03-29",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "grok-1",
+      "highlights": [
+        "上下文窗口扩展到 128K token，强化推理与数学能力",
+        "参数量未公开，未开源权重"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-1-5v",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-1.5V",
+      "release": "2024-04-12",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-1-5",
+      "highlights": [
+        "Grok 1.5 的多模态版本，新增图像理解能力",
+        "保持 128K 上下文窗口"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-2",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-2",
+      "release": "2024-08-14",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "weighted",
+      "predecessor": "grok-1-5v",
+      "highlights": [
+        "2024 年 8 月上线，新增图像生成与视觉理解，同批发布轻量版 Grok-2 mini",
+        "权重按 Grok 2 Community License 开放",
+        "xAI 同期启用 Colossus 超算集群进行训练"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-3",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-3",
+      "release": "2025-02-17",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-2",
+      "highlights": [
+        "2025 年 2 月 17 日发布，用约 20 万张 H100 训练，算力约为 Grok-2 的 10 倍",
+        "引入 Think 推理模式与 DeepSearch 深度检索能力",
+        "官方宣传 100 万 token 上下文，但上线初期 API 实际限制为 131072 token"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；参数量仅有第三方估算，官方未披露故填 null"
+    },
+    {
+      "id": "grok-4",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-4",
+      "release": "2025-07-09",
+      "params_b": null,
+      "context_k": 256,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "grok-3",
+      "highlights": [
+        "2025 年 7 月 9 日与多智能体版本 Grok 4 Heavy 同日发布",
+        "默认开启推理，支持原生工具调用、实时搜索与可分析摄像头画面的语音模式",
+        "GPQA Diamond 得分 88%，Heavy 版在 Humanity's Last Exam 达 50.7%"
+      ],
+      "source": "https://aicomparison.ai/grok-4-vs-grok-3",
+      "note": "已联网核实；参数量仅有第三方估算，官方未披露故填 null"
+    },
+    {
+      "id": "grok-code-fast-1",
+      "company": "xai",
+      "family": "Grok",
+      "name": "grok-code-fast-1",
+      "release": "2025-08-28",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "grok-4",
+      "highlights": [
+        "面向智能体编程的专用模型，SWE-Bench Verified 得分 70.8%",
+        "主打低延迟与 IDE 集成"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-4-fast",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok-4 Fast",
+      "release": "2025-09-19",
+      "params_b": null,
+      "context_k": 2000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-4",
+      "highlights": [
+        "上下文窗口扩展到 200 万 token，思考 token 比 Grok-4 少约 40%",
+        "定位企业级高性价比推理模型"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-4-1",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.1",
+      "release": "2025-11-17",
+      "params_b": null,
+      "context_k": 2000,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-4",
+      "highlights": [
+        "首个以对话质量与情商为主要卖点的 xAI 模型，200 万 token 上下文",
+        "Grok 4.1 Thinking 一度登顶 LMArena（Elo 1483），并通过表达不确定性降低幻觉"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-4-20",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.20",
+      "release": "2026-02-17",
+      "params_b": null,
+      "context_k": 2000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "grok-4-1",
+      "highlights": [
+        "又称 Grok 4.2，2026 年 2 月 17 日进入公测、3 月 10 日通过 API 开放",
+        "四个专用智能体并行推理并交叉校验，SuperGrok Heavy 订阅可扩到 16 个",
+        "引入每周基于使用信号更新的 Rapid Learning Architecture"
+      ],
+      "source": "https://baike.baidu.com/item/Grok%204.2/67603123",
+      "note": "已联网核实；参数量说法（50B/500B）来自工程师社媒，未采用"
+    },
+    {
+      "id": "grok-4-3",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.3",
+      "release": "2026-04-17",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,video",
+      "license": "proprietary",
+      "predecessor": "grok-4-20",
+      "highlights": [
+        "2026 年 4 月 17 日进入 Beta，面向 SuperGrok Heavy 用户",
+        "新增 PDF、表格、幻灯片等文档生成与原生视频输入",
+        "Artificial Analysis 智能指数 53 分，比 Grok 4.20 高 4 分"
+      ],
+      "source": "https://aiwiki.ai/wiki/xai/revisions/7",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "grok-4-5",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.5",
+      "release": "2026-07-08",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-4-3",
+      "highlights": [
+        "基于 1.5 万亿参数的 V9-Medium 基座模型，6 月 28 日起在特斯拉与 SpaceX 内部封闭测试",
+        "2026 年 7 月 8 日向开发者与付费用户全面开放 API",
+        "训练数据引入 Cursor 行业代码，侧重工程编程场景"
+      ],
+      "source": "https://paper.zgswcn.com/bz/html/content.html?articleId=2be48a3d-bece-4f12-afa5-f8ebc38d4682&articleIndex=1&cid=1&date=2026-07-24&pageId=8ae94a25-4e0d-4971-8a14-9a4ce6e58a4b&pageIndex=3&siteId=12&siteName=zgsb",
+      "note": "已联网核实；来源为中国商报报道"
+    },
+    {
+      "id": "grok-4-6",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.6",
+      "release": "2026-08-12",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-4-5",
+      "highlights": [
+        "2026 年 8 月 12 日发布的 Grok 4 系列迭代版本，是 Grok 4.7 的直接前代",
+        "官方规格披露有限，参数量与上下文窗口未取得可核实数据"
+      ],
+      "source": "https://grokmag.com/?p=285",
+      "note": "已联网核实发布日期；来源为第三方 Grok 发布追踪，规格留空"
+    },
+    {
+      "id": "grok-4-7",
+      "company": "xai",
+      "family": "Grok",
+      "name": "Grok 4.7",
+      "release": "2026-09-21",
+      "params_b": null,
+      "context_k": 500,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "grok-4-6",
+      "highlights": [
+        "2026 年 9 月 21 日发布，是 xAI 截至 11 月的旗舰模型",
+        "API 标识 grok-4.7，50 万 token 上下文，支持可配置推理",
+        "定价为每百万输入 token 2 美元、输出 6 美元"
+      ],
+      "source": "https://whizi.io/resources/grok-5",
+      "note": "已联网核实；截至 2026 年 11 月 Grok 5 仍未发布，xAI 官方目录以 4.7 为旗舰"
+    },
+    {
+      "id": "mistral-7b",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral 7B",
+      "release": "2023-09-27",
+      "params_b": 7,
+      "context_k": 32,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "73 亿参数 decoder-only 模型，通过 BitTorrent 与 Hugging Face 以 Apache 2.0 发布",
+        "采用分组查询注意力与滑动窗口注意力，兼顾推理速度与长文本处理",
+        "官方称在多数基准上超过 Llama 2 13B"
+      ],
+      "source": "https://mistral.ai/news/mistral-7b/",
+      "note": ""
+    },
+    {
+      "id": "mixtral-8x7b",
+      "company": "mistral",
+      "family": "Mixtral",
+      "name": "Mixtral 8x7B",
+      "release": "2023-12-11",
+      "params_b": 46.7,
+      "context_k": 32,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-7b",
+      "highlights": [
+        "稀疏混合专家模型，8 个专家、每 token 激活 2 个，总参数约 467 亿",
+        "Apache 2.0 许可，32K 上下文，支持英语、法语、德语、西班牙语与意大利语",
+        "推理成本接近 7B 模型而质量超过 Llama 2 70B"
+      ],
+      "source": "https://mistral.ai/news/mixtral-of-experts/",
+      "note": "params_b 为总参数，激活参数约 12.9B"
+    },
+    {
+      "id": "mistral-small-1",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Small 22B",
+      "release": "2024-02-26",
+      "params_b": 22,
+      "context_k": 32,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-7b",
+      "highlights": [
+        "220 亿参数模型，以 Apache 2.0 许可发布",
+        "面向低成本、低延迟场景，是 Mistral Small 系列首代"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "mistral-large-1",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Large 1",
+      "release": "2024-02-26",
+      "params_b": null,
+      "context_k": 32,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Mistral 首款旗舰级模型，2024 年 2 月发布",
+        "支持英、法、德、西、意五种语言与函数调用，参数量未公开"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "mixtral-8x22b",
+      "company": "mistral",
+      "family": "Mixtral",
+      "name": "Mixtral 8x22B",
+      "release": "2024-04-17",
+      "params_b": 141,
+      "context_k": 64,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mixtral-8x7b",
+      "highlights": [
+        "8 个专家、总参数约 1410 亿、每 token 激活约 390 亿的稀疏模型",
+        "64K 上下文，Apache 2.0 许可，支持函数调用"
+      ],
+      "source": "https://mistral.ai/news/mixtral-8x22b/",
+      "note": "params_b 为总参数"
+    },
+    {
+      "id": "codestral",
+      "company": "mistral",
+      "family": "Codestral",
+      "name": "Codestral 22B",
+      "release": "2024-05",
+      "params_b": 22,
+      "context_k": 32,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-7b",
+      "highlights": [
+        "面向代码生成与填充的 220 亿参数模型，支持 80 多种编程语言",
+        "32K 上下文，针对代码补全场景优化"
+      ],
+      "source": "https://mistral.ai/news/codestral/",
+      "note": "首次发布月份；第三方治理清单将后续版本记为 2025-01-13"
+    },
+    {
+      "id": "mistral-large-2",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Large 2",
+      "release": "2024-07-16",
+      "params_b": 123,
+      "context_k": 128,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-large-1",
+      "highlights": [
+        "1230 亿参数，128K 上下文，Apache 2.0 许可",
+        "强化代码、数学与推理能力，支持 80 多种语言及函数调用"
+      ],
+      "source": "https://mistral.ai/news/mistral-large-2407/",
+      "note": ""
+    },
+    {
+      "id": "ministral-3b",
+      "company": "mistral",
+      "family": "Ministral",
+      "name": "Ministral 3B",
+      "release": "2024-10-09",
+      "params_b": 3,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "30 亿参数的边缘设备模型，针对本地部署与低资源场景优化",
+        "Apache 2.0 许可，是 Ministral 系列首代"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "mistral-small-3",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Small 3.1",
+      "release": "2025-01-30",
+      "params_b": 24,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "mistral-small-1",
+      "highlights": [
+        "240 亿参数，128K 上下文，2025 年 1 月 30 日首发、3 月 17 日更新 3.1 版",
+        "在多模态与指令跟随上大幅提升，Apache 2.0 许可"
+      ],
+      "source": "https://mistral.ai/news/mistral-small-3/",
+      "note": "已联网核实"
+    },
+    {
+      "id": "mistral-medium-3",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Medium 3",
+      "release": "2025-05-07",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "mistral-large-2",
+      "highlights": [
+        "2025 年 5 月 7 日发布的中型模型，主打企业应用成本优化",
+        "以 Mistral Research License 开放权重，参数量未披露"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "magistral",
+      "company": "mistral",
+      "family": "Magistral",
+      "name": "Magistral Small",
+      "release": "2025-06-10",
+      "params_b": 24,
+      "context_k": 128,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-small-3",
+      "highlights": [
+        "Mistral 首批推理模型，与 Magistral Medium 同日于 2025 年 6 月 10 日发布",
+        "基于 Mistral Small 3.1（240 亿参数），具备显式思维链与多语言推理能力",
+        "Small 版本以 Apache 2.0 开放权重"
+      ],
+      "source": "https://mistral.ai/news/magistral/",
+      "note": "已联网核实"
+    },
+    {
+      "id": "devstral-small-1",
+      "company": "mistral",
+      "family": "Devstral",
+      "name": "Devstral Small 1",
+      "release": "2025-07-10",
+      "params_b": 24,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "面向软件工程智能体的代码模型，与 Devstral Medium 1 同日发布",
+        "基于 Mistral Small 3.1，强调代码库级任务与工具调用"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "mistral-large-3",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Large 3",
+      "release": "2025-12-02",
+      "params_b": 675,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "mistral-large-2",
+      "highlights": [
+        "2025 年 12 月 2 日发布，稀疏混合专家模型，410 亿激活参数、总参数 6750 亿",
+        "在 3000 张 NVIDIA H200 上从头训练，是 Mixtral 之后首个 MoE 旗舰",
+        "基底与指令微调版本均以 Apache 2.0 开放，支持图像理解与多语言对话"
+      ],
+      "source": "https://mistral.ai/news/mistral-3",
+      "note": "已联网核实；params_b 为总参数"
+    },
+    {
+      "id": "ministral-3-14b",
+      "company": "mistral",
+      "family": "Ministral",
+      "name": "Ministral 3 14B",
+      "release": "2025-12-02",
+      "params_b": 14,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "ministral-3b",
+      "highlights": [
+        "Mistral 3 系列中的 140 亿参数稠密模型，另有 8B 与 3B 版本",
+        "每档均提供基底、指令与推理变体，全部支持图像理解，Apache 2.0 许可",
+        "推理版在 AIME 2025 上达 85%"
+      ],
+      "source": "https://mistral.ai/news/mistral-3",
+      "note": "已联网核实"
+    },
+    {
+      "id": "devstral-2",
+      "company": "mistral",
+      "family": "Devstral",
+      "name": "Devstral 2",
+      "release": "2025-12-09",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "devstral-small-1",
+      "highlights": [
+        "2025 年 12 月 9 日与 Devstral Small 2 同日发布",
+        "Small 2 为 240 亿参数，官方称编程表现优于 300 亿参数的 Qwen 3 Coder Flash",
+        "同期发布 Mistral Vibe 命令行编程工具"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单"
+    },
+    {
+      "id": "mistral-small-4",
+      "company": "mistral",
+      "family": "Mistral",
+      "name": "Mistral Small 4",
+      "release": "2026-03-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "mistral-small-3",
+      "highlights": [
+        "2026 年 3 月 16 日发布的 Small 系列新一代，与 Leanstral 同日上线",
+        "官方定位为高性价比通用模型"
+      ],
+      "source": "https://legal-center-v2.netlify.app/ai-governance/models",
+      "note": "已联网核实；日期依据第三方模型治理清单，具体规格未披露"
+    },
+    {
+      "id": "command-r",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command R",
+      "release": "2024-03",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "面向检索增强生成与工具调用的指令模型，128K 上下文",
+        "原生支持引用溯源，2024 年 8 月推出更新版 command-r-08-2024",
+        "旧版 command-r-03-2024 已于 2025 年 9 月 15 日弃用"
+      ],
+      "source": "https://docs.cohere.com/docs/models",
+      "note": ""
+    },
+    {
+      "id": "command-r-plus",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command R+ 08-2024",
+      "release": "2024-04",
+      "params_b": 104,
+      "context_k": 128,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "command-r",
+      "highlights": [
+        "1040 亿参数，面向复杂 RAG 工作流，支持可靠引用与结构化 JSON 输出",
+        "2024 年 8 月更新版吞吐量较初代提升 50%、延迟降低 25%",
+        "128K 上下文，亚马逊 Bedrock 上的版本已于 2026 年 8 月下线"
+      ],
+      "source": "https://docs.cohere.com/docs/models",
+      "note": "release 记初代发布月份；params_b 按 08-2024 版本"
+    },
+    {
+      "id": "command-r7b",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command R7B",
+      "release": "2024-12",
+      "params_b": 7,
+      "context_k": 128,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "command-r",
+      "highlights": [
+        "70 亿参数的紧凑模型，2024 年 12 月发布，适合边缘与自托管部署",
+        "面向 RAG、工具调用与多步推理，权重以 CC-BY-NC 4.0 开放"
+      ],
+      "source": "https://docs.cohere.com/docs/models",
+      "note": ""
+    },
+    {
+      "id": "command-a",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command A",
+      "release": "2025-03",
+      "params_b": 111,
+      "context_k": 256,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "command-r-plus",
+      "highlights": [
+        "1110 亿参数、256K 上下文，仅需两张 A100 或 H100 即可运行",
+        "吞吐量为 Command R+ 的约 150%，支持 23 种语言及智能体工具调用",
+        "开放权重但采用 CC-BY-NC 非商业许可"
+      ],
+      "source": "https://docs.cohere.com/docs/models",
+      "note": "已联网核实"
+    },
+    {
+      "id": "command-a-vision",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command A Vision",
+      "release": "2025-07",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "command-a",
+      "highlights": [
+        "Cohere 首个支持图像输入的 Command 模型，128K 上下文",
+        "面向图表理解、表格解析、OCR 与文档问答等企业场景"
+      ],
+      "source": "https://docs.cohere.com/docs/models",
+      "note": "已联网核实"
+    },
+    {
+      "id": "command-a-reasoning",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command A Reasoning",
+      "release": "2025-08-21",
+      "params_b": 111,
+      "context_k": 256,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "command-a",
+      "highlights": [
+        "Cohere 首个推理模型，2025 年 8 月 21 日发布",
+        "支持 23 种语言的混合推理，256K 上下文，面向智能体任务",
+        "可输出思维链并在企业场景中提供可控推理开关"
+      ],
+      "source": "https://cohere.com/command",
+      "note": "已联网核实"
+    },
+    {
+      "id": "command-a-translate",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command A Translate",
+      "release": "2025-08-28",
+      "params_b": null,
+      "context_k": 8,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "command-a",
+      "highlights": [
+        "2025 年 8 月 28 日发布的企业级机器翻译模型，支持 23 种语言",
+        "上下文 8K，专注安全与受控部署"
+      ],
+      "source": "https://cohere.com/command",
+      "note": "已联网核实"
+    },
+    {
+      "id": "command-a-plus",
+      "company": "cohere",
+      "family": "Command",
+      "name": "Command A+",
+      "release": "2026-05-20",
+      "params_b": 218,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "command-a",
+      "highlights": [
+        "2026 年 5 月 20 日发布，Cohere 首个混合专家模型，2180 亿总参数、250 亿激活参数",
+        "将 Command A、Reasoning、Vision 与 Translate 合并为单一权重，支持 48 种语言",
+        "采用 Apache 2.0 许可，128 个专家每 token 激活 8 个加 1 个共享专家"
+      ],
+      "source": "https://cohere.com/command",
+      "note": "已联网核实"
+    },
+    {
+      "id": "jurassic-2",
+      "company": "ai21",
+      "family": "Jurassic",
+      "name": "Jurassic-2 Jumbo",
+      "release": "2021-08",
+      "params_b": 178,
+      "context_k": 8,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "AI21 第一代大规模自回归语言模型系列，最大版本 Jumbo 约 1780 亿参数",
+        "通过 AI21 Studio 与 API 提供，未开放权重"
+      ],
+      "source": "https://www.ai21.com/",
+      "note": "上下文窗口与确切参数依公开资料，来源为厂商主页"
+    },
+    {
+      "id": "jamba",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba",
+      "release": "2024-03",
+      "params_b": 52,
+      "context_k": 256,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "首个规模化生产的 Mamba-Transformer 混合架构模型，520 亿总参数、120 亿激活参数",
+        "256K 上下文，长文本场景吞吐量约为 Mixtral 8x7B 的 3 倍",
+        "以 Apache 2.0 开放权重，单张 80GB GPU 可处理约 140K token"
+      ],
+      "source": "https://aiwiki.ai/wiki/ai21_labs",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "jamba-1-5-mini",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba 1.5 Mini",
+      "release": "2024-08-22",
+      "params_b": 52,
+      "context_k": 256,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "jamba",
+      "highlights": [
+        "Jamba 1.5 系列轻量版，520 亿总参数、120 亿激活参数，256K 上下文",
+        "Arena Hard 得分 46.1，官方称超过 Mixtral 8x22B 与 Command R+",
+        "以 Jamba Open Model License 开放权重"
+      ],
+      "source": "https://www.ai21.com/blog/jamba-1-5",
+      "note": "已联网核实"
+    },
+    {
+      "id": "jamba-1-5-large",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba 1.5 Large",
+      "release": "2024-08-22",
+      "params_b": 398,
+      "context_k": 256,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "jamba",
+      "highlights": [
+        "3980 亿总参数、940 亿激活参数，是首个扩展到该规模的 SSM-Transformer 混合模型",
+        "保持 256K 上下文，Arena Hard 得分 65.4，超过 Llama 3.1 70B 与 405B",
+        "引入 ExpertsInt8 量化，可在 8 张 80GB GPU 上运行完整 256K 上下文"
+      ],
+      "source": "https://www.ai21.com/blog/jamba-1-5",
+      "note": "已联网核实"
+    },
+    {
+      "id": "jamba-1-6",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba 1.6",
+      "release": "2025-03-06",
+      "params_b": 398,
+      "context_k": 256,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "jamba-1-5-large",
+      "highlights": [
+        "2025 年 3 月 6 日发布，含 Large 与 Mini 两档，延续 256K 上下文",
+        "面向私有化部署，官方称 Large 版质量超过 Mistral Large 2、Llama 3.3 70B 与 Command R+",
+        "同期推出批量 API，6 月起提供 NVIDIA NIM 微服务"
+      ],
+      "source": "https://aiwiki.ai/wiki/ai21_labs",
+      "note": "已联网核实；来源为第三方资料库，params_b 按 Large 版本"
+    },
+    {
+      "id": "jamba-reasoning-3b",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba Reasoning 3B",
+      "release": "2025-10-08",
+      "params_b": 3,
+      "context_k": 256,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "30 亿参数的开放推理模型，2025 年 10 月 8 日以 Apache 2.0 发布",
+        "256K 上下文，官方称可扩展到 100 万 token",
+        "KV 缓存比标准 Transformer 小 8 倍，在 M3 MacBook Pro 上 32K 上下文达每秒 40 token"
+      ],
+      "source": "https://aiwiki.ai/wiki/ai21_labs",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "jamba-2-mini",
+      "company": "ai21",
+      "family": "Jamba",
+      "name": "Jamba 2 Mini",
+      "release": "2026-01-08",
+      "params_b": 52,
+      "context_k": 256,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "jamba-1-6",
+      "highlights": [
+        "2026 年 1 月 8 日发布，520 亿总参数、120 亿激活参数的 MoE 模型",
+        "同批还有 30 亿参数的稠密版 Jamba 2 3B，全系 256K 上下文、Apache 2.0 许可",
+        "中期训练使用 5000 亿精选 token，提高数学、代码与长文档比重"
+      ],
+      "source": "https://aiwiki.ai/wiki/ai21_labs",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "nemotron-3-8b",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron-3 8B",
+      "release": "2023-11-15",
+      "params_b": 8,
+      "context_k": null,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": null,
+      "highlights": [
+        "NVIDIA 面向企业生成式 AI 的首批 Nemotron 模型之一",
+        "80 亿参数，按 NVIDIA Open Model License 发布"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "nemotron-4-340b",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron-4 340B",
+      "release": "2024-06",
+      "params_b": 340,
+      "context_k": null,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "nemotron-3-8b",
+      "highlights": [
+        "3400 亿参数，包含基底、指令微调与奖励模型",
+        "主要用途之一是生成合成训练数据，配套发布数据集与安全护栏"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "llama-nemotron",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Llama Nemotron",
+      "release": "2025-03",
+      "params_b": null,
+      "context_k": 128,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "nemotron-4-340b",
+      "highlights": [
+        "基于 Meta Llama 的推理模型系列，由 NVIDIA 通过神经架构搜索优化",
+        "提供 Nano、Super、Ultra 档位，主打推理效率与可变推理预算"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "nemotron-3-nano",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron 3 Nano",
+      "release": "2025-12-15",
+      "params_b": 30,
+      "context_k": 1000,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "llama-nemotron",
+      "highlights": [
+        "2025 年 12 月 15 日随 Nemotron 3 系列发布，300 亿总参数、最多 30 亿激活参数",
+        "混合 Mamba-Transformer 稀疏 MoE 架构，100 万 token 上下文",
+        "吞吐量约为 Nemotron 2 Nano 的 4 倍，推理 token 生成量减少最多 60%"
+      ],
+      "source": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Debuts-Nemotron-3-Family-of-Open-Models/default.aspx",
+      "note": "已联网核实；params_b 为总参数"
+    },
+    {
+      "id": "nemotron-3-super",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron 3 Super",
+      "release": "2026-03-11",
+      "params_b": 120,
+      "context_k": 1000,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "nemotron-3-nano",
+      "highlights": [
+        "2026 年 3 月 11 日发布，约 1200 亿总参数、每 token 最多 100 亿激活参数",
+        "面向多智能体应用，使用 NVFP4 4 位格式在 Blackwell 上训练",
+        "引入潜在 MoE，可用相同推理成本调用 4 倍数量的专家"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库，发布时官方新闻稿仅称 2026 年上半年"
+    },
+    {
+      "id": "nemotron-3-nano-omni",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron 3 Nano Omni",
+      "release": "2026-04-28",
+      "params_b": 30,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "weighted",
+      "predecessor": "nemotron-3-nano",
+      "highlights": [
+        "2026 年 4 月 28 日发布，300 亿参数的多模态版本",
+        "支持文本、图像、视频与音频输入，面向多模态智能体"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "nemotron-3-ultra",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron 3 Ultra",
+      "release": "2026-06-04",
+      "params_b": 550,
+      "context_k": 1000,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "nemotron-3-super",
+      "highlights": [
+        "2026 年 6 月 4 日发布，约 5500 亿总参数、每 token 最多 500 亿激活参数",
+        "定位复杂推理引擎，服务深度研究与战略规划类工作流",
+        "发布时官方新闻稿称 2026 年上半年推出"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    },
+    {
+      "id": "nemotron-3-5-lightning",
+      "company": "nvidia",
+      "family": "Nemotron",
+      "name": "Nemotron 3.5 Lightning",
+      "release": "2026-08-11",
+      "params_b": 30,
+      "context_k": 1000,
+      "modality": "text",
+      "license": "weighted",
+      "predecessor": "nemotron-3-nano",
+      "highlights": [
+        "2026 年 8 月 11 日发布，300 亿参数，面向高速智能体场景",
+        "属 Nemotron 3.5 系列的轻量级版本"
+      ],
+      "source": "https://wikiwand.com/en/Nemotron",
+      "note": "已联网核实；来源为第三方资料库"
+    }
+  ],
+  "technologies": [],
+  "events": []
+}
