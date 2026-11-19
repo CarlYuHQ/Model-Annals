@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="73 个大模型在统一坐标系中对比发布时间与上下文长度。">
+<title>模型 · Model Annals</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-inner">
+  <a class="wordmark" href="index.html">Model Annals</a>
+  <nav class="nav" aria-label="页面导航">
+    <a href="index.html">编年</a>
+    <a href="models.html" aria-current="page">模型</a>
+    <a href="companies.html">机构</a>
+    <a href="tech.html">技术</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <div class="page-head">
+    <h1 class="page-title">模型对比</h1>
+    <p class="kicker">73 models · 20 organizations</p>
+    <p class="page-lede">同一坐标系里放 73 个模型。横轴发布时间，纵轴上下文长度。按机构筛选，点一个点看它的规格。</p>
+  </div>
+
+  <div class="filterbar" id="filters"></div>
+  <div class="viewbar">
+    <button class="viewtab on" data-view="chart">坐标图</button>
+    <button class="viewtab" data-view="table">规格表</button>
+  </div>
+
+  <div class="viewpanel on" id="view-chart">
+    <div class="chart-legend">
+      <span class="lg"><i class="lg-dot lg-us"></i>北美</span>
+      <span class="lg"><i class="lg-dot lg-cn"></i>中国</span>
+      <span class="lg"><i class="lg-dot lg-other"></i>其他</span>
+      <span class="lg"><i class="lg-dot lg-ring"></i>权重开放</span>
+    </div>
+    <p class="chart-swipe">图可左右滑动</p>
+    <div class="chart-wrap" id="chart-wrap"></div>
+    <div class="model-detail" id="model-detail"><p class="detail-idle">点图中任意一点，看它的规格。</p></div>
+  </div>
+
+  <div class="viewpanel" id="view-table">
+    <div class="table-wrap">
+      <table class="hand">
+        <thead><tr><th>模型</th><th>机构</th><th>发布</th><th>上下文</th><th>参数</th><th>许可</th></tr></thead>
+        <tbody id="model-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="footer"><div class="footer-inner">
+  <span>Model Annals</span>
+  <a href="companies.html">去看机构</a>
+</div></footer>
+<script src="assets/site.js"></script>
+<script src="assets/compare-data.js"></script>
+<script src="assets/models.js"></script>
+</body>
+</html>
