@@ -6,14 +6,14 @@
     "note": "数据来自公开来源，各条目附原始链接。未知字段留空，不做推测。"
   },
   "stats": {
-    "models": 352,
+    "models": 356,
     "companies": 21,
     "technologies": 30,
     "events": 64,
     "year_min": 2018,
     "year_max": 2026,
     "by_company": {
-      "openai": 39,
+      "openai": 43,
       "google": 54,
       "ai21": 7,
       "meta": 13,
@@ -44,15 +44,15 @@
       "2023": 28,
       "2024": 60,
       "2025": 127,
-      "2026": 122
+      "2026": 126
     },
     "by_license": {
-      "proprietary": 184,
+      "proprietary": 188,
       "open": 111,
       "weighted": 57
     },
     "by_family": {
-      "GPT": 27,
+      "GPT": 31,
       "BERT": 1,
       "T5": 1,
       "AlphaFold": 2,
@@ -6562,6 +6562,25 @@
       "year": 2026
     },
     {
+      "id": "gpt-6.1-astra-cancelled",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6.1 Astra（取消）",
+      "release": "2026-09",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gpt-6-astra",
+      "highlights": [
+        "原计划中的 GPT-6.1 Astra 在 9 月下旬安全测试后被取消，未对外发布，也未进入 API 定价表",
+        "OpenAI 表示将继续训练同一基础模型，用于后续 GPT-6 系列模型"
+      ],
+      "source": "https://felloai.com/es/gpt-7",
+      "note": "该型号未正式发布，收录以记录产品线变动；来源为行业整理，官方未单独立公告。",
+      "year": 2026
+    },
+    {
       "id": "gemini-3-8-flash",
       "company": "google",
       "family": "Gemini",
@@ -7098,6 +7117,27 @@
       "year": 2026
     },
     {
+      "id": "gpt-6.1-terra",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6.1 Terra",
+      "release": "2026-10-26",
+      "params_b": null,
+      "context_k": 1050,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-6.1-sol",
+      "highlights": [
+        "定位大规模、低成本、可靠的电脑操作模型，将视觉推理、鼠标键盘操作与写作整合到单一模型",
+        "105 万 token 上下文，支持 6 档推理强度，API 输入 1 美元/输出 5 美元每百万 token，较上一代降价一半",
+        "Agents' Last Exam 最大推理档得分 60.0%，接近 GPT-6 Astra，单任务成本为其约七分之一",
+        "10 月 26 日首次公布并逐步推出，11 月起全面开放，同时成为 dots 智能体的可选模型"
+      ],
+      "source": "https://openai.com/dots",
+      "note": "日期取自 OpenAI 官方发布记录（10-26 首次公布）；上下文与 token 单价据官方发布页整理。",
+      "year": 2026
+    },
+    {
       "id": "hy-simulmt-30b-a3b",
       "company": "tencent",
       "family": "混元",
@@ -7335,6 +7375,46 @@
       ],
       "source": "https://hunyuan.tencent.com/research/hy4-flash",
       "note": "官方称计划开源，截至 2026-11-19 权重尚未发布，故记为 proprietary",
+      "year": 2026
+    },
+    {
+      "id": "gpt-6.2-astra",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6.2 Astra",
+      "release": "2026-11-17",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-6-astra",
+      "highlights": [
+        "OpenAI 迄今能力最强的公开模型，在专业工作与科研评测上创新高，每任务成本不到 GPT-6 Astra 的三分之一",
+        "网络安全能力大幅提升，ExploitBench 内部测试较 GPT-6 Astra 提高 22 分，随附更严格的高风险安全防护",
+        "API 输入 8 美元/输出 40 美元每百万 token，在 ChatGPT Work 与 Codex 向 Plus/Pro/Enterprise/Edu 开放"
+      ],
+      "source": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531",
+      "note": "来源为 OpenAI 开发者社区官方公告（2026-11-17）及 OpenAI DevDay 2026 回顾。",
+      "year": 2026
+    },
+    {
+      "id": "gpt-6.2-sol",
+      "company": "openai",
+      "family": "GPT",
+      "name": "GPT-6.2 Sol",
+      "release": "2026-11-17",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gpt-6.1-sol",
+      "highlights": [
+        "高效通用模型，主打多步骤智能体工作流与自然写作，取代 GPT-6.1 Sol",
+        "FrontierCode 2.0 上接近 Astra 的真实代码合并表现，成本约为其五分之一",
+        "API 输入 2 美元/输出 10 美元每百万 token，与 GPT-6.1 Sol 同价，首次向 Pro 200 订阅开放 Ultrafast"
+      ],
+      "source": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531",
+      "note": "来源为 OpenAI 开发者社区官方公告（2026-11-17）。",
       "year": 2026
     },
     {
