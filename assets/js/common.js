@@ -38,8 +38,24 @@
     return `${p[0]}.${p[1]}.${p[2]}`;
   }
 
+  /* ---------- 滚动进度条 ---------- */
+  function initProgress(){
+    let bar=document.getElementById('progress');
+    if(!bar){bar=document.createElement('div');bar.id='progress';document.body.prepend(bar);}
+    let ticking=false;
+    const update=()=>{
+      const h=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=h>0?(window.scrollY/h*100):0;
+      bar.style.width=pct+'%';
+      ticking=false;
+    };
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true;}},{passive:true});
+    update();
+  }
+
   /* ---------- 渲染报头与导航 ---------- */
   function renderChrome(activeKey) {
+    initProgress();
     const mh = document.getElementById('masthead');
     if (mh) {
       mh.className = 'masthead';
@@ -131,8 +147,8 @@
       <span class="d-kicker">技术条目 / ${esc(t.category || 'TECH')}</span>
       <h2>${esc(t.name_zh || t.name)}</h2>
       <p class="muted" style="margin-top:-6px">${esc(t.name)} · ${t.year || '—'} · ${esc(t.origin || '—')}</p>
-      <div class="d-section"><h4>概述</h4><p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin:0">${esc(t.summary)}</p></div>
-      <div class="d-section"><h4>为何关键</h4><p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin:0">${esc(t.impact)}</p></div>
+      <div class="d-section"><h4>概述</h4><p style="color:var(--text-2);font-size:15px;line-height:1.7;margin:0">${esc(t.summary)}</p></div>
+      <div class="d-section"><h4>为何关键</h4><p style="color:var(--text-2);font-size:15px;line-height:1.7;margin:0">${esc(t.impact)}</p></div>
       ${refs.length ? `<div class="d-section"><h4>相关模型</h4><ul class="hl">${refs.map(m => `<li><a href="#" data-open-model="${esc(m.id)}">${esc(m.name)}</a></li>`).join('')}</ul></div>` : ''}
       ${t.source ? `<div class="d-section"><h4>来源</h4><a class="src" href="${esc(t.source)}" target="_blank" rel="noopener">${esc(t.source)} ↗</a></div>` : ''}
     `);
@@ -144,7 +160,7 @@
     openDrawer(`
       <span class="d-kicker">事件 / ${esc(e.type || 'EVENT')} / ${fmtDate(e.date)}</span>
       <h2>${esc(e.title)}</h2>
-      <div class="d-section"><p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin:0">${esc(e.summary)}</p></div>
+      <div class="d-section"><p style="color:var(--text-2);font-size:15px;line-height:1.7;margin:0">${esc(e.summary)}</p></div>
       <div class="d-section"><h4>关联</h4><dl class="kv">
         <dt>机构</dt><dd>${esc(companyName(e.company))}</dd>
         ${e.model_id && MODELS[e.model_id] ? `<dt>模型</dt><dd><a href="#" data-open-model="${esc(e.model_id)}">${esc(MODELS[e.model_id].name)}</a></dd>` : ''}

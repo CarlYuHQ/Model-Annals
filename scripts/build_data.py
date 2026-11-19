@@ -13,6 +13,9 @@ RAW = ROOT / "data" / "raw"
 DATA = ROOT / "data"
 
 FILES = ["frontier.json", "west-others.json", "china.json", "tech-events.json"]
+# 增量补充文件（同一 schema，按 id 去重合并）
+import glob as _glob
+FILES += [Path(p).name for p in sorted(_glob.glob(str(RAW / "*supplement.json")))]
 
 
 def load_all():

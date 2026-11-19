@@ -9,7 +9,7 @@
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .charts-grid .wide{grid-column:1/-1}
 @media(max-width:900px){.charts-grid{grid-template-columns:1fr}.charts-grid .wide{grid-column:auto}}
-.note-inline{font-family:var(--mono);font-size:11px;color:var(--ink-3);line-height:1.7}
+.note-inline{font-family:var(--mono);font-size:11px;color:var(--text-3);line-height:1.7}
 </style>
 </head>
 <body>
@@ -60,7 +60,7 @@
 (function(){
   const {A, esc, renderChrome, companyName} = ATLAS_UI;
   renderChrome('stats.html');
-  const ACCENT='#c96442', INK='#141413', INK3='#5e5d59', BORDER='#f0eee6';
+  const ACCENT='#00D9A3', INK='#F2F3F5', INK3='#8A919C', BORDER='#282D35';
   const font='IBM Plex Mono, monospace';
 
   // ---------- 1. 历年发布 ----------
@@ -78,7 +78,7 @@
     svg.selectAll('rect').data(data).join('rect')
       .attr('x',d=>x(d[0])).attr('width',x.bandwidth())
       .attr('y',d=>y(d[1])).attr('height',d=>H-m.b-y(d[1]))
-      .attr('fill',d=>+d[0]>=2024?ACCENT:'#d9d5c8').attr('rx',3)
+      .attr('fill',d=>+d[0]>=2024?ACCENT:'#3A414B').attr('rx',3)
       .append('title').text(d=>`${d[0]} 年：${d[1]} 个模型`);
     svg.selectAll('.bl').data(data).join('text').attr('class','bar-label').attr('text-anchor','middle')
       .attr('x',d=>x(d[0])+x.bandwidth()/2).attr('y',d=>y(d[1])-7).text(d=>d[1]);
@@ -90,7 +90,7 @@
   (function(){
     const raw=A.stats.by_license;
     const labels={open:'开放权重',weighted:'受限开源',proprietary:'闭源'};
-    const colors={open:'#6f8f7b',weighted:'#c9a24a',proprietary:ACCENT};
+    const colors={open:'#4ade80',weighted:'#fbbf24',proprietary:ACCENT};
     const data=Object.entries(raw).map(([k,v])=>({k,v,label:labels[k]||k,color:colors[k]||INK3}));
     const total=d3.sum(data,d=>d.v);
     const W=520,H=320,cx=170,cy=160,r=105,r2=66;
@@ -124,7 +124,7 @@
       .attr('x1',d=>x(d)).attr('x2',d=>x(d)).attr('y1',m.t).attr('y2',H-m.b);
     svg.selectAll('rect').data(data).join('rect')
       .attr('x',m.l).attr('y',d=>y(d.label)).attr('width',d=>x(d.v)-m.l)
-      .attr('height',y.bandwidth()).attr('fill',(d,i)=>i===0?ACCENT:'#cfc9b9').attr('rx',3)
+      .attr('height',y.bandwidth()).attr('fill',(d,i)=>i===0?ACCENT:'#3A414B').attr('rx',3)
       .append('title').text(d=>`${d.label}: ${d.v}`);
     svg.selectAll('.yl').data(data).join('text').attr('class','bar-label').attr('text-anchor','end')
       .attr('x',m.l-8).attr('y',d=>y(d.label)+y.bandwidth()/2+4).text(d=>d.label);
@@ -152,7 +152,7 @@
     }
     svg.selectAll('circle').data(data).join('circle')
       .attr('cx',d=>x(d.x)).attr('cy',d=>y(d.y)).attr('r',4)
-      .attr('fill',d=>d.license==='proprietary'?ACCENT:'#8a8577').attr('fill-opacity',.6)
+      .attr('fill',d=>d.license==='proprietary'?ACCENT:'#5B8CFF').attr('fill-opacity',.6)
       .append('title').text(d=>`${d.name} · ${companyName(d.company)}\n${d.context_k>=1000?(d.context_k/1000)+'M':d.context_k+'K'} tokens`);
     // 标注几个关键点
     const notable=data.filter(d=>d.y>=1000).slice(0,8);
@@ -177,7 +177,7 @@
     svg.selectAll('rect').data(hist).join('rect')
       .attr('x',d=>x(d.lo+'-'+d.hi)).attr('width',x.bandwidth())
       .attr('y',d=>y(d.v)).attr('height',d=>H-m.b-y(d.v))
-      .attr('fill',d=>(d.lo>=100)?ACCENT:'#cfc9b9').attr('rx',3)
+      .attr('fill',d=>(d.lo>=100)?ACCENT:'#3A414B').attr('rx',3)
       .append('title').text(d=>`${d.lo}–${d.hi}B: ${d.v} 个`);
     svg.selectAll('.vl').data(hist).join('text').attr('class','bar-value').attr('text-anchor','middle')
       .attr('x',d=>x(d.lo+'-'+d.hi)+x.bandwidth()/2).attr('y',d=>y(d.v)-7).text(d=>d.v||'');

@@ -6,16 +6,17 @@
 <title>关系图谱 · 大模型发展全景档案</title>
 <link rel="stylesheet" href="assets/css/main.css">
 <style>
-.graph-stage{height:660px}
-.graph-stage svg{height:660px}
+.graph-stage{height:680px}
+.graph-stage svg{height:680px}
 .gmode{display:flex;gap:8px}
 .legend{margin-top:0}
-.inspect-title{font-family:var(--serif);font-size:24px;font-weight:600;margin:10px 0 4px}
-.inspect-sub{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.node circle,.node rect{filter:drop-shadow(0 0 6px currentColor)}
+.inspect-title{font-family:var(--display);font-size:24px;font-weight:600;margin:10px 0 4px}
+.inspect-sub{font-family:var(--mono);font-size:11px;color:var(--text-3)}
 .inspect-list{margin:14px 0 0;padding:0;list-style:none;max-height:360px;overflow-y:auto}
-.inspect-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--ink-2);cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.inspect-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-2);cursor:pointer;display:flex;justify-content:space-between;gap:8px}
 .inspect-list li:hover{color:var(--accent)}
-.inspect-list li span.mono{color:var(--ink-3);font-size:11px;flex-shrink:0}
+.inspect-list li span.mono{color:var(--text-3);font-size:11px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -39,9 +40,9 @@
     <button class="chip on" data-layer="company">机构</button>
     <button class="chip on" data-layer="tech">技术</button>
     <div class="legend" style="margin-left:auto">
-      <span class="item"><i class="swatch" style="background:#141413"></i>机构</span>
-      <span class="item"><i class="swatch" style="background:#c96442"></i>模型</span>
-      <span class="item"><i class="swatch" style="background:#5e5d59"></i>技术</span>
+      <span class="item"><i class="swatch" style="background:#F2F3F5"></i>机构</span>
+      <span class="item"><i class="swatch" style="background:#00D9A3"></i>模型</span>
+      <span class="item"><i class="swatch" style="background:#5B8CFF"></i>技术</span>
     </div>
   </div>
 
@@ -122,13 +123,13 @@
     const W=stage.clientWidth||900, H=660;
     svg=d3.select(stage).insert('svg',':first-child').attr('viewBox',`0 0 ${W} ${H}`);
 
-    const color={company:'#141413',model:'#c96442',tech:'#5e5d59'};
-    const radius={company:16,model:6,tech:9};
+    const color={company:'#F2F3F5',model:'#00D9A3',tech:'#5B8CFF'};
+    const radius={company:16,model:6.5,tech:9};
 
     const link=svg.append('g').selectAll('line').data(links).join('line')
       .attr('class','link')
-      .attr('stroke',d=>d.rel==='next'?'#d8c3b8':'var(--border)')
-      .attr('stroke-opacity',d=>d.rel==='tech'?0.5:0.8);
+      .attr('stroke',d=>d.rel==='next'?'#2A5A4C':(d.rel==='tech'?'#2C3E63':'var(--border)'))
+      .attr('stroke-opacity',d=>d.rel==='tech'?0.55:0.85);
 
     const node=svg.append('g').selectAll('g').data(nodes).join('g')
       .attr('class','node')
@@ -138,14 +139,16 @@
         .on('end',(ev,d)=>{if(!ev.active)simulation.alphaTarget(0);d.fx=null;d.fy=null;}));
 
     node.each(function(d){
-      const g=d3.select(this);
+      const g=d3.select(this).style('color',color[d.type]);
       if(d.type==='company'){
         g.append('rect').attr('x',-radius.company).attr('y',-radius.company)
-          .attr('width',radius.company*2).attr('height',radius.company*2).attr('rx',5)
-          .attr('fill',color[d.type]);
+          .attr('width',radius.company*2).attr('height',radius.company*2).attr('rx',4)
+          .attr('fill','#0E1013').attr('stroke',color[d.type]).attr('stroke-width',2);
+        g.append('rect').attr('x',-4).attr('y',-4).attr('width',8).attr('height',8).attr('rx',1).attr('fill',color[d.type]);
       } else {
+        g.append('circle').attr('r',radius[d.type]+3).attr('fill',color[d.type]).attr('opacity',.12);
         g.append('circle').attr('r',radius[d.type]).attr('fill',color[d.type])
-          .attr('stroke','var(--surface)').attr('stroke-width',d.type==='model'?0:1.5);
+          .attr('stroke','#0A0B0D').attr('stroke-width',d.type==='model'?0:1.5);
       }
       const showLabel = d.type==='company' || mode==='curated' || d.type==='tech';
       if(showLabel) g.append('text').attr('x',radius[d.type]+5).attr('y',4).text(d.label.length>16?d.label.slice(0,15)+'…':d.label);
@@ -190,7 +193,7 @@
       const list=A.models.filter(m=>m.company===d.ref).sort((a,b)=>(b.release||'').localeCompare(a.release||''));
       inspect.innerHTML=`<span class="inspect-sub">机构</span>
         <div class="inspect-title">${esc(companyName(d.ref))}</div>
-        <p style="color:var(--ink-2);font-size:14px;line-height:1.6">${esc(COMPANIES[d.ref].blurb||'')}</p>
+        <p style="color:var(--text-2);font-size:14px;line-height:1.6">${esc(COMPANIES[d.ref].blurb||'')}</p>
         <div class="d-section"><h4>收录模型 ${list.length}</h4>
           <ul class="inspect-list">${list.slice(0,40).map(m=>`<li data-open-model="${esc(m.id)}">${esc(m.name)}<span class="mono">${fmtShort(m.release)}</span></li>`).join('')}</ul></div>`;
     } else {
@@ -198,7 +201,7 @@
       const refs=(t.model_refs||[]).map(mid=>MODELS[mid]).filter(Boolean).sort((a,b)=>(b.release||'').localeCompare(a.release||''));
       inspect.innerHTML=`<span class="inspect-sub">技术 · ${esc(t.category||'')} · ${t.year||''}</span>
         <div class="inspect-title">${esc(t.name_zh||t.name)}</div>
-        <p style="color:var(--ink-2);font-size:14px;line-height:1.6">${esc(t.summary)}</p>
+        <p style="color:var(--text-2);font-size:14px;line-height:1.6">${esc(t.summary)}</p>
         <button class="chip accent" id="open-tech" style="margin-top:8px">查看技术档案 →</button>
         <div class="d-section"><h4>相关模型 ${refs.length}</h4>
           <ul class="inspect-list">${refs.slice(0,40).map(m=>`<li data-open-model="${esc(m.id)}">${esc(m.name)}<span class="mono">${fmtShort(m.release)}</span></li>`).join('')}</ul></div>`;

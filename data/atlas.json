@@ -6,7 +6,7 @@
     "note": "数据来自公开来源，各条目附原始链接。未知字段留空，不做推测。"
   },
   "stats": {
-    "models": 300,
+    "models": 352,
     "companies": 21,
     "technologies": 30,
     "events": 64,
@@ -14,7 +14,7 @@
     "year_max": 2026,
     "by_company": {
       "openai": 39,
-      "google": 27,
+      "google": 54,
       "ai21": 7,
       "meta": 13,
       "zhipu": 20,
@@ -32,7 +32,7 @@
       "deepseek": 15,
       "cohere": 8,
       "minimax": 10,
-      "tencent": 11,
+      "tencent": 36,
       "stepfun": 5
     },
     "by_year": {
@@ -43,12 +43,12 @@
       "2022": 7,
       "2023": 28,
       "2024": 60,
-      "2025": 111,
-      "2026": 86
+      "2025": 127,
+      "2026": 122
     },
     "by_license": {
-      "proprietary": 147,
-      "open": 96,
+      "proprietary": 184,
+      "open": 111,
       "weighted": 57
     },
     "by_family": {
@@ -79,7 +79,7 @@
       "Yi": 7,
       "Nemotron": 8,
       "DeepSeek": 15,
-      "Gemini": 14,
+      "Gemini": 32,
       "Mixtral": 2,
       "Gemma": 6,
       "Command": 8,
@@ -94,13 +94,20 @@
       "InternVL": 1,
       "Magistral": 1,
       "Seedance": 3,
+      "混元": 25,
       "openPangu": 4,
       "Devstral": 2,
       "Intern": 1,
       "GPT-OSS": 2,
+      "Gemini Robotics": 2,
+      "Veo": 1,
       "Seedream": 2,
       "Muse": 3,
-      "Hy": 4
+      "Hy": 4,
+      "Gemini Omni": 3,
+      "Lyria": 1,
+      "Genie": 1,
+      "Gemini Decision": 1
     }
   },
   "companies": [
@@ -3377,6 +3384,26 @@
       "year": 2025
     },
     {
+      "id": "hunyuan3d-2-1",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D 2.1",
+      "release": "2025-06-18",
+      "params_b": 3.3,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "图生 3D 模型，3.3B 形状模型加 2B PBR 材质模型",
+        "生产级 PBR 材质生成，权重与训练代码开源",
+        "为后续 Omni、Part 等变体的基座"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+      "note": "技术报告 2025-06-18；params_b 记形状模型参数",
+      "year": 2025
+    },
+    {
       "id": "pangu-5-5",
       "company": "huawei",
       "family": "Pangu",
@@ -3553,6 +3580,26 @@
       ],
       "source": "https://wikiwand.com/en/articles/Moonshot_AI",
       "note": "",
+      "year": 2025
+    },
+    {
+      "id": "gemini-2-5-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Flash-Lite",
+      "release": "2025-07-22",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash",
+      "highlights": [
+        "2025 年 7 月 22 日 GA，是 2.5 系列中成本最低、延迟最低的版本，面向高吞吐分类、翻译与抽取等任务",
+        "在 Gemini API 更新日志中与 2.5 Flash 共同构成高低搭配，官方称其性能与成本优于前代 2.0 Flash-Lite",
+        "API 变更为正式版（gemini-2.5-flash-lite），2025 年 9 月另推出 09-2025 预览版"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：Google AI Studio 更新日志 2025-07-22 条目与官方模型生命周期表均记载该日期",
       "year": 2025
     },
     {
@@ -3895,6 +3942,26 @@
       "year": 2025
     },
     {
+      "id": "gemini-2-5-flash-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Flash Image（Nano Banana）",
+      "release": "2025-08-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash",
+      "highlights": [
+        "代号 Nano Banana，2025 年 8 月 12 日先在 LMArena 匿名测试走红，8 月 26 日由 Google 正式发布并确认为 Gemini 2.5 Flash Image",
+        "支持自然语言驱动的图像编辑、同一人物或物体跨多轮的一致性保持、多图融合与世界知识辅助编辑",
+        "所有生成图嵌入不可见 SynthID 水印；API 侧正式版 gemini-2.5-flash-image 于 2025 年 10 月 2 日 GA"
+      ],
+      "source": "https://wikiwand.com/en/Gemini_(language_model)",
+      "note": "已联网核实：发布日依据 Google 官方公告（2025-08-26）；API 的 GA 日期为 2025-10-02，二者不同，note 中已区分",
+      "year": 2025
+    },
+    {
       "id": "command-a-translate",
       "company": "cohere",
       "family": "Command",
@@ -3933,6 +4000,25 @@
       "year": 2025
     },
     {
+      "id": "hunyuanworld-voyager",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanWorld-Voyager",
+      "release": "2025-09-02",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,video,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "首个具备原生 3D 重建能力的超长程世界模型，可将点云视频导出为 3D",
+        "在 Stanford WorldScore 基准的视频生成与 3D 重建质量排名第一"
+      ],
+      "source": "https://hyworld.dev/zh",
+      "note": "来源为 HY World 项目站（第三方域名），与已知 1.5/2.0 时间线吻合，仍建议以官方渠道复核",
+      "year": 2025
+    },
+    {
       "id": "kimi-k2-instruct-0905",
       "company": "moonshot",
       "family": "Kimi",
@@ -3950,6 +4036,26 @@
       ],
       "source": "https://wikiwand.com/en/articles/Moonshot_AI",
       "note": "",
+      "year": 2025
+    },
+    {
+      "id": "hunyuan-mt",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan-MT",
+      "release": "2025-09-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "混元翻译模型，支持 33 种语言及 5 种民族语言互译",
+        "Hunyuan-MT-7B 等在 WMT2025 多语种翻译评测中取得第一",
+        "2025 年 9 月开源模型权重"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan-MT",
+      "note": "技术报告 2025-09-05",
       "year": 2025
     },
     {
@@ -4032,6 +4138,45 @@
       "year": 2025
     },
     {
+      "id": "hunyuan3d-3-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D 3.0",
+      "release": "2025-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "proprietary",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "腾讯全球数字生态大会发布的 3D 生成模型，精度提升 3 倍",
+        "几何分辨率达 1536³，支持 36 亿体素超高清建模",
+        "支持文本、图像、草图及最多四视图输入，以托管服务形式提供"
+      ],
+      "source": "https://baike.baidu.com/item/腾讯混元3D%20Studio/67245800",
+      "note": "3.x 版本未开放权重，仅通过平台/API 提供，故记为 proprietary",
+      "year": 2025
+    },
+    {
+      "id": "hunyuan-t1-vision",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 T1-Vision",
+      "release": "2025-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "hunyuan-t1",
+      "highlights": [
+        "视觉深度推理模型，支持多图输入与长思维链",
+        "对应官方模型广场 HY-Vision1.5-Thinking 版本"
+      ],
+      "source": "https://baike.baidu.com/item/混元系列模型/67480900",
+      "note": "日期与官方模型广场 HY-Vision1.5-Thinking 更新时间 2025-09-16 一致",
+      "year": 2025
+    },
+    {
       "id": "grok-4-fast",
       "company": "xai",
       "family": "Grok",
@@ -4088,6 +4233,64 @@
       ],
       "source": "https://qwen.ai/blog",
       "note": "参数未精确披露",
+      "year": 2025
+    },
+    {
+      "id": "gemini-robotics-1-5",
+      "company": "google",
+      "family": "Gemini Robotics",
+      "name": "Gemini Robotics 1.5 / Robotics-ER 1.5",
+      "release": "2025-09-25",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2025 年 9 月 25 日发布的两模型具身智能栈：Gemini Robotics 1.5 为视觉-语言-动作（VLA）模型，Robotics-ER 1.5 负责高层具身推理与规划",
+        "引入 Motion Transfer 机制支持多机器人本体（ALOHA、双臂 Franka、Apollo 人形）预训练与零样本技能迁移",
+        "Robotics-ER 1.5 首次通过 Gemini API 与 Google AI Studio 以预览版向开发者开放，1.5 VLA 为『思考型 VLA』，可在动作间穿插思维流并检测任务成败"
+      ],
+      "source": "https://aiwiki.ai/wiki/gemini_robotics",
+      "note": "已联网核实：日期见 Google DeepMind 官方时间线与 AI Studio 更新日志（gemini-robotics-er-1.5-preview，2025-09-25）",
+      "year": 2025
+    },
+    {
+      "id": "hunyuan3d-omni",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Omni",
+      "release": "2025-09-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "支持点云、体素、包围盒、骨架等多模态条件控制的可控 3D 生成",
+        "基于 Hunyuan3D 2.1 构建，推理代码与权重开放"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Omni",
+      "note": "技术报告 arXiv:2509.21245",
+      "year": 2025
+    },
+    {
+      "id": "hunyuan3d-part",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Part",
+      "release": "2025-09-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "组件级 3D 生成模型，可将整体 Mesh 拆分为独立部件",
+        "配套 P3-SAM 语义分割与 X-Part 组件生成，推理代码与权重开放"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Part",
+      "note": "腾讯云开源公告与百度百科一致记录 2025-09-26 开源",
       "year": 2025
     },
     {
@@ -4207,6 +4410,26 @@
       ],
       "source": "https://www.anthropic.com/news/claude-haiku-4-5",
       "note": "",
+      "year": 2025
+    },
+    {
+      "id": "veo-3-1",
+      "company": "google",
+      "family": "Veo",
+      "name": "Veo 3.1",
+      "release": "2025-10-15",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Veo 3 之后的视频模型版本，2025 年 10 月 15 日以 veo-3.1-generate-preview / veo-3.1-fast-generate-preview 上线，2025 年 11 月转为 GA",
+        "支持原生同步生成对白、音效与音乐，单次生成 4/6/8 秒，直接输出最高 1080p、API 可达 4K",
+        "提供首尾帧控制、场景扩展与参考图驱动生成；2026 年 3 月 31 日追加更廉价的 Veo 3.1 Lite 档"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：预览版日期取自 Google 官方 models/deprecations 表；GA 月份依据第三方资料，官方 GA 日未明确单列",
       "year": 2025
     },
     {
@@ -4351,6 +4574,26 @@
       "year": 2025
     },
     {
+      "id": "gemini-3-pro-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Pro Image（Nano Banana Pro）",
+      "release": "2025-11-20",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash-image",
+      "highlights": [
+        "Nano Banana Pro，2025 年 11 月 20 日随 Gemini 3 发布，基于 Gemini 3 Pro 构建的高保真专业图像生成与编辑模型",
+        "支持最高 4K 输出、最多 14 张参考图融合、最多 5 个角色特征一致性，以及多语言文本渲染",
+        "集成 Google 搜索以生成基于实时信息的信息图表，可微调景深、光影与色彩，输出嵌入 SynthID 水印"
+      ],
+      "source": "https://baike.baidu.com/item/Nano%20Banana%20Pro/67291578",
+      "note": "已联网核实：日期见 Google 官方 release notes 及 Google Cloud 公告，API 正式版 gemini-3-pro-image 于 2026-05-28 GA",
+      "year": 2025
+    },
+    {
       "id": "hunyuanvideo-1-5",
       "company": "tencent",
       "family": "Hunyuan",
@@ -4388,6 +4631,25 @@
       ],
       "source": "https://www.anthropic.com/system-cards",
       "note": "官方 system card 仅标月份 2025-11；具体日期来自维基",
+      "year": 2025
+    },
+    {
+      "id": "hunyuanocr-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanOCR 1.0",
+      "release": "2025-11-24",
+      "params_b": 1,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "约 1B 参数端到端 OCR 视觉语言模型，2025 年 11 月开放权重与推理代码",
+        "统一文档解析、文字检测识别、信息抽取、字幕提取与图文翻译"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HunyuanOCR",
+      "note": "技术报告 2025-11-24；沿用腾讯混元社区许可",
       "year": 2025
     },
     {
@@ -4491,6 +4753,26 @@
       "year": 2025
     },
     {
+      "id": "gemini-3-deep-think",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Deep Think / 3.1 Deep Think",
+      "release": "2025-12-04",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-deep-think",
+      "highlights": [
+        "2025 年 12 月 4 日先向 Google AI Ultra 订阅者开放，是以 Pro 权重为基础、通过额外推理算力并行探索多条候选解路径的增强推理模式",
+        "2026 年 2 月 12 日重大升级并向研究与企业用户开放 API 早期访问：Humanity's Last Exam（无工具）48.4%、ARC-AGI-2 84.6%（ARC Prize 验证）、Codeforces Elo 3455",
+        "Google 后将其改称 Gemini 3.1 Deep Think，称建立在 Gemini 3.1 Pro 之上；不开放公开 API 常规调用，需 Ultra 订阅或申请早期访问"
+      ],
+      "source": "https://gemini.google/it/release-notes?v=77149f16334056e2b7000f1d21d2691f",
+      "note": "已联网核实：2025-12-04 首启与 2026-02-12 升级均见 Gemini 官方 release notes；Deep Think 是推理模式而非独立 API 模型，按变体收录",
+      "year": 2025
+    },
+    {
       "id": "glm-4-6v",
       "company": "zhipu",
       "family": "GLM",
@@ -4590,6 +4872,26 @@
       "year": 2025
     },
     {
+      "id": "hunyuan-world-1-5",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元世界模型 1.5 (WorldPlay)",
+      "release": "2025-12-17",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "首个具备长时几何一致性的开源实时交互世界模型",
+        "以 24 FPS 流式输出视频，支持键鼠实时控制，基于 HunyuanVideo-8B 骨干",
+        "开源实时世界模型框架，涵盖数据、训练与流式推理部署"
+      ],
+      "source": "https://arxiv.org/abs/2512.14614",
+      "note": "配套强化学习后训练框架 WorldCompass 于 2026-03 开源",
+      "year": 2025
+    },
+    {
       "id": "minimax-m2-1",
       "company": "minimax",
       "family": "MiniMax",
@@ -4607,6 +4909,26 @@
       ],
       "source": "https://aiwiki.ai/wiki/minimax",
       "note": "",
+      "year": 2025
+    },
+    {
+      "id": "hy-motion-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY-Motion 1.0",
+      "release": "2025-12-30",
+      "params_b": 1,
+      "context_k": null,
+      "modality": "text,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "文生 3D 角色动作模型，基于扩散 Transformer 与流匹配",
+        "首个将 DiT 文生动作模型扩展到十亿参数级，3000+ 小时动作数据训练",
+        "推理代码与预训练模型开源，含标准版 1.0B 与 Lite 版 0.46B"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0",
+      "note": "技术报告 arXiv:2512.23464",
       "year": 2025
     },
     {
@@ -4687,6 +5009,26 @@
       ],
       "source": "https://ernie.baidu.com",
       "note": "官方博客 2026-02-06 刊发介绍",
+      "year": 2026
+    },
+    {
+      "id": "hy-image-3-0-instruct",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY Image 3.0 Instruct",
+      "release": "2026-01-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "open",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "HunyuanImage 3.0 的图生图/指令编辑版本，2026 年 1 月上线",
+        "强化原图特征与细节保留、画面质感与版式美观",
+        "底层开源权重沿用腾讯混元社区许可"
+      ],
+      "source": "https://hunyuan.tencent.com/model/hy-model",
+      "note": "官方模型页更新时间 2026-01-26，第三方汇总亦提及 2026 年 1 月加入图像编辑能力",
       "year": 2026
     },
     {
@@ -4830,6 +5172,26 @@
       "year": 2026
     },
     {
+      "id": "hy-vision-2-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY-Vision 2.0 (Instruct)",
+      "release": "2026-02-11",
+      "params_b": 406,
+      "context_k": 28,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "新一代视觉理解快思考模型，基于 HY-2.0 LLM 构建",
+        "总参 406B、激活 32B，最大输入 28K/输出 16K，发图秒答",
+        "后训练采用 SFT+RL 与 On-policy Distillation 融合范式"
+      ],
+      "source": "https://hunyuan.tencent.com/modelSquare/home/list?modelKey=VisionUnderstand",
+      "note": "官方模型广场标注更新时间 2026-02-11",
+      "year": 2026
+    },
+    {
       "id": "minimax-m2-5",
       "company": "minimax",
       "family": "MiniMax",
@@ -4947,6 +5309,26 @@
       ],
       "source": "https://gemini.google/release-notes/",
       "note": "已联网核实",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-1-flash-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash Image（Nano Banana 2）",
+      "release": "2026-02-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-pro-image",
+      "highlights": [
+        "Nano Banana 2，2026 年 2 月 26 日上线，是基于 Gemini 3.1 Flash Image 的快速轻量图像模型，被定位为 Nano Banana Pro 的高性价比替代",
+        "支持 512px、1K、2K、4K 输出与 14 种宽高比（含 1:8、8:1 极端比例），新增视频文件作为输入提示以生成上下文感知缩略图等信息图",
+        "集成图像搜索与网页搜索接地；API 正式版 gemini-3.1-flash-image 于 2026-05-28 GA，2026-10-06 起被 Nano Banana 2.1 取代并标记弃用"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-02-26 首发日见 Google 官方公告与第三方汇总；API GA 日 2026-05-28 见官方 deprecations 表",
       "year": 2026
     },
     {
@@ -5168,6 +5550,26 @@
       "year": 2026
     },
     {
+      "id": "hy-world-2-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 3D 世界模型 2.0 (HY-World 2.0)",
+      "release": "2026-04-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,3d",
+      "license": "open",
+      "predecessor": "hunyuan-world-1-5",
+      "highlights": [
+        "多模态世界模型，理解文字、图片、视频输入并生成、重建、模拟 3D 世界",
+        "四阶段流水线（HY-Pano 2.0→WorldNav→WorldStereo 2.0→WorldMirror 2.0）",
+        "支持 Mesh/3DGS/点云导出，可导入 Unity、UE 等游戏引擎，已开源"
+      ],
+      "source": "https://arxiv.org/abs/2604.14268",
+      "note": "WorldMirror 2.0 等在 tencent-hy-world-2.0-community 社区许可下开源",
+      "year": 2026
+    },
+    {
       "id": "grok-4-3",
       "company": "xai",
       "family": "Grok",
@@ -5289,6 +5691,45 @@
       "year": 2026
     },
     {
+      "id": "hy-image-3-0-plus",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY Image 3.0 Plus",
+      "release": "2026-04-29",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "proprietary",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "混元图像 3.0 Plus 升级版，支持多轮交互改图",
+        "文本渲染更精准，高美学写实表现与复杂语义理解提升"
+      ],
+      "source": "https://hunyuan.tencent.com/model/hy-model",
+      "note": "官方模型页标注更新时间 2026-04-29；以 API 形式提供",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-1-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash-Lite",
+      "release": "2026-05-07",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-flash",
+      "highlights": [
+        "2026 年 5 月 7 日 GA 的轻量档，面向速度、规模与成本敏感场景，是 2.0 Flash-Lite 等的推荐升级目标",
+        "与同期 Gemini 3.5 Flash 配合，承担高吞吐、低延迟的子任务与智能体流水线调用",
+        "2026 年 3 月 3 日曾有 3.1-flash-lite-preview，5 月 25 日停用并重定向到正式版"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表与 AI Studio 更新日志 2026-05-07 条目",
+      "year": 2026
+    },
+    {
       "id": "ernie-5-1",
       "company": "baidu",
       "family": "ERNIE",
@@ -5366,6 +5807,26 @@
       ],
       "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "hy-mt2",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-MT2",
+      "release": "2026-05-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "hunyuan-mt",
+      "highlights": [
+        "新一代多语言翻译模型族，2026-05-21 开源 1.8B、7B 与 30B-A3B 三档",
+        "覆盖 33 种语言，Flores200 与 WMT25 达 SOTA，Apache 2.0 许可",
+        "API 分 Lite/Plus/Pro 三档，最小模型量化后约 440MB 可端侧部署"
+      ],
+      "source": "https://arxiv.org/abs/2605.22064",
+      "note": "params_b 记 null 表示为多尺寸模型族；官方主页展示 Hy-MT2-30B-A3B",
       "year": 2026
     },
     {
@@ -5585,6 +6046,46 @@
       "year": 2026
     },
     {
+      "id": "gemini-3-1-flash-lite-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash-Lite Image（Nano Banana 2 Lite）",
+      "release": "2026-06-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-image",
+      "highlights": [
+        "Nano Banana 2 Lite，2026 年 6 月 30 日 GA（gemini-3.1-flash-lite-image），面向超低延迟与低成本的图像生成和编辑",
+        "是 Nano Banana 家族中最便宜、最快的一档，继承 3.1 Flash Image 的多模态输入能力但进一步压缩成本",
+        "Google 官方 deprecations 表将其列为独立条目，无shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表；另有资料标为 2026-06-23，此处采用官方表的 06-30",
+      "year": 2026
+    },
+    {
+      "id": "gemini-omni-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni Flash",
+      "release": "2026-06-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 6 月 30 日以 gemini-omni-flash-preview 进入公开预览，是面向高速视频生成与对话式视频编辑的全模态模型",
+        "通过 Interactions API 可根据文本描述生成 3–10 秒 720p 视频，或将静态图像 animated 后多轮对话式修改",
+        "非 Veo 后继型号而是独立模型线；2026 年 5 月 19 日已在消费者端亮相，Veo 3.0/3.1 在 Gemini API 侧由其接替"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-06-30 预览发布见官方更新日志；消费者端上线 2026-05-19 见第三方交叉来源",
+      "year": 2026
+    },
+    {
       "id": "gpt-5.6",
       "company": "openai",
       "family": "GPT",
@@ -5664,6 +6165,26 @@
       "year": 2026
     },
     {
+      "id": "hunyuanocr-1-5",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanOCR-1.5",
+      "release": "2026-07-12",
+      "params_b": 1,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "hunyuanocr-1-0",
+      "highlights": [
+        "约 1B 参数的端到端 OCR 专家模型，支持 4K 图像输入与 128K 上下文",
+        "引入 DFlash 投机解码，推理最高加速 6.37 倍；OmniDocBench v1.6 端到端第一（94.74）",
+        "训练配方、推理框架与权重全栈开源，支持 vLLM 与 llama.cpp 部署"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HunyuanOCR",
+      "note": "技术报告 2026-07-06 公开；正式发布开源日期取百度百科 2026-07-12",
+      "year": 2026
+    },
+    {
       "id": "kimi-k3",
       "company": "moonshot",
       "family": "Kimi",
@@ -5682,6 +6203,66 @@
       ],
       "source": "https://aiwiki.ai/wiki/kimi",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-5-flash-cyber",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Flash Cyber",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "2026 年 7 月 21 日随 3.6 Flash 与 3.5 Flash-Lite 一同公布的安全专用变体，针对漏洞检测与补丁修复微调",
+        "因双用途属性不通过公共 API 开放，仅通过有限访问试点向政府与可信伙伴分发",
+        "同一公告中 Google 表示 3.5 Pro 仍在伙伴测试、Gemini 4 预训练已启动，但二者当时均未正式发布"
+      ],
+      "source": "https://aiwiki.ai/index.php?diff=prev&oldid=14779&title=Google_DeepMind",
+      "note": "已联网核实但为第三方资料库汇总；官方更新日志该日条目未单列 cyber 版本，故标注来源层级",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-5-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Flash-Lite",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-lite",
+      "highlights": [
+        "2026 年 7 月 21 日 GA，基于 Gemini 3.1 Flash-Lite 的低延迟、高性价比档，专为高容量自动化与子智能体设计",
+        "与 3.6 Flash 同日发布，官方称其为 latency-sensitive 场景（翻译、分类、智能体支撑）的高效选项",
+        "在 API 更新日志中被标为替代 2.5 Flash 与 2.5 Flash-Lite 的升级目标"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-07-21 条目与 models/deprecations 表",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-6-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.6 Flash",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "2026 年 7 月 21 日与 3.5 Flash-Lite 同时 GA，基于 3.5 Flash 改进编码、通用知识与多模态处理",
+        "主打 token 效率提升和代码/智能体规划能力，价格低于 3.5 Flash，回应开发者对输出冗长的反馈",
+        "同日起 temperature、top_p、top_k 采样参数被标记为弃用；2026 年 11 月 19 日起 API 请求路由至 3.8 Flash"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-07-21 条目与 models/deprecations 表",
       "year": 2026
     },
     {
@@ -5705,6 +6286,26 @@
       "year": 2026
     },
     {
+      "id": "gemini-robotics-er-2",
+      "company": "google",
+      "family": "Gemini Robotics",
+      "name": "Gemini Robotics ER 2（及 Robotics 2 / On-Device 2）",
+      "release": "2026-07-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-robotics-1-5",
+      "highlights": [
+        "2026 年 7 月 30 日发布 Gemini Robotics 2 家族：VLA 模型 Robotics 2、具身推理模型 Robotics ER 2 与端侧 Robotics On-Device 2",
+        "Robotics ER 2 基于 Gemini 3.5 Flash，支持高级空间推理、智能体代码执行、多步工具编排、视频片段定位、进度分类与多机器人协同",
+        "Robotics 2 首次在该家族实现人形机器人全身控制；ER 2 与 streaming 变体以 gemini-robotics-er-2-preview 等端点在 Gemini API 公开预览"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-07-30 见官方更新日志与 models/deprecations 表；2026-07-29 先发布安全技术报告并推出 ASIMOV-Agentic 基准",
+      "year": 2026
+    },
+    {
       "id": "glm-5-3",
       "company": "zhipu",
       "family": "GLM",
@@ -5725,6 +6326,26 @@
       "year": 2026
     },
     {
+      "id": "gemini-3-5-transcribe",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Transcribe / Transcribe Live",
+      "release": "2026-08",
+      "params_b": null,
+      "context_k": null,
+      "modality": "audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 8 月上线的语音转写模型，包含批量 gemini-3.5-transcribe 与低延迟双向流式 gemini-3.5-transcribe-live",
+        "通过 Live API 基于 WebSocket 提供中间与最终转写事件、智能转写模式及多种 VAD（语音活动检测）策略",
+        "Google 官方 deprecations 表按 2026 年 8 月记录，未标注具体日期"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实但仅确认到月份：官方表标注为 August 2026，无精确日",
+      "year": 2026
+    },
+    {
       "id": "qwen3-8-max",
       "company": "alibaba",
       "family": "Qwen",
@@ -5742,6 +6363,45 @@
       ],
       "source": "https://brainplusai.com/en/blog/business-ai/ai-model-comparison",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "hunyuan3d-buffalo-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Buffalo 1.0",
+      "release": "2026-08-03",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "proprietary",
+      "predecessor": "hunyuan3d-3-0",
+      "highlights": [
+        "统一的多模态 3D 模型，覆盖可扩展的 3D 生成、理解与编辑",
+        "以技术报告与项目页形式发布"
+      ],
+      "source": "https://arxiv.org/abs/2608.02711",
+      "note": "截至核查时仅见论文/项目页，未开放权重，故记为 proprietary；来源可靠性中等",
+      "year": 2026
+    },
+    {
+      "id": "hy-asr-3-0-preview",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy ASR 3.0 preview",
+      "release": "2026-08-04",
+      "params_b": null,
+      "context_k": null,
+      "modality": "audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "基于 Hy3 的语音识别模型，融合高精度识别与深度语义理解",
+        "多语种词错误率约 3%（普通话 3.34%、英语 2.62%、粤语 3.12%）",
+        "覆盖 10 大方言片区、20 余种细分方言，支持热词注入与复杂声学场景"
+      ],
+      "source": "https://tech.cnr.cn/techgd/20260805/t20260805_527748144.shtml",
+      "note": "腾讯云产品动态亦记录该引擎于 2026-08-04 上线",
       "year": 2026
     },
     {
@@ -5822,6 +6482,26 @@
       "year": 2026
     },
     {
+      "id": "gemini-3-7-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.7 Flash",
+      "release": "2026-08-13",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-6-flash",
+      "highlights": [
+        "2026 年 8 月 13 日 GA，官方定位为『最智能的主力工作马』，基于 3.6 Flash 强化核心推理底座",
+        "在软件工程、Web 开发与智能体工作流上大幅提升，推广期价格 $0.75/百万输入、$3.75/百万输出 token（至 2026-12-31）",
+        "成为 Gemini Spark 常驻个人智能体的底层模型；2026 年 9 月起被 3.8 Flash 取代，但保留供重视 token 效率的工作负载"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-08-13 条目与 models/deprecations 表",
+      "year": 2026
+    },
+    {
       "id": "glm-5-3-flash",
       "company": "zhipu",
       "family": "GLM",
@@ -5839,6 +6519,26 @@
       ],
       "source": "https://theainews.cc/articles/2026-09-24-flash-models-deepseek-glm-mimo",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "gemini-omni-1-1-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni 1.1 Flash",
+      "release": "2026-08-27",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-omni-flash",
+      "highlights": [
+        "2026 年 8 月 27 日 GA 的 Omni 视频生成模型版本，接续 6 月的 Omni Flash 预览",
+        "面向视频生成与对话式编辑，是 Gemini API 侧替代 Veo 3.x 的模型线",
+        "2026 年 12 月 3 日起 API 请求自动路由至 Omni 1.2 Flash"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表中 Gemini Omni Flash 分组",
       "year": 2026
     },
     {
@@ -5920,6 +6620,45 @@
       "year": 2026
     },
     {
+      "id": "hy4-preview-lite",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy4 preview 轻量版",
+      "release": "2026-09-01",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "hy4-preview",
+      "highlights": [
+        "Hy4 preview 的轻量版本，权重由接近 1.5TB 压缩至约 214GB",
+        "便于更低硬件门槛部署"
+      ],
+      "source": "https://baike.baidu.com/item/混元Hy4%20preview/69402353",
+      "note": "来源为百度百科，许可方式未明确，记为 proprietary 待核实",
+      "year": 2026
+    },
+    {
+      "id": "lyria-3-5",
+      "company": "google",
+      "family": "Lyria",
+      "name": "Lyria 3.5",
+      "release": "2026-09-03",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 3 日 GA 的音乐生成模型，是 Lyria 3 系列（2026-03-25 预览）的正式版本",
+        "Flow 的视频配乐功能于 2026 年 7 月 29 日切换至 Lyria 3.5",
+        "Google 官方 deprecations 表列于 Lyria 模型分组，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表",
+      "year": 2026
+    },
+    {
       "id": "gpt-6-astra",
       "company": "openai",
       "family": "GPT",
@@ -5958,6 +6697,46 @@
       ],
       "source": "https://www.deepseek.com/en/news",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-8-live",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Live / Live Extended Thinking",
+      "release": "2026-09-15",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio,video",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 15 日 GA 的低延迟实时语音/视频交互模型，含 gemini-3.8-live 与 gemini-3.8-live-extended-thinking 两个端点",
+        "是 Live API 的升级版本，接替 3.1 Flash Live 与 2.5 Flash Native Audio 系列",
+        "官方 deprecations 表将其列为 Live API 模型的当前推荐版本，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表 Live API 分组",
+      "year": 2026
+    },
+    {
+      "id": "gemini-3-8-flash-cyber",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Flash Cyber",
+      "release": "2026-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-8-flash",
+      "highlights": [
+        "2026 年 9 月 16 日发布的安全宽松版变体（gemini-3.8-flash-cyber），放宽网络安全缓解措施",
+        "仅通过 Google 的 Fairwind Program 向可信防御伙伴提供，不在公开 API 中开放",
+        "Google 报告其在 Collinear CWE-Bench 补丁任务上 pass@1 为 47.2%，接近某领先前沿模型的 47.8%"
+      ],
+      "source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions",
+      "note": "已联网核实但为官方 Cloud 文档与第三方汇总：Google Cloud 模型生命周期表记 2026-09-16；具体性能数字来自 AI Wiki 汇总",
       "year": 2026
     },
     {
@@ -6080,6 +6859,46 @@
       "year": 2026
     },
     {
+      "id": "gemini-3-8-flash-tts",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Flash TTS / Flash-Lite TTS",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 22 日 GA 的下一代文本转语音模型：Flash TTS 为旗舰创意语音模型，主打录音棚级保真、细腻演绎、区域方言与长轮次稳定性",
+        "Flash-Lite TTS 面向高吞吐生产与实时语音智能体级联，替代 gemini-3.1-flash-tts-preview",
+        "同期上线 /v1beta/voices 端点，支持文字设计语音、经同意验证的语音复制与 150+ 预置及自定义声音库"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-09-22 条目与 models/deprecations 表",
+      "year": 2026
+    },
+    {
+      "id": "hy-image-3-5-preview",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy Image 3.5 preview",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "proprietary",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "面向生图创作，支持文生图、图生图与多轮对话创作",
+        "腾讯三季报称专业生图能力较上一代提升约 30%，元宝上线后生图请求量增长超 60%",
+        "文字渲染、写实表现与复杂语义理解增强"
+      ],
+      "source": "https://baike.baidu.com/item/腾讯混元大模型/63600993",
+      "note": "Q3 财报亦披露为三季度发布",
+      "year": 2026
+    },
+    {
       "id": "minimax-m3-1-flash-preview",
       "company": "minimax",
       "family": "MiniMax",
@@ -6135,6 +6954,47 @@
       ],
       "source": "https://help.openai.com/en/articles/9624314-model-release-notes",
       "note": "上下文窗口未披露",
+      "year": 2026
+    },
+    {
+      "id": "genie-4",
+      "company": "google",
+      "family": "Genie",
+      "name": "Genie 4",
+      "release": "2026-10",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Google DeepMind 于 2026 年 10 月底发布的新一代实时交互式世界模型，可按提示生成可操控、可探索的虚拟世界",
+        "是首个原生生成音频的实时世界模型，环境音效、音乐与交互对话与画面同步生成，支持自然语言实时修改天气、镜头与场景元素",
+        "可模拟空气动力学、碰撞与人物反应；接入 Gemini 3.8 Flash 作为循环中的引导智能体拆分目标并核查每步执行，面向机器人仿真训练与影视预演",
+        "以研究预览版向受信任测试者开放，输出含 SynthID 水印；完整发布日各来源在 10 月 27 日与 11 月 3 日间不一致"
+      ],
+      "source": "https://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901595.shtml",
+      "note": "已联网核实存在，但发布日期存疑：AI Review Rating 记为 2026-10-27，多家中文媒体为 2026-11-03 报道，另有资料称 11 月 12 日推送，故仅记到 2026-10",
+      "year": 2026
+    },
+    {
+      "id": "gemini-nano-banana-2-1",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini Nano Banana 2.1",
+      "release": "2026-10-06",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-image",
+      "highlights": [
+        "2026 年 10 月 6 日 GA，是 Nano Banana 2（Gemini 3.1 Flash Image）的升级版，保持 Flash 级速度与成本",
+        "在视觉质量、提示遵循、多轮角色一致性、文字渲染，以及 1:4/4:1、1:8/8:1 等宽全景宽高比上显著提升，支持 1K/2K/4K 分辨率",
+        "官方同时将 gemini-3.1-flash-image 标记为弃用并建议新项目迁移至 2.1"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-10-06 条目与 models/deprecations 表",
       "year": 2026
     },
     {
@@ -6198,6 +7058,66 @@
       "year": 2026
     },
     {
+      "id": "hy-memory-30b-a3b",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-Memory-30B-A3B",
+      "release": "2026-10-16",
+      "params_b": 30,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "面向长期协作型 Agent 的专用记忆模型，30B 总参、3B 激活",
+        "2026-10-16 随 Hy Memory 2.0 开源模型权重、记忆框架与 MemHub",
+        "在 Mem0、MemOS 等主流记忆框架上效果超过闭源模型，Apache 2.0"
+      ],
+      "source": "https://baike.baidu.com/item/Hy-Memory/67948473",
+      "note": "Hy Memory 产品初版于 2026-05-28 推出；此处记开源专用模型日期",
+      "year": 2026
+    },
+    {
+      "id": "hy-nomas",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-Nomas",
+      "release": "2026-10-24",
+      "params_b": 8,
+      "context_k": null,
+      "modality": "text,video",
+      "license": "open",
+      "predecessor": "hunyuanvideo-1-5",
+      "highlights": [
+        "交互式视频世界模型，8B 扩散骨干，原生融合自由文本指令与连续相机轨迹",
+        "片段自回归生成、持久化 KV 缓存，动作感知因果注意力与 Segment Forcing",
+        "Apache 2.0 开源，蒸馏后 8 步去噪、720×1280@24FPS，单卡 RTX 4090 可运行"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+      "note": "官方 X 于 2026-10-24 宣布开源，技术报告约 10 月底公开；同步发布 Hy-Nomas-Bench",
+      "year": 2026
+    },
+    {
+      "id": "hy-simulmt-30b-a3b",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-SimulMT-30B-A3B",
+      "release": "2026-10-26",
+      "params_b": 30,
+      "context_k": null,
+      "modality": "audio",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "同声传译大模型，支持中英语音到语音实时翻译与实时音色克隆",
+        "采用“先开口、后修补”策略，StreamLAAL 延迟约 3.3 秒，优于持证同传专家",
+        "Apache 2.0 开源，配套 SimulInfer/SimulTrain 及 FP8、GGUF 版本"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hy-SimulMT",
+      "note": "30B 总参、3B 激活（A3B）；官方公众号与百度百科一致记录 2026-10-26",
+      "year": 2026
+    },
+    {
       "id": "gpt-6-rosalind",
       "company": "openai",
       "family": "GPT",
@@ -6258,6 +7178,26 @@
       "year": 2026
     },
     {
+      "id": "gemini-omni-1-2-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni 1.2 Flash",
+      "release": "2026-11-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-omni-1-1-flash",
+      "highlights": [
+        "2026 年 11 月 5 日 GA 的 Omni 视频生成模型最新版本，提供最长 15 秒视频与多轮编辑能力",
+        "价格较前代下调约 30%，720p 约 $0.07/秒；成为 Gemini 应用与 Flow 中视频生成的默认模型",
+        "Google 官方 deprecations 表列其发布日期为 2026-11-05，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表；15 秒时长、降价的细节来自第三方汇总",
+      "year": 2026
+    },
+    {
       "id": "claude-fable-5.2",
       "company": "anthropic",
       "family": "Claude",
@@ -6296,6 +7236,68 @@
       "year": 2026
     },
     {
+      "id": "gemini-decision-1",
+      "company": "google",
+      "family": "Gemini Decision",
+      "name": "Gemini Decision 1",
+      "release": "2026-11-11",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 11 月 11 日上线的新模型条目，Google 在官方 models/deprecations 表中单列为 Gemini Decision 模型分组",
+        "官方页面链接至 gemini-decision-1 模型页，无 shutdown 日期公告",
+        "定位与能力细节在已核查的公开资料中较少，此处仅记录官方确认的发布日期与分类"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "发布日期与存在性由 Google 官方 deprecations 表确认，但具体定位缺乏多来源交叉，标注为部分存疑",
+      "year": 2026
+    },
+    {
+      "id": "gemini-4-hydrogen",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Hydrogen",
+      "release": "2026-11-12",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-8-flash",
+      "highlights": [
+        "2026 年 11 月 12 日发布，是 Gemini 4 家族的高速执行档，接替 Gemini 3.8 Flash 的 Flash 产品线定位，改用 Hydrogen 级别命名",
+        "提供 low/medium/high（默认）/xhigh 四档思考深度，原生支持 100 万 token 输入与输出，可处理 PDF、表格、图表与音视频",
+        "默认 high 模式下任务完成速度约为 3.8 Flash 的 2.5 倍、虚构内容减少 5 倍以上；Terminal-Bench 4.1 得分 57%（3.8 Flash 为 18.2%）",
+        "Artificial Analysis 智能指数 v5.0.1 下 xhigh 模式得 54 分，高于 Argon 的 50 分；API 定价 $1.5/百万输入、$7.5/百万输出 token",
+        "已覆盖 Gemini 应用、Google 搜索 AI Mode（默认模型）、AI Studio、Gemini API 与 Antigravity"
+      ],
+      "source": "https://www.siliconreport.com/google-launches-gemini-4-hydrogen-replacing-gemini-3-8-flash",
+      "note": "已联网核实为真有新来源：Google 官方 models/deprecations 表记 2026-11-12，且有多家独立媒体交叉报道",
+      "year": 2026
+    },
+    {
+      "id": "hy-realtime",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy Realtime",
+      "release": "2026-11-13",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "全新实时语音模型，强化语音理解、指令遵循与拟人化表达",
+        "新增 Agentic 工具调用与唱歌能力，已在元宝语音通话、腾讯客服上线",
+        "官方称近期上线腾讯云对外提供 API"
+      ],
+      "source": "https://www.nbd.com.cn/articles/2026-11-13/4647109.html",
+      "note": "参数与上下文未披露",
+      "year": 2026
+    },
+    {
       "id": "qwen4-max",
       "company": "alibaba",
       "family": "Qwen",
@@ -6313,6 +7315,46 @@
       ],
       "source": "https://qwen.ai/",
       "note": "",
+      "year": 2026
+    },
+    {
+      "id": "hy4-flash",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy4 flash",
+      "release": "2026-11-16",
+      "params_b": 224,
+      "context_k": 1024,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "hy4",
+      "highlights": [
+        "总参 224B（含 64B Engram 参数）、激活仅 12B，支持多模态与 1M 上下文",
+        "官方称迄今性价比最高的 Hy 模型，输入 0.5 元/输出 2 元每百万 Token",
+        "单任务成本约为 Hy4 preview 的 1/13、Hy4 的 1/20；上线首日登顶 OpenRouter"
+      ],
+      "source": "https://hunyuan.tencent.com/research/hy4-flash",
+      "note": "官方称计划开源，截至 2026-11-19 权重尚未发布，故记为 proprietary",
+      "year": 2026
+    },
+    {
+      "id": "gemini-4-neon",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Neon",
+      "release": "2026-11-18",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gemini-4-hydrogen",
+      "highlights": [
+        "Google 官方 models/deprecations 表在 Gemini 4 分组中列出的最新条目，发布日期为 2026 年 11 月 18 日（当前档案截至日前一天）",
+        "官方表未给出 shutdown 日期或推荐替代模型，说明这是当前仍在服役的最新型号",
+        "除官方发布表外缺乏独立媒体与官方博客的多来源细节，定位与能力参数暂不推断"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "发布事实来自 Google 官方 deprecations 表（一手来源），但为检索到的最新条目、细节极少，标注为部分存疑并建议后续复核",
       "year": 2026
     }
   ],

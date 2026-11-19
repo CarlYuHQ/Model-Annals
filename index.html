@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>大模型发展全景档案 · LLM Evolution Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -11,78 +12,61 @@
 <div id="navbar"></div>
 
 <main>
-  <!-- 报头式 Hero -->
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="stamp">档案编号 ATLAS-2026 · 第七次修订</span>
-        <h1>一部关于<br><em>尺度</em>的编年史</h1>
-      </div>
-      <div class="hero-note">
-        从 <b>2017 年一篇论文</b> 到今天数百个模型，大语言模型的演进不是一条直线，
-        而是若干条并行的谱系：规模、对齐、推理、开源。本档案把 <b>300 个模型</b>、
-        <b>21 家机构</b> 与 <b>30 项关键技术</b> 放在同一张时间轴上，
-        让你可以沿着任意一条线索读下去。
+    <div class="hero-inner">
+      <span class="stamp">ATLAS / VOL.01 — 第七次修订 · 2017—2026</span>
+      <h1>
+        <span class="line"><span class="word" style="animation-delay:.05s">一部关于</span></span>
+        <span class="line"><span class="word" style="animation-delay:.18s"><em>尺度</em></span><span class="word" style="animation-delay:.28s">的编年史</span></span>
+      </h1>
+      <div class="hero-bottom">
+        <div class="hero-note">
+          从 <b>2017 年一篇论文</b> 到今天数百个模型，大模型的演进不是一条直线，而是若干条并行谱系：规模、对齐、推理、开源。本档案把 <b id="h-model">300</b> 个模型、<b id="h-company">21</b> 家机构与 <b id="h-tech">30</b> 项关键技术放在同一张时间轴上——你可以沿着任意一条线索读下去。
+        </div>
+        <div class="hero-index">
+          <span>时间跨度<b>2018 — 2026</b></span>
+          <span>数据来源<b>公开一手资料</b></span>
+          <span>更新于<b id="h-upd">2026.11.19</b></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 数字总览 -->
-  <section class="section-tight wrap">
-    <div class="stats-strip" id="stats-strip"></div>
-  </section>
+  <section class="section-tight wrap"><div class="stats-strip" id="stats-strip"></div></section>
 
-  <!-- 六个入口 -->
   <section class="section wrap" style="padding-top:24px">
     <div class="section-head">
-      <div>
-        <span class="kicker">阅读路径</span>
-        <h2 style="margin-top:12px">六种看法，同一段历史</h2>
-      </div>
-      <div class="note">每张卡片都是一份独立的视图 · 点击进入</div>
+      <div><span class="kicker">阅读路径</span><h2 style="margin-top:14px">六种看法，同一段历史</h2></div>
+      <div class="note">每张卡片都是一份独立视图 · 点击进入 →</div>
     </div>
     <div class="grid-3" id="entries"></div>
   </section>
 
-  <!-- 三个时代 -->
   <section class="section wrap" style="padding-top:0">
     <div class="section-head">
-      <div>
-        <span class="kicker">分期</span>
-        <h2 style="margin-top:12px">三个时代</h2>
-      </div>
+      <div><span class="kicker">分期</span><h2 style="margin-top:14px">三个时代</h2></div>
       <div class="note">分期为叙述便利，边界并不严格</div>
     </div>
     <div class="era-grid">
       <div class="era">
-        <div class="emark">Ⅰ</div>
-        <div class="eyr">2017 — 2021</div>
-        <h3>架构与规模</h3>
-        <p>Transformer 确立主流架构，GPT 与 BERT 分出自回归与掩码两条预训练路线。缩放法则告诉我们"更大更好"，参数从亿级冲向千亿级。这一期的关键词是 <span class="mono">architecture</span> 与 <span class="mono">scale</span>。</p>
+        <div class="emark">Ⅰ</div><div class="eyr">2017 — 2021</div><h3>架构与规模</h3>
+        <p>Transformer 确立主流架构，GPT 与 BERT 分出自回归与掩码两条预训练路线。缩放法则告诉我们"更大更好"，参数从亿级冲向千亿级。关键词：<span class="mono hl-accent">architecture</span> / <span class="mono">scale</span>。</p>
       </div>
       <div class="era">
-        <div class="emark">Ⅱ</div>
-        <div class="eyr">2022 — 2023</div>
-        <h3>对齐与对话</h3>
-        <p>ChatGPT 把模型变成产品，RLHF 与指令微调让模型"听得懂人话"。开源阵营以 LLaMA 为起点迅速扩张。能力之外，安全与对齐第一次成为一等公民。关键词：<span class="mono">RLHF</span>、<span class="mono">chat</span>、<span class="mono">open weights</span>。</p>
+        <div class="emark">Ⅱ</div><div class="eyr">2022 — 2023</div><h3>对齐与对话</h3>
+        <p>ChatGPT 把模型变成产品，RLHF 与指令微调让模型"听得懂人话"。开源阵营以 LLaMA 为起点迅速扩张。能力之外，安全与对齐第一次成为一等公民。关键词：<span class="mono hl-amber">RLHF</span> / <span class="mono">chat</span>。</p>
       </div>
       <div class="era">
-        <div class="emark">Ⅲ</div>
-        <div class="eyr">2024 — 2026</div>
-        <h3>推理与智能体</h3>
-        <p>思维链与强化学习把算力从训练侧搬到推理侧，o1、R1 开启"想得更久"的路线。长上下文、多模态、工具调用与代码执行成为标配。模型开始被按任务与价格切成一整个系列。关键词：<span class="mono">test-time compute</span>、<span class="mono">agent</span>。</p>
+        <div class="emark">Ⅲ</div><div class="eyr">2024 — 2026</div><h3>推理与智能体</h3>
+        <p>思维链与强化学习把算力从训练侧搬到推理侧，o1、R1 开启"想得更久"的路线。长上下文、多模态、工具调用成为标配。模型被按任务与价格切成一整个系列。关键词：<span class="mono" style="color:var(--blue)">test-time compute</span> / <span class="mono">agent</span>。</p>
       </div>
     </div>
   </section>
 
-  <!-- 近期发布 -->
   <section class="section wrap" style="padding-top:0">
     <div class="section-head">
-      <div>
-        <span class="kicker">最新动态</span>
-        <h2 style="margin-top:12px">最近收录的发布</h2>
-      </div>
-      <div class="note">按发布日期倒序 · 点击查看详情与来源 <a href="timeline.html" style="color:var(--accent)">查看完整时间线 →</a></div>
+      <div><span class="kicker">最新动态</span><h2 style="margin-top:14px">最近收录的发布</h2></div>
+      <div class="note">按发布日期倒序 · 点击查看来源 <a href="timeline.html" style="color:var(--accent)">完整时间线 →</a></div>
     </div>
     <div class="table-wrap">
       <table class="idx">
@@ -93,44 +77,39 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap fg">
-    <p>数据来自公开渠道，每条均附来源链接。未知字段一律留空，不做推测。<br>本项目为独立整理，与所列机构无隶属关系。</p>
-    <p><a href="sources.html">数据来源与说明 →</a><br>LLM Evolution Atlas · 2026</p>
-  </div>
-</footer>
+<footer class="footer"><div class="wrap fg">
+  <p>数据来自公开渠道，每条均附来源链接。未知字段一律留空，不做推测。<br>本项目为独立整理，与所列机构无隶属关系。</p>
+  <p><a href="sources.html">数据来源与说明 →</a><br>LLM Evolution Atlas · 2026</p>
+</div></footer>
 
 <script src="data/atlas.js"></script>
 <script src="assets/js/common.js"></script>
 <script>
 (function(){
-  const {A, esc, fmtDate, renderChrome, companyName, licenseLabel, openModel} = ATLAS_UI;
+  const {A, esc, fmtDate, renderChrome, companyName, licenseLabel} = ATLAS_UI;
   renderChrome('index.html');
-
-  // 数字条
-  const s = A.stats;
-  document.getElementById('stats-strip').innerHTML = [
-    [s.models, '模型收录'], [s.companies, '机构'], [s.technologies, '关键技术'], [s.events, '历史事件']
-  ].map(([n,l],i)=>`<div class="stat"><div class="num"><em>${n}</em></div><div class="label">${l}</div></div>`).join('');
-
-  // 入口卡
-  const entries = [
-    ['01','时间线','沿年份与月份浏览所有发布与事件，支持按机构、类型筛选。','timeline.html'],
-    ['02','关系图谱','机构、模型、技术三类节点交织成网，点击任意节点查看档案。','graph.html'],
-    ['03','模型家谱','按谱系梳理模型的代际传承，看清每一次迭代的来龙去脉。','lineage.html'],
-    ['04','数据观察','发布密度、上下文长度、参数规模与开源比例的可视化。','stats.html'],
-    ['05','地理分布','把机构画在世界上，看算力与人才如何分布。','geo.html'],
-    ['06','模型索引','一张可搜索、可筛选、可排序的完整清单。','catalog.html'],
+  const s=A.stats;
+  function countUp(el,to){const dur=1100,st=performance.now();const f=now=>{const p=Math.min(1,(now-st)/dur);const e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(f);};requestAnimationFrame(f);}
+  ['h-model','h-company','h-tech'].forEach(id=>document.getElementById(id).textContent='0');
+  setTimeout(()=>{countUp(document.getElementById('h-model'),s.models);countUp(document.getElementById('h-company'),s.companies);countUp(document.getElementById('h-tech'),s.technologies);},400);
+  document.getElementById('h-upd').textContent=A.meta.updated.replace(/-/g,'.');
+  document.getElementById('stats-strip').innerHTML=[
+    [s.models,'模型收录'],[s.companies,'机构'],[s.technologies,'关键技术'],[s.events,'历史事件']
+  ].map(([n,l])=>`<div class="stat"><div class="num"><em>${n}</em></div><div class="label">${l}</div></div>`).join('');
+  const entries=[
+    ['01','时间线','沿年份浏览所有发布与事件，按机构、类型筛选。','timeline.html','T'],
+    ['02','关系图谱','机构、模型、技术三类节点交织成网。','graph.html','G'],
+    ['03','模型家谱','沿谱系梳理模型代际传承，看清每次迭代。','lineage.html','F'],
+    ['04','数据观察','发布密度、上下文、参数规模与开源比例。','stats.html','S'],
+    ['05','地理分布','把机构画在世界上，看算力如何分布。','geo.html','M'],
+    ['06','模型索引','可搜索、筛选、排序的完整清单。','catalog.html','I'],
   ];
-  document.getElementById('entries').innerHTML = entries.map(([i,t,d,h])=>`
-    <a class="card entry" href="${h}"><span class="idx">${i} / 06</span><h3>${t}</h3><p class="desc">${d}</p><span class="arrow">↗</span></a>`).join('');
-
-  // 最近发布
-  const recent = [...A.models].filter(m=>m.release).sort((a,b)=>b.release.localeCompare(a.release)).slice(0,12);
-  document.getElementById('recent-body').innerHTML = recent.map(m=>`
+  document.getElementById('entries').innerHTML=entries.map(([i,t,d,h,g])=>`
+    <a class="card entry" href="${h}"><span class="glyph">${g}</span><span class="idx">${i} / 06</span><h3>${t}</h3><p class="desc">${d}</p><span class="arrow">↗</span></a>`).join('');
+  const recent=[...A.models].filter(m=>m.release).sort((a,b)=>b.release.localeCompare(a.release)).slice(0,12);
+  document.getElementById('recent-body').innerHTML=recent.map(m=>`
     <tr data-open-model="${esc(m.id)}" style="cursor:pointer">
-      <td class="m-num">${fmtDate(m.release)}</td>
-      <td><span class="m-name">${esc(m.name)}</span></td>
+      <td class="m-num">${fmtDate(m.release)}</td><td><span class="m-name">${esc(m.name)}</span></td>
       <td class="m-company">${esc(companyName(m.company))}</td>
       <td><span class="tag ${esc(m.license||'')}">${esc(licenseLabel[m.license]||'—')}</span></td>
       <td class="m-num">${m.params_b?m.params_b+'B':'—'}</td>

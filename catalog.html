@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <style>
 .pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:24px;font-family:var(--mono);font-size:12px}
-.pager button{padding:7px 12px;border:1px solid var(--border);background:var(--surface);border-radius:8px;color:var(--ink-2)}
+.pager button{padding:7px 12px;border:1px solid var(--border);background:var(--surface);border-radius:8px;color:var(--text-2)}
 .pager button:disabled{opacity:.35;cursor:default}
 .pager button:not(:disabled):hover{border-color:var(--accent);color:var(--accent)}
 .sort-ind{color:var(--accent)}
@@ -109,7 +109,7 @@
         <td class="m-num">${m.context_k?(m.context_k>=1000?(m.context_k/1000)+'M':m.context_k+'K'):'—'}</td>
         <td><span class="tag ${esc(m.license||'')}">${esc(licenseLabel[m.license]||'—')}</span></td>
         <td class="m-num">${esc(m.family||'—')}</td>
-      </tr>`).join('')||`<tr><td colspan="7" style="padding:50px;text-align:center;color:var(--ink-3)">没有匹配的模型</td></tr>`;
+      </tr>`).join('')||`<tr><td colspan="7" style="padding:50px;text-align:center;color:var(--text-3)">没有匹配的模型</td></tr>`;
 
     document.getElementById('pager').innerHTML=`
       <button id="prev" ${page===1?'disabled':''}>← 上一页</button>

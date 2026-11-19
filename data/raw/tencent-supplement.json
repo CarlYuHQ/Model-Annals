@@ -1,0 +1,474 @@
+{
+  "companies": [],
+  "models": [
+    {
+      "id": "hy4-flash",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy4 flash",
+      "release": "2026-11-16",
+      "params_b": 224,
+      "context_k": 1024,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "hy4",
+      "highlights": [
+        "总参 224B（含 64B Engram 参数）、激活仅 12B，支持多模态与 1M 上下文",
+        "官方称迄今性价比最高的 Hy 模型，输入 0.5 元/输出 2 元每百万 Token",
+        "单任务成本约为 Hy4 preview 的 1/13、Hy4 的 1/20；上线首日登顶 OpenRouter"
+      ],
+      "source": "https://hunyuan.tencent.com/research/hy4-flash",
+      "note": "官方称计划开源，截至 2026-11-19 权重尚未发布，故记为 proprietary"
+    },
+    {
+      "id": "hy-realtime",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy Realtime",
+      "release": "2026-11-13",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "全新实时语音模型，强化语音理解、指令遵循与拟人化表达",
+        "新增 Agentic 工具调用与唱歌能力，已在元宝语音通话、腾讯客服上线",
+        "官方称近期上线腾讯云对外提供 API"
+      ],
+      "source": "https://www.nbd.com.cn/articles/2026-11-13/4647109.html",
+      "note": "参数与上下文未披露"
+    },
+    {
+      "id": "hy4-preview-lite",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy4 preview 轻量版",
+      "release": "2026-09-01",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "hy4-preview",
+      "highlights": [
+        "Hy4 preview 的轻量版本，权重由接近 1.5TB 压缩至约 214GB",
+        "便于更低硬件门槛部署"
+      ],
+      "source": "https://baike.baidu.com/item/混元Hy4%20preview/69402353",
+      "note": "来源为百度百科，许可方式未明确，记为 proprietary 待核实"
+    },
+    {
+      "id": "hy-image-3-5-preview",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy Image 3.5 preview",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "proprietary",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "面向生图创作，支持文生图、图生图与多轮对话创作",
+        "腾讯三季报称专业生图能力较上一代提升约 30%，元宝上线后生图请求量增长超 60%",
+        "文字渲染、写实表现与复杂语义理解增强"
+      ],
+      "source": "https://baike.baidu.com/item/腾讯混元大模型/63600993",
+      "note": "Q3 财报亦披露为三季度发布"
+    },
+    {
+      "id": "hy-image-3-0-plus",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY Image 3.0 Plus",
+      "release": "2026-04-29",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "proprietary",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "混元图像 3.0 Plus 升级版，支持多轮交互改图",
+        "文本渲染更精准，高美学写实表现与复杂语义理解提升"
+      ],
+      "source": "https://hunyuan.tencent.com/model/hy-model",
+      "note": "官方模型页标注更新时间 2026-04-29；以 API 形式提供"
+    },
+    {
+      "id": "hy-image-3-0-instruct",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY Image 3.0 Instruct",
+      "release": "2026-01-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image",
+      "license": "open",
+      "predecessor": "hunyuanimage-3-0",
+      "highlights": [
+        "HunyuanImage 3.0 的图生图/指令编辑版本，2026 年 1 月上线",
+        "强化原图特征与细节保留、画面质感与版式美观",
+        "底层开源权重沿用腾讯混元社区许可"
+      ],
+      "source": "https://hunyuan.tencent.com/model/hy-model",
+      "note": "官方模型页更新时间 2026-01-26，第三方汇总亦提及 2026 年 1 月加入图像编辑能力"
+    },
+    {
+      "id": "hy-vision-2-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY-Vision 2.0 (Instruct)",
+      "release": "2026-02-11",
+      "params_b": 406,
+      "context_k": 28,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "新一代视觉理解快思考模型，基于 HY-2.0 LLM 构建",
+        "总参 406B、激活 32B，最大输入 28K/输出 16K，发图秒答",
+        "后训练采用 SFT+RL 与 On-policy Distillation 融合范式"
+      ],
+      "source": "https://hunyuan.tencent.com/modelSquare/home/list?modelKey=VisionUnderstand",
+      "note": "官方模型广场标注更新时间 2026-02-11"
+    },
+    {
+      "id": "hunyuan-t1-vision",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 T1-Vision",
+      "release": "2025-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "hunyuan-t1",
+      "highlights": [
+        "视觉深度推理模型，支持多图输入与长思维链",
+        "对应官方模型广场 HY-Vision1.5-Thinking 版本"
+      ],
+      "source": "https://baike.baidu.com/item/混元系列模型/67480900",
+      "note": "日期与官方模型广场 HY-Vision1.5-Thinking 更新时间 2025-09-16 一致"
+    },
+    {
+      "id": "hy-asr-3-0-preview",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy ASR 3.0 preview",
+      "release": "2026-08-04",
+      "params_b": null,
+      "context_k": null,
+      "modality": "audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "基于 Hy3 的语音识别模型，融合高精度识别与深度语义理解",
+        "多语种词错误率约 3%（普通话 3.34%、英语 2.62%、粤语 3.12%）",
+        "覆盖 10 大方言片区、20 余种细分方言，支持热词注入与复杂声学场景"
+      ],
+      "source": "https://tech.cnr.cn/techgd/20260805/t20260805_527748144.shtml",
+      "note": "腾讯云产品动态亦记录该引擎于 2026-08-04 上线"
+    },
+    {
+      "id": "hunyuanocr-1-5",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanOCR-1.5",
+      "release": "2026-07-12",
+      "params_b": 1,
+      "context_k": 128,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": "hunyuanocr-1-0",
+      "highlights": [
+        "约 1B 参数的端到端 OCR 专家模型，支持 4K 图像输入与 128K 上下文",
+        "引入 DFlash 投机解码，推理最高加速 6.37 倍；OmniDocBench v1.6 端到端第一（94.74）",
+        "训练配方、推理框架与权重全栈开源，支持 vLLM 与 llama.cpp 部署"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HunyuanOCR",
+      "note": "技术报告 2026-07-06 公开；正式发布开源日期取百度百科 2026-07-12"
+    },
+    {
+      "id": "hunyuanocr-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanOCR 1.0",
+      "release": "2025-11-24",
+      "params_b": 1,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "约 1B 参数端到端 OCR 视觉语言模型，2025 年 11 月开放权重与推理代码",
+        "统一文档解析、文字检测识别、信息抽取、字幕提取与图文翻译"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HunyuanOCR",
+      "note": "技术报告 2025-11-24；沿用腾讯混元社区许可"
+    },
+    {
+      "id": "hy-mt2",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-MT2",
+      "release": "2026-05-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": "hunyuan-mt",
+      "highlights": [
+        "新一代多语言翻译模型族，2026-05-21 开源 1.8B、7B 与 30B-A3B 三档",
+        "覆盖 33 种语言，Flores200 与 WMT25 达 SOTA，Apache 2.0 许可",
+        "API 分 Lite/Plus/Pro 三档，最小模型量化后约 440MB 可端侧部署"
+      ],
+      "source": "https://arxiv.org/abs/2605.22064",
+      "note": "params_b 记 null 表示为多尺寸模型族；官方主页展示 Hy-MT2-30B-A3B"
+    },
+    {
+      "id": "hunyuan-mt",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan-MT",
+      "release": "2025-09-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "混元翻译模型，支持 33 种语言及 5 种民族语言互译",
+        "Hunyuan-MT-7B 等在 WMT2025 多语种翻译评测中取得第一",
+        "2025 年 9 月开源模型权重"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan-MT",
+      "note": "技术报告 2025-09-05"
+    },
+    {
+      "id": "hy-simulmt-30b-a3b",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-SimulMT-30B-A3B",
+      "release": "2026-10-26",
+      "params_b": 30,
+      "context_k": null,
+      "modality": "audio",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "同声传译大模型，支持中英语音到语音实时翻译与实时音色克隆",
+        "采用“先开口、后修补”策略，StreamLAAL 延迟约 3.3 秒，优于持证同传专家",
+        "Apache 2.0 开源，配套 SimulInfer/SimulTrain 及 FP8、GGUF 版本"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hy-SimulMT",
+      "note": "30B 总参、3B 激活（A3B）；官方公众号与百度百科一致记录 2026-10-26"
+    },
+    {
+      "id": "hy-memory-30b-a3b",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-Memory-30B-A3B",
+      "release": "2026-10-16",
+      "params_b": 30,
+      "context_k": null,
+      "modality": "text",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "面向长期协作型 Agent 的专用记忆模型，30B 总参、3B 激活",
+        "2026-10-16 随 Hy Memory 2.0 开源模型权重、记忆框架与 MemHub",
+        "在 Mem0、MemOS 等主流记忆框架上效果超过闭源模型，Apache 2.0"
+      ],
+      "source": "https://baike.baidu.com/item/Hy-Memory/67948473",
+      "note": "Hy Memory 产品初版于 2026-05-28 推出；此处记开源专用模型日期"
+    },
+    {
+      "id": "hunyuan3d-2-1",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D 2.1",
+      "release": "2025-06-18",
+      "params_b": 3.3,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "图生 3D 模型，3.3B 形状模型加 2B PBR 材质模型",
+        "生产级 PBR 材质生成，权重与训练代码开源",
+        "为后续 Omni、Part 等变体的基座"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+      "note": "技术报告 2025-06-18；params_b 记形状模型参数"
+    },
+    {
+      "id": "hunyuan3d-3-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D 3.0",
+      "release": "2025-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "proprietary",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "腾讯全球数字生态大会发布的 3D 生成模型，精度提升 3 倍",
+        "几何分辨率达 1536³，支持 36 亿体素超高清建模",
+        "支持文本、图像、草图及最多四视图输入，以托管服务形式提供"
+      ],
+      "source": "https://baike.baidu.com/item/腾讯混元3D%20Studio/67245800",
+      "note": "3.x 版本未开放权重，仅通过平台/API 提供，故记为 proprietary"
+    },
+    {
+      "id": "hunyuan3d-omni",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Omni",
+      "release": "2025-09-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "支持点云、体素、包围盒、骨架等多模态条件控制的可控 3D 生成",
+        "基于 Hunyuan3D 2.1 构建，推理代码与权重开放"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Omni",
+      "note": "技术报告 arXiv:2509.21245"
+    },
+    {
+      "id": "hunyuan3d-part",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Part",
+      "release": "2025-09-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "open",
+      "predecessor": "hunyuan3d-2-1",
+      "highlights": [
+        "组件级 3D 生成模型，可将整体 Mesh 拆分为独立部件",
+        "配套 P3-SAM 语义分割与 X-Part 组件生成，推理代码与权重开放"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Part",
+      "note": "腾讯云开源公告与百度百科一致记录 2025-09-26 开源"
+    },
+    {
+      "id": "hunyuan3d-buffalo-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hunyuan3D-Buffalo 1.0",
+      "release": "2026-08-03",
+      "params_b": null,
+      "context_k": null,
+      "modality": "image,3d",
+      "license": "proprietary",
+      "predecessor": "hunyuan3d-3-0",
+      "highlights": [
+        "统一的多模态 3D 模型，覆盖可扩展的 3D 生成、理解与编辑",
+        "以技术报告与项目页形式发布"
+      ],
+      "source": "https://arxiv.org/abs/2608.02711",
+      "note": "截至核查时仅见论文/项目页，未开放权重，故记为 proprietary；来源可靠性中等"
+    },
+    {
+      "id": "hy-world-2-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 3D 世界模型 2.0 (HY-World 2.0)",
+      "release": "2026-04-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,3d",
+      "license": "open",
+      "predecessor": "hunyuan-world-1-5",
+      "highlights": [
+        "多模态世界模型，理解文字、图片、视频输入并生成、重建、模拟 3D 世界",
+        "四阶段流水线（HY-Pano 2.0→WorldNav→WorldStereo 2.0→WorldMirror 2.0）",
+        "支持 Mesh/3DGS/点云导出，可导入 Unity、UE 等游戏引擎，已开源"
+      ],
+      "source": "https://arxiv.org/abs/2604.14268",
+      "note": "WorldMirror 2.0 等在 tencent-hy-world-2.0-community 社区许可下开源"
+    },
+    {
+      "id": "hunyuan-world-1-5",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元世界模型 1.5 (WorldPlay)",
+      "release": "2025-12-17",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "首个具备长时几何一致性的开源实时交互世界模型",
+        "以 24 FPS 流式输出视频，支持键鼠实时控制，基于 HunyuanVideo-8B 骨干",
+        "开源实时世界模型框架，涵盖数据、训练与流式推理部署"
+      ],
+      "source": "https://arxiv.org/abs/2512.14614",
+      "note": "配套强化学习后训练框架 WorldCompass 于 2026-03 开源"
+    },
+    {
+      "id": "hunyuanworld-voyager",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HunyuanWorld-Voyager",
+      "release": "2025-09-02",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,video,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "首个具备原生 3D 重建能力的超长程世界模型，可将点云视频导出为 3D",
+        "在 Stanford WorldScore 基准的视频生成与 3D 重建质量排名第一"
+      ],
+      "source": "https://hyworld.dev/zh",
+      "note": "来源为 HY World 项目站（第三方域名），与已知 1.5/2.0 时间线吻合，仍建议以官方渠道复核"
+    },
+    {
+      "id": "hy-nomas",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 Hy-Nomas",
+      "release": "2026-10-24",
+      "params_b": 8,
+      "context_k": null,
+      "modality": "text,video",
+      "license": "open",
+      "predecessor": "hunyuanvideo-1-5",
+      "highlights": [
+        "交互式视频世界模型，8B 扩散骨干，原生融合自由文本指令与连续相机轨迹",
+        "片段自回归生成、持久化 KV 缓存，动作感知因果注意力与 Segment Forcing",
+        "Apache 2.0 开源，蒸馏后 8 步去噪、720×1280@24FPS，单卡 RTX 4090 可运行"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+      "note": "官方 X 于 2026-10-24 宣布开源，技术报告约 10 月底公开；同步发布 Hy-Nomas-Bench"
+    },
+    {
+      "id": "hy-motion-1-0",
+      "company": "tencent",
+      "family": "混元",
+      "name": "混元 HY-Motion 1.0",
+      "release": "2025-12-30",
+      "params_b": 1,
+      "context_k": null,
+      "modality": "text,3d",
+      "license": "open",
+      "predecessor": null,
+      "highlights": [
+        "文生 3D 角色动作模型，基于扩散 Transformer 与流匹配",
+        "首个将 DiT 文生动作模型扩展到十亿参数级，3000+ 小时动作数据训练",
+        "推理代码与预训练模型开源，含标准版 1.0B 与 Lite 版 0.46B"
+      ],
+      "source": "https://github.com/Tencent-Hunyuan/HY-Motion-1.0",
+      "note": "技术报告 arXiv:2512.23464"
+    }
+  ],
+  "technologies": [],
+  "events": []
+}

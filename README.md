@@ -44,7 +44,7 @@ llm-evolution-atlas/
 ├── catalog.html            # 模型索引
 ├── sources.html            # 数据来源与说明
 ├── assets/
-│   ├── css/main.css        # 设计系统（暖色人文 · 单一强调色）
+│   ├── css/main.css        # 设计系统（深色科技编辑风 · 数据发光感）
 │   ├── js/common.js        # 公共逻辑：报头、抽屉、工具函数
 │   └── vendor/             # D3 / topojson（本地，离线可用）
 ├── data/
@@ -77,7 +77,7 @@ python3 scripts/build_data.py
 
 ## 设计
 
-采用"暖色人文"设计系统：纸白底（`#f5f4ed`）、衬线标题、单一陶土强调色（`#c96442`）、等宽字体用于编号与数据标签。刻意规避生成式 AI 的默认视觉套路（紫蓝渐变、玻璃拟态、emoji 堆砌、居中式英雄区）。所有字体从 Google Fonts 加载，离线时回退到系统字体。
+采用"深色科技编辑风"设计系统 v2：近黑底（`#0A0B0D`）、细网格背景、Space Grotesk 几何标题、数据青绿主强调色（`#00D9A3`）+ 琥珀橙 / 蓝双辅色、JetBrains Mono 用于编号与数据标签。视觉锤包括 Hero 逐字入场、数字滚动、发光节点、图表生长动画、滚动进度条。刻意规避生成式 AI 的默认套路（紫粉渐变、玻璃拟态、emoji 堆砌、居中式英雄区）。所有字体从 Google Fonts 加载，离线时回退到系统字体，并遵循 `prefers-reduced-motion`。
 
 ## 来源与局限
 

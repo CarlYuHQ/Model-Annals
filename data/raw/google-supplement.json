@@ -1,0 +1,523 @@
+{
+  "companies": [],
+  "models": [
+    {
+      "id": "gemini-2-5-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Flash-Lite",
+      "release": "2025-07-22",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash",
+      "highlights": [
+        "2025 年 7 月 22 日 GA，是 2.5 系列中成本最低、延迟最低的版本，面向高吞吐分类、翻译与抽取等任务",
+        "在 Gemini API 更新日志中与 2.5 Flash 共同构成高低搭配，官方称其性能与成本优于前代 2.0 Flash-Lite",
+        "API 变更为正式版（gemini-2.5-flash-lite），2025 年 9 月另推出 09-2025 预览版"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：Google AI Studio 更新日志 2025-07-22 条目与官方模型生命周期表均记载该日期"
+    },
+    {
+      "id": "gemini-2-5-flash-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 2.5 Flash Image（Nano Banana）",
+      "release": "2025-08-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash",
+      "highlights": [
+        "代号 Nano Banana，2025 年 8 月 12 日先在 LMArena 匿名测试走红，8 月 26 日由 Google 正式发布并确认为 Gemini 2.5 Flash Image",
+        "支持自然语言驱动的图像编辑、同一人物或物体跨多轮的一致性保持、多图融合与世界知识辅助编辑",
+        "所有生成图嵌入不可见 SynthID 水印；API 侧正式版 gemini-2.5-flash-image 于 2025 年 10 月 2 日 GA"
+      ],
+      "source": "https://wikiwand.com/en/Gemini_(language_model)",
+      "note": "已联网核实：发布日依据 Google 官方公告（2025-08-26）；API 的 GA 日期为 2025-10-02，二者不同，note 中已区分"
+    },
+    {
+      "id": "gemini-robotics-1-5",
+      "company": "google",
+      "family": "Gemini Robotics",
+      "name": "Gemini Robotics 1.5 / Robotics-ER 1.5",
+      "release": "2025-09-25",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2025 年 9 月 25 日发布的两模型具身智能栈：Gemini Robotics 1.5 为视觉-语言-动作（VLA）模型，Robotics-ER 1.5 负责高层具身推理与规划",
+        "引入 Motion Transfer 机制支持多机器人本体（ALOHA、双臂 Franka、Apollo 人形）预训练与零样本技能迁移",
+        "Robotics-ER 1.5 首次通过 Gemini API 与 Google AI Studio 以预览版向开发者开放，1.5 VLA 为『思考型 VLA』，可在动作间穿插思维流并检测任务成败"
+      ],
+      "source": "https://aiwiki.ai/wiki/gemini_robotics",
+      "note": "已联网核实：日期见 Google DeepMind 官方时间线与 AI Studio 更新日志（gemini-robotics-er-1.5-preview，2025-09-25）"
+    },
+    {
+      "id": "veo-3-1",
+      "company": "google",
+      "family": "Veo",
+      "name": "Veo 3.1",
+      "release": "2025-10-15",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Veo 3 之后的视频模型版本，2025 年 10 月 15 日以 veo-3.1-generate-preview / veo-3.1-fast-generate-preview 上线，2025 年 11 月转为 GA",
+        "支持原生同步生成对白、音效与音乐，单次生成 4/6/8 秒，直接输出最高 1080p、API 可达 4K",
+        "提供首尾帧控制、场景扩展与参考图驱动生成；2026 年 3 月 31 日追加更廉价的 Veo 3.1 Lite 档"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：预览版日期取自 Google 官方 models/deprecations 表；GA 月份依据第三方资料，官方 GA 日未明确单列"
+    },
+    {
+      "id": "gemini-3-pro-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Pro Image（Nano Banana Pro）",
+      "release": "2025-11-20",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-flash-image",
+      "highlights": [
+        "Nano Banana Pro，2025 年 11 月 20 日随 Gemini 3 发布，基于 Gemini 3 Pro 构建的高保真专业图像生成与编辑模型",
+        "支持最高 4K 输出、最多 14 张参考图融合、最多 5 个角色特征一致性，以及多语言文本渲染",
+        "集成 Google 搜索以生成基于实时信息的信息图表，可微调景深、光影与色彩，输出嵌入 SynthID 水印"
+      ],
+      "source": "https://baike.baidu.com/item/Nano%20Banana%20Pro/67291578",
+      "note": "已联网核实：日期见 Google 官方 release notes 及 Google Cloud 公告，API 正式版 gemini-3-pro-image 于 2026-05-28 GA"
+    },
+    {
+      "id": "gemini-3-deep-think",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3 Deep Think / 3.1 Deep Think",
+      "release": "2025-12-04",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-2-5-deep-think",
+      "highlights": [
+        "2025 年 12 月 4 日先向 Google AI Ultra 订阅者开放，是以 Pro 权重为基础、通过额外推理算力并行探索多条候选解路径的增强推理模式",
+        "2026 年 2 月 12 日重大升级并向研究与企业用户开放 API 早期访问：Humanity's Last Exam（无工具）48.4%、ARC-AGI-2 84.6%（ARC Prize 验证）、Codeforces Elo 3455",
+        "Google 后将其改称 Gemini 3.1 Deep Think，称建立在 Gemini 3.1 Pro 之上；不开放公开 API 常规调用，需 Ultra 订阅或申请早期访问"
+      ],
+      "source": "https://gemini.google/it/release-notes?v=77149f16334056e2b7000f1d21d2691f",
+      "note": "已联网核实：2025-12-04 首启与 2026-02-12 升级均见 Gemini 官方 release notes；Deep Think 是推理模式而非独立 API 模型，按变体收录"
+    },
+    {
+      "id": "gemini-3-1-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash-Lite",
+      "release": "2026-05-07",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-flash",
+      "highlights": [
+        "2026 年 5 月 7 日 GA 的轻量档，面向速度、规模与成本敏感场景，是 2.0 Flash-Lite 等的推荐升级目标",
+        "与同期 Gemini 3.5 Flash 配合，承担高吞吐、低延迟的子任务与智能体流水线调用",
+        "2026 年 3 月 3 日曾有 3.1-flash-lite-preview，5 月 25 日停用并重定向到正式版"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表与 AI Studio 更新日志 2026-05-07 条目"
+    },
+    {
+      "id": "gemini-3-1-flash-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash Image（Nano Banana 2）",
+      "release": "2026-02-26",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-pro-image",
+      "highlights": [
+        "Nano Banana 2，2026 年 2 月 26 日上线，是基于 Gemini 3.1 Flash Image 的快速轻量图像模型，被定位为 Nano Banana Pro 的高性价比替代",
+        "支持 512px、1K、2K、4K 输出与 14 种宽高比（含 1:8、8:1 极端比例），新增视频文件作为输入提示以生成上下文感知缩略图等信息图",
+        "集成图像搜索与网页搜索接地；API 正式版 gemini-3.1-flash-image 于 2026-05-28 GA，2026-10-06 起被 Nano Banana 2.1 取代并标记弃用"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-02-26 首发日见 Google 官方公告与第三方汇总；API GA 日 2026-05-28 见官方 deprecations 表"
+    },
+    {
+      "id": "gemini-omni-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni Flash",
+      "release": "2026-06-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 6 月 30 日以 gemini-omni-flash-preview 进入公开预览，是面向高速视频生成与对话式视频编辑的全模态模型",
+        "通过 Interactions API 可根据文本描述生成 3–10 秒 720p 视频，或将静态图像 animated 后多轮对话式修改",
+        "非 Veo 后继型号而是独立模型线；2026 年 5 月 19 日已在消费者端亮相，Veo 3.0/3.1 在 Gemini API 侧由其接替"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-06-30 预览发布见官方更新日志；消费者端上线 2026-05-19 见第三方交叉来源"
+    },
+    {
+      "id": "gemini-3-1-flash-lite-image",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.1 Flash-Lite Image（Nano Banana 2 Lite）",
+      "release": "2026-06-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-image",
+      "highlights": [
+        "Nano Banana 2 Lite，2026 年 6 月 30 日 GA（gemini-3.1-flash-lite-image），面向超低延迟与低成本的图像生成和编辑",
+        "是 Nano Banana 家族中最便宜、最快的一档，继承 3.1 Flash Image 的多模态输入能力但进一步压缩成本",
+        "Google 官方 deprecations 表将其列为独立条目，无shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表；另有资料标为 2026-06-23，此处采用官方表的 06-30"
+    },
+    {
+      "id": "gemini-3-6-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.6 Flash",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "2026 年 7 月 21 日与 3.5 Flash-Lite 同时 GA，基于 3.5 Flash 改进编码、通用知识与多模态处理",
+        "主打 token 效率提升和代码/智能体规划能力，价格低于 3.5 Flash，回应开发者对输出冗长的反馈",
+        "同日起 temperature、top_p、top_k 采样参数被标记为弃用；2026 年 11 月 19 日起 API 请求路由至 3.8 Flash"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-07-21 条目与 models/deprecations 表"
+    },
+    {
+      "id": "gemini-3-5-flash-lite",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Flash-Lite",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-lite",
+      "highlights": [
+        "2026 年 7 月 21 日 GA，基于 Gemini 3.1 Flash-Lite 的低延迟、高性价比档，专为高容量自动化与子智能体设计",
+        "与 3.6 Flash 同日发布，官方称其为 latency-sensitive 场景（翻译、分类、智能体支撑）的高效选项",
+        "在 API 更新日志中被标为替代 2.5 Flash 与 2.5 Flash-Lite 的升级目标"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-07-21 条目与 models/deprecations 表"
+    },
+    {
+      "id": "gemini-3-5-flash-cyber",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Flash Cyber",
+      "release": "2026-07-21",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-5-flash",
+      "highlights": [
+        "2026 年 7 月 21 日随 3.6 Flash 与 3.5 Flash-Lite 一同公布的安全专用变体，针对漏洞检测与补丁修复微调",
+        "因双用途属性不通过公共 API 开放，仅通过有限访问试点向政府与可信伙伴分发",
+        "同一公告中 Google 表示 3.5 Pro 仍在伙伴测试、Gemini 4 预训练已启动，但二者当时均未正式发布"
+      ],
+      "source": "https://aiwiki.ai/index.php?diff=prev&oldid=14779&title=Google_DeepMind",
+      "note": "已联网核实但为第三方资料库汇总；官方更新日志该日条目未单列 cyber 版本，故标注来源层级"
+    },
+    {
+      "id": "gemini-robotics-er-2",
+      "company": "google",
+      "family": "Gemini Robotics",
+      "name": "Gemini Robotics ER 2（及 Robotics 2 / On-Device 2）",
+      "release": "2026-07-30",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-robotics-1-5",
+      "highlights": [
+        "2026 年 7 月 30 日发布 Gemini Robotics 2 家族：VLA 模型 Robotics 2、具身推理模型 Robotics ER 2 与端侧 Robotics On-Device 2",
+        "Robotics ER 2 基于 Gemini 3.5 Flash，支持高级空间推理、智能体代码执行、多步工具编排、视频片段定位、进度分类与多机器人协同",
+        "Robotics 2 首次在该家族实现人形机器人全身控制；ER 2 与 streaming 变体以 gemini-robotics-er-2-preview 等端点在 Gemini API 公开预览"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：2026-07-30 见官方更新日志与 models/deprecations 表；2026-07-29 先发布安全技术报告并推出 ASIMOV-Agentic 基准"
+    },
+    {
+      "id": "gemini-3-7-flash",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.7 Flash",
+      "release": "2026-08-13",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-6-flash",
+      "highlights": [
+        "2026 年 8 月 13 日 GA，官方定位为『最智能的主力工作马』，基于 3.6 Flash 强化核心推理底座",
+        "在软件工程、Web 开发与智能体工作流上大幅提升，推广期价格 $0.75/百万输入、$3.75/百万输出 token（至 2026-12-31）",
+        "成为 Gemini Spark 常驻个人智能体的底层模型；2026 年 9 月起被 3.8 Flash 取代，但保留供重视 token 效率的工作负载"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-08-13 条目与 models/deprecations 表"
+    },
+    {
+      "id": "gemini-3-5-transcribe",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.5 Transcribe / Transcribe Live",
+      "release": "2026-08",
+      "params_b": null,
+      "context_k": null,
+      "modality": "audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 8 月上线的语音转写模型，包含批量 gemini-3.5-transcribe 与低延迟双向流式 gemini-3.5-transcribe-live",
+        "通过 Live API 基于 WebSocket 提供中间与最终转写事件、智能转写模式及多种 VAD（语音活动检测）策略",
+        "Google 官方 deprecations 表按 2026 年 8 月记录，未标注具体日期"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实但仅确认到月份：官方表标注为 August 2026，无精确日"
+    },
+    {
+      "id": "gemini-omni-1-1-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni 1.1 Flash",
+      "release": "2026-08-27",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-omni-flash",
+      "highlights": [
+        "2026 年 8 月 27 日 GA 的 Omni 视频生成模型版本，接续 6 月的 Omni Flash 预览",
+        "面向视频生成与对话式编辑，是 Gemini API 侧替代 Veo 3.x 的模型线",
+        "2026 年 12 月 3 日起 API 请求自动路由至 Omni 1.2 Flash"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表中 Gemini Omni Flash 分组"
+    },
+    {
+      "id": "lyria-3-5",
+      "company": "google",
+      "family": "Lyria",
+      "name": "Lyria 3.5",
+      "release": "2026-09-03",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 3 日 GA 的音乐生成模型，是 Lyria 3 系列（2026-03-25 预览）的正式版本",
+        "Flow 的视频配乐功能于 2026 年 7 月 29 日切换至 Lyria 3.5",
+        "Google 官方 deprecations 表列于 Lyria 模型分组，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表"
+    },
+    {
+      "id": "gemini-3-8-flash-tts",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Flash TTS / Flash-Lite TTS",
+      "release": "2026-09-22",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 22 日 GA 的下一代文本转语音模型：Flash TTS 为旗舰创意语音模型，主打录音棚级保真、细腻演绎、区域方言与长轮次稳定性",
+        "Flash-Lite TTS 面向高吞吐生产与实时语音智能体级联，替代 gemini-3.1-flash-tts-preview",
+        "同期上线 /v1beta/voices 端点，支持文字设计语音、经同意验证的语音复制与 150+ 预置及自定义声音库"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-09-22 条目与 models/deprecations 表"
+    },
+    {
+      "id": "gemini-3-8-flash-cyber",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Flash Cyber",
+      "release": "2026-09-16",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-8-flash",
+      "highlights": [
+        "2026 年 9 月 16 日发布的安全宽松版变体（gemini-3.8-flash-cyber），放宽网络安全缓解措施",
+        "仅通过 Google 的 Fairwind Program 向可信防御伙伴提供，不在公开 API 中开放",
+        "Google 报告其在 Collinear CWE-Bench 补丁任务上 pass@1 为 47.2%，接近某领先前沿模型的 47.8%"
+      ],
+      "source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions",
+      "note": "已联网核实但为官方 Cloud 文档与第三方汇总：Google Cloud 模型生命周期表记 2026-09-16；具体性能数字来自 AI Wiki 汇总"
+    },
+    {
+      "id": "gemini-3-8-live",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 3.8 Live / Live Extended Thinking",
+      "release": "2026-09-15",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,audio,video",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 9 月 15 日 GA 的低延迟实时语音/视频交互模型，含 gemini-3.8-live 与 gemini-3.8-live-extended-thinking 两个端点",
+        "是 Live API 的升级版本，接替 3.1 Flash Live 与 2.5 Flash Native Audio 系列",
+        "官方 deprecations 表将其列为 Live API 模型的当前推荐版本，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表 Live API 分组"
+    },
+    {
+      "id": "gemini-nano-banana-2-1",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini Nano Banana 2.1",
+      "release": "2026-10-06",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-1-flash-image",
+      "highlights": [
+        "2026 年 10 月 6 日 GA，是 Nano Banana 2（Gemini 3.1 Flash Image）的升级版，保持 Flash 级速度与成本",
+        "在视觉质量、提示遵循、多轮角色一致性、文字渲染，以及 1:4/4:1、1:8/8:1 等宽全景宽高比上显著提升，支持 1K/2K/4K 分辨率",
+        "官方同时将 gemini-3.1-flash-image 标记为弃用并建议新项目迁移至 2.1"
+      ],
+      "source": "https://aistudio.google.com/docs/changelog",
+      "note": "已联网核实：日期见官方更新日志 2026-10-06 条目与 models/deprecations 表"
+    },
+    {
+      "id": "genie-4",
+      "company": "google",
+      "family": "Genie",
+      "name": "Genie 4",
+      "release": "2026-10",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "Google DeepMind 于 2026 年 10 月底发布的新一代实时交互式世界模型，可按提示生成可操控、可探索的虚拟世界",
+        "是首个原生生成音频的实时世界模型，环境音效、音乐与交互对话与画面同步生成，支持自然语言实时修改天气、镜头与场景元素",
+        "可模拟空气动力学、碰撞与人物反应；接入 Gemini 3.8 Flash 作为循环中的引导智能体拆分目标并核查每步执行，面向机器人仿真训练与影视预演",
+        "以研究预览版向受信任测试者开放，输出含 SynthID 水印；完整发布日各来源在 10 月 27 日与 11 月 3 日间不一致"
+      ],
+      "source": "https://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901595.shtml",
+      "note": "已联网核实存在，但发布日期存疑：AI Review Rating 记为 2026-10-27，多家中文媒体为 2026-11-03 报道，另有资料称 11 月 12 日推送，故仅记到 2026-10"
+    },
+    {
+      "id": "gemini-omni-1-2-flash",
+      "company": "google",
+      "family": "Gemini Omni",
+      "name": "Gemini Omni 1.2 Flash",
+      "release": "2026-11-05",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text,image,video,audio",
+      "license": "proprietary",
+      "predecessor": "gemini-omni-1-1-flash",
+      "highlights": [
+        "2026 年 11 月 5 日 GA 的 Omni 视频生成模型最新版本，提供最长 15 秒视频与多轮编辑能力",
+        "价格较前代下调约 30%，720p 约 $0.07/秒；成为 Gemini 应用与 Flow 中视频生成的默认模型",
+        "Google 官方 deprecations 表列其发布日期为 2026-11-05，无 shutdown 日期公告"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "已联网核实：日期取自 Google 官方 models/deprecations 表；15 秒时长、降价的细节来自第三方汇总"
+    },
+    {
+      "id": "gemini-decision-1",
+      "company": "google",
+      "family": "Gemini Decision",
+      "name": "Gemini Decision 1",
+      "release": "2026-11-11",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": null,
+      "highlights": [
+        "2026 年 11 月 11 日上线的新模型条目，Google 在官方 models/deprecations 表中单列为 Gemini Decision 模型分组",
+        "官方页面链接至 gemini-decision-1 模型页，无 shutdown 日期公告",
+        "定位与能力细节在已核查的公开资料中较少，此处仅记录官方确认的发布日期与分类"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "发布日期与存在性由 Google 官方 deprecations 表确认，但具体定位缺乏多来源交叉，标注为部分存疑"
+    },
+    {
+      "id": "gemini-4-hydrogen",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Hydrogen",
+      "release": "2026-11-12",
+      "params_b": null,
+      "context_k": 1000,
+      "modality": "text,image,audio,video",
+      "license": "proprietary",
+      "predecessor": "gemini-3-8-flash",
+      "highlights": [
+        "2026 年 11 月 12 日发布，是 Gemini 4 家族的高速执行档，接替 Gemini 3.8 Flash 的 Flash 产品线定位，改用 Hydrogen 级别命名",
+        "提供 low/medium/high（默认）/xhigh 四档思考深度，原生支持 100 万 token 输入与输出，可处理 PDF、表格、图表与音视频",
+        "默认 high 模式下任务完成速度约为 3.8 Flash 的 2.5 倍、虚构内容减少 5 倍以上；Terminal-Bench 4.1 得分 57%（3.8 Flash 为 18.2%）",
+        "Artificial Analysis 智能指数 v5.0.1 下 xhigh 模式得 54 分，高于 Argon 的 50 分；API 定价 $1.5/百万输入、$7.5/百万输出 token",
+        "已覆盖 Gemini 应用、Google 搜索 AI Mode（默认模型）、AI Studio、Gemini API 与 Antigravity"
+      ],
+      "source": "https://www.siliconreport.com/google-launches-gemini-4-hydrogen-replacing-gemini-3-8-flash",
+      "note": "已联网核实为真有新来源：Google 官方 models/deprecations 表记 2026-11-12，且有多家独立媒体交叉报道"
+    },
+    {
+      "id": "gemini-4-neon",
+      "company": "google",
+      "family": "Gemini",
+      "name": "Gemini 4 Neon",
+      "release": "2026-11-18",
+      "params_b": null,
+      "context_k": null,
+      "modality": "text",
+      "license": "proprietary",
+      "predecessor": "gemini-4-hydrogen",
+      "highlights": [
+        "Google 官方 models/deprecations 表在 Gemini 4 分组中列出的最新条目，发布日期为 2026 年 11 月 18 日（当前档案截至日前一天）",
+        "官方表未给出 shutdown 日期或推荐替代模型，说明这是当前仍在服役的最新型号",
+        "除官方发布表外缺乏独立媒体与官方博客的多来源细节，定位与能力参数暂不推断"
+      ],
+      "source": "https://aistudio.google.com/docs/deprecations",
+      "note": "发布事实来自 Google 官方 deprecations 表（一手来源），但为检索到的最新条目、细节极少，标注为部分存疑并建议后续复核"
+    }
+  ],
+  "technologies": [],
+  "events": []
+}
