@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A chronicle of 357 large models released 2018–2026, with key techniques and original sources.">
+<title>Chronicle · Model Annals</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-inner">
+  <a class="wordmark" href="index-en.html">Model Annals</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index-en.html" aria-current="page">Chronicle</a>
+    <a href="models-en.html">Models</a>
+    <a href="companies-en.html">Organizations</a>
+    <a href="tech-en.html">Techniques</a>
+  <a class="lang-toggle" href="index.html">中文</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <div class="page-head">
+    <h1 class="page-title" data-write>A Chronicle of Large Models</h1>
+    <p class="kicker">2018 – 2026</p>
+    <p class="page-quote" data-write>To trace the pattern of heaven and man, to see change across past and present.</p>
+    <p class="quote-by" data-write>Sima Qian · Letter to Ren An</p>
+  </div>
+
+  <h2 class="sec-title" style="margin-bottom:12px">Model Release Timeline</h2>
+  <div class="long-timeline" id="long-timeline"></div>
+  <div class="timeline-detail" id="timeline-detail"></div>
+
+  <div class="timeline" style="display:none">
+    <div class="tl-spine" aria-hidden="true"></div>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2018</div>
+      <div class="tl-body"><h2>GPT-1</h2><p>117M parameters, 512 tokens. The first thread of autoregressive pretraining.</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="right">
+      <div class="tl-year">2019</div>
+      <div class="tl-body"><h2>GPT-2 / BERT</h2><p>1.5B parameters and masked bidirectional pretraining. Scale and understanding, two roads in parallel.</p><span class="tl-tag">OpenAI · Google</span></div>
+    </article>
+    <article class="tl-item key" data-side="left">
+      <div class="tl-year">2020</div>
+      <div class="tl-body"><h2>GPT-3</h2><p>175B parameters. Few-shot ability appears; scaling laws become consensus.</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="right">
+      <div class="tl-year">2022</div>
+      <div class="tl-body"><h2>ChatGPT</h2><p>RLHF makes models conversational. For the first time the breakthrough comes from training method, not scale.</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2023</div>
+      <div class="tl-body"><h2>LLaMA</h2><p>Open weights spawn thousands of derivatives. Qwen, DeepSeek and GLM follow suit.</p><span class="tl-tag">Meta</span></div>
+    </article>
+    <article class="tl-item key" data-side="right">
+      <div class="tl-year">2024</div>
+      <div class="tl-body"><h2>o1</h2><p>Test-time compute. The model thinks before answering; compute shifts from training to inference.</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2025</div>
+      <div class="tl-body"><h2>DeepSeek-R1</h2><p>GRPO-style RL elicits reasoning with open weights. Open models reach the frontier.</p><span class="tl-tag">DeepSeek</span></div>
+    </article>
+    <article class="tl-item key" data-side="right">
+      <div class="tl-year">2026</div>
+      <div class="tl-body"><h2>GPT-6.2、Gemini 4、Claude 5</h2><p>One generation, many tiers. 68 new models in the second half; million-token context becomes common.</p><span class="tl-tag">Multiple</span></div>
+    </article>
+  </div>
+</main>
+
+<footer class="footer"><div class="footer-inner">Model Annals</div></footer>
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/timeline-data-en.js"></script>
+<script src="assets/timeline.js"></script>
+</body>
+</html>

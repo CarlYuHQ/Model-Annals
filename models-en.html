@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="90 large models compared on release date and context length in one coordinate system.">
+<title>Models · Model Annals</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-inner">
+  <a class="wordmark" href="index-en.html">Model Annals</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index-en.html">Chronicle</a>
+    <a href="models-en.html" aria-current="page">Models</a>
+    <a href="companies-en.html">Organizations</a>
+    <a href="tech-en.html">Techniques</a>
+  <a class="lang-toggle" href="models.html">中文</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <div class="page-head">
+    <h1 class="page-title" data-write>Model Comparison</h1>
+    <p class="kicker">90 models · 21 organizations</p>
+    <p class="page-quote" data-write>A foot may be too short; an inch may be too long.</p>
+    <p class="quote-by" data-write>Qu Yuan · Divination</p>
+  </div>
+
+  <div class="viewbar">
+    <button class="viewtab on" data-view="chart">Chart</button>
+    <button class="viewtab" data-view="table">Specifications</button>
+  </div>
+
+  <div class="viewpanel on" id="view-chart">
+    <div class="chart-legend">
+      <span class="lg"><i class="lg-dot lg-us"></i>North America</span>
+      <span class="lg"><i class="lg-dot lg-cn"></i>China</span>
+      <span class="lg"><i class="lg-dot lg-other"></i>Other</span>
+      <span class="lg"><i class="lg-dot lg-ring"></i>Open weights</span>
+    </div>
+      <div class="org-index" id="org-index" aria-label="Organization legend"></div>
+      <p class="chart-note">Vertical axis is logarithmic. Models with undisclosed context sit in the bottom dashed band; coincident points are slightly offset.</p>
+      <div class="chart-wrap" id="chart-wrap"></div>
+    <div class="model-detail" id="model-detail"></div>
+  </div>
+
+  <div class="viewpanel" id="view-table">
+    <div class="table-wrap">
+      <table class="hand">
+        <thead><tr><th>Model</th><th>Organization</th><th>Released</th><th>Context</th><th>Params</th><th>License</th></tr></thead>
+        <tbody id="model-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="refs">
+    <h2 class="refs-title">Benchmarks & Leaderboards</h2>
+    <div class="refs-grid">
+      <a class="ref" href="https://artificialanalysis.ai" target="_blank" rel="noopener"><b>Artificial Analysis</b><span>Intelligence / Speed / Price</span></a>
+      <a class="ref" href="https://lmarena.ai" target="_blank" rel="noopener"><b>LMArena</b><span>Human blind evaluation</span></a>
+      <a class="ref" href="https://livebench.ai" target="_blank" rel="noopener"><b>LiveBench</b><span>Contamination-resistant eval</span></a>
+      <a class="ref" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank" rel="noopener"><b>Open LLM Leaderboard</b><span>Open weights</span></a>
+      <a class="ref" href="https://www.swebench.com" target="_blank" rel="noopener"><b>SWE-bench</b><span>Software engineering</span></a>
+      <a class="ref" href="https://openrouter.ai/rankings" target="_blank" rel="noopener"><b>OpenRouter Rankings</b><span>Usage / Price</span></a>
+      <a class="ref" href="https://llm-stats.com" target="_blank" rel="noopener"><b>LLM Stats</b><span>Scores / Price</span></a>
+      <a class="ref" href="https://livecodebench.github.io" target="_blank" rel="noopener"><b>LiveCodeBench</b><span>Code evaluation</span></a>
+      <a class="ref" href="https://crfm.stanford.edu/helm" target="_blank" rel="noopener"><b>HELM</b><span>Stanford academic eval</span></a>
+      <a class="ref" href="https://www.vellum.ai/llm-leaderboard" target="_blank" rel="noopener"><b>Vellum</b><span>Production-oriented board</span></a>
+      <a class="ref" href="https://scale.com/leaderboard" target="_blank" rel="noopener"><b>Scale SEAL</b><span>Private expert questions</span></a>
+      <a class="ref" href="https://www.vals.ai/home" target="_blank" rel="noopener"><b>Vals AI</b><span>Real industry tasks</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="footer-inner">Model Annals</div></footer>
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/compare-data-en.js"></script>
+<script src="assets/models.js"></script>
+</body>
+</html>
