@@ -29,12 +29,13 @@
 
   <h2 class="sec-title" style="margin-bottom:12px">编年长轴</h2>
   <div class="zoom-bar">
-    <button id="axis-out" aria-label="缩小">−</button>
-    <span id="axis-zoom">100%</span>
-    <button id="axis-in" aria-label="放大">+</button>
-    <button id="axis-all">全部</button>
+    <button id="zoom-out" aria-label="缩小">−</button>
+    <span id="zoom-level">100%</span>
+    <button id="zoom-in" aria-label="放大">+</button>
+    <button id="zoom-reset">全部</button>
   </div>
-  <div id="axis-root"></div>
+  <div class="long-timeline" id="long-timeline"></div>
+  <div class="timeline-detail" id="timeline-detail"></div>
 
   <div class="timeline" style="display:none">
     <div class="tl-spine" aria-hidden="true"></div>
@@ -76,6 +77,6 @@
 <footer class="footer"><div class="footer-inner">Model Annals</div></footer>
 <script src="assets/site.js"></script>
 <script src="assets/timeline-data.js"></script>
-<script src="assets/axis.js"></script>
+<script src="assets/timeline.js"></script>
 </body>
 </html>
