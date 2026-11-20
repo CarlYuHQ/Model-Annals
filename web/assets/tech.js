@@ -1,4 +1,4 @@
-/* 技术页：按年份展示 30 项关键技术 */
+/* 技术页：按年份展示 48 项关键技术 */
 (function(){
   'use strict';
   var T=window.TECH_DATA||[];

@@ -107,8 +107,9 @@ for c in atlas['companies']:
 companies.sort(key=lambda x: -x['count'])
 write_js('companies-data.js', f'自动生成：全量统计 {len(companies)} 家机构。', ('COMPANIES_DATA', companies))
 
-# ---- tech ----
-tech = [{k: t.get(k) for k in ('id','name','year','category','origin','summary','source')} | {'zh': t.get('name_zh')}
+# ---- tech（tech.js 读 t.cat，故同时给 cat 别名）----
+tech = [{k: t.get(k) for k in ('id','name','year','category','origin','summary','source')}
+        | {'zh': t.get('name_zh'), 'cat': t.get('category') or '其他'}
         for t in atlas['technologies']]
 write_js('tech-data.js', f'自动生成：{len(tech)} 项关键技术。', ('TECH_DATA', tech))
 
