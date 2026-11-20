@@ -15,7 +15,14 @@
   var LAYERS = [-150,-120,-90,-60,-30, 30,60,90,120,150];
   var MIN_GAP = 46;
   var MOTION = 720;
-  var selectedId = null, filterYear = 'all';
+  var selectedId = null;
+  var filter = { from: 'all', to: 'all', co: 'all' };
+  function visible(d) {
+    if (filter.from !== 'all' && d.y < +filter.from) return false;
+    if (filter.to !== 'all' && d.y > +filter.to) return false;
+    if (filter.co !== 'all' && d.company !== filter.co) return false;
+    return true;
+  }
 
   function el(t, c) { var e = document.createElementNS(SVGNS, t); if (c) e.setAttribute('class', c); return e; }
   function attr(n, o) { Object.keys(o).forEach(function (k) { n.setAttribute(k, o[k]); }); return n; }
@@ -126,47 +133,72 @@
     nodeEls[d.id] = {g: g, stem: stem, label: label};
   });
 
-  /* ---- applyLayout：把 d.x/d.yPos 写入 transform + stem，带过渡 ---- */
+  /* ---- applyLayout：写 transform + stem；animate 时用双 rAF 确保过渡触发 ---- */
+  function writeTransform(d) {
+    var n = nodeEls[d.id], g = n.g;
+    g.setAttribute('transform', 'translate(' + d.x.toFixed(1) + ',' + d.yPos.toFixed(1) + ')');
+    var dy = AXIS_Y - d.yPos;
+    attr(n.stem, {x2: 0, y2: dy.toFixed(1)});
+    n.stem.setAttribute('opacity', Math.abs(dy) > 20 ? '1' : '0');
+  }
   function applyLayout(animate) {
+    if (!animate) {
+      D.forEach(function (d) { nodeEls[d.id].g.style.transition = 'none'; writeTransform(d); });
+      return;
+    }
+    // 先计算好新位置，分两步：本帧设 transition，下一任务改 transform
     D.forEach(function (d) {
-      var n = nodeEls[d.id];
-      var g = n.g;
-      g.style.transition = animate ? ('transform ' + MOTION + 'ms var(--ease), opacity ' + MOTION + 'ms ease') : 'none';
-      g.setAttribute('transform', 'translate(' + d.x.toFixed(1) + ',' + d.yPos.toFixed(1) + ')');
-      // stem 从点连回主轴
-      var dy = AXIS_Y - d.yPos;
-      attr(n.stem, {x2: 0, y2: dy.toFixed(1)});
-      n.stem.setAttribute('opacity', Math.abs(dy) > 20 ? '1' : '0');
+      nodeEls[d.id].g.style.transition = 'transform ' + MOTION + 'ms var(--ease), opacity ' + MOTION + 'ms ease';
     });
+    window.setTimeout(function () {
+      D.forEach(function (d) { writeTransform(d); });
+    }, 20);
   }
   applyLayout(false);
 
-  /* ---- 年份筛选条 ---- */
+  /* ---- 筛选条：起始年 / 结束年 / 公司 ---- */
+  var companies = {};
+  D.forEach(function (d) { companies[d.company] = d.coName || d.company; });
   var bar = document.createElement('div');
   bar.className = 'tl-filter';
-  var years = ['all'];
-  for (var yr = Y0; yr <= Y1; yr++) years.push(String(yr));
-  bar.innerHTML = years.map(function (v) {
-    return '<button class="chip' + (v === 'all' ? ' on' : '') + '" data-y="' + v + '">' +
-      (v === 'all' ? '全部' : v) + '</button>';
-  }).join('');
+  function yearOpts(sel) {
+    var h = '<option value="all">' + (sel === 'from' ? '起始年' : '结束年') + '</option>';
+    for (var yr = Y0; yr <= Y1; yr++) h += '<option value="' + yr + '">' + yr + '</option>';
+    return h;
+  }
+  bar.innerHTML =
+    '<label>年份 <select id="flt-from">' + yearOpts('from') + '</select></label>' +
+    '<span class="tl-dash">—</span>' +
+    '<select id="flt-to">' + yearOpts('to') + '</select>' +
+    '<label>机构 <select id="flt-co"><option value="all">全部</option>' +
+      Object.keys(companies).sort().map(function (k) {
+        return '<option value="' + k + '">' + companies[k] + '</option>';
+      }).join('') + '</select></label>' +
+    '<button id="flt-reset">重置</button>';
   host.parentNode.insertBefore(bar, host);
-  bar.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-y]');
-    if (!b) return;
-    filterYear = b.getAttribute('data-y');
-    bar.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('on', c === b); });
-    var list = D.filter(function (d) { return filterYear === 'all' || String(d.y) === filterYear; });
-    if (filterYear === 'all') layoutFull(); else layoutFiltered(list);
-    // enter/leave：非选中点淡出
+
+  function runFilter() {
+    var list = D.filter(visible);
+    if (filter.from === 'all' && filter.to === 'all' && filter.co === 'all') layoutFull();
+    else layoutFiltered(list);
+    var inSet = {}; list.forEach(function (d) { inSet[d.id] = 1; });
     D.forEach(function (d) {
-      var on = filterYear === 'all' || String(d.y) === filterYear;
       var g = nodeEls[d.id].g;
-      g.classList.toggle('out', !on);
-      g.style.pointerEvents = on ? '' : 'none';
+      g.classList.toggle('out', !inSet[d.id]);
+      g.style.pointerEvents = inSet[d.id] ? '' : 'none';
     });
     applyLayout(true);
     hidePop();
+  }
+  bar.querySelector('#flt-from').addEventListener('change', function (e) { filter.from = e.target.value; runFilter(); });
+  bar.querySelector('#flt-to').addEventListener('change', function (e) { filter.to = e.target.value; runFilter(); });
+  bar.querySelector('#flt-co').addEventListener('change', function (e) { filter.co = e.target.value; runFilter(); });
+  bar.querySelector('#flt-reset').addEventListener('click', function () {
+    filter = { from: 'all', to: 'all', co: 'all' };
+    bar.querySelector('#flt-from').value = 'all';
+    bar.querySelector('#flt-to').value = 'all';
+    bar.querySelector('#flt-co').value = 'all';
+    runFilter();
   });
 
   /* ---- hover 就近吸附 + 浮层 ---- */
@@ -179,7 +211,7 @@
     var loc = pt.matrixTransform(s.getScreenCTM().inverse());
     var best = null, bd = Infinity;
     D.forEach(function (d) {
-      if (filterYear !== 'all' && String(d.y) !== filterYear) return;
+      if (!visible(d)) return;
       var dist = Math.abs(d.x - loc.x);
       if (dist < bd) { bd = dist; best = d; }
     });
