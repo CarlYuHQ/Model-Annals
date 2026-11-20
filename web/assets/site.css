@@ -82,6 +82,8 @@ html.js .ink-char{opacity:0;transform:translateY(8px)}
 .ax-mi{display:flex;flex-direction:column;min-width:0}
 .ax-mi b{font-family:var(--hand);font-size:14px;font-weight:400;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ax-mi small{font-family:var(--ui);font-size:10px;color:var(--muted)}
+html.js .tl-model{animation:pointIn .5s var(--ease) backwards}
+@keyframes pointIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .tl-model{cursor:pointer;transition:opacity .28s var(--ease)}
 .tl-model image,.tl-model circle{transition:r .2s var(--ease),stroke-width .2s var(--ease)}
 .tl-model.expanded image,.tl-model.expanded circle{r:13}

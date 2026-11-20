@@ -1,180 +1,246 @@
-/* 编年长轴：357 个模型按年月聚合成节点，保留真实时间位置。
-   圆点大小按该月模型数分级，hover 就近吸附展开该月模型列表（带 logo）。
-   完整一屏显示、无滚动条，滚轮/拖拽缩放看局部。 */
-(function () {
+/* 横向编年长轴：精确到月，356 个模型按发布日期铺开，带机构 logo
+   布局：贪心分层——相邻点 x 距离够近就同层，太近就换层。
+   稀疏段自动贴轴，密集段自动铺开，不留大片空白。 */
+(function(){
   'use strict';
-  var D = window.TIMELINE_DATA || [];
-  var host = document.getElementById('long-timeline');
-  if (!host || !D.length) return;
+  var D=window.TIMELINE_DATA||[];
+  var host=document.getElementById('long-timeline');
+  if(!host||!D.length)return;
 
-  var SVGNS = 'http://www.w3.org/2000/svg';
-  var LOGO = {openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',
-    nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',
-    alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',
-    minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun',
-    '01ai':'01ai',internlm:'internlm',baidu:'baidu'};
-  var logoURL = function (l) { return l ? 'assets/logos/' + l + '.png' : ''; };
-  function el(t, c) { var e = document.createElementNS(SVGNS, t); if (c) e.setAttribute('class', c); return e; }
-  function attr(n, o) { Object.keys(o).forEach(function (k) { n.setAttribute(k, o[k]); }); return n; }
+  var Y0=2018,Y1=2026,MO=12;
+  var COL=40;                        // 每月宽度
+  var X0=90;
+  var TOTAL=(Y1-Y0+1)*MO*COL+X0+120;
+  var AXIS_Y=190;                    // 主轴 y（画布压到 380）
+  var H=380;
+  var W=TOTAL;
+  var LAYERS=[-150,-120,-90,-60,-30, 30,60,90,120,150];  // 上下各 5 层，间距 30
+  var MIN_GAP=46;                    // 同层两点最小 x 间距（小于此就换层）
+  var selectedId=null;
 
-  var Y0 = 2018, Y1 = 2026, COL = 44, X0 = 80;
-  var AXIS_Y = 190, H = 380;
-  var W = (Y1 - Y0 + 1) * 12 * COL + X0 + 100;
-  function xOf(y, m) { return X0 + ((y - Y0) * 12 + (m - 1)) * COL; }
+  function xOf(y,m,day){
+    var d=day||15;
+    return X0+((y-Y0)*12+(m-1)+(d-1)/30)*COL;
+  }
+  function logoURL(l){return l?'assets/logos/'+l+'.png':'';}
 
-  /* ---- 按年月聚合 ---- */
-  var byKey = {};
-  D.forEach(function (m) {
-    var key = m.y + '-' + String(m.m).padStart(2, '0');
-    (byKey[key] = byKey[key] || { key: key, y: m.y, m: m.m, items: [] }).items.push(m);
-  });
-  var pts = Object.keys(byKey).map(function (k) { return byKey[k]; })
-    .sort(function (a, b) { return a.key.localeCompare(b.key); });
-  var maxN = Math.max.apply(null, pts.map(function (p) { return p.items.length; }));
-  pts.forEach(function (p) {
-    p.x = xOf(p.y, p.m);
-    p.r = p.items.length === 1 ? 5 : (p.items.length < 5 ? 8 : (p.items.length < 10 ? 11 : 14));
-    p.side = pts.indexOf(p) % 2 === 0 ? -1 : 1; // 上下交替标注
+  // 解析日
+  D.forEach(function(d){
+    var p=d.date.split('-');d.day=p.length>2?parseInt(p[2],10):15;
   });
 
-  /* ---- SVG ---- */
-  var s = el('svg');
-  attr(s, {viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMid meet', role: 'img',
-    'aria-label': '2018 至 2026 模型发布编年轴，按年月聚合'});
+  // ---- 贪心分层：稀疏段贴轴，密集段铺开 ----
+  var lastX=LAYERS.map(function(){return -Infinity;});
+  D.forEach(function(d){
+    var x=xOf(d.y,d.m,d.day);
+    d.x=x;
+    var best=-1,bestScore=-Infinity;
+    for(var i=0;i<LAYERS.length;i++){
+      var gap=x-lastX[i];
+      if(gap<MIN_GAP)continue;
+      // 优先靠近轴（|layer| 小），且复用刚用过的层（gap 越大分越高但离轴远的惩罚）
+      var score=(Math.abs(LAYERS[i])<=30?40:0) - Math.abs(LAYERS[i])*0.5 + Math.min(gap,MIN_GAP*3)*0.2;
+      if(score>bestScore){bestScore=score;best=i;}
+    }
+    if(best<0){
+      // 所有层都太近：选最远的一层覆盖
+      best=0;
+      for(var j=1;j<LAYERS.length;j++)if(lastX[j]<lastX[best])best=j;
+    }
+    d.layer=best;
+    d.yPos=AXIS_Y+LAYERS[best];
+    lastX[best]=x;
+  });
+
+    var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('viewBox','0 0 '+W+' '+H);
+    s.setAttribute('preserveAspectRatio','xMidYMid meet');
+    s.setAttribute('role','img');
+    s.setAttribute('aria-label','2018 至 2026 按月份排列的模型发布时间轴');
+
   // 主轴
-  s.appendChild(attr(el('line'), {x1: X0, y1: AXIS_Y, x2: W - 50, y2: AXIS_Y,
-    stroke: 'var(--ink)', 'stroke-width': 1.5}));
-  // 年份 + 季度刻度
-  for (var y = Y0; y <= Y1; y++) {
-    var xy = xOf(y, 1);
-    var t = el('text');
-    attr(t, {x: xy, y: AXIS_Y - 22, 'font-size': 28, 'font-family': 'var(--hand)', fill: 'var(--red)'});
-    t.textContent = y; s.appendChild(t);
-    s.appendChild(attr(el('line'), {x1: xy, y1: AXIS_Y - 7, x2: xy, y2: AXIS_Y + 7,
-      stroke: 'var(--red)', 'stroke-width': 2}));
-    [4, 7, 10].forEach(function (mm) {
-      var xm = xOf(y, mm);
-      s.appendChild(attr(el('line'), {x1: xm, y1: AXIS_Y, x2: xm, y2: AXIS_Y + 5,
-        stroke: 'var(--muted)', 'stroke-width': 1}));
-    });
-    [1, 4, 7, 10].forEach(function (mm) {
-      var xm = xOf(y, mm);
-      var mt = el('text');
-      attr(mt, {x: xm, y: AXIS_Y + 26, 'font-size': 13, 'font-family': 'var(--ui)',
-        'text-anchor': 'middle', fill: 'var(--muted)'});
-      mt.textContent = mm + '月'; s.appendChild(mt);
+  var axis=document.createElementNS('http://www.w3.org/2000/svg','line');
+  axis.setAttribute('x1',X0);axis.setAttribute('y1',AXIS_Y);
+  axis.setAttribute('x2',W-60);axis.setAttribute('y2',AXIS_Y);
+  axis.setAttribute('stroke','var(--ink)');axis.setAttribute('stroke-width',2);
+  s.appendChild(axis);
+
+  // 年份 + 季度月份
+  for(var y=Y0;y<=Y1;y++){
+    var xYear=xOf(y,1,1);
+    var t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',xYear);t.setAttribute('y',AXIS_Y-12);
+    t.setAttribute('font-size','28');t.setAttribute('font-family','var(--hand)');
+    t.setAttribute('fill','var(--red)');t.textContent=y;
+    s.appendChild(t);
+    var big=document.createElementNS('http://www.w3.org/2000/svg','line');
+    big.setAttribute('x1',xYear);big.setAttribute('y1',AXIS_Y-6);
+    big.setAttribute('x2',xYear);big.setAttribute('y2',AXIS_Y+6);
+    big.setAttribute('stroke','var(--red)');big.setAttribute('stroke-width',2);
+    s.appendChild(big);
+    [4,7,10].forEach(function(mm){
+      var xm=xOf(y,mm,1);
+      var tk=document.createElementNS('http://www.w3.org/2000/svg','line');
+      tk.setAttribute('x1',xm);tk.setAttribute('y1',AXIS_Y);
+      tk.setAttribute('x2',xm);tk.setAttribute('y2',AXIS_Y+5);
+      tk.setAttribute('stroke','var(--muted)');tk.setAttribute('stroke-width',1);
+      s.appendChild(tk);
     });
   }
-  // 聚合节点
-  var nodeEls = {};
-  pts.forEach(function (p, i) {
-    var g = el('g', 'ax-node');
-    g.setAttribute('data-key', p.key);
-    g.setAttribute('tabindex', '0');
-    g.setAttribute('role', 'button');
-    g.setAttribute('aria-label', p.y + '年' + p.m + '月，' + p.items.length + '个模型');
-    var stem = el('line');
-    attr(stem, {x1: p.x, y1: AXIS_Y + (p.side < 0 ? -4 : 4), x2: p.x,
-      y2: AXIS_Y + p.side * 26, stroke: 'var(--rule)', 'stroke-width': 1});
-    g.appendChild(stem);
-    var dot = el('circle');
-    attr(dot, {cx: p.x, cy: AXIS_Y, r: p.r, fill: 'var(--paper)',
-      stroke: p.items.length >= 10 ? 'var(--red)' : 'var(--ink-2)',
-      'stroke-width': p.items.length >= 10 ? 2 : 1.5});
-    g.appendChild(dot);
-    // 只给重要节点标注：该月 ≥5 个模型，或每年 1 月；上下交替斜向
-    if (p.items.length >= 5 || p.m === 1) {
-      var lab = el('text');
-      var lx = p.x + 6, ly = AXIS_Y + p.side * (p.r + 16);
-      attr(lab, {x: lx, y: ly, 'font-size': 14, 'font-family': 'var(--hand)',
-        fill: p.items.length >= 10 ? 'var(--red)' : 'var(--muted)',
-        transform: 'rotate(' + (p.side < 0 ? -30 : 30) + ' ' + lx + ' ' + ly + ')'});
-      lab.textContent = String(p.y).slice(2) + '/' + String(p.m).padStart(2, '0') + '·' + p.items.length;
-      g.appendChild(lab);
+  for(var yy=Y0;yy<=Y1;yy++){
+    [1,4,7,10].forEach(function(mm){
+      var x=xOf(yy,mm,1);
+      var mt=document.createElementNS('http://www.w3.org/2000/svg','text');
+      mt.setAttribute('x',x);mt.setAttribute('y',AXIS_Y+24);
+      mt.setAttribute('font-size','14');mt.setAttribute('font-family','var(--ui)');
+      mt.setAttribute('text-anchor','middle');mt.setAttribute('fill','var(--muted)');
+      mt.textContent=mm+'月';
+      s.appendChild(mt);
+    });
+  }
+
+  // 模型点
+  D.forEach(function(d,idx){
+    var x=d.x,y=d.yPos;
+    var up=LAYERS[d.layer]<0;
+
+    // 竖线连主轴（只在离轴较远时画，近的直接贴轴不画）
+    if(Math.abs(LAYERS[d.layer])>30){
+      var stem=document.createElementNS('http://www.w3.org/2000/svg','line');
+      stem.setAttribute('x1',x);stem.setAttribute('y1',AXIS_Y+(up?-3:3));
+      stem.setAttribute('x2',x);stem.setAttribute('y2',y+(up?9:-9));
+      stem.setAttribute('stroke','var(--rule)');stem.setAttribute('stroke-width',1);
+      s.appendChild(stem);
     }
-    g.addEventListener('click', function () { showPop(p); });
-    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showPop(p); } });
+
+    var g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','tl-model');
+    g.setAttribute('tabindex','0');
+    g.setAttribute('role','button');
+    g.setAttribute('data-id',d.id);
+    g.setAttribute('aria-label',d.name+'，'+d.date);
+    // 逐点入场：按时间顺序依次画出
+    g.style.animationDelay=(idx*0.006).toFixed(3)+'s';
+
+    var logo=logoURL(d.logo);
+    var r=8;
+    if(logo){
+      var clip=document.createElementNS('http://www.w3.org/2000/svg','clipPath');
+      var cid='clip-'+idx;clip.setAttribute('id',cid);
+      var cc=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      cc.setAttribute('cx',x);cc.setAttribute('cy',y);cc.setAttribute('r',r);
+      clip.appendChild(cc);s.appendChild(clip);
+      var img=document.createElementNS('http://www.w3.org/2000/svg','image');
+      img.setAttribute('x',x-r);img.setAttribute('y',y-r);
+      img.setAttribute('width',r*2);img.setAttribute('height',r*2);
+      img.setAttribute('href',logo);
+      img.setAttribute('clip-path','url(#'+cid+')');
+      g.appendChild(img);
+    } else {
+      var dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r',6);
+      dot.setAttribute('fill','var(--muted)');g.appendChild(dot);
+    }
+
+    // 名字标签预建但默认隐藏，点击才显示，任何密度都不压字
+    var label=document.createElementNS('http://www.w3.org/2000/svg','text');
+    var ly=y+(up?-14:22);
+    label.setAttribute('x',x);label.setAttribute('y',ly);
+    label.setAttribute('font-size','16');label.setAttribute('font-family','var(--hand)');
+    label.setAttribute('fill','var(--red)');label.setAttribute('text-anchor','middle');
+    label.setAttribute('stroke','var(--paper)');label.setAttribute('stroke-width','4');
+    label.setAttribute('paint-order','stroke');
+    label.setAttribute('class','tl-name');
+    label.setAttribute('opacity','0');
+    label.textContent=d.name;
+    g.appendChild(label);
+
+    g.addEventListener('click',function(){showDetail(d);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();showDetail(d);}});
     s.appendChild(g);
-    nodeEls[p.key] = g;
   });
+
   host.appendChild(s);
 
-  /* ---- hover 就近吸附 + 浮层 ---- */
-  var pop = document.createElement('div');
-  pop.className = 'ax-float';
-  host.parentNode.insertBefore(pop, host.nextSibling);
-  var hoverKey = null;
+  /* ---- 完整显示 + 缩放看局部：改 viewBox 实现地图式交互 ---- */
+  var vb={x:0,y:0,w:W,h:H};
+  var full={x:0,y:0,w:W,h:H};
+  function applyVB(){s.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.w+' '+vb.h);}
+  function zoomAt(factor,cx,cy){
+    // 横向时间轴：只缩放 X，Y 保持完整高度
+    var nw=Math.max(W*.06,Math.min(W,vb.w/factor));
+    var rx=cx-vb.x;
+    vb.x=cx-rx*(nw/vb.w);
+    vb.w=nw;vb.h=H;vb.y=0;
+    if(vb.w>=W*.999){vb.x=0;vb.w=W;}
+    vb.x=Math.max(0,Math.min(W-vb.w,vb.x));
+    applyVB();updateZoomUI();
+  }
+  function updateZoomUI(){}
 
-  function nearest(clientX) {
-    var pt = s.createSVGPoint(); pt.x = clientX; pt.y = 0;
-    var loc = pt.matrixTransform(s.getScreenCTM().inverse());
-    var best = null, bd = Infinity;
-    pts.forEach(function (p) { var d = Math.abs(p.x - loc.x); if (d < bd) { bd = d; best = p; } });
+  /* ---- hover 就近吸附 + 展开（移植自 ccfddls DeadlineAxis）---- */
+  var hoverId=null;
+  var nodeEls={}; // id -> {g, label, logo, ring}
+  // 收集节点元素引用
+  document.querySelectorAll('.tl-model').forEach(function(g){
+    var id=g.getAttribute('data-id');
+    nodeEls[id]={g:g,label:g.querySelector('.tl-name')};
+  });
+  function applyHighlight(){
+    Object.keys(nodeEls).forEach(function(id){
+      var n=nodeEls[id];
+      var on=(id===hoverId||id===selectedId);
+      var dim=hoverId&&!on;
+      n.g.style.opacity=dim?'0.55':'1';
+      if(n.label)n.label.setAttribute('opacity',on?'1':'0');
+      n.g.classList.toggle('expanded',id===hoverId);
+    });
+  }
+  function nearestAt(clientX){
+    var pt=s.createSVGPoint();pt.x=clientX;pt.y=0;
+    var loc=pt.matrixTransform(s.getScreenCTM().inverse());
+    var best=null,bd=Infinity;
+    D.forEach(function(d){
+      var dist=Math.abs(d.x-loc.x);
+      if(dist<bd){bd=dist;best=d;}
+    });
     return best;
   }
-  function applyHighlight() {
-    Object.keys(nodeEls).forEach(function (k) {
-      nodeEls[k].classList.toggle('on', k === hoverKey);
-      nodeEls[k].style.opacity = (hoverKey && k !== hoverKey) ? '0.4' : '1';
-    });
-  }
-  function showPop(p) {
-    var lg = p.items.filter(function (m) { return m.logo; }).length;
-    var h = '<em>' + p.y + '年' + p.m + '月 · ' + p.items.length + ' 个模型</em><ul>';
-    p.items.forEach(function (m) {
-      var img = m.logo ? '<img src="' + logoURL(m.logo) + '" alt="">' : '<i class="ax-ph"></i>';
-      h += '<li><span class="ax-logo">' + img + '</span><span class="ax-mi"><b>' + m.name +
-        '</b><small>' + (m.ctx ? m.ctx + 'K' : '—') + '</small></span></li>';
-    });
-    h += '</ul>';
-    pop.innerHTML = h;
-    // 定位到该节点的屏幕位置
-    var hostRect = host.getBoundingClientRect();
-    var scale = hostRect.width / W;
-    var sx = (vb.x + p.x) / vb.w * hostRect.width;
-    pop.style.left = Math.max(8, Math.min(hostRect.width - 240, sx - 120)) + 'px';
-    pop.style.top = (AXIS_Y / H * hostRect.height + 30) + 'px';
-    pop.classList.add('on');
-  }
-  function hidePop() { pop.classList.remove('on'); }
-
-  /* ---- 缩放：改 viewBox 只缩放 X ---- */
-  var vb = {x: 0, y: 0, w: W, h: H};
-  function applyVB() { s.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
-  function zoomAt(factor, cx) {
-    var nw = Math.max(W * 0.06, Math.min(W, vb.w / factor));
-    vb.x = cx - (cx - vb.x) * (nw / vb.w);
-    vb.w = nw; vb.h = H; vb.y = 0;
-    if (vb.w >= W * 0.999) { vb.x = 0; vb.w = W; }
-    vb.x = Math.max(0, Math.min(W - vb.w, vb.x));
-    applyVB(); updateUI();
-  }
-  function updateUI() { var z = document.getElementById('zoom-level'); if (z) z.textContent = Math.round(W / vb.w * 100) + '%'; }
-
-  s.addEventListener('pointermove', function (e) {
-    if (dragging && dragStart) return;
-    var p = nearest(e.clientX);
-    var k = p ? p.key : null;
-    if (k !== hoverKey) { hoverKey = k; applyHighlight(); if (p) showPop(p); else hidePop(); }
-  });
-  s.addEventListener('pointerleave', function () { hoverKey = null; applyHighlight(); hidePop(); });
-  s.addEventListener('wheel', function (e) {
+  // 滚轮缩放
+  s.addEventListener('wheel',function(e){
     e.preventDefault();
-    var pt = s.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
-    var loc = pt.matrixTransform(s.getScreenCTM().inverse());
-    zoomAt(e.deltaY < 0 ? 1.25 : 0.8, loc.x);
-  }, {passive: false});
-  var dragging = false, dragStart = null;
-  s.addEventListener('pointerdown', function (e) { dragging = true; dragStart = {x: e.clientX, vx: vb.x}; s.setPointerCapture(e.pointerId); });
-  s.addEventListener('pointermove', function (e) {
-    if (!dragging || !dragStart) return;
-    var dx = (e.clientX - dragStart.x) / s.getBoundingClientRect().width * vb.w;
-    vb.x = Math.max(0, Math.min(W - vb.w, dragStart.vx - dx)); applyVB();
+    var pt=s.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+    var loc=pt.matrixTransform(s.getScreenCTM().inverse());
+    zoomAt(e.deltaY<0?1.25:0.8,loc.x,loc.y);
+  },{passive:false});
+  // 拖拽平移
+  var dragging=false,start=null;
+  s.addEventListener('pointerdown',function(e){dragging=true;start={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y};s.setPointerCapture(e.pointerId);});
+  s.addEventListener('pointermove',function(e){
+    if(dragging&&start){
+      var rect=s.getBoundingClientRect();
+      var dx=(e.clientX-start.x)/rect.width*vb.w;
+      vb.x=Math.max(0,Math.min(W-vb.w,start.vx-dx));
+      applyVB();return;
+    }
+    // 非拖拽：就近吸附展开
+    var near=nearestAt(e.clientX);
+    var id=near?near.id:null;
+    if(id!==hoverId){
+      hoverId=id;applyHighlight();
+      if(near)showDetail(near);
+    }
   });
-  s.addEventListener('pointerup', function () { dragging = false; dragStart = null; });
-  s.addEventListener('pointercancel', function () { dragging = false; dragStart = null; });
-  var zi = document.getElementById('zoom-in'), zo = document.getElementById('zoom-out'), zr = document.getElementById('zoom-reset');
-  if (zi) zi.addEventListener('click', function () { zoomAt(1.6, vb.x + vb.w / 2); });
-  if (zo) zo.addEventListener('click', function () { zoomAt(0.625, vb.x + vb.w / 2); });
-  if (zr) zr.addEventListener('click', function () { vb = {x: 0, y: 0, w: W, h: H}; applyVB(); updateUI(); hidePop(); });
+  s.addEventListener('pointerleave',function(){hoverId=null;applyHighlight();});
+  s.addEventListener('pointerup',function(){dragging=false;start=null;});
+  s.addEventListener('pointercancel',function(){dragging=false;start=null;});
+  function showDetail(d){
+    var p=document.getElementById('timeline-detail');
+    if(p){
+      var lg=d.logo?'<img class="d-logo" src="'+logoURL(d.logo)+'" alt="">':'';
+      p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.coName+' · '+d.date+'</span></div></div>';
+    }
+    selectedId=d.id;
+    applyHighlight();
+  }
 })();
