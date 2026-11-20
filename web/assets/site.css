@@ -8,7 +8,7 @@
   --hl-green:rgba(126,232,92,.5);--rule:rgba(28,33,71,.14);
   --hand:'Xiaolai','HanziPen SC','Kaiti SC','KaiTi',serif;
   --ui:system-ui,-apple-system,'PingFang SC',sans-serif;
-  --content:1120px;--edge:clamp(24px,6vw,80px);--ease:cubic-bezier(.22,.61,.36,1);
+  --content:1680px;--edge:clamp(24px,4vw,64px);--ease:cubic-bezier(.22,.61,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0;overflow-x:clip}
