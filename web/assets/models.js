@@ -1,4 +1,6 @@
-/* Model Annals — 对比页：73 个真实模型同图 + 筛选 + 点选详情 */
+/* Model Annals — 对比页：90 个模型同图 + 筛选 + 点选详情
+   纵轴对数刻度（数据跨 0.5K–2000K），未公开上下文的模型单独成带；
+   同坐标点确定性错开避免叠成一团；hover 显示信息卡。 */
 (function(){
   'use strict';
   var SVGNS='http://www.w3.org/2000/svg';
@@ -7,71 +9,168 @@
 
   function el(t,c){var e=document.createElementNS(SVGNS,t);if(c)e.setAttribute('class',c);return e;}
   function attr(n,o){Object.keys(o).forEach(function(k){n.setAttribute(k,o[k]);});return n;}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-  var W=1000,H=470,m={t:18,r:24,b:48,l:64};
-  var ctxMax=1080;
-  var yrMin=2017,yrMax=2027;
+  var W=1000,H=560,m={t:20,r:28,b:96,l:66};
+  var plotTop=m.t, plotBottom=H-m.b;   // 464
+  var yearLabelY=plotBottom+20;        // 年份标签
+  var naDivY=plotBottom+38;            // 分隔虚线
+  var naY=plotBottom+62;               // 未公开点中心，与年份标签拉开
+  var yrMin=2018,yrMax=2026.85;
+  var ctxMin=0.5,ctxMax=2000;
   var X=function(y){return m.l+(y-yrMin)/(yrMax-yrMin)*(W-m.l-m.r);};
-  var Y=function(c){return H-m.b-(c/ctxMax)*(H-m.t-m.b);};
+  var lgMin=Math.log(1+ctxMin),lgMax=Math.log(1+ctxMax);
+  var Y=function(c){
+    var t=(Math.log(1+Math.max(ctxMin,Math.min(ctxMax,c)))-lgMin)/(lgMax-lgMin);
+    return plotBottom-t*(plotBottom-plotTop);
+  };
+  var CTX_TICKS=[1,4,16,64,256,1000];
+  function tickLabel(v){return v>=1000?(v/1000)+'M':v+'K';}
+  function ctxLabel(c){return c==null?'未公开':(c>=1000?(c/1000)+'M':c+'K');}
 
   var current='all', selected=null;
-  var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:'internlm'};
+  var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:'internlm',baidu:'baidu'};
+
+  /* 碰撞松弛：按 x 排序逐个放置，与已放置点太近则沿垂直方向找空位。
+     确定性、无随机，保证每次渲染结果一致。 */
+  function spread(list){
+    var withCtx=list.filter(function(d){return d._hasCtx;})
+      .sort(function(a,b){return a._cx-b._cx||a._cy-b._cy;});
+    var placed=[];
+    var MIN=23; // 两点最小中心距
+    withCtx.forEach(function(d){
+      var best=null;
+      // 候选偏移：优先原位，再上下交替，幅度递增
+      var offs=[0,14,-14,28,-28,42,-42,56,-56,70,-70];
+      for(var k=0;k<offs.length;k++){
+        var cy=d._cy+offs[k];
+        if(cy<plotTop+12||cy>plotBottom-8)continue;
+        var ok=true;
+        for(var i=0;i<placed.length;i++){
+          var p=placed[i];
+          if(p._cx>d._cx+MIN+4)break; // 后面更远，不必再查
+          var dx=p._cx-d._cx,dy=p._sy-cy;
+          if(dx*dx+dy*dy<MIN*MIN){ok=false;break;}
+        }
+        if(ok){best=cy;break;}
+      }
+      d._sx=d._cx;
+      d._sy=best==null?d._cy:best;
+      // 保持 placed 按 x 有序，便于上面的提前 break
+      placed.push(d);
+      placed.sort(function(a,b){return a._cx-b._cx;});
+    });
+    // 未公开点保持原坐标，后续单独铺开
+    list.filter(function(d){return !d._hasCtx;}).forEach(function(d){
+      d._sx=d._cx;d._sy=d._cy;
+    });
+  }
 
   function buildChart(){
     var host=document.getElementById('chart-wrap');
     host.innerHTML='';
-    var svg=el('svg');attr(svg,{viewBox:'0 0 '+W+' '+H,preserveAspectRatio:'xMidYMid meet',role:'img'});
-    // 网格
-    [0,256,512,768,1024].forEach(function(v){
-      svg.appendChild(attr(el('line'),{x1:m.l,y1:Y(v),x2:W-m.r,y2:Y(v),stroke:'var(--rule)','stroke-width':1,'stroke-dasharray':'2 5'}));
-      var t=el('text','cmp-axis');attr(t,{x:m.l-10,y:Y(v)+4,'text-anchor':'end'});t.textContent=v+'K';svg.appendChild(t);
-    });
-    for(var yr=2018;yr<=2027;yr+=1){
-      var t2=el('text','cmp-axis');attr(t2,{x:X(yr),y:H-m.b+24,'text-anchor':'middle'});t2.textContent=yr;svg.appendChild(t2);
-    }
-    svg.appendChild(attr(el('line'),{x1:m.l,y1:H-m.b,x2:W-m.r,y2:H-m.b,stroke:'var(--ink)','stroke-width':1.5}));
-    svg.appendChild(attr(el('line'),{x1:m.l,y1:m.t,x2:m.l,y2:H-m.b,stroke:'var(--ink)','stroke-width':1.5}));
+    var svg=el('svg');attr(svg,{viewBox:'0 0 '+W+' '+H,preserveAspectRatio:'xMidYMid meet',role:'img',
+      'aria-label':'模型上下文长度对数坐标散点图'});
 
+    CTX_TICKS.forEach(function(v){
+      var y=Y(v);
+      svg.appendChild(attr(el('line'),{x1:m.l,y1:y,x2:W-m.r,y2:y,stroke:'var(--rule)','stroke-width':1,'stroke-dasharray':'2 5'}));
+      var t=el('text','cmp-axis');attr(t,{x:m.l-10,y:y+4,'text-anchor':'end'});t.textContent=tickLabel(v);svg.appendChild(t);
+    });
+    for(var yr=2018;yr<=2026;yr++){
+      var t2=el('text','cmp-axis');attr(t2,{x:X(yr),y:yearLabelY,'text-anchor':'middle'});t2.textContent=yr;svg.appendChild(t2);
+      svg.appendChild(attr(el('line'),{x1:X(yr),y1:plotBottom,x2:X(yr),y2:plotBottom+5,stroke:'var(--ink)','stroke-width':1}));
+    }
+    svg.appendChild(attr(el('line'),{x1:m.l,y1:plotBottom,x2:W-m.r,y2:plotBottom,stroke:'var(--ink)','stroke-width':1.5}));
+    svg.appendChild(attr(el('line'),{x1:m.l,y1:plotTop,x2:m.l,y2:plotBottom,stroke:'var(--ink)','stroke-width':1.5}));
+    var yl=el('text','cmp-axis');attr(yl,{x:m.l-10,y:plotTop-6,'text-anchor':'end'});yl.textContent='上下文';svg.appendChild(yl);
+    svg.appendChild(attr(el('line'),{x1:m.l,y1:naDivY,x2:W-m.r,y2:naDivY,stroke:'var(--rule)','stroke-width':1,'stroke-dasharray':'3 6'}));
+    var nt=el('text','cmp-axis');attr(nt,{x:W-m.r,y:naDivY-6,'text-anchor':'end'});nt.textContent='上下文未公开';svg.appendChild(nt);
+
+    var pts=[];
     D.forEach(function(d){
       if(current!=='all'&&d.companyId!==current)return;
       var yr=parseInt(d.date.slice(0,4),10)+(parseInt(d.date.slice(5,7)||'6',10)-1)/12;
-      var cx=X(yr),cy=d.ctx?Y(Math.min(d.ctx,ctxMax)):(H-m.b-10);
+      var hasCtx=d.ctx!=null&&d.ctx>0;
+      d._cx=X(Math.max(yrMin,Math.min(yrMax,yr)));
+      d._cy=hasCtx?Y(d.ctx):naY;
+      d._hasCtx=hasCtx;
+      pts.push(d);
+    });
+    spread(pts);
+
+    // 未公开点沿 x 均匀铺开，避免叠成一团
+    var na=pts.filter(function(d){return !d._hasCtx;}).sort(function(a,b){return a._cx-b._cx;});
+    na.forEach(function(d,i){
+      d._sy=naY+(i%2===0?-7:7);
+      if(na.length>1)d._sx=m.l+16+(i/(na.length-1))*(W-m.l-m.r-32);
+    });
+
+    pts.forEach(function(d){
+      var cx=d._sx,cy=d._sy;
       var color=d.region==='cn'?'var(--red)':(d.region==='us'?'var(--blue)':'var(--green)');
       var open=d.license==='open'||d.license==='weighted';
+      var isSel=selected===d.id;
       var g=el('g','cmp-point');g.setAttribute('data-id',d.id);g.setAttribute('tabindex','0');
-      g.setAttribute('role','button');g.setAttribute('aria-label',d.name+' · '+d.company);
+      g.setAttribute('role','button');
+      g.setAttribute('aria-label',d.name+' · '+d.company+' · '+ctxLabel(d.ctx));
 
       var lf=LOGO[d.companyId];
-      var r=selected===d.id?15:12;
+      var r=isSel?15:(d._hasCtx?11:9);
       if(lf){
         var cid='clip-'+d.id.replace(/[^a-z0-9]/gi,'-');
         var clip=el('clipPath');clip.setAttribute('id',cid);
-        var cc=el('circle');attr(cc,{cx:cx,cy:cy,r:r});clip.appendChild(cc);svg.appendChild(clip);
-        var img=el('image');
-        attr(img,{x:cx-r,y:cy-r,width:r*2,height:r*2,href:'assets/logos/'+lf+'.png','clip-path':'url(#'+cid+')'});
-        g.appendChild(img);
-        var ring=el('circle','cmp-dot');
-        attr(ring,{cx:cx,cy:cy,r:r,fill:'none',stroke:open?'var(--ink-2)':color,'stroke-width':selected===d.id?1.6:0.8});
-        g.appendChild(ring);
+        clip.appendChild(attr(el('circle'),{cx:cx,cy:cy,r:r}));svg.appendChild(clip);
+        g.appendChild(attr(el('image'),{x:cx-r,y:cy-r,width:r*2,height:r*2,
+          href:'assets/logos/'+lf+'.png','clip-path':'url(#'+cid+')',opacity:d._hasCtx?1:0.8}));
       } else {
-        var dot=el('circle','cmp-dot');
-        attr(dot,{cx:cx,cy:cy,r:selected===d.id?10:8,fill:open?'var(--paper)':color,stroke:color,'stroke-width':1});
-        g.appendChild(dot);
+        g.appendChild(attr(el('circle'),{cx:cx,cy:cy,r:r-2,fill:open?'var(--paper)':color,
+          stroke:color,'stroke-width':1,opacity:d._hasCtx?1:0.8}));
       }
-      // 选中点显示模型名 + 机构名；其余点用下方机构缩写标记
-      if(selected===d.id){
+      var ring=el('circle','cmp-dot');
+      attr(ring,{cx:cx,cy:cy,r:r,fill:'none',
+        stroke:isSel?'var(--red)':(open?'var(--ink-2)':color),
+        'stroke-width':isSel?2.4:(open?1:0.8),'stroke-dasharray':d._hasCtx?'none':'3 3'});
+      g.appendChild(ring);
+
+      if(isSel){
         var lab=el('text','cmp-label');
         var anchor=cx>W*.72?'end':'start';
-        attr(lab,{x:cx+(anchor==='start'?22:-22),y:cy-6,'text-anchor':anchor,'font-size':16});
-        lab.textContent=d.name+' · '+d.company;g.appendChild(lab);
+        attr(lab,{x:cx+(anchor==='start'?20:-20),y:cy-14,'text-anchor':anchor,'font-size':16,
+          stroke:'var(--paper)','stroke-width':5,'paint-order':'stroke'});
+        lab.textContent=d.name+' · '+ctxLabel(d.ctx);g.appendChild(lab);
       }
-      // 其余点不加文字，避免 73 个标签互相压字；机构名统一放在图例索引里
       g.addEventListener('click',function(){select(d.id);});
       g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(d.id);}});
+      g.addEventListener('pointerenter',function(e){showTip(d,e);});
+      g.addEventListener('pointermove',moveTip);
+      g.addEventListener('pointerleave',hideTip);
       svg.appendChild(g);
     });
     host.appendChild(svg);
   }
+
+  /* ---- hover 信息卡 ---- */
+  var tip=null;
+  function getTip(){
+    if(!tip){tip=document.createElement('div');tip.className='cmp-tip';document.getElementById('chart-wrap').appendChild(tip);}
+    return tip;
+  }
+  function showTip(d,e){
+    var t=getTip();
+    t.innerHTML='<b>'+esc(d.name)+'</b><span>'+esc(d.company)+' · '+esc(d.date)+'</span>'+
+      '<span>上下文 '+esc(ctxLabel(d.ctx))+(d.param?' · '+esc(d.param)+'B 参数':'')+'</span>';
+    t.classList.add('on');moveTip(e);
+  }
+  function moveTip(e){
+    if(!tip)return;
+    var host=document.getElementById('chart-wrap'),r=host.getBoundingClientRect();
+    var px=e.clientX-r.left+14,py=e.clientY-r.top+14;
+    px=Math.max(8,Math.min(r.width-190,px));
+    py=Math.max(8,Math.min(r.height-72,py));
+    tip.style.left=px+'px';tip.style.top=py+'px';
+  }
+  function hideTip(){if(tip)tip.classList.remove('on');}
 
   function select(id){
     var d=D.filter(function(x){return x.id===id;})[0];if(!d)return;
@@ -82,9 +181,9 @@
     var chain='';
     if(d.predecessor){
       var pred=D.filter(function(x){return x.id===d.predecessor;})[0];
-      chain=pred?'<span class="d-chain">'+pred.name+' → <em>'+d.name+'</em></span>':'';
+      chain=pred?'<span class="d-chain">'+esc(pred.name)+' → <em>'+esc(d.name)+'</em></span>':'';
     }
-    p.innerHTML='<div class="d-card">'+lg+'<div><b>'+d.name+'</b><span>'+d.company+' · '+d.date+'</span>'+chain+'</div></div>';
+    p.innerHTML='<div class="d-card">'+lg+'<div><b>'+esc(d.name)+'</b><span>'+esc(d.company)+' · '+esc(d.date)+'</span>'+chain+'</div></div>';
     buildChart();
   }
 
@@ -96,7 +195,7 @@
       .map(function(k){
         var o=by[k];
         var lg=o.logo?'<img src="assets/logos/'+o.logo+'.png" alt="" width="16" height="16">':'<span class="org-ph"></span>';
-        return '<button class="org" data-co="'+k+'">'+lg+'<span>'+o.name+'</span></button>';
+        return '<button class="org" data-co="'+k+'">'+lg+'<span>'+esc(o.name)+'</span></button>';
       }).join('');
     host.addEventListener('click',function(e){
       var b=e.target.closest('[data-co]');if(!b)return;
@@ -105,18 +204,17 @@
       host.querySelectorAll('.org').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-co')===current);});
       selected=null;
       document.getElementById('model-detail').innerHTML='';
-      buildChart();
+      hideTip();buildChart();
       if(tbRender)tbRender();
     });
   }
-
 
   function buildTable(){
     var tb=document.getElementById('model-tbody');if(!tb)return;
     var lic={open:'开放',weighted:'受限',proprietary:'闭源'};
     function render(){
       tb.innerHTML=D.filter(function(d){return current==='all'||d.companyId===current;})
-        .map(function(d){return '<tr data-id="'+d.id+'"><td>'+d.name+'</td><td>'+d.company+'</td><td>'+d.date+'</td><td>'+(d.ctx?d.ctx+'K':'—')+'</td><td>'+(d.param?d.param+'B':'—')+'</td><td>'+(lic[d.license]||'—')+'</td></tr>';}).join('');
+        .map(function(d){return '<tr data-id="'+esc(d.id)+'"><td>'+esc(d.name)+'</td><td>'+esc(d.company)+'</td><td>'+esc(d.date)+'</td><td>'+esc(ctxLabel(d.ctx))+'</td><td>'+(d.param?esc(d.param)+'B':'—')+'</td><td>'+(lic[d.license]||'—')+'</td></tr>';}).join('');
       tb.querySelectorAll('tr').forEach(function(tr){tr.addEventListener('click',function(){select(tr.getAttribute('data-id'));switchView('chart');});});
     }
     render();tb._render=render;
@@ -139,7 +237,7 @@
     document.querySelectorAll('.viewtab').forEach(function(b){
       b.addEventListener('click',function(){switchView(b.getAttribute('data-view'));});
     });
-    var m=location.hash.match(/^#view\/(chart|table)$/);if(m)switchView(m[1],false);
+    var mh=location.hash.match(/^#view\/(chart|table)$/);if(mh)switchView(mh[1],false);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

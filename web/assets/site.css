@@ -149,12 +149,19 @@ html.js .tl-year,html.js .tl-body{opacity:0;transform:translateY(14px);transitio
 .lg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 .lg-us{background:var(--blue)}.lg-cn{background:var(--red)}.lg-other{background:var(--green)}
 .lg-ring{border:2px solid var(--ink);background:var(--paper)}
-.chart-wrap{width:100%;overflow-x:auto;margin-bottom:20px}
+/* ===== 对比页：对数坐标散点图 ===== */
+.chart-wrap{position:relative;width:100%;overflow-x:auto;margin-bottom:20px}
 .chart-wrap svg{display:block;width:100%;height:auto;min-width:780px}
-.cmp-dot{cursor:pointer;transition:r .2s var(--ease)}
-.cmp-dot:hover{r:11}
+.cmp-point{cursor:pointer}
+.cmp-dot{cursor:pointer;transition:stroke-width .2s var(--ease)}
+.cmp-point:hover .cmp-dot{stroke-width:2.4}
 .cmp-label{font-family:var(--hand);font-size:13px;fill:var(--ink-2);pointer-events:none}
 .cmp-axis{font-family:var(--ui);font-size:12px;fill:var(--muted)}
+.cmp-tip{position:absolute;z-index:20;min-width:160px;padding:10px 12px;background:var(--paper);border:1px solid var(--ink);opacity:0;pointer-events:none;transition:opacity .15s}
+.cmp-tip.on{opacity:1}
+.cmp-tip b{display:block;font-family:var(--hand);font-size:17px;font-weight:400;color:var(--ink);margin-bottom:4px}
+.cmp-tip span{display:block;font-family:var(--ui);font-size:11px;color:var(--muted);line-height:1.6}
+.chart-note{font-family:var(--ui);font-size:12px;color:var(--muted);margin:0 0 16px}
 .model-detail{min-height:80px;border-top:1px solid var(--rule);padding-top:20px}
 .table-wrap{width:100%;overflow-x:auto}
 table.hand{width:100%;border-collapse:collapse;font-size:16px;min-width:560px}
