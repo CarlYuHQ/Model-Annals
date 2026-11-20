@@ -71,24 +71,43 @@
     'aria-label': '2018 至 2026 模型发布编年轴'});
   s.appendChild(attr(el('line'), {x1: X0, y1: AXIS_Y, x2: W - 60, y2: AXIS_Y,
     stroke: 'var(--ink)', 'stroke-width': 2}));
-  for (var y = Y0; y <= Y1; y++) {
-    var xy = xOf(y, 1, 1);
-    var t = el('text');
-    attr(t, {x: xy, y: AXIS_Y - 12, 'font-size': 28, 'font-family': 'var(--hand)', fill: 'var(--red)'});
-    t.textContent = y; s.appendChild(t);
-    s.appendChild(attr(el('line'), {x1: xy, y1: AXIS_Y - 6, x2: xy, y2: AXIS_Y + 6,
-      stroke: 'var(--red)', 'stroke-width': 2}));
-    [4,7,10].forEach(function (mm) {
-      s.appendChild(attr(el('line'), {x1: xOf(y,mm,1), y1: AXIS_Y, x2: xOf(y,mm,1), y2: AXIS_Y + 5,
-        stroke: 'var(--muted)', 'stroke-width': 1}));
-    });
-    [1,4,7,10].forEach(function (mm) {
-      var mt = el('text');
-      attr(mt, {x: xOf(y,mm,1), y: AXIS_Y + 24, 'font-size': 14, 'font-family': 'var(--ui)',
-        'text-anchor': 'middle', fill: 'var(--muted)'});
-      mt.textContent = mm + '月'; s.appendChild(mt);
-    });
+  var ticks = el('g', 'tl-ticks');
+  s.appendChild(ticks);
+
+  /* 刻度随筛选重建：单年→12个月；多年→每年 */
+  function drawTicks() {
+    ticks.innerHTML = '';
+    var from = filter.from === 'all' ? Y0 : +filter.from;
+    var to = filter.to === 'all' ? Y1 : +filter.to;
+    if (from > to) { var tmp = from; from = to; to = tmp; }
+    var singleYear = from === to;
+    var span = to - from + 1;
+    // 等距刻度位置：与筛选后点的铺开范围一致
+    function tx(frac) { return X0 + frac * (W - X0 - 60); }
+    if (singleYear) {
+      for (var mm = 1; mm <= 12; mm++) {
+        var x = tx((mm - 1) / 11);
+        var t = el('text');
+        attr(t, {x: x, y: AXIS_Y - 14, 'font-size': 22, 'font-family': 'var(--hand)',
+          'text-anchor': 'middle', fill: mm === 1 ? 'var(--red)' : 'var(--ink-2)'});
+        t.textContent = mm + '月'; ticks.appendChild(t);
+        ticks.appendChild(attr(el('line'), {x1: x, y1: AXIS_Y - 7, x2: x, y2: AXIS_Y + 7,
+          stroke: mm === 1 ? 'var(--red)' : 'var(--muted)', 'stroke-width': mm === 1 ? 2 : 1}));
+      }
+    } else {
+      for (var yr = from; yr <= to; yr++) {
+        var idx = yr - from;
+        var x = span === 1 ? X0 + (W - X0 - 60) / 2 : tx(idx / (span - 1));
+        var t2 = el('text');
+        attr(t2, {x: x, y: AXIS_Y - 14, 'font-size': 28, 'font-family': 'var(--hand)',
+          'text-anchor': 'middle', fill: 'var(--red)'});
+        t2.textContent = yr; ticks.appendChild(t2);
+        ticks.appendChild(attr(el('line'), {x1: x, y1: AXIS_Y - 7, x2: x, y2: AXIS_Y + 7,
+          stroke: 'var(--red)', 'stroke-width': 2}));
+      }
+    }
   }
+  drawTicks();
   host.appendChild(s);
 
   /* ---- 点层：每个点一个 g，用 transform 定位，内部相对坐标 ---- */
@@ -148,7 +167,7 @@
     }
     // 先计算好新位置，分两步：本帧设 transition，下一任务改 transform
     D.forEach(function (d) {
-      nodeEls[d.id].g.style.transition = 'transform ' + MOTION + 'ms var(--ease), opacity ' + MOTION + 'ms ease';
+      nodeEls[d.id].g.style.transition = 'transform ' + MOTION + 'ms var(--ease)';
     });
     window.setTimeout(function () {
       D.forEach(function (d) { writeTransform(d); });
@@ -179,15 +198,22 @@
 
   function runFilter() {
     var list = D.filter(visible);
+    // 筛选后可见点等距铺满整轴，轴刻度同步重排（ccfddls spreadAcrossAxis）
     if (filter.from === 'all' && filter.to === 'all' && filter.co === 'all') layoutFull();
     else layoutFiltered(list);
     var inSet = {}; list.forEach(function (d) { inSet[d.id] = 1; });
     D.forEach(function (d) {
       var g = nodeEls[d.id].g;
-      g.classList.toggle('out', !inSet[d.id]);
-      g.style.pointerEvents = inSet[d.id] ? '' : 'none';
+      var on = !!inSet[d.id];
+      g.classList.toggle('out', !on);
+      g.style.opacity = on ? '' : '0';
+      g.style.pointerEvents = on ? '' : 'none';
     });
     applyLayout(true);
+    drawTicks();
+    ticks.classList.remove('redraw');
+    void ticks.getBoundingClientRect();
+    ticks.classList.add('redraw');
     hidePop();
   }
   bar.querySelector('#flt-from').addEventListener('change', function (e) { filter.from = e.target.value; runFilter(); });
@@ -220,6 +246,7 @@
   function applyHighlight() {
     D.forEach(function (d) {
       var n = nodeEls[d.id];
+      if (!visible(d)) return; // 筛选外的点保持隐藏
       var on = d.id === hoverId || d.id === selectedId;
       var dim = hoverId && !on;
       n.g.style.opacity = dim ? '0.35' : '';
@@ -240,6 +267,21 @@
   /* ---- 缩放（viewBox 只缩放 X）---- */
   var vb = {x: 0, y: 0, w: W, h: H};
   function applyVB() { s.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
+  var vbAnim = null;
+  function animateVB(tx, tw) {
+    if (vbAnim) cancelAnimationFrame(vbAnim);
+    var sx = vb.x, sw = vb.w, t0 = performance.now();
+    function step(now) {
+      var p = Math.min(1, (now - t0) / MOTION);
+      var e = 1 - Math.pow(1 - p, 3);
+      vb.x = sx + (tx - sx) * e;
+      vb.w = sw + (tw - sw) * e;
+      vb.h = H; vb.y = 0;
+      applyVB();
+      if (p < 1) vbAnim = requestAnimationFrame(step);
+    }
+    vbAnim = requestAnimationFrame(step);
+  }
   function zoomAt(factor, cx) {
     var nw = Math.max(W * .06, Math.min(W, vb.w / factor));
     vb.x = cx - (cx - vb.x) * (nw / vb.w);
