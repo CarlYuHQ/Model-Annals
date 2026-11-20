@@ -13,8 +13,9 @@
       .map(function(o){
         var ctx=o.latestCtx?o.latestCtx+'K':'';
         var src=o.src?'<span class="co"><a href="'+o.src+'" target="_blank" rel="noopener">官网 ↗</a></span>':'';
-        return '<article class="cell">'+
-          '<div class="num">'+o.count+'</div>'+
+        var lg=o.logo?'<img class="co-logo" src="assets/logos/'+o.logo+'.png" alt="'+o.name+' logo">':'<span class="co-logo co-logo-ph"></span>';
+        return '<article class="cell co-cell">'+
+          '<div class="co-head"><div class="num">'+o.count+'</div>'+lg+'</div>'+
           '<h3>'+o.name+'</h3>'+
           '<p>最新 '+o.latestDate+' · '+o.latest+(ctx?' · '+ctx:'')+'</p>'+
           '<span class="co">'+regionLabel(o.region)+' · '+o.families+' 个谱系 · '+o.openCount+' 个开放权重</span>'+
