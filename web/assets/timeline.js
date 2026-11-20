@@ -175,9 +175,11 @@
   }
   applyLayout(false);
 
-  /* ---- 筛选条：起始年 / 结束年 / 公司 ---- */
+  /* ---- 筛选条：起始年 / 结束年 / 公司（自定义下拉带 logo）---- */
   var companies = {};
-  D.forEach(function (d) { companies[d.company] = d.coName || d.company; });
+  D.forEach(function (d) {
+    if (!companies[d.company]) companies[d.company] = {name: d.coName || d.company, logo: d.logo};
+  });
   var bar = document.createElement('div');
   bar.className = 'tl-filter';
   function yearOpts(sel) {
@@ -185,15 +187,22 @@
     for (var yr = Y0; yr <= Y1; yr++) h += '<option value="' + yr + '">' + yr + '</option>';
     return h;
   }
+  var coKeys = Object.keys(companies).sort(function (a, b) { return companies[a].name.localeCompare(companies[b].name); });
+  var coOptions = '<button type="button" class="co-opt on" data-co="all"><img src="assets/logos/all.png" alt=""><span>全部</span></button>' +
+    coKeys.map(function (k) {
+      var c = companies[k];
+      var img = c.logo ? '<img src="' + logoURL(c.logo) + '" alt="">' : '<i class="co-ph"></i>';
+      return '<button type="button" class="co-opt" data-co="' + k + '">' + img + '<span>' + c.name + '</span></button>';
+    }).join('');
   bar.innerHTML =
-    '<label>年份 <select id="flt-from">' + yearOpts('from') + '</select></label>' +
+    '<span class="flt-label">年份</span>' +
+    '<span class="flt-select"><select id="flt-from">' + yearOpts('from') + '</select></span>' +
     '<span class="tl-dash">—</span>' +
-    '<select id="flt-to">' + yearOpts('to') + '</select>' +
-    '<label>机构 <select id="flt-co"><option value="all">全部</option>' +
-      Object.keys(companies).sort().map(function (k) {
-        return '<option value="' + k + '">' + companies[k] + '</option>';
-      }).join('') + '</select></label>' +
-    '<button id="flt-reset">重置</button>';
+    '<span class="flt-select"><select id="flt-to">' + yearOpts('to') + '</select></span>' +
+    '<span class="flt-label">机构</span>' +
+    '<span class="co-picker"><button type="button" id="flt-co-trigger" aria-expanded="false"><span id="co-current"><img src="assets/logos/all.png" alt="">全部</span><i class="co-caret"></i></button>' +
+      '<span class="co-menu" id="co-menu">' + coOptions + '</span></span>' +
+    '<button type="button" id="flt-reset">重置</button>';
   host.parentNode.insertBefore(bar, host);
 
   function runFilter() {
@@ -218,12 +227,38 @@
   }
   bar.querySelector('#flt-from').addEventListener('change', function (e) { filter.from = e.target.value; runFilter(); });
   bar.querySelector('#flt-to').addEventListener('change', function (e) { filter.to = e.target.value; runFilter(); });
-  bar.querySelector('#flt-co').addEventListener('change', function (e) { filter.co = e.target.value; runFilter(); });
+  // 机构自定义下拉
+  var coTrigger = bar.querySelector('#flt-co-trigger');
+  var coMenu = bar.querySelector('#co-menu');
+  var coCurrent = bar.querySelector('#co-current');
+  coTrigger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = coMenu.classList.toggle('open');
+    coTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  coMenu.addEventListener('click', function (e) {
+    var opt = e.target.closest('[data-co]');
+    if (!opt) return;
+    filter.co = opt.getAttribute('data-co');
+    var c = companies[filter.co];
+    var img = filter.co === 'all' ? '<img src="assets/logos/all.png" alt="">' :
+      (c && c.logo ? '<img src="' + logoURL(c.logo) + '" alt="">' : '<i class="co-ph"></i>');
+    coCurrent.innerHTML = img + (c ? c.name : '全部');
+    coMenu.querySelectorAll('.co-opt').forEach(function (o) { o.classList.toggle('on', o === opt); });
+    coMenu.classList.remove('open');
+    coTrigger.setAttribute('aria-expanded', 'false');
+    runFilter();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.co-picker')) { coMenu.classList.remove('open'); coTrigger.setAttribute('aria-expanded', 'false'); }
+  });
   bar.querySelector('#flt-reset').addEventListener('click', function () {
     filter = { from: 'all', to: 'all', co: 'all' };
     bar.querySelector('#flt-from').value = 'all';
     bar.querySelector('#flt-to').value = 'all';
-    bar.querySelector('#flt-co').value = 'all';
+    coCurrent.innerHTML = '<img src="assets/logos/all.png" alt="">全部';
+    coMenu.querySelectorAll('.co-opt').forEach(function (o, i) { o.classList.toggle('on', i === 0); });
+    coMenu.classList.remove('open');
     runFilter();
   });
 

@@ -83,12 +83,24 @@ html.js .ink-char{opacity:0;transform:translateY(8px)}
 .ax-mi b{font-family:var(--hand);font-size:14px;font-weight:400;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ax-mi small{font-family:var(--ui);font-size:10px;color:var(--muted)}
 .tl-filter{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;font-family:var(--ui);font-size:12px;color:var(--muted)}
-.tl-filter label{display:inline-flex;align-items:center;gap:8px}
-.tl-filter select{font-family:var(--ui);font-size:12px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:4px 8px;cursor:pointer}
-.tl-filter select:hover{border-color:var(--ink)}
-.tl-filter button{font-family:var(--ui);font-size:12px;color:var(--ink-2);background:none;border:1px solid var(--rule);padding:4px 12px;cursor:pointer}
-.tl-filter button:hover{border-color:var(--red);color:var(--red)}
+.flt-label{color:var(--muted)}
+.flt-select select{font-family:var(--ui);font-size:12px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:6px 16px;cursor:pointer;outline:none}
+.flt-select select:hover{border-color:var(--ink)}
 .tl-dash{color:var(--muted)}
+.co-picker{position:relative}
+.co-picker>button{display:flex;align-items:center;gap:12px;font-family:var(--ui);font-size:12px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:6px 16px;cursor:pointer}
+.co-picker>button:hover{border-color:var(--ink)}
+.co-picker #co-current{display:flex;align-items:center;gap:8px}
+.co-picker img,.co-ph{width:18px;height:18px;border-radius:50%;display:block}
+.co-ph{background:var(--muted)}
+.co-caret{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--muted)}
+.co-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:30;width:220px;max-height:320px;overflow-y:auto;background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:8px}
+.co-menu.open{display:flex;flex-direction:column;gap:2px}
+.co-opt{display:flex;align-items:center;gap:8px;width:100%;font-family:var(--ui);font-size:12px;color:var(--ink-2);background:none;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;text-align:left}
+.co-opt:hover{background:var(--paper-2,var(--paper));color:var(--red)}
+.co-opt.on{background:var(--hl-green)}
+.tl-filter>#flt-reset{font-family:var(--ui);font-size:12px;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:6px 16px;cursor:pointer}
+.tl-filter>#flt-reset:hover{border-color:var(--red);color:var(--red)}
 .tl-ticks.redraw{animation:tickIn .6s var(--ease)}
 @keyframes tickIn{from{opacity:0}to{opacity:1}}
 .tl-model{cursor:pointer}
