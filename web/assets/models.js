@@ -26,7 +26,7 @@
   };
   var CTX_TICKS=[1,4,16,64,256,1000];
   function tickLabel(v){return v>=1000?(v/1000)+'M':v+'K';}
-  function ctxLabel(c){return c==null?'未公开':(c>=1000?(c/1000)+'M':c+'K');}
+  function ctxLabel(c){return c==null?L('undisclosed'):(c>=1000?(c/1000)+'M':c+'K');}
 
   var current='all', selected=null;
   var LOGO={openai:'openai',anthropic:'anthropic',google:'deepmind',meta:'meta',xai:'x',nvidia:'nvidia',mistral:'mistral',cohere:'cohere',ai21:'ai21',deepseek:'deepseek',alibaba:'qwenlm',bytedance:'bytedance',moonshot:'moonshot',zhipu:'zhipuai',minimax:'minimaxi',tencent:'tencent',huawei:'huawei',stepfun:'stepfun','01ai':'01ai',internlm:'internlm',baidu:'baidu'};
@@ -70,7 +70,7 @@
     var host=document.getElementById('chart-wrap');
     host.innerHTML='';
     var svg=el('svg');attr(svg,{viewBox:'0 0 '+W+' '+H,preserveAspectRatio:'xMidYMid meet',role:'img',
-      'aria-label':'模型上下文长度对数坐标散点图'});
+      'aria-label':L('chartAria')});
 
     CTX_TICKS.forEach(function(v){
       var y=Y(v);
@@ -83,9 +83,9 @@
     }
     svg.appendChild(attr(el('line'),{x1:m.l,y1:plotBottom,x2:W-m.r,y2:plotBottom,stroke:'var(--ink)','stroke-width':1.5}));
     svg.appendChild(attr(el('line'),{x1:m.l,y1:plotTop,x2:m.l,y2:plotBottom,stroke:'var(--ink)','stroke-width':1.5}));
-    var yl=el('text','cmp-axis');attr(yl,{x:m.l-10,y:plotTop-6,'text-anchor':'end'});yl.textContent='上下文';svg.appendChild(yl);
+    var yl=el('text','cmp-axis');attr(yl,{x:m.l-10,y:plotTop-6,'text-anchor':'end'});yl.textContent=L('context');svg.appendChild(yl);
     svg.appendChild(attr(el('line'),{x1:m.l,y1:naDivY,x2:W-m.r,y2:naDivY,stroke:'var(--rule)','stroke-width':1,'stroke-dasharray':'3 6'}));
-    var nt=el('text','cmp-axis');attr(nt,{x:W-m.r,y:naDivY-6,'text-anchor':'end'});nt.textContent='上下文未公开';svg.appendChild(nt);
+    var nt=el('text','cmp-axis');attr(nt,{x:W-m.r,y:naDivY-6,'text-anchor':'end'});nt.textContent=L('ctxUndisclosed');svg.appendChild(nt);
 
     var pts=[];
     D.forEach(function(d){
@@ -159,7 +159,7 @@
   function showTip(d,e){
     var t=getTip();
     t.innerHTML='<b>'+esc(d.name)+'</b><span>'+esc(d.company)+' · '+esc(d.date)+'</span>'+
-      '<span>上下文 '+esc(ctxLabel(d.ctx))+(d.param?' · '+esc(d.param)+'B 参数':'')+'</span>';
+      '<span>'+L('context')+' '+esc(ctxLabel(d.ctx))+(d.param?' · '+esc(d.param)+L('params'):'')+'</span>';
     t.classList.add('on');moveTip(e);
   }
   function moveTip(e){
@@ -211,7 +211,7 @@
 
   function buildTable(){
     var tb=document.getElementById('model-tbody');if(!tb)return;
-    var lic={open:'开放',weighted:'受限',proprietary:'闭源'};
+    var lic={open:L('licOpen'),weighted:L('licWeighted'),proprietary:L('licClosed')};
     function render(){
       tb.innerHTML=D.filter(function(d){return current==='all'||d.companyId===current;})
         .map(function(d){return '<tr data-id="'+esc(d.id)+'"><td>'+esc(d.name)+'</td><td>'+esc(d.company)+'</td><td>'+esc(d.date)+'</td><td>'+esc(ctxLabel(d.ctx))+'</td><td>'+(d.param?esc(d.param)+'B':'—')+'</td><td>'+(lic[d.license]||'—')+'</td></tr>';}).join('');

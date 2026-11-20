@@ -24,7 +24,7 @@
     var list=T.filter(function(t){return filter==='all'||t.cat===filter;})
       .sort(function(a,b){return (a.year||0)-(b.year||0);});
     grid.innerHTML=list.map(function(t){
-        return '<article class="cell tech-cell'+(activeId===t.id?' on':'')+'" data-id="'+esc(t.id)+'" tabindex="0" role="button" aria-label="查看 '+esc(t.zh||t.name)+' 详情">'+
+        return '<article class="cell tech-cell'+(activeId===t.id?' on':'')+'" data-id="'+esc(t.id)+'" tabindex="0" role="button" aria-label="'+L('viewDetail')+esc(t.zh||t.name)+'">'+
           '<div class="num">'+esc(t.year)+'</div>'+
           '<h3>'+esc(t.zh||t.name)+'</h3>'+
           '<p>'+esc(summaryShort(t.summary))+'</p>'+
@@ -45,7 +45,7 @@
     var rel=T.filter(function(x){return x.id!==t.id&&x.cat===t.cat;})
       .sort(function(a,b){return (a.year||0)-(b.year||0);}).slice(0,6);
     if(!rel.length)return '';
-    return '<h4>同类技术</h4><div class="td-rel">'+
+    return '<h4>'+L('relatedTech')+'</h4><div class="td-rel">'+
       rel.map(function(r){return '<button class="td-chip td-link" data-goto="'+esc(r.id)+'">'+
         esc(r.year)+' '+esc(r.zh||r.name)+'</button>';}).join('')+'</div>';
   }
@@ -59,23 +59,23 @@
       '<div class="td-meta">'+
         '<div class="td-year">'+esc(t.year)+'</div>'+
         '<dl>'+
-          '<dt>提出机构</dt><dd>'+esc(t.origin)+'</dd>'+
-          '<dt>类别</dt><dd>'+esc(t.cat)+'</dd>'+
-          '<dt>原始论文</dt><dd><a href="'+esc(t.source)+'" target="_blank" rel="noopener">'+esc(t.source.replace(/^https?:\/\//,''))+' ↗</a></dd>'+
+          '<dt>'+L('proposedBy')+'</dt><dd>'+esc(t.origin)+'</dd>'+
+          '<dt>'+L('category')+'</dt><dd>'+esc(t.cat)+'</dd>'+
+          '<dt>'+L('originalPaper')+'</dt><dd><a href="'+esc(t.source)+'" target="_blank" rel="noopener">'+esc(t.source.replace(/^https?:\/\//,''))+' ↗</a></dd>'+
         '</dl>'+
       '</div>';
     var body=
       '<div class="td-body">'+
         '<h2>'+esc(t.zh||t.name)+'</h2>'+
         '<div class="td-ename">'+esc(t.name)+'</div>'+
-        '<h4>核心机制</h4><p>'+esc(t.summary)+'</p>'+
-        '<h4>影响</h4><p>'+esc(t.impact)+'</p>'+
-        (rel.length?'<h4>关联模型</h4><div class="td-rel">'+
+        '<h4>'+L('coreMechanism')+'</h4><p>'+esc(t.summary)+'</p>'+
+        '<h4>'+L('impact')+'</h4><p>'+esc(t.impact)+'</p>'+
+        (rel.length?'<h4>'+L('relatedModels')+'</h4><div class="td-rel">'+
           rel.map(function(r){return '<span class="td-chip">'+esc(r.name)+'</span>';}).join('')+'</div>':'')+
         relatedTech(t)+
-        '<div class="td-src">来源：<a href="'+esc(t.source)+'" target="_blank" rel="noopener">'+esc(t.source)+' ↗</a></div>'+
+        '<div class="td-src">'+L('source')+'<a href="'+esc(t.source)+'" target="_blank" rel="noopener">'+esc(t.source)+' ↗</a></div>'+
       '</div>';
-    detail.innerHTML='<div class="td-inner"><button class="td-close" aria-label="收起">收起 ×</button>'+meta+body+'</div>';
+    detail.innerHTML='<div class="td-inner"><button class="td-close" aria-label="Close">'+L('collapse')+'</button>'+meta+body+'</div>';
     detail.classList.add('on');
   }
 
@@ -94,7 +94,7 @@
 
   var fb=document.getElementById('tech-filters');
   if(fb){
-    fb.innerHTML='<button class="chip on" data-c="all">全部</button>'+
+    fb.innerHTML='<button class="chip on" data-c="all">'+L('all')+'</button>'+
       Object.keys(cats).sort().map(function(c){return '<button class="chip" data-c="'+esc(c)+'">'+esc(c)+'</button>';}).join('');
     fb.addEventListener('click',function(e){
       var b=e.target.closest('[data-c]');if(!b)return;

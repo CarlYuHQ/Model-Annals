@@ -1,0 +1,207 @@
+# -*- coding: utf-8 -*-
+"""生成英文版数据文件：技术正文、分类名、机构来源英译。
+与 build_web_data.py 同源（data/atlas.json），翻译表逐条对应，不新增事实。"""
+import json, os, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, 'web', 'assets')
+
+CAT = {
+    '数据': 'Data', '架构': 'Architecture', '训练方法': 'Training',
+    '效率': 'Efficiency', '多模态': 'Multimodal', '检索': 'Retrieval',
+    '推理': 'Reasoning', '对齐': 'Alignment', '智能体': 'Agents',
+}
+
+# 每条：英文中文名(展示用)、英文正式名、summary、impact、origin 英译
+T = {
+'word2vec': ('Word Embeddings (word2vec)', 'word2vec',
+ "Mikolov et al. introduced word embeddings with two architectures, CBOW and Skip-gram, that map words into low-dimensional dense vectors using a shallow neural network. Unlike one-hot encoding, these vectors encode semantic similarity, while negative sampling and hierarchical softmax sharply reduce training cost.",
+ "Made semantic similarity expressible as vector arithmetic and became the word-representation foundation for all later pretrained language models.", None),
+'attention-mechanism': ('Attention Mechanism', 'Attention Mechanism',
+ "Bahdanau et al. introduced attention in neural machine translation: at each step the decoder aligns to and reads all encoder hidden states by learned weights instead of a single fixed vector, relieving the long-sequence information bottleneck.",
+ "Turned 'focus on demand' into a general neural component and became the core of Transformers and long-context capability.", 'Research community'),
+'seq2seq': ('Sequence to Sequence', 'Sequence to Sequence',
+ "Sutskever et al. proposed an encoder-decoder architecture for end-to-end sequence transduction: the encoder compresses the input into a fixed vector from which the decoder generates the output. Originally used for machine translation, it handles variable-length inputs and outputs.",
+ "Established the encoder-decoder paradigm and directly preceded attention and the Transformer.", None),
+'knowledge-distillation': ('Knowledge Distillation', 'Knowledge Distillation',
+ "Hinton et al. proposed training a small model on the soft probability distribution produced by a large one, exploiting the class-similarity information it carries, usually with a temperature parameter. In the LLM era it is also used to transfer chain-of-thought reasoning into smaller models.",
+ "Compresses models with little capability loss; a major source of low-cost deployment and compact open models.", 'Research community'),
+'moe': ('Mixture of Experts', 'Mixture of Experts',
+ "Sparsely-Gated MoE equips a network with multiple 'expert' subnetworks, with a gate activating only a few per token, decoupling total parameter count from per-token compute. Switch Transformer, Mixtral and the DeepSeek series extended this sparse route.",
+ "Supports trillion-scale total parameters at low inference cost; now the mainstream architecture for frontier open models.", 'Research community'),
+'ppo': ('Proximal Policy Optimization', 'Proximal Policy Optimization',
+ "An on-policy policy-gradient algorithm that clips the probability-ratio objective to bound policy updates; first-order optimization alone gives TRPO-like stability with far simpler implementation.",
+ "Became the standard optimizer for RLHF, underpinning InstructGPT, ChatGPT and Llama 2-Chat alignment pipelines.", 'OpenAI (Schulman et al.)'),
+'transformer': ('Transformer', 'Transformer',
+ "Vaswani et al. proposed in 'Attention Is All You Need' a sequence model built entirely on self-attention, removing recurrence and convolution and combining multi-head attention, positional encoding and feed-forward layers. It trains with high parallelism.",
+ "Became the unified backbone of BERT, GPT and virtually all modern LLMs, sustaining the expansion of parameter scale and context length.", None),
+'bert-pretraining': ('BERT Pre-training', 'BERT Pre-training',
+ "Devlin et al. pretrained a Transformer encoder bidirectionally with masked language modeling, then fine-tuned on downstream tasks. Each word representation depends on both left and right context, and classification, QA and similar tasks share one fine-tuning paradigm.",
+ "Demonstrated the power of large-scale pretraining plus lightweight fine-tuning, opened the pretrained-model race and set new records on many understanding tasks.", None),
+'gpt-autoregressive-pretraining': ('GPT Autoregressive Pre-training', 'GPT Autoregressive Pre-training',
+ "Radford et al. proposed generative pretraining: train a decoder-only Transformer to predict the next token, then fine-tune for specific tasks. A single language-modeling objective replaces task-specific architectures.",
+ "Established the decoder-only autoregressive line, the technical starting point for the GPT family and mainstream generative LLMs.", None),
+'world-model': ('World Models (LLM-related)', 'World Model (LLM-related)',
+ "A model learns environment transition dynamics to predict the next state and plan accordingly; combined with LLMs, language models build or serve as implicit world models or generative world simulators.",
+ "Seen as a key direction beyond pure token prediction, giving models physical common sense and planning ability.",
+ "Ha & Schmidhuber (2018); LLM integrations: LLM-DM (NeurIPS 2023), WorldGPT (2024), OpenAI Sora (2024)"),
+'rag': ('Retrieval-Augmented Generation', 'Retrieval-Augmented Generation',
+ "Lewis et al. retrieve relevant documents from an external knowledge base before generation and pass them to the model as context. Parameters supply language ability while knowledge can be updated through the index at any time.",
+ "Mitigates hallucination and stale knowledge without retraining; now the mainstream architecture for enterprise question answering.", 'Research community'),
+'scaling-laws': ('Scaling Laws', 'Scaling Laws',
+ "Kaplan et al. found language-model loss falls as a power law in parameters, data and compute, predictable across orders of magnitude. DeepMind's 2022 Chinchilla work further showed earlier models were systematically undertrained and gave an approximately optimal parameter/data ratio.",
+ "Turned model capability into a predictable, plannable investment problem and directly drove the subsequent parameter and compute race.", None),
+'sparse-attention': ('Sparse Attention', 'Sparse Attention',
+ "Longformer, BigBird and others let each token attend only to a local window plus a few global positions, reducing attention from quadratic to near-linear in sequence length. DeepSeek adopts DSA and related sparse attention in V3.2/V4 to support ultra-long context.",
+ "Breaks the memory and compute bottleneck of long sequences; a prerequisite for million-token context.", 'Research community'),
+'instruction-tuning': ('Instruction Tuning', 'Instruction Tuning',
+ "Wei et al. proposed FLAN: rewrite many NLP datasets into natural-language instructions for fine-tuning, improving zero-shot performance on unseen tasks. Self-Instruct and FLAN-T5 later scaled instruction data further.",
+ "Taught models to follow instructions rather than merely continue text; now a standard stage in general-purpose assistant training.", None),
+'lora-qlora': ('LoRA / QLoRA', 'LoRA / QLoRA',
+ "LoRA freezes pretrained weights and injects trainable low-rank decomposition matrices into Transformer layers, cutting trainable parameters by orders of magnitude. QLoRA further quantizes the base model to 4 bits before fine-tuning, enabling adaptation on a single consumer GPU.",
+ "Moved LLM fine-tuning from compute-intensive to affordable for ordinary developers, greatly expanding the open ecosystem.", 'Research community'),
+'rope': ('Rotary Position Embedding (RoPE)', 'RoPE',
+ "Su et al. proposed rotary position embeddings: rotation matrices of different frequencies act on queries and keys so attention scores naturally carry relative position information. The implementation is simple and amenable to length extrapolation.",
+ "Became the default position encoding for LLaMA, Qwen, DeepSeek and most modern LLMs.", 'Research community'),
+'agent-tool-use': ('Agents and Tool Use', 'Agent / Tool Use',
+ "ReAct alternates reasoning with calls to external tools such as search and calculators; OpenAI function calling, the MCP protocol and models like o3 later productized this pattern. Models moved from only answering to executing multi-step tasks.",
+ "Turns language models into agents that call software and operate environments, broadening the application boundary of LLMs.", 'Research community'),
+'chain-of-thought': ('Chain-of-Thought', 'Chain-of-Thought',
+ "Wei et al. supplied few-shot examples containing intermediate reasoning steps, prompting models to write out their reasoning before answering. A handful of examples substantially improved math, commonsense and symbolic reasoning.",
+ "Made 'thinking a few more steps at test time' an operational prompting technique; the origin of later reasoning models and test-time compute.", None),
+'constitutional-ai': ('Constitutional AI', 'Constitutional AI',
+ "Anthropic proposed having a model critique and revise its own outputs against a written set of principles, generating preference data (RLAIF) to reduce reliance on human harmfulness labels. A key training method for the Claude family.",
+ "Provides an auditable, scalable alignment path complementary to RLHF.", None),
+'flash-attention': ('FlashAttention', 'FlashAttention',
+ "Dao et al. proposed an IO-aware exact attention algorithm that tiles computation to avoid materializing the attention matrix in HBM, substantially cutting memory use and speeding up training with exact results.",
+ "A standard kernel in training and inference frameworks; infrastructure for long context and large-scale training efficiency.", 'Research community'),
+'orm': ('Outcome Reward Model', 'Outcome Reward Model',
+ "A verifier trained only on whether the final answer is correct (ORM). Compared with step-level PRMs it is more label-efficient but prone to 'right answer, wrong reasoning'.",
+ "Established the process-vs-outcome supervision framework and the conceptual starting point for PRM and RLVR reward work.", 'DeepMind (Uesato et al.)'),
+'quantization': ('Model Quantization (GPTQ/AWQ/GGUF)', 'Quantization (GPTQ/AWQ/GGUF)',
+ "Weights are compressed from FP16 to INT8/INT4 to save memory and bandwidth. GPTQ and AWQ are typical post-training quantization methods; GGUF is the llama.cpp file format that makes loading quantized models easy on consumer hardware.",
+ "Lets tens-of-billions-parameter models run on a single GPU or a personal computer; a key driver of open-model adoption.", 'Research community'),
+'rlhf': ('RLHF', 'RLHF',
+ "Ouyang et al. proposed a three-stage alignment pipeline: supervised fine-tuning, training a reward model on human preference comparisons, then optimizing outputs with reinforcement learning. In InstructGPT a 1.3B model outperformed the 175B GPT-3 on human preference ratings.",
+ "Brought 'helpful, honest, harmless' human preferences into the training objective; the key technique that made ChatGPT usable.", None),
+'rlaif': ('RL from AI Feedback', 'Reinforcement Learning from AI Feedback',
+ "An AI model scores pairs of answers against written principles to generate preference data and train a reward model, which is then used for RL — greatly reducing human annotation.",
+ "Freed alignment from the human-labeling bottleneck; the basis of the Claude series and scalable-alignment research.",
+ "Anthropic (introduced in Constitutional AI); Google (dedicated 2023 study)"),
+'speculative-decoding': ('Speculative Decoding', 'Speculative Decoding',
+ "A small model quickly drafts several tokens and the large model verifies them in parallel, accepting correct ones and correcting wrong ones — faster generation without changing the output distribution.",
+ "Reduces inference latency without quality loss; widely integrated into serving frameworks.", 'Research community'),
+'sft': ('Supervised Fine-Tuning', 'Supervised Fine-Tuning',
+ "Fine-tune a pretrained model in a supervised fashion on high-quality human-demonstrated QA pairs; the first step (SFT) of the InstructGPT/ChatGPT alignment pipeline.",
+ "Turns a base model that only continues text into an instruction-following assistant; the starting point for nearly all later alignment methods.", None),
+'synthetic-data': ('Synthetic Data', 'Synthetic Data',
+ "Self-Instruct and related work have models generate instruction-response pairs, filter them and use them for fine-tuning, alleviating the shortage of high-quality human annotation. Since then widely used for instruction data augmentation and math/code training.",
+ "Shifted data production from purely human to 'model generation + filtering', sharply lowering the cost of alignment and domain models.", 'Research community'),
+'dpo': ('Direct Preference Optimization', 'DPO',
+ "Rafailov et al. optimize the policy directly from preference pairs, expressing the reward implicitly as the ratio between policy and reference model, removing the explicit reward model and online RL. Training is simpler and more stable.",
+ "Greatly lowered the barrier and cost of preference alignment; one of the most widely used methods in the open-source community.", 'Research community'),
+'kv-cache-paged-attention': ('KV Cache and PagedAttention', 'KV Cache / PagedAttention',
+ "vLLM introduced PagedAttention, managing KV cache with operating-system-style paging to reduce memory fragmentation and enable efficient sharing, substantially improving multi-request throughput.",
+ "Laid the foundation for modern LLM serving engines and directly reduced per-token serving cost.", 'Research community'),
+'mamba-ssm': ('Mamba / State Space Models', 'Mamba / State Space Models',
+ "Mamba adds input-dependent selection and hardware-aware algorithms to structured state space models, achieving linear-complexity inference while retaining long-range dependency modeling.",
+ "One of the main alternatives to Transformers, adopted by hybrid architectures such as Jamba, advancing efficient sequence modeling.", 'Research community'),
+'multi-agent': ('Multi-Agent / Agentic Workflow', 'Multi-Agent / Agentic Workflow',
+ "LLM agents with different roles are organized by standard operating procedures or conversation graphs to collaborate on complex tasks; MetaGPT, for example, simulates a software company and produces complete code.",
+ "Role specialization and structured deliverables reduce hallucination and improve reliability on complex tasks; a mainstream form of agent engineering.",
+ "DeepWisdom (MetaGPT); Microsoft (AutoGen); CAMEL et al."),
+'multimodal-fusion': ('Multimodal Fusion', 'Multimodal Fusion',
+ "Text, images and audio are encoded into a shared representation space or handled by a single model. CLIP aligns image and text with contrastive learning; GPT-4V and GPT-4o accept image and audio input within one model with low-latency voice interaction.",
+ "Gave language models sight and hearing, extending the chat interface into a natively multimodal assistant.", None),
+'prm': ('Process Reward Model', 'Process Reward Model',
+ "A verifier that scores each step of a reasoning chain rather than only the final answer. 'Let's Verify Step by Step' showed process supervision substantially outperforms outcome supervision and released PRM800K.",
+ "Can locate errors mid-reasoning and guide search; a key component of test-time compute in o1/R1-style reasoning models.",
+ "OpenAI (Lightman et al.); concept from DeepMind, Uesato et al. 2022"),
+'reflection': ('Reflection / Self-Correction', 'Reflection / Self-Correction',
+ "Reflexion has an agent write a natural-language self-critique after failure, store it in episodic memory and use it to improve the next attempt — without updating model weights.",
+ "Moved self-improvement from training to inference; the basis of the modern agent 'think–check–retry' loop.",
+ "Northeastern University / MIT / Princeton (Shinn et al.)"),
+'rejection-sampling': ('Rejection Sampling / Best-of-N', 'Rejection Sampling / Best-of-N',
+ "Sample multiple responses per prompt and keep only those with correct answers or the highest reward for supervised fine-tuning (RFT/RAFT), optionally iterated.",
+ "Improves reasoning and alignment from a model's own successful samples without RL; part of production pipelines for Llama 3 and DeepSeek-R1.",
+ "Alibaba DAMO Academy (RFT, Yuan et al.); related to STaR 2022 and RAFT 2023"),
+'tir': ('Tool-Integrated Reasoning', 'Tool-Integrated Reasoning',
+ "Interleave calls to code interpreters and symbolic solvers into natural-language reasoning, using execution results to guide subsequent steps (ToRA is a representative work).",
+ "Breaks the arithmetic and symbolic limits of pure text models; a common paradigm for math reasoning and coding agents.",
+ "Microsoft Research Asia / Tsinghua University (ToRA, Gou et al.)"),
+'long-context-yarn': ('Long Context Extension (YaRN)', 'YaRN / Long Context',
+ "YaRN applies frequency-scaled RoPE and attention temperature correction, extending an existing model's context window beyond 128K with little fine-tuning and roughly one tenth the tokens of direct fine-tuning. NTK and LongRoPE continued this line.",
+ "Made long documents, entire codebases and long reasoning chains usable inputs; a key engineering lever in the context-length race.", 'Research community'),
+'context-engineering': ('Context Engineering / Prompt Caching', 'Context Engineering / Prompt Caching',
+ "Place stable context (system prompts, tool definitions, long documents) in a prefix and cache its KV computation across requests, while systematically designing what information the model sees.",
+ "Turns context from a one-off consumable into a reusable asset, sharply reducing cost and latency for long-context and agent applications.",
+ "Anthropic (Prompt Caching, Aug 2024); followed by Google and OpenAI; the term 'Context Engineering' popularized in 2025"),
+'grpo': ('Group Relative Policy Optimization', 'GRPO',
+ "Shao et al. proposed Group Relative Policy Optimization in DeepSeekMath as a PPO variant: sample a group of answers for one question, estimate advantages from the group's reward mean and standard deviation, and drop the value network of comparable size to the policy.",
+ "Substantially reduces RL memory overhead; the key algorithm behind large-scale RL training of reasoning models such as DeepSeek-R1.", None),
+'graphrag': ('GraphRAG / Agentic RAG', 'GraphRAG / Agentic RAG',
+ "An LLM extracts an entity-relation knowledge graph from the corpus, performs community clustering and pre-generates community summaries, answering global questions in a map-reduce manner.",
+ "Addresses the inability of vector retrieval to answer corpus-wide questions like 'what are the overall themes', pushing RAG toward structure and agency.",
+ "Microsoft Research (Edge et al.)"),
+'mixture-of-agents': ('Mixture-of-Agents', 'Mixture-of-Agents',
+ "Multiple LLMs are arranged in layers: agents at each layer refine their answers using all responses from the previous layer, and a final aggregator synthesizes the output — prompting only, no training.",
+ "An ensemble of open models surpassed GPT-4o on AlpacaEval 2.0, showing model-level ensembling is an effective path to quality.",
+ "Together AI / University of Chicago / Duke University (Wang et al.)"),
+'mla': ('Multi-head Latent Attention', 'Multi-head Latent Attention',
+ "DeepSeek-V2 introduced MLA, jointly compressing multi-head attention Keys/Values into a low-dimensional latent vector before caching, cutting KV cache by over 90% while matching or exceeding standard multi-head attention.",
+ "Greatly reduces inference memory and raises throughput; core to the DeepSeek family's low-cost long-context capability.", None),
+'online-rl': ('Online RL / Iterative DPO', 'Online RL / Iterative DPO',
+ "Each round samples response pairs from the current model, an LLM annotator gives preferences in real time, and DPO/IPO/SLiC update the policy — avoiding distribution shift from offline preference data.",
+ "Combines DPO's simplicity with on-policy feedback, markedly reducing overfitting; an important direction in iterative alignment.",
+ "Google DeepMind (Online DPO / OAIF, Guo, Mesnard et al.)"),
+'pd-disaggregation': ('Prefill/Decode Disaggregation', 'Prefill/Decode Disaggregation',
+ "Deploy the prefill and decode phases of LLM inference on separate GPUs with independently optimized parallelism, eliminating interference so TTFT and TPOT constraints can both be met.",
+ "Significantly improves per-GPU serving throughput and SLO attainment; now a standard architecture option for large-scale inference systems.",
+ "Peking University / ByteDance et al. (DistServe, Zhong et al.), OSDI 2024"),
+'rlvr': ('RL with Verifiable Rewards', 'Reinforcement Learning with Verifiable Rewards',
+ "Rewards come from verifiers whose correctness is automatically checkable (math answer matching, unit tests, format validation), replacing reward models trained on human preferences.",
+ "Clean reward signals that are hard for models to game; the core training paradigm for o1/R1-style reasoning models.",
+ "Allen Institute for AI (Tülu 3, coined the term); popularized by DeepSeek (2025)"),
+'self-rewarding': ('Self-Rewarding / Self-Improvement', 'Self-Rewarding / Self-Improvement',
+ "A language model scores its own responses via LLM-as-a-Judge, builds preference pairs and improves both instruction following and judging ability in an iterative DPO loop.",
+ "Shows models can self-improve without an external reward model; an important starting point for iterative online alignment.",
+ "Meta AI + New York University (Yuan et al.)"),
+'test-time-compute': ('Test-time Compute', 'Test-time Compute',
+ "OpenAI o1 generates a long internal chain of thought before answering and uses RL to train the model to use it effectively; performance grows with both training-time and test-time compute. The GPT-5 family further uses a router to allocate reasoning budget by difficulty.",
+ "Opened a second capability-growth curve beyond pretraining; the main competitive axis for frontier models after 2024.", None),
+'long-cot': ('Long CoT / Reasoning Distillation', 'Long CoT / Reasoning Distillation',
+ "Pure RL or cold-start-plus-RL lets models spontaneously produce long-chain reasoning, self-verification and reflection (the 'aha moment'); these reasoning traces are then distilled into smaller models.",
+ "Showed reasoning ability can be elicited by RL and transferred efficiently, directly triggering the wave of open reasoning models.", None),
+}
+
+
+def main():
+    atlas = json.load(open(os.path.join(ROOT, 'data', 'atlas.json'), encoding='utf-8'))
+    out = []
+    missing = []
+    for t in atlas['technologies']:
+        e = T.get(t['id'])
+        if not e:
+            missing.append(t['id'])
+            continue
+        zh, name, summary, impact, origin = e
+        out.append({
+            'id': t['id'], 'name': name, 'zh': zh, 'year': t['year'],
+            'category': CAT.get(t.get('category'), t.get('category')),
+            'cat': CAT.get(t.get('category'), t.get('category')),
+            'origin': origin if origin is not None else t.get('origin'),
+            'summary': summary, 'impact': impact, 'source': t.get('source'),
+            'models': t.get('models', []), 'model_refs': t.get('model_refs', []),
+        })
+    if missing:
+        print('缺少翻译:', missing, file=sys.stderr)
+        sys.exit(1)
+    p = os.path.join(OUT, 'tech-data-en.js')
+    with open(p, 'w', encoding='utf-8') as f:
+        f.write('/* English dataset: 48 key techniques. Translations mirror data/atlas.json; no added facts. */\n')
+        f.write('window.TECH_DATA = ' + json.dumps(out, ensure_ascii=False, separators=(',', ':')) + ';\n')
+    print('已生成 tech-data-en.js：', len(out), '条')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,111 +1,96 @@
+<div align="center">
+
 # Model Annals
 
-> 大模型编年史 — 一部关于模型、机构与关键技术的编年史。
+**大模型编年史 — 一部关于模型、机构与关键技术的可视化档案。**
 
-一个纯静态、数据驱动的多视角可视化档案：收录 **357 个大模型**、**21 家机构**、**48 项关键技术**与 **64 个历史事件**，时间跨度 2018—2026（含 11 月最新发布）。每个条目都附原始来源链接；未公开的数据一律留空，不做推测。
+**English | [中文](README.md)** · [English →](README.en.md)
 
-## 多页面网站（主展示）
+[![Models](https://img.shields.io/badge/Models-357-2c4ec4.svg)](web/index.html)
+[![Organizations](https://img.shields.io/badge/Organizations-21-d7303b.svg)](web/companies.html)
+[![Techniques](https://img.shields.io/badge/Techniques-48-2f9b46.svg)](web/tech.html)
+[![Static](https://img.shields.io/badge/Dependencies-none-7a7f99.svg)](#运行)
+[![License](https://img.shields.io/badge/Data-public%20sources-3c4166.svg)](#来源与局限)
 
-[打开编年页 →](web/index.html)
+</div>
 
-**四个独立 HTML 页面**，导航切换、URL 改变、可单独收藏分享、浏览器前进后退可用：
+> **Scope.** 这是一个**纯静态、数据驱动**的多视角档案，收录 **357 个模型**、**21 家机构**、**48 项关键技术**，时间跨度 2018—2026。无后端、无构建、无外部 API；每个条目都附原始来源链接；**未公开的数据一律留空，不做推测**。所有内容来自 `data/atlas.json` 一份数据源，页面由脚本生成。
+
+**在线浏览：** [https://carlyuhq.github.io/Model-Annals/](https://carlyuhq.github.io/Model-Annals/) · [English version](https://carlyuhq.github.io/Model-Annals/index-en.html)
+
+![编年长轴预览](docs/preview.jpg)
+
+## 它解决什么
+
+阅读模型史时，难点不是找资料，而是**看清时间与关系**。Model Annals 把同一个数据集切成四个视角：
+
+- **一条轴看全貌** — 357 个模型按真实发布月份铺开，机构 logo 作点。可按年份区间、机构筛选；筛选后点等距重排、刻度同步变化（动态效果参考 `CarlYuHQ/ccfddls`）。
+- **一张图看能力演进** — 90 个代表模型放在「时间 × 上下文长度」对数坐标上；未公开上下文单独成带，同坐标点自动错开，hover 显示详情。
+- **一张卡看机构** — 21 家机构的模型数、最新发布、谱系与开放权重比例，带机构 logo。
+- **点开即读的技术小博客** — 48 项关键技术各有原始论文、提出机构、核心机制、影响、关联模型与同类技术导航。内容全部来自结构化字段，不新写事实。
+
+## 四个页面
 
 | 页面 | 内容 |
 |---|---|
-| [编年](web/index.html) | **横向编年长轴**：357 个模型精确到月，机构 logo 圆片。完整显示一屏，滚轮/拖拽缩放看局部，鼠标沿轴滑动自动吸附最近节点并展开名称与详情（动态效果参考 `CarlYuHQ/ccfddls` 的时间轴） |
-| [模型](web/models.html) | 73 个真实模型放在同一坐标图（时间 × 上下文），**每个点带机构 logo**，图例列出各家 logo + 名字，点击筛选；规格表视图 |
-| [机构](web/companies.html) | 21 家机构的模型数、最新发布、地区，按地区筛选 |
-| [技术](web/tech.html) | 48 项关键技术，按年份与分类排列，附来源 |
+| [编年](web/index.html) / [EN](web/index-en.html) | 横向编年长轴，年份区间 + 机构筛选、hover 就近吸附、滚轮缩放 |
+| [模型](web/models.html) / [EN](web/models-en.html) | 对数散点图 + 规格表，机构 logo 索引筛选 |
+| [机构](web/companies.html) / [EN](web/companies-en.html) | 21 家机构统计卡片，按地区筛选 |
+| [技术](web/tech.html) / [EN](web/tech-en.html) | 48 项技术卡片，点开为带论文链接的小博客 |
 
-王虹学术手写风：近白纸面、深蓝手写字、短红线、局部荧光、大量留白。每页标题与名言有逐字手写入场，名言下红笔线逐笔画出。为消除交叉，不再用 JS 测量画大框包裹长文，只保留短下划线与局部荧光。对比图默认只显示被选中模型的标签，73 个点也不会互相压字。
-
-数据取自档案快照（`web/assets/compare-data.js`、`tech-data.js`），只画公开披露字段，截止 2026-11-19。遵循 Hallmark 反 AI 味规则，`sloplint` 四页扫描 0 FAIL / 0 REFLEX / 0 WARN，并在 500px 与 1440px 实际渲染验证过。
-
-> `deck/` 下另有一版 17 页手写风幻灯片，作为演示备选，不是主展示。
-
-## 数据视图
-
-完整数据仓库仍保留，六个视角如下：
-
-| 视图 | 说明 |
-|---|---|
-| [总览](index.html) | 数字总览、阅读路径、三个时代分期、最新发布 |
-| [时间线](timeline.html) | 模型发布与行业事件合流，按机构 / 类型筛选 |
-| [关系图谱](graph.html) | 机构—模型—技术三类节点的交互网络（D3 力导向） |
-| [模型家谱](lineage.html) | 沿 predecessor 关系梳理代际传承 |
-| [数据观察](stats.html) | 发布密度、上下文演进、参数分布、许可占比 |
-| [地理分布](geo.html) | 机构总部的世界地图与密集区 |
-| [模型索引](catalog.html) | 可搜索、筛选、排序的完整清单 |
-
-另有[数据来源与说明](sources.html)页，记录统计口径、来源原则与已知局限。
+**双语**：每页右上角 `English / 中文` 一键切换。英文版与中文版共用同一套 CSS/JS，语言由 `assets/i18n.js` 字典与 `*-en.js` 数据文件驱动，中文页是唯一源，重跑脚本即同步。
 
 ## 运行
 
-零依赖、零构建。直接打开 `index.html` 即可（数据以 JS 形式加载，`file://` 下可用）。
-
-若需本地服务：
+零依赖、零构建，直接打开 `web/index.html`（`file://` 可用），或：
 
 ```bash
-python3 -m http.server 8000
-# 浏览器访问 http://localhost:8000
+python3 -m http.server 8000 --directory web
+# http://localhost:8000
 ```
 
-用 GitHub Pages 托管时，把本仓库设为站点的根目录即可。
+GitHub Pages 由 [`.github/workflows/pages.yml`](.github/workflows/pages.yml) 在 push 到 `main` 且 `web/` 变更时自动部署，站点根为 `web/`。
 
-## 目录结构
-
-```
-llm-evolution-atlas/
-├── index.html              # 总览
-├── timeline.html           # 时间线
-├── graph.html              # 关系图谱
-├── lineage.html            # 模型家谱
-├── stats.html              # 数据观察
-├── geo.html                # 地理分布
-├── catalog.html            # 模型索引
-├── sources.html            # 数据来源与说明
-├── assets/
-│   ├── css/main.css        # 设计系统（深色科技编辑风 · 数据发光感）
-│   ├── js/common.js        # 公共逻辑：报头、抽屉、工具函数
-│   └── vendor/             # D3 / topojson（本地，离线可用）
-├── data/
-│   ├── raw/                # 分机构采集的原始数据（人工维护）
-│   ├── atlas.json          # 合并后的统一数据（可读）
-│   ├── atlas.js            # 同上，供页面加载
-│   └── world.js            # Natural Earth 110m 世界边界
-└── scripts/
-    └── build_data.py       # 合并 / 校验 / 派生字段 / 生成数据层
-```
-
-## 数据更新
-
-编辑 `data/raw/` 下对应机构的 JSON，然后重建：
+## 重新生成
 
 ```bash
-python3 scripts/build_data.py
+python3 scripts/build_data.py          # 合并 data/raw/ → data/atlas.json
+python3 scripts/build_web_data.py      # atlas.json → web/assets/*-data.js
+python3 scripts/build_en_data.py       # atlas.json → web/assets/tech-data-en.js（英文正文）
+python3 scripts/build_en_pages.py      # 中文 HTML → 四个英文 HTML（幂等）
 ```
 
-脚本会校验引用完整性、按日期排序、派生统计字段，并重新生成 `atlas.json` 与 `atlas.js`。校验发现问题会在终端列出，但不会静默丢弃条目。
+改动数据后按以上顺序重跑；中文 HTML 是唯一源，不要直接编辑 `*-en.html`。
 
-原始数据字段：
+## 目录
 
-- `models[]`：`id, company, family, name, release, params_b, context_k, modality, license, predecessor, highlights[], source, note`
-- `companies[]`：`id, name, name_zh, country, founded, hq, site, blurb`
-- `technologies[]`：`id, name, name_zh, year, category, origin, summary, impact, source, models[]`
-- `events[]`：`id, date, title, company, type, summary, source, model_id, tech_id`
-
-许可取值：`open`（开放权重）、`weighted`（受限开源）、`proprietary`（闭源）。
+```
+model-annals/
+├── web/                     # 站点根（Pages 部署此目录）
+│   ├── index.html           # 中文编年页
+│   ├── *-en.html            # 英文版四页（生成）
+│   └── assets/
+│       ├── site.css         # 王虹学术手写风设计系统
+│       ├── i18n.js          # 中英 UI 字典
+│       ├── *-data.js        # 数据层（中/英）
+│       └── logos/           # 21 家机构 logo
+├── data/atlas.json          # 唯一数据源
+├── docs/preview.jpg         # README 预览图
+└── scripts/                 # 生成脚本
+```
 
 ## 设计
 
-采用"深色科技编辑风"设计系统 v2：近黑底（`#0A0B0D`）、细网格背景、Space Grotesk 几何标题、数据青绿主强调色（`#00D9A3`）+ 琥珀橙 / 蓝双辅色、JetBrains Mono 用于编号与数据标签。视觉锤包括 Hero 逐字入场、数字滚动、发光节点、图表生长动画、滚动进度条。刻意规避生成式 AI 的默认套路（紫粉渐变、玻璃拟态、emoji 堆砌、居中式英雄区）。所有字体从 Google Fonts 加载，离线时回退到系统字体，并遵循 `prefers-reduced-motion`。
+王虹学术手写风：近白纸面、深蓝手写字（Xiaolai）、短红线、局部荧光、大量留白。标题与名言逐字入场，名言下红笔线逐笔画出；不使用渐变、玻璃拟态、emoji 堆砌等生成式默认套路。遵循 `prefers-reduced-motion`。
 
 ## 来源与局限
 
-数据来源以机构官方发布页、系统卡、技术报告与论文为主，部分 2026 年新模型的日期来自可靠媒体报道或行业时间线聚合站，已在条目的 `note` 字段标注。详见 [数据来源与说明](sources.html)。
+数据以机构官方发布页、系统卡、技术报告与论文为主；部分 2026 年新模型的日期来自可靠媒体或行业时间线聚合，已在条目 `note` 标注。未公开的字段留空显示为「未公开」，不以 0 代替。数据截止 2026-11-19。
 
-本项目为独立整理，与文中所列任何机构无隶属或背书关系。
+---
 
-## 许可
+<div align="center">
 
-MIT — 详见 [LICENSE](LICENSE)。
+[English](README.en.md) · [在线站点](https://carlyuhq.github.io/Model-Annals/) · [仓库](https://github.com/CarlYuHQ/Model-Annals)
+
+</div>

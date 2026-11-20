@@ -73,7 +73,7 @@
   /* ---- SVG ---- */
   var s = el('svg');
   attr(s, {viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMid meet', role: 'img',
-    'aria-label': '2018 至 2026 模型发布编年轴'});
+    'aria-label': L('axisAria')});
   s.appendChild(attr(el('line'), {x1: X0, y1: AXIS_Y, x2: W - 60, y2: AXIS_Y,
     stroke: 'var(--ink)', 'stroke-width': 2}));
   var ticks = el('g', 'tl-ticks');
@@ -96,7 +96,7 @@
         attr(t, {x: x, y: AXIS_Y - 14, 'font-size': 32, 'font-family': 'var(--hand)',
           'text-anchor': 'middle', fill: mm === 1 ? 'var(--red)' : 'var(--ink-2)',
           stroke: 'var(--paper)', 'stroke-width': 6, 'paint-order': 'stroke'});
-        t.textContent = mm + '月'; ticks.appendChild(t);
+        t.textContent = IS_EN()? String(mm) : mm + L('month'); ticks.appendChild(t);
         ticks.appendChild(attr(el('line'), {x1: x, y1: AXIS_Y - 7, x2: x, y2: AXIS_Y + 7,
           stroke: mm === 1 ? 'var(--red)' : 'var(--muted)', 'stroke-width': mm === 1 ? 2 : 1}));
       }
@@ -186,7 +186,7 @@
   var bar = document.createElement('div');
   bar.className = 'tl-filter';
   function yearOpts(which) {
-    var h = '<option value="all">' + (which === 'from' ? '起始年' : '结束年') + '</option>';
+    var h = '<option value="all">' + (which === 'from' ? L('from') : L('to')) + '</option>';
     for (var yr = Y0; yr <= Y1; yr++) h += '<option value="' + yr + '">' + yr + '</option>';
     return h;
   }
@@ -194,7 +194,7 @@
     return companies[a].name.localeCompare(companies[b].name);
   });
   var coOptions = '<button type="button" class="co-opt on" data-co="all">' +
-      '<img src="assets/logos/all.png" alt=""><span>全部</span></button>' +
+      '<img src="assets/logos/all.png" alt=""><span>'+L('all')+'</span></button>' +
     coKeys.map(function (k) {
       var c = companies[k];
       var img = c.logo ? '<img src="' + logoURL(c.logo) + '" alt="">' : '<i class="co-ph"></i>';
@@ -202,16 +202,16 @@
         '<span>' + c.name + '</span></button>';
     }).join('');
   bar.innerHTML =
-    '<span class="flt-label">年份</span>' +
+    '<span class="flt-label">'+L('year')+'</span>' +
     '<span class="flt-select"><select id="flt-from">' + yearOpts('from') + '</select></span>' +
     '<span class="tl-dash">—</span>' +
     '<span class="flt-select"><select id="flt-to">' + yearOpts('to') + '</select></span>' +
-    '<span class="flt-label">机构</span>' +
+    '<span class="flt-label">'+L('org')+'</span>' +
     '<span class="co-picker"><button type="button" id="flt-co-trigger" aria-expanded="false">' +
-      '<span id="co-current"><img src="assets/logos/all.png" alt="">全部</span>' +
+      '<span id="co-current"><img src="assets/logos/all.png" alt="">'+L('all')+'</span>' +
       '<i class="co-caret"></i></button>' +
       '<span class="co-menu" id="co-menu">' + coOptions + '</span></span>' +
-    '<button type="button" id="flt-reset">重置</button>';
+    '<button type="button" id="flt-reset">'+L('reset')+'</button>';
   host.parentNode.insertBefore(bar, host);
 
   /* ---- viewBox（恒定宽高比；滚轮缩放/拖拽时变 x/w）---- */
@@ -261,7 +261,7 @@
     var c = companies[filter.co];
     var img = filter.co === 'all' ? '<img src="assets/logos/all.png" alt="">'
       : (c && c.logo ? '<img src="' + logoURL(c.logo) + '" alt="">' : '<i class="co-ph"></i>');
-    coCurrent.innerHTML = img + (c ? c.name : '全部');
+    coCurrent.innerHTML = img + (c ? c.name : L('all'));
     coMenu.querySelectorAll('.co-opt').forEach(function (o) { o.classList.toggle('on', o === opt); });
     coMenu.classList.remove('open');
     coTrigger.setAttribute('aria-expanded', 'false');
@@ -277,7 +277,7 @@
     filter = {from: 'all', to: 'all', co: 'all'};
     bar.querySelector('#flt-from').value = 'all';
     bar.querySelector('#flt-to').value = 'all';
-    coCurrent.innerHTML = '<img src="assets/logos/all.png" alt="">全部';
+    coCurrent.innerHTML = '<img src="assets/logos/all.png" alt="">'+L('all');
     coMenu.querySelectorAll('.co-opt').forEach(function (o, i) { o.classList.toggle('on', i === 0); });
     coMenu.classList.remove('open');
     runFilter();

@@ -5,20 +5,20 @@
   var grid=document.getElementById('company-grid');if(!grid)return;
   var filter='all';
 
-  function regionLabel(r){return r==='cn'?'中国':(r==='us'?'北美':'其他');}
+  function regionLabel(r){return r==='cn'?L('cn'):(r==='us'?L('us'):L('other'));}
   function fullName(o){return o.zh&&o.zh!==o.name?o.zh:o.name;}
 
   function render(){
     var list=C.filter(function(o){return filter==='all'||o.region===filter;});
     grid.innerHTML=list.map(function(o){
         var ctx=o.latestCtx?o.latestCtx+'K':'';
-        var src=o.src?'<span class="co"><a href="'+o.src+'" target="_blank" rel="noopener">官网 ↗</a></span>':'';
+        var src=o.src?'<span class="co"><a href="'+o.src+'" target="_blank" rel="noopener">'+L('official')+'</a></span>':'';
         var lg=o.logo?'<img class="co-logo" src="assets/logos/'+o.logo+'.png" alt="'+o.name+' logo">':'<span class="co-logo co-logo-ph"></span>';
         return '<article class="cell co-cell">'+
           '<div class="co-head"><div class="num">'+o.count+'</div>'+lg+'</div>'+
           '<h3>'+o.name+'</h3>'+
-          '<p>最新 '+o.latestDate+' · '+o.latest+(ctx?' · '+ctx:'')+'</p>'+
-          '<span class="co">'+regionLabel(o.region)+' · '+o.families+' 个谱系 · '+o.openCount+' 个开放权重</span>'+
+          '<p>'+L('latest')+' '+o.latestDate+' · '+o.latest+(ctx?' · '+ctx:'')+'</p>'+
+          '<span class="co">'+regionLabel(o.region)+' · '+o.families+L('families')+o.openCount+L('openWeights')+'</span>'+
           src+'</article>';
       }).join('');
     // 卡片不足一行时收缩网格，避免右侧空白
@@ -34,7 +34,7 @@
   var fb=document.getElementById('region-filters');
   if(fb){
     fb.innerHTML=['all','cn','us','other'].map(function(r){
-      return '<button class="chip'+(r==='all'?' on':'')+'" data-r="'+r+'">'+(r==='all'?'全部':regionLabel(r))+'</button>';
+      return '<button class="chip'+(r==='all'?' on':'')+'" data-r="'+r+'">'+(r==='all'?L('all'):regionLabel(r))+'</button>';
     }).join('');
     fb.addEventListener('click',function(e){
       var b=e.target.closest('[data-r]');if(!b)return;
