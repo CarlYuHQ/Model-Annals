@@ -9,11 +9,11 @@
 
   var SVGNS = 'http://www.w3.org/2000/svg';
   var Y0 = 2018, Y1 = 2026, MO = 12;
-  var COL = 40, X0 = 90;
+  var COL = 30, X0 = 90;
   var TOTAL = (Y1 - Y0 + 1) * MO * COL + X0 + 120;
-  var AXIS_Y = 190, H = 380, W = TOTAL;
-  var LAYERS = [-150,-120,-90,-60,-30, 30,60,90,120,150];
-  var MIN_GAP = 46;
+  var AXIS_Y = 300, H = 600, W = TOTAL;
+  var LAYERS = [-270,-240,-210,-180,-150,-120,-90,-60,-30, 30,60,90,120,150,180,210,240,270];
+  var MIN_GAP = 36;
   var MOTION = 720;
   var selectedId = null;
   var filter = { from: 'all', to: 'all', co: 'all' };
@@ -88,7 +88,7 @@
       for (var mm = 1; mm <= 12; mm++) {
         var x = tx((mm - 1) / 11);
         var t = el('text');
-        attr(t, {x: x, y: AXIS_Y - 14, 'font-size': 22, 'font-family': 'var(--hand)',
+        attr(t, {x: x, y: AXIS_Y - 14, 'font-size': 32, 'font-family': 'var(--hand)',
           'text-anchor': 'middle', fill: mm === 1 ? 'var(--red)' : 'var(--ink-2)'});
         t.textContent = mm + '月'; ticks.appendChild(t);
         ticks.appendChild(attr(el('line'), {x1: x, y1: AXIS_Y - 7, x2: x, y2: AXIS_Y + 7,
@@ -99,7 +99,7 @@
         var idx = yr - from;
         var x = span === 1 ? X0 + (W - X0 - 60) / 2 : tx(idx / (span - 1));
         var t2 = el('text');
-        attr(t2, {x: x, y: AXIS_Y - 14, 'font-size': 28, 'font-family': 'var(--hand)',
+        attr(t2, {x: x, y: AXIS_Y - 14, 'font-size': 40, 'font-family': 'var(--hand)',
           'text-anchor': 'middle', fill: 'var(--red)'});
         t2.textContent = yr; ticks.appendChild(t2);
         ticks.appendChild(attr(el('line'), {x1: x, y1: AXIS_Y - 7, x2: x, y2: AXIS_Y + 7,
@@ -126,7 +126,7 @@
     attr(stem, {x1: 0, y1: 0, x2: 0, y2: 0, stroke: 'var(--rule)', 'stroke-width': 1});
     g.appendChild(stem);
 
-    var r = 8;
+    var r = 10;
     if (d.logo) {
       var cid = 'clip-' + idx;
       var clip = el('clipPath'); clip.setAttribute('id', cid);
@@ -137,11 +137,11 @@
       g.appendChild(img);
     } else {
       var dot = el('circle');
-      attr(dot, {cx: 0, cy: 0, r: 6, fill: 'var(--muted)'});
+      attr(dot, {cx: 0, cy: 0, r: 8, fill: 'var(--muted)'});
       g.appendChild(dot);
     }
     var label = el('text', 'tl-name');
-    attr(label, {x: 0, y: 16, 'font-size': 16, 'font-family': 'var(--hand)', fill: 'var(--red)',
+    attr(label, {x: 0, y: 16, 'font-size': 20, 'font-family': 'var(--hand)', fill: 'var(--red)',
       'text-anchor': 'middle', stroke: 'var(--paper)', 'stroke-width': 4, 'paint-order': 'stroke', opacity: 0});
     label.textContent = d.name;
     g.appendChild(label);
