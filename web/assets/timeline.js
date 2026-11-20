@@ -38,9 +38,14 @@
 
   /* ---- 贪心分层（全量时）---- */
   function layoutFull() {
+    D.forEach(function (d) { d.x = d.tx; });
+    assignLayers(D);
+  }
+  /* ---- 贪心分层：把给定点铺满 18 层 ---- */
+  function assignLayers(list) {
     var lastX = LAYERS.map(function () { return -Infinity; });
-    D.forEach(function (d) {
-      var x = d.tx, best = -1, score = -Infinity;
+    list.forEach(function (d) {
+      var x = d.x, best = -1, score = -Infinity;
       for (var i = 0; i < LAYERS.length; i++) {
         var gap = x - lastX[i];
         if (gap < MIN_GAP) continue;
@@ -48,19 +53,17 @@
         if (sc > score) { score = sc; best = i; }
       }
       if (best < 0) { best = 0; for (var j = 1; j < LAYERS.length; j++) if (lastX[j] < lastX[best]) best = j; }
-      d.x = x; d.yPos = AXIS_Y + LAYERS[best]; d.up = LAYERS[best] < 0; d.layer = best;
+      d.yPos = AXIS_Y + LAYERS[best]; d.up = LAYERS[best] < 0; d.layer = best;
       lastX[best] = x;
     });
   }
-  /* ---- 筛选后：选中点按序号等距铺开（ccfddls spreadAcrossAxis 思路）---- */
+  /* ---- 筛选后：点按序号等距铺开，贪心分层自然铺开 ---- */
   function layoutFiltered(list) {
     var n = list.length;
     list.forEach(function (d, i) {
       d.x = n === 1 ? X0 + (W - X0) / 2 : X0 + (i / (n - 1)) * (W - X0 - 60);
-      d.yPos = AXIS_Y + (i % 2 === 0 ? -30 : 30);
-      d.up = i % 2 === 0;
-      d.layer = d.up ? 4 : 5;
     });
+    assignLayers(list); // 贪心：点密时自然用满多层
   }
 
   layoutFull();
@@ -86,7 +89,8 @@
     function tx(frac) { return X0 + frac * (W - X0 - 60); }
     if (singleYear) {
       for (var mm = 1; mm <= 12; mm++) {
-        var x = tx((mm - 1) / 11);
+        // 单年筛选用真实时间位置，与保留真实 x 的点对齐
+        var x = xOf(from, mm, 1) - xOf(from, 1, 1) + X0;
         var t = el('text');
         attr(t, {x: x, y: AXIS_Y - 14, 'font-size': 32, 'font-family': 'var(--hand)',
           'text-anchor': 'middle', fill: mm === 1 ? 'var(--red)' : 'var(--ink-2)'});
@@ -96,8 +100,7 @@
       }
     } else {
       for (var yr = from; yr <= to; yr++) {
-        var idx = yr - from;
-        var x = span === 1 ? X0 + (W - X0 - 60) / 2 : tx(idx / (span - 1));
+        var x = xOf(yr, 1, 1);
         var t2 = el('text');
         attr(t2, {x: x, y: AXIS_Y - 14, 'font-size': 40, 'font-family': 'var(--hand)',
           'text-anchor': 'middle', fill: 'var(--red)'});
@@ -208,8 +211,8 @@
   function runFilter() {
     var list = D.filter(visible);
     // 筛选后可见点等距铺满整轴，轴刻度同步重排（ccfddls spreadAcrossAxis）
-    if (filter.from === 'all' && filter.to === 'all' && filter.co === 'all') layoutFull();
-    else layoutFiltered(list);
+    // 点始终按真实时间定位；筛选只控制显隐，viewBox 收缩到可见范围放大
+    D.forEach(function (d) { d.x = d.tx; });
     var inSet = {}; list.forEach(function (d) { inSet[d.id] = 1; });
     D.forEach(function (d) {
       var g = nodeEls[d.id].g;
@@ -223,6 +226,20 @@
     ticks.classList.remove('redraw');
     void ticks.getBoundingClientRect();
     ticks.classList.add('redraw');
+    // viewBox 高度自适应：框住可见点 + 轴，去掉上下空白
+    var all = filter.from === 'all' && filter.to === 'all' && filter.co === 'all';
+    if (all) {
+      animateVB(0, W, 0, H);
+    } else if (list.length) {
+      var ys = list.map(function (d) { return d.yPos; });
+      var xs = list.map(function (d) { return d.x; });
+      var padY = 70, padX = 60;
+      var nY = Math.max(0, Math.min.apply(null, ys.concat([AXIS_Y])) - padY);
+      var nH = Math.min(H, Math.max.apply(null, ys.concat([AXIS_Y])) + padY) - nY;
+      var nX = Math.max(0, Math.min.apply(null, xs) - padX);
+      var nW = Math.min(W - nX, Math.max.apply(null, xs) + padX - nX);
+      animateVB(nX, nW, nY, nH);
+    }
     hidePop();
   }
   bar.querySelector('#flt-from').addEventListener('change', function (e) { filter.from = e.target.value; runFilter(); });
@@ -303,15 +320,17 @@
   var vb = {x: 0, y: 0, w: W, h: H};
   function applyVB() { s.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h); }
   var vbAnim = null;
-  function animateVB(tx, tw) {
+  function animateVB(tx, tw, ty, th) {
     if (vbAnim) cancelAnimationFrame(vbAnim);
+    ty = ty == null ? 0 : ty;
+    th = th == null ? H : th;
+    vb.y = ty; vb.h = th; // 高度直接生效（避免 rAF 不推进时卡住）
     var sx = vb.x, sw = vb.w, t0 = performance.now();
     function step(now) {
       var p = Math.min(1, (now - t0) / MOTION);
       var e = 1 - Math.pow(1 - p, 3);
       vb.x = sx + (tx - sx) * e;
       vb.w = sw + (tw - sw) * e;
-      vb.h = H; vb.y = 0;
       applyVB();
       if (p < 1) vbAnim = requestAnimationFrame(step);
     }
