@@ -282,7 +282,7 @@
   /* ---- hover 就近吸附 + 浮层 ---- */
   var pop = document.createElement('div');
   pop.className = 'tl-float';
-  host.parentNode.insertBefore(pop, host.nextSibling);
+  host.appendChild(pop); // 放进 host（position:relative），定位以轴容器为基准
   var hoverId = null;
   function nearest(clientX) {
     var pt = s.createSVGPoint(); pt.x = clientX; pt.y = 0;
@@ -308,10 +308,12 @@
   }
   function showPop(p) {
     pop.innerHTML = '<em>' + p.name + ' · ' + p.coName + ' · ' + p.date + '</em>';
-    var r = host.getBoundingClientRect();
-    var sx = (p.x - vb.x) / vb.w * r.width;
-    pop.style.left = Math.max(8, Math.min(r.width - 200, sx - 100)) + 'px';
-    pop.style.top = (p.yPos / H * r.height + 24) + 'px';
+    var hr = host.getBoundingClientRect();
+    var pt = s.createSVGPoint(); pt.x = p.x; pt.y = p.yPos;
+    var screen = pt.matrixTransform(s.getScreenCTM());
+    var px = screen.x - hr.left, py = screen.y - hr.top;
+    pop.style.left = Math.max(8, Math.min(hr.width - 220, px - 110)) + 'px';
+    pop.style.top = (py + 24) + 'px';
     pop.classList.add('on');
   }
   function hidePop() { pop.classList.remove('on'); }
