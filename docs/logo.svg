@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Model Annals logo">
+  <defs>
+    <clipPath id="tile"><rect x="8" y="8" width="224" height="224" rx="56"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect x="8" y="8" width="224" height="224" rx="56" fill="#1c2147"/>
+    <rect x="8.75" y="8.75" width="222.5" height="222.5" rx="55.25" fill="none" stroke="#fdfdfb" stroke-opacity=".18" stroke-width="1.5"/>
+  </g>
+
+  <!-- 手绘编年轴 -->
+  <path d="M34 122 C 74 119, 96 124, 126 121 S 180 118, 206 122" fill="none"
+        stroke="#fdfdfb" stroke-width="3.2" stroke-linecap="round"/>
+
+  <!-- 刻度 -->
+  <g stroke="#fdfdfb" stroke-opacity=".45" stroke-width="2" stroke-linecap="round">
+    <path d="M62 114 v16"/><path d="M100 114 v16"/>
+    <path d="M152 114 v16"/><path d="M190 114 v16"/>
+  </g>
+
+  <!-- 模型点，上下错落，stem 连回轴 -->
+  <g stroke="#fdfdfb" stroke-opacity=".55" stroke-width="1.6">
+    <path d="M48 122 V88"/><path d="M84 122 V150"/>
+    <path d="M132 122 V80"/><path d="M174 122 V156"/>
+  </g>
+  <g fill="#fdfdfb">
+    <circle cx="48" cy="86" r="6.5"/>
+    <circle cx="84" cy="152" r="5.5"/>
+    <circle cx="132" cy="78" r="6.5"/>
+    <circle cx="174" cy="158" r="5.5"/>
+    <circle cx="100" cy="121" r="4.5"/>
+  </g>
+  <!-- 焦点：红色模型点 -->
+  <circle cx="152" cy="121" r="9" fill="#d7303b"/>
+  <circle cx="152" cy="121" r="13.5" fill="none" stroke="#d7303b" stroke-opacity=".45" stroke-width="1.6"/>
+
+  <!-- 红笔下划线 -->
+  <path d="M62 190 C 104 186, 146 192, 178 188" fill="none" stroke="#d7303b"
+        stroke-width="4" stroke-linecap="round"/>
+</svg>
