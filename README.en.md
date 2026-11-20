@@ -4,7 +4,7 @@
 
 **A visual chronicle of large models, their organizations, and the techniques behind them.**
 
-**[中文](README.md) | English**
+**English | [中文](README.md)**
 
 [![Models](https://img.shields.io/badge/Models-357-2c4ec4.svg)](web/index-en.html)
 [![Organizations](https://img.shields.io/badge/Organizations-21-d7303b.svg)](web/companies-en.html)
@@ -49,7 +49,7 @@ python3 -m http.server 8000 --directory web
 # http://localhost:8000/index-en.html
 ```
 
-GitHub Pages deploys automatically on pushes to `main` that touch `web/`, via [`.github/workflows/pages.yml`](.github/workflows/pages.yml); `web/` is the site root.
+GitHub Pages serves the `gh-pages` branch (root directory). On every push to `main`, [`.github/workflows/pages.yml`](.github/workflows/pages.yml) syncs `web/` into that branch's root and Pages rebuilds automatically.
 
 ## Regenerating
 

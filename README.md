@@ -4,7 +4,7 @@
 
 **大模型编年史 — 一部关于模型、机构与关键技术的可视化档案。**
 
-**English | [中文](README.md)** · [English →](README.en.md)
+**[English](README.en.md) | 中文**
 
 [![Models](https://img.shields.io/badge/Models-357-2c4ec4.svg)](web/index.html)
 [![Organizations](https://img.shields.io/badge/Organizations-21-d7303b.svg)](web/companies.html)
@@ -49,7 +49,7 @@ python3 -m http.server 8000 --directory web
 # http://localhost:8000
 ```
 
-GitHub Pages 由 [`.github/workflows/pages.yml`](.github/workflows/pages.yml) 在 push 到 `main` 且 `web/` 变更时自动部署，站点根为 `web/`。
+GitHub Pages 部署源为 `gh-pages` 分支（根目录）。[`.github/workflows/pages.yml`](.github/workflows/pages.yml) 在每次 push 到 `main` 时把 `web/` 同步为该分支的根内容，Pages 随即自动重建。
 
 ## 重新生成
 
