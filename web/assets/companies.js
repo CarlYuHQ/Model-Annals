@@ -9,8 +9,8 @@
   function fullName(o){return o.zh&&o.zh!==o.name?o.zh:o.name;}
 
   function render(){
-    grid.innerHTML=C.filter(function(o){return filter==='all'||o.region===filter;})
-      .map(function(o){
+    var list=C.filter(function(o){return filter==='all'||o.region===filter;});
+    grid.innerHTML=list.map(function(o){
         var ctx=o.latestCtx?o.latestCtx+'K':'';
         var src=o.src?'<span class="co"><a href="'+o.src+'" target="_blank" rel="noopener">官网 ↗</a></span>':'';
         var lg=o.logo?'<img class="co-logo" src="assets/logos/'+o.logo+'.png" alt="'+o.name+' logo">':'<span class="co-logo co-logo-ph"></span>';
@@ -21,6 +21,14 @@
           '<span class="co">'+regionLabel(o.region)+' · '+o.families+' 个谱系 · '+o.openCount+' 个开放权重</span>'+
           src+'</article>';
       }).join('');
+    // 卡片不足一行时收缩网格，避免右侧空白
+    if(list.length&&list.length<5){
+      grid.classList.add('compact');
+      grid.style.setProperty('--cols',Math.min(list.length,3));
+    }else{
+      grid.classList.remove('compact');
+      grid.style.removeProperty('--cols');
+    }
   }
 
   var fb=document.getElementById('region-filters');

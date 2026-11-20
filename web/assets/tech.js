@@ -21,15 +21,23 @@
   }
 
   function renderGrid(){
-    grid.innerHTML=T.filter(function(t){return filter==='all'||t.cat===filter;})
-      .sort(function(a,b){return (a.year||0)-(b.year||0);})
-      .map(function(t){
+    var list=T.filter(function(t){return filter==='all'||t.cat===filter;})
+      .sort(function(a,b){return (a.year||0)-(b.year||0);});
+    grid.innerHTML=list.map(function(t){
         return '<article class="cell tech-cell'+(activeId===t.id?' on':'')+'" data-id="'+esc(t.id)+'" tabindex="0" role="button" aria-label="查看 '+esc(t.zh||t.name)+' 详情">'+
           '<div class="num">'+esc(t.year)+'</div>'+
           '<h3>'+esc(t.zh||t.name)+'</h3>'+
           '<p>'+esc(summaryShort(t.summary))+'</p>'+
           '<span class="co">'+esc(t.cat)+' · '+esc(t.origin)+'</span></article>';
       }).join('');
+    // 卡片少于一整行时，网格宽度收缩到刚好容纳，避免右侧大面积空白
+    if(list.length&&list.length<5){
+      grid.classList.add('compact');
+      grid.style.setProperty('--cols',Math.min(list.length,3));
+    }else{
+      grid.classList.remove('compact');
+      grid.style.removeProperty('--cols');
+    }
   }
 
   /* 同类别的其他技术（数据推导，不编造） */
