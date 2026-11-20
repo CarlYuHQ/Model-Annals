@@ -1,43 +1,46 @@
 name: Deploy Pages
 
+# Pages 已配为「Deploy from a branch / gh-pages / (root)」。
+# 本工作流只负责把 main 上的 web/ 目录同步到 gh-pages 分支，
+# 不调用 Pages API（GITHUB_TOKEN 无权创建 Pages 站点）。
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: pages-sync
   cancel-in-progress: false
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
         with:
-          enablement: true
-      - name: Add .nojekyll
-        run: touch web/.nojekyll
-      - name: Upload artifact (web/ as site root)
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: web
+          fetch-depth: 0
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build site tree from web/
+        run: |
+          rm -rf /tmp/site
+          mkdir -p /tmp/site
+          cp -R web/. /tmp/site/
+          touch /tmp/site/.nojekyll
+
+      - name: Push to gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd /tmp/site
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy from ${{ github.sha }}"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          git push -f origin gh-pages
