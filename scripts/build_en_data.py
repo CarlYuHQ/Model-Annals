@@ -180,16 +180,28 @@ def main():
     out = []
     missing = []
     for t in atlas['technologies']:
+        # 新增条目在源头自带英文字段；原有条目回退到本文件的翻译表 T
         e = T.get(t['id'])
-        if not e:
+        if t.get('summary_en'):
+            name = t.get('name_en') or t['name']
+            # 英文卡片显示名：优先用源头提供的短名，否则取主标题（冒号前）
+            zh = t.get('label_en') or (name.split(':')[0].split('/')[0].split('(')[0]).strip() or name
+            summary = t['summary_en']
+            impact = t.get('impact_en') or ''
+            origin = t.get('origin_en') or t.get('origin')
+            cat = t.get('category_en') or CAT.get(t.get('category'), t.get('category'))
+        elif e:
+            zh, name, summary, impact, origin = e
+            cat = CAT.get(t.get('category'), t.get('category'))
+            if origin is None:
+                origin = t.get('origin')
+        else:
             missing.append(t['id'])
             continue
-        zh, name, summary, impact, origin = e
         out.append({
             'id': t['id'], 'name': name, 'zh': zh, 'year': t['year'],
-            'category': CAT.get(t.get('category'), t.get('category')),
-            'cat': CAT.get(t.get('category'), t.get('category')),
-            'origin': origin if origin is not None else t.get('origin'),
+            'category': cat, 'cat': cat,
+            'origin': origin,
             'summary': summary, 'impact': impact, 'source': t.get('source'),
             'models': t.get('models', []), 'model_refs': t.get('model_refs', []),
         })
@@ -198,7 +210,7 @@ def main():
         sys.exit(1)
     p = os.path.join(OUT, 'tech-data-en.js')
     with open(p, 'w', encoding='utf-8') as f:
-        f.write('/* English dataset: 48 key techniques. Translations mirror data/atlas.json; no added facts. */\n')
+        f.write('/* English dataset: %d key techniques. Mirrors data/atlas.json; no added facts. */\n' % len(out))
         f.write('window.TECH_DATA = ' + json.dumps(out, ensure_ascii=False, separators=(',', ':')) + ';\n')
     print('已生成 tech-data-en.js：', len(out), '条')
 
