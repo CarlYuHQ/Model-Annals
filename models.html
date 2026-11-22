@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="90 个大模型在统一坐标系中对比发布时间与上下文长度。">
+<title>模型 · Model Annals</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-inner">
+  <a class="wordmark" href="index.html">Model Annals</a>
+  <nav class="nav" aria-label="页面导航">
+    <a href="index.html">编年</a>
+    <a href="models.html" aria-current="page">模型</a>
+    <a href="companies.html">机构</a>
+    <a href="tech.html">技术</a>
+  <a class="lang-toggle" href="models-en.html">English</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <div class="page-head">
+    <h1 class="page-title" data-write>模型对比</h1>
+    <p class="kicker">90 models · 21 organizations</p>
+    <p class="page-quote" data-write>尺有所短，寸有所长。</p>
+    <p class="quote-by" data-write>屈原 · 卜居</p>
+  </div>
+
+  <div class="viewbar">
+    <button class="viewtab on" data-view="chart">坐标图</button>
+    <button class="viewtab" data-view="table">规格表</button>
+  </div>
+
+  <div class="viewpanel on" id="view-chart">
+    <div class="chart-legend">
+      <span class="lg"><i class="lg-dot lg-us"></i>北美</span>
+      <span class="lg"><i class="lg-dot lg-cn"></i>中国</span>
+      <span class="lg"><i class="lg-dot lg-other"></i>其他</span>
+      <span class="lg"><i class="lg-dot lg-ring"></i>权重开放</span>
+    </div>
+      <div class="org-index" id="org-index" aria-label="机构图例"></div>
+      <p class="chart-note">纵轴为对数刻度；未公开上下文的模型置于底部虚线带，同坐标点作轻微错开。</p>
+      <div class="chart-wrap" id="chart-wrap"></div>
+    <div class="model-detail" id="model-detail"></div>
+  </div>
+
+  <div class="viewpanel" id="view-table">
+    <div class="table-wrap">
+      <table class="hand">
+        <thead><tr><th>模型</th><th>机构</th><th>发布</th><th>上下文</th><th>参数</th><th>许可</th></tr></thead>
+        <tbody id="model-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="refs">
+    <h2 class="refs-title">指标与排行</h2>
+    <div class="refs-grid">
+      <a class="ref" href="https://artificialanalysis.ai" target="_blank" rel="noopener"><b>Artificial Analysis</b><span>智能 / 速度 / 价格</span></a>
+      <a class="ref" href="https://lmarena.ai" target="_blank" rel="noopener"><b>LMArena</b><span>人类盲测</span></a>
+      <a class="ref" href="https://livebench.ai" target="_blank" rel="noopener"><b>LiveBench</b><span>抗污染评测</span></a>
+      <a class="ref" href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank" rel="noopener"><b>Open LLM Leaderboard</b><span>开放权重</span></a>
+      <a class="ref" href="https://www.swebench.com" target="_blank" rel="noopener"><b>SWE-bench</b><span>代码工程</span></a>
+      <a class="ref" href="https://openrouter.ai/rankings" target="_blank" rel="noopener"><b>OpenRouter Rankings</b><span>调用量 / 价格</span></a>
+      <a class="ref" href="https://llm-stats.com" target="_blank" rel="noopener"><b>LLM Stats</b><span>跑分 / 价格</span></a>
+      <a class="ref" href="https://livecodebench.github.io" target="_blank" rel="noopener"><b>LiveCodeBench</b><span>代码评测</span></a>
+      <a class="ref" href="https://crfm.stanford.edu/helm" target="_blank" rel="noopener"><b>HELM</b><span>斯坦福学术评测</span></a>
+      <a class="ref" href="https://www.vellum.ai/llm-leaderboard" target="_blank" rel="noopener"><b>Vellum</b><span>生产向模型榜</span></a>
+      <a class="ref" href="https://scale.com/leaderboard" target="_blank" rel="noopener"><b>Scale SEAL</b><span>专家私有题集</span></a>
+      <a class="ref" href="https://www.vals.ai/home" target="_blank" rel="noopener"><b>Vals AI</b><span>行业真实任务</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="footer-inner">Model Annals</div></footer>
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/compare-data.js"></script>
+<script src="assets/models.js"></script>
+</body>
+</html>

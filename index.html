@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="大模型编年史，2018 至 2026 年 357 个模型的发布编年与关键技术。">
+<title>编年 · Model Annals</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-inner">
+  <a class="wordmark" href="index.html">Model Annals</a>
+  <nav class="nav" aria-label="页面导航">
+    <a href="index.html" aria-current="page">编年</a>
+    <a href="models.html">模型</a>
+    <a href="companies.html">机构</a>
+    <a href="tech.html">技术</a>
+  <a class="lang-toggle" href="index-en.html">English</a>
+  </nav>
+</div></header>
+
+<main class="page">
+  <div class="page-head">
+    <h1 class="page-title" data-write>大模型编年史</h1>
+    <p class="kicker">2018 至 2026</p>
+    <p class="page-quote" data-write>究天人之际，通古今之变。</p>
+    <p class="quote-by" data-write>司马迁 · 报任安书</p>
+  </div>
+
+  <h2 class="sec-title" style="margin-bottom:12px">编年长轴</h2>
+  <div class="long-timeline" id="long-timeline"></div>
+  <div class="timeline-detail" id="timeline-detail"></div>
+
+  <div class="timeline" style="display:none">
+    <div class="tl-spine" aria-hidden="true"></div>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2018</div>
+      <div class="tl-body"><h2>GPT-1</h2><p>1.17 亿参数，512 token。自回归预训练的第一条主线。</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="right">
+      <div class="tl-year">2019</div>
+      <div class="tl-body"><h2>GPT-2 / BERT</h2><p>15 亿参数与掩码双向预训练。规模与理解，两条路并行。</p><span class="tl-tag">OpenAI · Google</span></div>
+    </article>
+    <article class="tl-item key" data-side="left">
+      <div class="tl-year">2020</div>
+      <div class="tl-body"><h2>GPT-3</h2><p>1750 亿参数。少样本能力出现，缩放法则成为共识。</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="right">
+      <div class="tl-year">2022</div>
+      <div class="tl-body"><h2>ChatGPT</h2><p>RLHF 让模型可对话。技术突破第一次来自训练方式而非参数。</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2023</div>
+      <div class="tl-body"><h2>LLaMA</h2><p>权重公开催生上千衍生模型。Qwen、DeepSeek、GLM 随之开源。</p><span class="tl-tag">Meta</span></div>
+    </article>
+    <article class="tl-item key" data-side="right">
+      <div class="tl-year">2024</div>
+      <div class="tl-body"><h2>o1</h2><p>推理时计算。模型在回答前先想一会儿，算力从训练侧搬到推理侧。</p><span class="tl-tag">OpenAI</span></div>
+    </article>
+    <article class="tl-item" data-side="left">
+      <div class="tl-year">2025</div>
+      <div class="tl-body"><h2>DeepSeek-R1</h2><p>GRPO 强化学习激发推理，权重公开。开源追到第一梯队。</p><span class="tl-tag">DeepSeek</span></div>
+    </article>
+    <article class="tl-item key" data-side="right">
+      <div class="tl-year">2026</div>
+      <div class="tl-body"><h2>GPT-6.2、Gemini 4、Claude 5</h2><p>同一代切成多档。下半年 68 个新模型，上下文普遍到百万。</p><span class="tl-tag">多家</span></div>
+    </article>
+  </div>
+</main>
+
+<footer class="footer"><div class="footer-inner">Model Annals</div></footer>
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/timeline-data.js"></script>
+<script src="assets/timeline.js"></script>
+</body>
+</html>
